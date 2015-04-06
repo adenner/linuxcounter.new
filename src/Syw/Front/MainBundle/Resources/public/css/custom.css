@@ -755,7 +755,9 @@ label > span {
     display:none;
 }
 
-
+.strikethrough {
+    text-decoration: line-through;
+}
 
 
 
