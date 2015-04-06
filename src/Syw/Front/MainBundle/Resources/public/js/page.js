@@ -35,6 +35,12 @@ $(document).ready(function() {
     $( "#question4" ).click(function() {
         $( "#answer4" ).slideToggle( "slow" );
     });
+    $( "#question5" ).click(function() {
+        $( "#answer5" ).slideToggle( "slow" );
+    });
+    $( "#question6" ).click(function() {
+        $( "#answer6" ).slideToggle( "slow" );
+    });
 
     $(":checkbox").bootstrapSwitch();
 
