@@ -751,7 +751,9 @@ label > span {
     }
 }
 
-
+#privacy_form .control-label {
+    display:none;
+}
 
 
 

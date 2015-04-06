@@ -36,7 +36,7 @@ $(document).ready(function() {
         $( "#answer4" ).slideToggle( "slow" );
     });
 
-
+    $(":checkbox").bootstrapSwitch();
 
 
 
