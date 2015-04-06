@@ -5,7 +5,9 @@ namespace Syw\Front\MainBundle\Listener;
 use Symfony\Component\Security\Core\SecurityContext;
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Syw\Front\MainBundle\Entity\Activity;
+use Syw\Front\MainBundle\Util\DetectBotFromUserAgent;
 
 /**
  * Class Activity
@@ -20,11 +22,13 @@ class ActivityListener
 {
     protected $context;
     protected $em;
+    protected $container;
 
-    public function __construct(SecurityContext $context, Doctrine $doctrine)
+    public function __construct(ContainerInterface $container, SecurityContext $context, Doctrine $doctrine)
     {
         $this->context = $context;
         $this->em = $doctrine->getEntityManager();
+        $this->container = $container;
     }
 
     /**
@@ -44,9 +48,19 @@ class ActivityListener
             return true;
         }
 
+        $ipaddress = $this->container->get('request')->server->get("REMOTE_ADDR");
+        $useragent = $this->container->get('request')->server->get("HTTP_USER_AGENT");
+        $obj       = new DetectBotFromUserAgent();
+        $isbot     = $obj->licoIsBot($useragent, $ipaddress);
+
         $activity = new Activity();
         $activity->setUser($user);
         $activity->setRoute($route);
+
+        $activity->setIpAddress($ipaddress);
+        $activity->setUserAgent($useragent);
+        $activity->setIsBot($isbot);
+
         $activity->setCreatedAt(new \DateTime());
         $this->em->persist($activity);
         $this->em->flush();

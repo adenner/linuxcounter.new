@@ -44,6 +44,21 @@ class Activity
     private $route;
 
     /**
+     * @ORM\Column(name="ipaddress", type="string", length=20, nullable=false)
+     */
+    private $ipaddress;
+
+    /**
+     * @ORM\Column(name="useragent", type="string", length=255, nullable=false)
+     */
+    private $useragent;
+
+    /**
+     * @ORM\Column(name="isbot", type="integer", length=1, nullable=false)
+     */
+    private $isbot;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdat", type="datetime", nullable=false)
@@ -104,6 +119,75 @@ class Activity
     public function getRoute()
     {
         return $this->route;
+    }
+
+    /**
+     * Set ipaddress
+     *
+     * @param string $ipaddress
+     * @return Activity
+     */
+    public function setIpAddress($ipaddress)
+    {
+        $this->ipaddress = $ipaddress;
+
+        return $this;
+    }
+
+    /**
+     * Get ipaddress
+     *
+     * @return string
+     */
+    public function getIpAddress()
+    {
+        return $this->ipaddress;
+    }
+
+    /**
+     * Set useragent
+     *
+     * @param string $useragent
+     * @return Activity
+     */
+    public function setUserAgent($useragent)
+    {
+        $this->useragent = $useragent;
+
+        return $this;
+    }
+
+    /**
+     * Get useragent
+     *
+     * @return string
+     */
+    public function getUserAgent()
+    {
+        return $this->useragent;
+    }
+
+    /**
+     * Set isbot
+     *
+     * @param integer $isbot
+     * @return Activity
+     */
+    public function setIsBot($isbot)
+    {
+        $this->isbot = $isbot;
+
+        return $this;
+    }
+
+    /**
+     * Get isbot
+     *
+     * @return integer
+     */
+    public function getIsBot()
+    {
+        return $this->isbot;
     }
 
     /**
