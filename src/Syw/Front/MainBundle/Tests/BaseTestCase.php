@@ -30,7 +30,7 @@ abstract class BaseTestCase extends WebTestCase
     }
 
 
-    public function getEntityManager()
+    public function getManager()
     {
         return self::$em;
     }

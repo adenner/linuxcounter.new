@@ -27,7 +27,7 @@ class ActivityListener
     public function __construct(ContainerInterface $container, SecurityContext $context, Doctrine $doctrine)
     {
         $this->context = $context;
-        $this->em = $doctrine->getEntityManager();
+        $this->em = $doctrine->getManager();
         $this->container = $container;
     }
 

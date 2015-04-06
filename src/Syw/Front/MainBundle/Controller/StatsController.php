@@ -278,7 +278,7 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $qb = $em->createQueryBuilder();
         $qb->select('count(user.id)');

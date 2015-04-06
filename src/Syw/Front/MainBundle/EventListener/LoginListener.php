@@ -34,7 +34,7 @@ class LoginListener implements EventSubscriberInterface
     {
         $this->router          = $router;
         $this->securityContext = $securityContext;
-        $this->em              = $doctrine->getEntityManager();
+        $this->em              = $doctrine->getManager();
         $this->container       = $container;
     }
 

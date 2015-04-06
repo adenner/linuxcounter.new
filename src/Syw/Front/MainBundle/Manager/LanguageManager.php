@@ -20,9 +20,9 @@ class LanguageManager extends AbstractManager
      */
     public function create(Languages $obj)
     {
-        $this->getEntityManager()->persist($obj);
+        $this->getManager()->persist($obj);
 
-        $this->getEntityManager()->flush();
+        $this->getManager()->flush();
     }
 
     /**
@@ -34,9 +34,9 @@ class LanguageManager extends AbstractManager
      */
     public function update(Languages $obj)
     {
-        $this->getEntityManager()->persist($obj);
+        $this->getManager()->persist($obj);
 
-        $this->getEntityManager()->flush();
+        $this->getManager()->flush();
     }
 
     /**
@@ -48,9 +48,9 @@ class LanguageManager extends AbstractManager
      */
     public function delete(Languages $obj)
     {
-        $this->getEntityManager()->remove($obj);
+        $this->getManager()->remove($obj);
 
-        $this->getEntityManager()->flush();
+        $this->getManager()->flush();
     }
 
     /**
@@ -116,6 +116,6 @@ class LanguageManager extends AbstractManager
      */
     public function getRepository()
     {
-        return $this->getEntityManager()->getRepository('SywFrontMainBundle:Languages');
+        return $this->getManager()->getRepository('SywFrontMainBundle:Languages');
     }
 }

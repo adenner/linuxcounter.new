@@ -13,14 +13,14 @@ class CitiesRepository extends EntityRepository
 {
     public function findLikeName($q)
     {
-        return $this->getEntityManager()
+        return $this->getManager()
             ->createQuery('SELECT c.id AS id, c.name AS value, LOWER(c.isoCountryCode) AS locale, c.latitude, c.longitude FROM SywFrontMainBundle:Cities c WHERE c.name LIKE \''.$q.'%\' ORDER BY c.name ASC')
             ->getResult();
     }
 
     public function find($id)
     {
-        return $this->getEntityManager()
+        return $this->getManager()
             ->createQuery("SELECT c.id FROM SywFrontMainBundle:Cities c WHERE c.id = '".$id."'")
             ->getResult();
     }

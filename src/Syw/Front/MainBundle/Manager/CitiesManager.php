@@ -20,9 +20,9 @@ class CitiesManager extends AbstractManager
      */
     public function create(Cities $obj)
     {
-        $this->getEntityManager()->persist($obj);
+        $this->getManager()->persist($obj);
 
-        $this->getEntityManager()->flush();
+        $this->getManager()->flush();
     }
 
     /**
@@ -34,9 +34,9 @@ class CitiesManager extends AbstractManager
      */
     public function update(Cities $obj)
     {
-        $this->getEntityManager()->persist($obj);
+        $this->getManager()->persist($obj);
 
-        $this->getEntityManager()->flush();
+        $this->getManager()->flush();
     }
 
     /**
@@ -48,9 +48,9 @@ class CitiesManager extends AbstractManager
      */
     public function delete(Cities $obj)
     {
-        $this->getEntityManager()->remove($obj);
+        $this->getManager()->remove($obj);
 
-        $this->getEntityManager()->flush();
+        $this->getManager()->flush();
     }
 
     /**
@@ -116,6 +116,6 @@ class CitiesManager extends AbstractManager
      */
     public function getRepository()
     {
-        return $this->getEntityManager()->getRepository('SywFrontMainBundle:Cities');
+        return $this->getManager()->getRepository('SywFrontMainBundle:Cities');
     }
 }

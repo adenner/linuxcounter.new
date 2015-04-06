@@ -25,7 +25,7 @@ class IrcBotImportListener extends CommandListener
 
     public function setEntityManager(ContainerInterface $container, Doctrine $doctrine)
     {
-        $this->em = $doctrine->getEntityManager();
+        $this->em = $doctrine->getManager();
         $this->container = $container;
     }
 

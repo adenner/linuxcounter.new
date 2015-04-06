@@ -72,7 +72,7 @@ abstract class AbstractManager
      *
      * @return \Doctrine\ORM\EntityManager
      */
-    public function getEntityManager()
+    public function getManager()
     {
         return $this->get('doctrine.orm.entity_manager');
     }
