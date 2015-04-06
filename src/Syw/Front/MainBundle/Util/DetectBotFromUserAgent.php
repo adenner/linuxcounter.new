@@ -131,5 +131,4 @@ class DetectBotFromUserAgent extends ContainerAware
         }
         return false;
     }
-
 }
