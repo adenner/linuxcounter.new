@@ -724,7 +724,9 @@ label > span {
     #profile_machine_table table td:nth-child(4),
     #profile_machine_table table th:nth-child(4),
     #profile_machine_table table td:nth-child(5),
-    #profile_machine_table table th:nth-child(5) {
+    #profile_machine_table table th:nth-child(5),
+    #profile_machine_table table td:nth-child(2),
+    #profile_machine_table table th:nth-child(2) {
         display: none;
     }
 }
