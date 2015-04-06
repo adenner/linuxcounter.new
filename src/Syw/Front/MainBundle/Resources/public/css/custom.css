@@ -759,14 +759,45 @@ label > span {
     text-decoration: line-through;
 }
 
+@media (max-width: 1200px) {
+    .navbar-nav>li>a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
 
+.btn-default {
+    margin: 20px auto;
+    width: 100%;
+    font-weight: bolder;
+    font-size: 1.2em;
+    padding: 10px;
+    border: 1px solid grey;
+    box-shadow: 2px 2px 6px;
+    border-radius: 4px;
+}
 
+input[type=submit] {
+    margin: 20px auto;
+    width: 100%;
+    font-weight: bolder;
+    font-size: 1.2em;
+    padding: 10px;
+    border: 1px solid grey;
+    box-shadow: 2px 2px 6px;
+    border-radius: 4px;
+}
 
-
-
-
-
-
+.language-selection input[type=submit] {
+    margin: 20px;
+    width: auto;
+    font-weight: normal;
+    font-size: 1em;
+    padding: 2px 7px;
+    border: 1px solid grey;
+    box-shadow: none;
+    border-radius: 2px;
+}
 
 
 
