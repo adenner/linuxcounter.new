@@ -54,7 +54,7 @@ class UserProfile
      *
      * @ORM\Column(name="birthday", type="datetime", nullable=true)
      */
-    private $birthDay;
+    private $birthDay = null;
 
     /**
      * @var string
@@ -145,7 +145,7 @@ class UserProfile
      *
      * @ORM\Column(name="sincewhen", type="datetime", nullable=true)
      */
-    private $sincewhen;
+    private $sincewhen = null;
 
     /**
      * @var \DateTime

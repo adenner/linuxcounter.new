@@ -25,6 +25,6 @@
     {{ form_row(form.uptime) }}
     {{ form_row(form.loadavg) }}
     <div>
-        <input type="submit" value="{{ 'Save new machine'|trans }}"/>
+        {{ form_rest(form) }}
     </div>
 </form>

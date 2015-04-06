@@ -36,7 +36,7 @@ class Activity
      *   @ORM\JoinColumn(name="user", referencedColumnName="id", nullable=true, onDelete="NO ACTION")
      * })
      */
-    private $user;
+    private $user = null;
 
     /**
      * @ORM\Column(name="route", type="string", length=128, nullable=false)

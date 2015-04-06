@@ -39,15 +39,18 @@ class ActivityListener
      */
     public function onCoreController(FilterControllerEvent $event)
     {
-        $user = $this->context->getToken()->getUser();
+        if (true === isset($this->context) && true === is_object($this->context)) {
+            if (true === is_object($this->context->getToken()) && $this->context->getToken() != null) {
+                $user = $this->context->getToken()->getUser();
+            }
+        }
         if (false === isset($user) || false === is_object($user) || $user == null) {
             $user = null;
         }
         $route  = $event->getRequest()->attributes->get('_route');
-        if (true === in_array($route, array('_wdt'))) {
+        if ($route == null || true === in_array($route, array('_wdt'))) {
             return true;
         }
-
         $ipaddress = $this->container->get('request')->server->get("REMOTE_ADDR");
         $useragent = $this->container->get('request')->server->get("HTTP_USER_AGENT");
         $obj       = new DetectBotFromUserAgent();
