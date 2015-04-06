@@ -687,6 +687,50 @@ label > span {
         height: 510px;
         margin-bottom: 60px;
     }
+    .page {
+        margin-top: 80px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .carousel {
+        margin-top: 74px;
+        height: 510px;
+        margin-bottom: 60px;
+    }
+    .page {
+        margin-top: 90px;
+    }
+}
+
+@media (max-width: 630px) {
+    .carousel {
+        margin-top: 64px;
+        height: 510px;
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 548px) {
+    .carousel {
+        margin-top: 54px;
+        height: 510px;
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 540px) {
+    .page {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 473px) {
+    .carousel {
+        margin-top: 50px;
+        height: 510px;
+        margin-bottom: 60px;
+    }
 }
 
 @media (min-width: 1201px) {
@@ -694,6 +738,9 @@ label > span {
         margin-top: 129px;
         height: 510px;
         margin-bottom: 60px;
+    }
+    .page {
+        margin-top: 140px;
     }
 }
 
