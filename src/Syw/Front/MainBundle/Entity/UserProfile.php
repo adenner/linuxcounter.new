@@ -50,9 +50,9 @@ class UserProfile
     private $lastName;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="birthday", type="datetime", nullable=true)
+     * @ORM\Column(name="birthday", type="string", length=10, nullable=true)
      */
     private $birthDay = null;
 
@@ -141,9 +141,9 @@ class UserProfile
     private $hobbies;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="sincewhen", type="datetime", nullable=true)
+     * @ORM\Column(name="sincewhen", type="string", length=10, nullable=true)
      */
     private $sincewhen = null;
 
@@ -220,10 +220,10 @@ class UserProfile
     /**
      * Set birthDay
      *
-     * @param \DateTime $birthDay
+     * @param string $birthDay
      * @return UserProfile
      */
-    public function setBirthDay(\DateTime $birthDay)
+    public function setBirthDay($birthDay)
     {
         $this->birthDay = $birthDay;
 
@@ -233,7 +233,7 @@ class UserProfile
     /**
      * Get birthDay
      *
-     * @return \DateTime
+     * @return string
      */
     public function getBirthDay()
     {
@@ -520,10 +520,10 @@ class UserProfile
     /**
      * Set sincewhen
      *
-     * @param \DateTime $sincewhen
+     * @param string $sincewhen
      * @return UserProfile
      */
-    public function setSinceWhen(\DateTime $sincewhen)
+    public function setSinceWhen($sincewhen)
     {
         $this->sincewhen = $sincewhen;
 
@@ -533,7 +533,7 @@ class UserProfile
     /**
      * Get sincewhen
      *
-     * @return \DateTime
+     * @return string
      */
     public function getSinceWhen()
     {

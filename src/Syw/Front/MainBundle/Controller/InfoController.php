@@ -84,27 +84,6 @@ class InfoController extends BaseController
         if ($form->isValid()) {
             $formData = $request->request->all();
 
-            if (true === isset($formData['userprofile']['sincewhen']) && is_array($formData['userprofile']['sincewhen'])) {
-                if (false === isset($formData['userprofile']['sincewhen']['day']) || trim($formData['userprofile']['sincewhen']['day']) == "") {
-                    $formData['userprofile']['sincewhen']['day'] = "01";
-                }
-                if (false === isset($formData['userprofile']['sincewhen']['month']) || trim($formData['userprofile']['sincewhen']['month']) == "") {
-                    $formData['userprofile']['sincewhen']['month'] = "01";
-                }
-                if (false === isset($formData['userprofile']['sincewhen']['year']) || trim($formData['userprofile']['sincewhen']['year']) == "") {
-                    $formData['userprofile']['sincewhen']['year'] = "2000";
-                }
-            }
-
-
-
-
-
-
-
-
-
-
             $em = $this->getDoctrine()->getManager();
             if (true === isset($formData['userprofile']['city']) && trim($formData['userprofile']['city']) != "") {
                 $cityfield = $formData['userprofile']['city'];

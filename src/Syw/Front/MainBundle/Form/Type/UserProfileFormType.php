@@ -37,10 +37,10 @@ class UserProfileFormType extends AbstractType
             ->add('firstname', 'text', array('label' => 'Firstname', 'required' => false))
             ->add('lastname', 'text', array('label' => 'Lastname', 'required' => false))
 
-            ->add('birthday', 'birthday', array('label' => 'Birthday', 'required' => false))
+            ->add('birthday', 'birthday', array('label' => 'Birthday',  'required' => false, 'input'  => 'string', 'widget' => 'choice', 'years' => range(1900, date('Y'))))
             ->add('birthplace', 'text', array('label' => 'Birthplace', 'required' => false))
 
-            ->add('sincewhen', 'birthday', array('label' => 'Since when using Linux', 'required' => false))
+            ->add('sincewhen', 'date', array('label' => 'Since when using Linux', 'required' => false, 'input'  => 'string', 'widget' => 'choice', 'years' => range(1991, date('Y'))))
             ->add('homepage', 'text', array('label' => 'Homepage', 'required' => false))
             ->add('icq', 'text', array('label' => 'ICQ', 'required' => false))
             ->add('skype', 'text', array('label' => 'Skype', 'required' => false))
