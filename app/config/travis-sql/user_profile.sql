@@ -28,7 +28,7 @@ CREATE TABLE `user_profile` (
   `city` int(11) DEFAULT NULL,
   `firstname` varchar(128) DEFAULT NULL,
   `lastname` varchar(128) DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
+  `birthday` varchar(10) DEFAULT NULL,
   `birthplace` varchar(128) DEFAULT NULL,
   `homepage` varchar(255) DEFAULT NULL,
   `icq` varchar(15) DEFAULT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `user_profile` (
   `identica` varchar(255) DEFAULT NULL,
   `interests` varchar(2500) DEFAULT NULL,
   `hobbies` varchar(2500) DEFAULT NULL,
-  `sincewhen` datetime DEFAULT NULL,
+  `sincewhen` varchar(10) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -61,4 +61,4 @@ CREATE TABLE `user_profile` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-05 23:29:59
+-- Dump completed on 2015-04-07 12:13:10

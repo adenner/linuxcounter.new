@@ -161,10 +161,31 @@ class InfoController extends BaseController
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        $locale = $user->getLocale();
-        $languages = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findBy(array('active' => 1), array('language' => 'ASC'));
+        $formData = $request->request->all();
 
+        $em = $this->getDoctrine()->getManager();
+
+        $city = new Cities();
+        $city->setIsoCountryCode(strtoupper($formData['addcity']['isoCountryCode']));
+        $city->setRegion($formData['addcity']['region']);
+        $city->setName($formData['addcity']['name']);
+        $city->setLatitude($formData['addcity']['latitude']);
+        $city->setLongitude($formData['addcity']['longitude']);
+        $city->setPopulation($formData['addcity']['population']);
+        $city->setUserNum(1);
+        $em->persist($city);
+
+        $userProfile = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:UserProfile')
+            ->findOneBy(array('user' => $user));
+        $userProfile->setCity($city);
+        $em->persist($userProfile);
+
+        $em->flush();
+
+        $flashBag = $this->get('session')->getFlashBag();
+        $flashBag->set('success', 'New city saved!');
+
+        return $this->redirectToRoute('syw_front_main_info_edit');
     }
 }

@@ -49,16 +49,8 @@ $(document).ready(function() {
     });
 
     $("#arrt").on("click", "#addcity_save", function(e){
-        e.preventDefault();
-        $("#myModal").modal('hide');
-
-
-
-
-
-
-
-
+        /* e.preventDefault(); */
+        /* $("#myModal").modal('hide'); */
     });
 
 

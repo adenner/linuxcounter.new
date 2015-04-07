@@ -25,18 +25,18 @@ DROP TABLE IF EXISTS `privacy`;
 CREATE TABLE `privacy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
-  `secret_profile` int(11) NOT NULL DEFAULT '0',
-  `secret_counterdata` int(11) NOT NULL DEFAULT '0',
-  `secret_machines` int(11) NOT NULL DEFAULT '0',
-  `secret_contactinfo` int(11) NOT NULL DEFAULT '1',
-  `secret_socialinfo` int(11) NOT NULL DEFAULT '1',
-  `show_realname` int(11) NOT NULL DEFAULT '0',
-  `show_email` int(11) NOT NULL DEFAULT '0',
-  `show_location` int(11) NOT NULL DEFAULT '0',
-  `show_hostnames` int(11) NOT NULL DEFAULT '0',
-  `show_kernel` int(11) NOT NULL DEFAULT '1',
-  `show_distribution` int(11) NOT NULL DEFAULT '1',
-  `show_versions` int(11) NOT NULL DEFAULT '0',
+  `secret_profile` tinyint(1) NOT NULL DEFAULT '0',
+  `secret_counterdata` tinyint(1) NOT NULL DEFAULT '0',
+  `secret_machines` tinyint(1) NOT NULL DEFAULT '0',
+  `secret_contactinfo` tinyint(1) NOT NULL DEFAULT '1',
+  `secret_socialinfo` tinyint(1) NOT NULL DEFAULT '1',
+  `show_realname` tinyint(1) NOT NULL DEFAULT '0',
+  `show_email` tinyint(1) NOT NULL DEFAULT '0',
+  `show_location` tinyint(1) NOT NULL DEFAULT '0',
+  `show_hostnames` tinyint(1) NOT NULL DEFAULT '0',
+  `show_kernel` tinyint(1) NOT NULL DEFAULT '1',
+  `show_distribution` tinyint(1) NOT NULL DEFAULT '1',
+  `show_versions` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   CONSTRAINT `FK_C38419088D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE
@@ -52,4 +52,4 @@ CREATE TABLE `privacy` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-05 23:29:59
+-- Dump completed on 2015-04-07 12:13:09

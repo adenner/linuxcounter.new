@@ -25,12 +25,12 @@ DROP TABLE IF EXISTS `cities`;
 CREATE TABLE `cities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `iso_country_code` varchar(4) NOT NULL,
-  `fips_country_code` varchar(4) NOT NULL,
-  `region` varchar(64) NOT NULL,
-  `population` int(11) NOT NULL,
+  `fips_country_code` varchar(4) DEFAULT NULL,
+  `region` varchar(64) DEFAULT NULL,
+  `population` int(11) DEFAULT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `short_name` varchar(48) NOT NULL,
+  `short_name` varchar(48) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `usernum` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -46,4 +46,4 @@ CREATE TABLE `cities` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-05 23:29:59
+-- Dump completed on 2015-04-07 12:13:09
