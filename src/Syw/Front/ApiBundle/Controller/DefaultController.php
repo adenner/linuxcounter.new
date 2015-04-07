@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     /**
      * @Route("/")
@@ -29,7 +29,9 @@ class DefaultController extends Controller
         $stats = array();
         $metatitle = "";
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,

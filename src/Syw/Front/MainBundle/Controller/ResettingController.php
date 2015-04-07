@@ -30,7 +30,9 @@ class ResettingController extends BaseController
             ->findBy(array('active' => 1), array('language' => 'ASC'));
         $metatitle = $this->get('translator')->trans('Password reset');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('FOSUserBundle:Resetting:request.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages
@@ -95,7 +97,9 @@ class ResettingController extends BaseController
         }
         $metatitle = $this->get('translator')->trans('Password reset');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('FOSUserBundle:Resetting:checkEmail.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'email' => $email,
@@ -156,7 +160,9 @@ class ResettingController extends BaseController
 
         $metatitle = $this->get('translator')->trans('Password reset');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('FOSUserBundle:Resetting:reset.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'token' => $token,

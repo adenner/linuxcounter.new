@@ -41,7 +41,9 @@ class SecurityController extends BaseController
 
         $metatitle = $this->get('translator')->trans('User Login');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->renderLogin(array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'last_username' => $lastUsername,

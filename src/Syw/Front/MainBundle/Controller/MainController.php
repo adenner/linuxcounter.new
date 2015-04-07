@@ -32,7 +32,9 @@ class MainController extends BaseController
         $stats = array();
         $metatitle = "";
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -89,7 +91,9 @@ class MainController extends BaseController
 
         $metatitle = $this->get('translator')->trans('Contact us by sending us an email');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'form' => $form->createView(),
             'metatitle' => $metatitle,
             'title' => $title,
@@ -118,7 +122,9 @@ class MainController extends BaseController
 
         $metatitle = $this->get('translator')->trans('About the Linux Counter');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -146,7 +152,9 @@ class MainController extends BaseController
 
         $metatitle = $this->get('translator')->trans('Get the free update script for your machine');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -174,7 +182,9 @@ class MainController extends BaseController
 
         $metatitle = $this->get('translator')->trans('Our Imprint');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -202,7 +212,9 @@ class MainController extends BaseController
 
         $metatitle = $this->get('translator')->trans('FAQ - Frequently Asked Questions');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -230,7 +242,9 @@ class MainController extends BaseController
 
         $metatitle = $this->get('translator')->trans('The Linux Counter is fully sponsored by FIRST COLO');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -263,6 +277,11 @@ class MainController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages, 'user' => $user);
+        $online = $this->getOnlineUsers();
+        return array(
+            'online' => $online,
+            'languages' => $languages,
+            'user' => $user
+        );
     }
 }

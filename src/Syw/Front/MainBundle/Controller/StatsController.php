@@ -33,8 +33,9 @@ class StatsController extends BaseController
         }
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
-
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title1' => $title1,
             'title2' => $title2,
@@ -64,7 +65,9 @@ class StatsController extends BaseController
         }
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -155,7 +158,9 @@ class StatsController extends BaseController
 
 
 
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title1' => $title1,
             'title2' => $title2,
@@ -186,7 +191,9 @@ class StatsController extends BaseController
         }
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -216,7 +223,9 @@ class StatsController extends BaseController
         }
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -246,7 +255,9 @@ class StatsController extends BaseController
         }
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -365,7 +376,9 @@ class StatsController extends BaseController
         $chart_registrations_per_month->series($series);
         // end of chart
 
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title1' => $title1,
             'title2' => $title2,

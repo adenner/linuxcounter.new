@@ -140,7 +140,9 @@ class InfoController extends BaseController
 
         $metatitle = $this->get('translator')->trans('Edit profile information');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('SywFrontMainBundle:Info:edit.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'form' => $form->createView(),

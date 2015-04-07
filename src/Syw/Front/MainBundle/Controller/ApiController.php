@@ -30,7 +30,9 @@ class ApiController extends BaseController
         $stats = array();
         $metatitle = $this->get('translator')->trans('General Statistics');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,

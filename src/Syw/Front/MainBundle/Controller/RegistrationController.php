@@ -113,7 +113,9 @@ class RegistrationController extends BaseController
 
         $metatitle = $this->get('translator')->trans('User Account Registration');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'form' => $form->createView(),
@@ -140,7 +142,9 @@ class RegistrationController extends BaseController
 
         $metatitle = $this->get('translator')->trans('User Account Registration');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('FOSUserBundle:Registration:checkEmail.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'user' => $user,
@@ -201,7 +205,9 @@ class RegistrationController extends BaseController
 
         $metatitle = $this->get('translator')->trans('User Account Registration');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('FOSUserBundle:Registration:confirmed.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'user' => $user,

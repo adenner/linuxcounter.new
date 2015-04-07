@@ -1,15 +1,18 @@
 <?php
 
-namespace Syw\Front\MainBundle\Controller;
+namespace Syw\Front\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use BladeTester\LightNewsBundle\Controller\DefaultController as LightNewsDefaultController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Class BaseController
  *
  * @author Alexander Löhner <alex.loehner@linux.com>
  */
-class BaseController extends Controller
+class BaseController extends LightNewsDefaultController
 {
     public function getGuessStats()
     {

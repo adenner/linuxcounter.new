@@ -71,7 +71,9 @@ class ChangePasswordController extends BaseController
             return $response;
         }
 
+        $online = $this->getOnlineUsers();
         return $this->render('FOSUserBundle:ChangePassword:changePassword.html.twig', array(
+            'online' => $online,
             'form' => $form->createView(),
             'languages' => $languages,
             'user' => $user

@@ -162,7 +162,9 @@ class MachineController extends BaseController
 
         $metatitle = $this->get('translator')->trans('New Machine Creation');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('SywFrontMainBundle:Machine:create.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'form' => $form->createView(),
@@ -342,7 +344,9 @@ class MachineController extends BaseController
 
         $metatitle = $this->get('translator')->trans('Edit Machine');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('SywFrontMainBundle:Machine:edit.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'form' => $form->createView(),

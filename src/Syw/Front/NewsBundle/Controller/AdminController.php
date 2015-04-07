@@ -10,7 +10,7 @@ use BladeTester\LightNewsBundle\Controller\AdminController as LightNewsAdminCont
 use BladeTester\LightNewsBundle\Form\Type\NewsFormType;
 use BladeTester\LightNewsBundle\Entity\News;
 
-class AdminController extends LightNewsAdminController
+class AdminController extends BaseController
 {
     /**
      * @Template()

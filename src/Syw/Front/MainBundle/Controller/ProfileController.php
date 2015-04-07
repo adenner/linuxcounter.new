@@ -57,7 +57,9 @@ class ProfileController extends BaseController
             ->findBy(array('active' => 1), array('language' => 'ASC'));
         $metatitle = $this->get('translator')->trans('The user profile');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'user' => $user,
@@ -121,7 +123,9 @@ class ProfileController extends BaseController
 
         $metatitle = $this->get('translator')->trans('The user profile');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'form' => $form->createView(),

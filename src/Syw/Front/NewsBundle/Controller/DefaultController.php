@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class DefaultController extends LightNewsDefaultController
+class DefaultController extends BaseController
 {
     /**
      * @Template()
@@ -29,7 +29,9 @@ class DefaultController extends LightNewsDefaultController
 
         $metatitle = $this->get('translator')->trans('News and Announcements');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
@@ -59,7 +61,9 @@ class DefaultController extends LightNewsDefaultController
 
         $metatitle = $news->getTitle();
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,

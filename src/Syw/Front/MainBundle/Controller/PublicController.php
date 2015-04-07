@@ -55,7 +55,9 @@ class PublicController extends BaseController
 
         $metatitle = $this->get('translator')->trans('Public user profile page');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('SywFrontMainBundle:Public:profile.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'thisuser' => $thisuser,
@@ -148,7 +150,9 @@ class PublicController extends BaseController
         }
         $metatitle = $this->get('translator')->trans('Public machine profile page');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('SywFrontMainBundle:Public:machine.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'thisuser' => $thisuser,

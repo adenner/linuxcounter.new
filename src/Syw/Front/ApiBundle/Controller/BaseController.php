@@ -1,6 +1,6 @@
 <?php
 
-namespace Syw\Front\MainBundle\Controller;
+namespace Syw\Front\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

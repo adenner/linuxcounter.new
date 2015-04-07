@@ -99,7 +99,9 @@ class PrivacyController extends BaseController
 
         $metatitle = $this->get('translator')->trans('Edit user privacy');
         $title = $metatitle;
+        $online = $this->getOnlineUsers();
         return $this->render('SywFrontMainBundle:Privacy:edit.html.twig', array(
+            'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'form' => $form->createView(),
