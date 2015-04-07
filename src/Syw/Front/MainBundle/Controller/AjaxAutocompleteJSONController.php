@@ -31,7 +31,7 @@ class AjaxAutocompleteJSONController extends BaseController
         }
 
         $letters = $request->get('letters');
-        $maxRows = $request->get('maxRows');
+        $maxRows = 100;
 
         switch ($entity_inf['search']) {
             case "begins_with":

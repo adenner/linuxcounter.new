@@ -911,17 +911,67 @@ input[type=submit] {
     padding-right: 20px;
 }
 
+#apidoc .row {
+    margin: 0;
+}
+.apidoccontent {
 
+}
 
+.apidocbox {
+    background-color: #eaeaea;
+    padding: 0px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    font-weight: bolder;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
 
+.apidoctitle {
+    border-radius: 5px;
+    padding: 0;
+}
 
+.apidocdesc {
+    display: none;
+    background-color: #ffffff;
+    padding: 10px;
+    border: 0;
+    font-weight: normal;
+    border-radius: 5px;
+}
 
+.apidocdesc_div {
+    border-radius: 5px;
+}
 
+.api-action {
+    padding: 5px 15px;
+    margin: 0;
+}
 
+.apimethod {
+    font-weight: bolder;
+    padding: 5px 15px;
+    margin: 0;
+    border-radius: 5px 0 0 5px;
+}
 
+.post {
+    background-color: #0000ff;
+    color: white;
+}
 
+.get {
+    background-color: #00ff00;
+    color: white;
+}
 
-
+.delete {
+    background-color: #ff0000;
+    color: white;
+}
 
 
 
