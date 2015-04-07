@@ -19,11 +19,11 @@ class Cities
      * @ORM\OneToMany(targetEntity="UserProfile", mappedBy="city")
      */
     protected $users;
-
     public function __construct()
     {
-        $this->$users = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
+
     /**
      * @var integer
      *
@@ -43,21 +43,21 @@ class Cities
     /**
      * @var string
      *
-     * @ORM\Column(name="fips_country_code", type="string", length=4, nullable=false)
+     * @ORM\Column(name="fips_country_code", type="string", length=4, nullable=true)
      */
     private $fipsCountryCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=64, nullable=false)
+     * @ORM\Column(name="region", type="string", length=64, nullable=true)
      */
     private $region;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="population", type="integer", nullable=false)
+     * @ORM\Column(name="population", type="integer", nullable=true)
      */
     private $population;
 
@@ -78,7 +78,7 @@ class Cities
     /**
      * @var string
      *
-     * @ORM\Column(name="short_name", type="string", length=48, nullable=false)
+     * @ORM\Column(name="short_name", type="string", length=48, nullable=true)
      */
     private $shortName;
 

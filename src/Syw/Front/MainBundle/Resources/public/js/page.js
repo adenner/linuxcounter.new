@@ -44,6 +44,36 @@ $(document).ready(function() {
 
     $(":checkbox").bootstrapSwitch();
 
+    $("#add_city_button").click(function(){
+        $("#myModal").modal('show');
+    });
+
+    $("#arrt").on("click", "#addcity_save", function(e){
+        e.preventDefault();
+        $("#myModal").modal('hide');
+
+
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

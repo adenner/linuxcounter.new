@@ -24,10 +24,12 @@ use Syw\Front\MainBundle\Entity\User;
 use Syw\Front\MainBundle\Entity\UserProfile;
 use Syw\Front\MainBundle\Entity\Cities;
 use Syw\Front\MainBundle\Form\Type\UserProfileFormType;
+use Syw\Front\MainBundle\Form\Type\CityFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
+use Syw\Front\MainBundle\Manager\CitiesManager;
 
 /**
  * Controller managing the user profile
@@ -78,9 +80,32 @@ class InfoController extends BaseController
             $userProfile
         );
 
+        $city = new Cities();
+
+        $cityform = $this->createForm(
+            new CityFormType(
+                $city
+            ),
+            $city
+        );
+
+        $cityform->handleRequest($request);
         $form->handleRequest($request);
 
         // if ($request->getMethod() == 'POST') {
+        if ($cityform->isValid()) {
+            $formData = $request->request->all();
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($city);
+            $em->flush();
+
+            $flashBag = $this->get('session')->getFlashBag();
+            $flashBag->set('success', 'New city saved!');
+
+        }
+
         if ($form->isValid()) {
             $formData = $request->request->all();
 
@@ -119,8 +144,27 @@ class InfoController extends BaseController
             'metatitle' => $metatitle,
             'title' => $title,
             'form' => $form->createView(),
+            'cityform' => $cityform->createView(),
             'languages' => $languages,
             'user' => $user
         ));
+    }
+
+    /**
+     * @Route("/info/addcity")
+     */
+    public function addcityAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        if (false === is_object($user) || false === $user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        $locale = $user->getLocale();
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
     }
 }
