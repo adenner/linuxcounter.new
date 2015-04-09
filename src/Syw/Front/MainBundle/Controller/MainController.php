@@ -223,6 +223,36 @@ class MainController extends BaseController
     }
 
     /**
+     * @Route("/donations")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function donationsAction()
+    {
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+
+        $metatitle = $this->get('translator')->trans('Donations to the Project');
+        $title = $metatitle;
+        $online = $this->getOnlineUsers();
+        return array(
+            'online' => $online,
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+        );
+    }
+
+    /**
      * @Route("/sponsor")
      * @Method("GET")
      *

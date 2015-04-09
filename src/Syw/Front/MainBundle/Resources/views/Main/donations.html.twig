@@ -1,0 +1,81 @@
+{% extends "SywFrontMainBundle::base.html.twig" %}
+
+{% block body %}
+
+    <!-- Page Content -->
+    <div class="container page">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ title }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h2><em>All donations are very, very welcome!</em></h2>
+
+                        <p> &nbsp; </p>
+                        <p>Server-hardware is expensive, DSL is expensive, private time is very expensive, especially when
+                            you have a little, 2 years old son.</p>
+                        <p>This is, why I welcome all of your donations, no matter what kind of donation it is.</p>
+
+                        <p> &nbsp; </p>
+                        <p>You can always send me some strawberry juice, a net of oranges or a small fire dept pump car
+                            for my little son. The address can be found
+                            <a href="{{ url('syw_front_main_main_impressum') }}">here</a>. <a href="#wishlist">At the
+                                end of this page</a> you may also find a small wishlist of things my small family would
+                            need or want.</p>
+
+                        <p> &nbsp; </p>
+                        <p>But there are also other ways to help me and the project. You always can also send some money
+                            to support the project. Here are all available methods to send some small money:</p>
+
+                        <p> &nbsp; </p>
+
+                        <div class="row">
+                            <div style="margin-bottom: 20px; text-align: center;" class="col-sm-3">
+                                <form style="display: inline;" target="_top" method="post" action="https://www.paypal.com/cgi-bin/webscr"><input type="hidden" value="_s-xclick" name="cmd"><input type="hidden" value="28KUHNKB2SQF8" name="hosted_button_id"><input border="0" type="image" alt="PayPal &ndash; The safer, easier way to pay online." name="submit" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"><img border="0" width="1" height="1" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" alt=""></form> via paypal
+                            </div>
+                            <div style="margin-bottom: 20px; text-align: center;" class="col-sm-3">
+                                <a href='http://www.pledgie.com/campaigns/18562'><img alt='Click here to lend your support to: Donations for LiCo and make a donation at www.pledgie.com !' src='https://pledgie.com/campaigns/18562.png?skin_name=chrome' border='0' /></a>
+                            </div>
+                            <div style="margin-bottom: 20px; text-align: center;" class="col-sm-3">
+                                <iframe src="https://button.flattr.com/view/?e=1&amp;url=http%3A%2F%2Ftwitter.com%2FNewLinuxCounter&amp;button=compact&amp;" class="FlattrButton" width="110" height="20" frameborder="0" scrolling="no" title="Flattr" border="0" marginheight="0" marginwidth="0" allowtransparency="true"></iframe>
+                            </div>
+                            <div style="margin-bottom: 20px; text-align: center;" class="col-sm-3">
+                                <a href="bitcoin:1hBjCCk9vKjLmDdWxP4xmh9ZrCvpbJzPs?amount=0.5&label=Linux%20Counter%20Project">
+                                    <img style="width:60px;height:60px;" src="{{ '/bundles/sywfrontmain/images/bitcoin.png' }}" alt=""><br/>BitCoins
+                                </a>
+                            </div>
+                        </div>
+
+                        <p> &nbsp; </p>
+                        <p><strong>Wishlist:</strong></p>
+
+                        <p><a name="wishlist"></a>
+                            <ul>
+                            <li> <a href="http://www.amazon.com/Dickie-Toys-Pump-Action-Truck/dp/B004QM8XW0/ref=sr_1_39?ie=UTF8&qid=1428606968&sr=8-39&keywords=fire+pump+car">Dickie Toys Pump Action Tow Truck, 21"</a></li>
+                            <li> <a href="http://www.amazon.com/Little-Tikes-Sports-Ball-Center/dp/B003IGBFG6/ref=sr_1_75?ie=UTF8&qid=1428606999&sr=8-75&keywords=fire+pump+car">Little Tikes Sports Car Ball Pit Play Center</a></li>
+                            <li> <a href="http://www.amazon.com/Scale-Bruder-Engine-Light-Sound/dp/B00QRZ3RWU/ref=sr_1_94?ie=UTF8&qid=1428607016&sr=8-94&keywords=fire+pump+car">1:16 Scale Bruder Fire Engine with Light and Sound</a></li>
+                            <li> <a href="http://www.amazon.com/Playmobil-Fire-Set-Construction-Ambulance/dp/B00NMV1Z4E/ref=sr_1_98?ie=UTF8&qid=1428607028&sr=8-98&keywords=fire+pump+car">Playmobil Fire Set Includes: Engine Construction, Ambulance Set and Rescue Set Fire Chief Car</a></li>
+                            <li> <a href="http://www.amazon.com/dp/B00QAQOKRC?psc=1">Deluxe Fire Engine Battery Operated Bump and Go Toy Truck w/ Flashing Lights, Sounds</a></li>
+                            <li> <a href="http://www.amazon.de/TP-LINK-TL-PA411KIT-Powerline-Netzwerkadapter-kompatibel-Adaptern/dp/B00FRCDFYE/ref=sr_1_2?ie=UTF8&qid=1428607405&sr=8-2&keywords=netzwerk+stromnetz">TP-LINK TL-PA411KIT V2.0 AV500 Nano Powerline-Networkadapter (German power supply plug)</a></li>
+                            <li> <a href="http://www.amazon.de/PremiumX-Anthrazit-Teilnehmer-F-Stecker-vergoldet/dp/B00DLKNQDY/ref=sr_1_2?ie=UTF8&qid=1428607605&sr=8-2&keywords=satellitensch%C3%BCssel+digital+komplett">PremiumX Digital SAT Anlage 80 cm ALU Schüssel Spiegel Antenne</a></li>
+                            <li> <a href="http://www.amazon.de/Wandhalter-PremiumX-100-zwei-Wandplatten/dp/B0055Y9QEC/ref=sr_1_9?s=ce-accessories&ie=UTF8&qid=1428607765&sr=1-9&keywords=satellitensch%C3%BCssel+halterung">Wandhalter PremiumX 100 cm Alu mit zwei Wandplatten</a></li>
+                            <li> <a href="http://www.amazon.de/Koaxial-geschirmt-Anlagen-vergoldete-F-Stecker/dp/B00EO4L3TA/ref=sr_1_18?s=ce-accessories&ie=UTF8&qid=1428607815&sr=1-18&keywords=satellitenkabel">130dB 10m Koaxial SAT Kabel HQ-135 PRO</a></li>
+                            </ul>
+                        </p>
+                        <p></p>
+
+                        <p> &nbsp; </p>
+                        <p></p>
+
+                        <p> &nbsp; </p>
+                        <p></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

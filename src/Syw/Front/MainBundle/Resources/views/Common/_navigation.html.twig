@@ -28,20 +28,18 @@
     <a href="{{ url('syw_front_api_default_index') }}">{{ 'API'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
-<li>
-    <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'Info'|trans }} <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="{{ url('syw_front_main_main_about') }}">{{ 'About us'|trans }}</a></li>
+        <li><a href="{{ url('syw_front_main_main_faq') }}">{{ 'FAQ'|trans }}</a></li>
+        <li><a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Imprint'|trans }}</a></li>
+        <li><a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a></li>
+    </ul>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_faq') }}">{{ 'FAQ'|trans }}</a>
-</li>
-<li class="footer-menu-divider">&sdot;</li>
-<li>
-    <a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Imprint'|trans }}</a>
-</li>
-<li class="footer-menu-divider">&sdot;</li>
-<li>
-    <a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a>
+    <a href="{{ url('syw_front_main_main_donations') }}">{{ 'Donations'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
