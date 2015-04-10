@@ -10,6 +10,7 @@
   },
   "require": {
     "php": ">=5.4.0",
+    "vitre/php-console-bundle": "dev-master",
     "symfony/symfony": "2.6.*",
     "doctrine/orm": "~2.2,>=2.2.3,<2.5",
     "doctrine/dbal": "<2.5",
