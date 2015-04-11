@@ -19,24 +19,60 @@
                                 <div class="row apidoctitle">
                                     <div class="col-sm-2 apimethod post">POST</div>
                                     <div class="col-sm-10 api-action">
-                                        Create a new machine in your linuxcounter account
+                                        {{ 'Create a new, empty machine in your linuxcounter account'|trans }}
                                     </div>
                                 </div>
                                 <div id="apidoc_desc1" class="apidocdesc">
                                     <div class="apidocdesc_div">
-
-
                                         <div class="example example-request">
                                             <span class="label">POST</span> {{ apihost }}/machine
                                         </div>
-                                        <pre><code>curl --request POST '{{ apihost }}/machine' \
-    --header 'x-lico-apikey: YOUR-APIKEY-HERE' \
-    --data 'key=value' \
-    --data 'key=value' \
-    --data 'key=value'
+                                        <pre><code>curl --request POST \
+    '{{ apihost }}/machine' \
+    --header 'x-lico-apikey: {{ 'YOUR-APIKEY-HERE'|trans }}'
 </code></pre>
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="3">{{ 'Request Parameters'|trans }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>x-lico-apikey</code></td>
+                                                    <td>Header</td>
+                                                    <td><desc><strong>*</strong> {{ 'Submit your ApiKey through the request header.'|trans }} <span class="muted">({{ 'Required'|trans }})</span></desc></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
 
-
+                                        <div class="example example-response"></div>
+                                        <pre><code>{
+    'machine_id': 12345,
+    'machine_updatekey': 'tz3948vtz349gnh4308t34058zt34z5h'
+}
+</code></pre>
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="2">{{ 'Response Status Codes'|trans }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><code>201 Created</code></td>
+                                                <td><desc>{{ 'The machine got successfully created'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>404 Not Found</code></td>
+                                                <td><desc>{{ 'The ApiKey was not found'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>500 Internal Server Error</code></td>
+                                                <td><desc>{{ 'There was an internal error. Please contact the admin.'|trans }}</desc></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -45,18 +81,206 @@
 
                             <div id="apidoc2" class="apidocbox">
                                 <div class="row apidoctitle">
-                                    <div class="col-sm-2 apimethod get">GET</div>
+                                    <div class="col-sm-2 apimethod patch">PATCH</div>
                                     <div class="col-sm-10 api-action">
-                                        foo bar
+                                        {{ 'Update a machine with some data'|trans }}
                                     </div>
                                 </div>
                                 <div id="apidoc_desc2" class="apidocdesc">
                                     <div class="apidocdesc_div">
+                                        <div class="example example-request">
+                                            <span class="label">PATCH</span> {{ apihost }}/machine/{machine_id}
+                                        </div>
+                                        <pre><code>curl --request PATCH \
+    '{{ apihost }}/machine/YOUR-MACHINE-ID-HERE' \
+    --header 'x-lico-machine-updatekey: {{ 'YOUR-MACHINE-UPDATEKEY-HERE'|trans }}' \
+    --data 'hostname=some.example.com' \
+    --data 'distribution=Trisquel' \
+    --data 'distversion=7.0 LTS Belenos'
+                                            </code></pre>
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="3">{{ 'Request Parameters'|trans }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><code>machine_id</code></td>
+                                                <td>Query URL</td>
+                                                <td><desc><strong>*</strong> {{ 'Use the machine_id from the Creation above.'|trans }} <span class="muted">({{ 'Required'|trans }})</span></desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>x-lico-machine-updatekey</code></td>
+                                                <td>Header</td>
+                                                <td><desc><strong>*</strong> {{ 'Use the machine_updatekey from the Creation above.'|trans }} <span class="muted">({{ 'Required'|trans }})</span></desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>--data</code></td>
+                                                <td>Body</td>
+                                                <td><desc><strong>*</strong> {{ 'All keys are optional, but at least one "key=value" entry is required'|trans }} <span class="muted">({{ 'Required'|trans }})</span></desc></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="3">{{ '--data key Parameters'|trans }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><code>hostname</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The hostname of your machine'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>cores</code></td>
+                                                <td>Integer</td>
+                                                <td><desc>{{ 'The number of CPU cores'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>flags</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The flags of the CPU(s)'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>accounts</code></td>
+                                                <td>Integer</td>
+                                                <td><desc>{{ 'The number of accounts on your machine'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>flags</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The flags of the CPU(s)'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>diskspace</code></td>
+                                                <td>Integer</td>
+                                                <td><desc>{{ 'The diskspace in megabytes'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>diskspaceFree</code></td>
+                                                <td>Integer</td>
+                                                <td><desc>{{ 'The free diskspace in kilobytes'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>memory</code></td>
+                                                <td>Integer</td>
+                                                <td><desc>{{ 'The memory (RAM) in megabytes'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>memoryFree</code></td>
+                                                <td>Integer</td>
+                                                <td><desc>{{ 'The free memory (RAM) in kilobytes'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>swap</code></td>
+                                                <td>Integer</td>
+                                                <td><desc>{{ 'The swap space in megabytes'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>swapFree</code></td>
+                                                <td>Integer</td>
+                                                <td><desc>{{ 'The free swap space in kilobytes'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>distversion</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The versionstring of the distribution'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>mailer</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'What program is used to send emails'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>network</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'How is it connected to the internet'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>online</code></td>
+                                                <td>Integer</td>
+                                                <td><desc>{{ 'is the machine online (1) or offline (0)'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>uptime</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The uptime of the machine in seconds(!)'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>loadavg</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The Load average string (e.g. "0,23 0,54 0,45")'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>distribution</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The name of the distribution (without version!)'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>kernel</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The kernel version string (e.g. "3.13.44-2")'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>cpu</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The name (model) of the CPU (from e.g. /proc/cpuinfo)'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>country</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The ISO country code (e.g. "DE" or "US")'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>architecture</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The arch of your machine (e.g. "armv7" or "x86_64")'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>class</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'The class of the machine (e.g. "server", "laptop" or "workstation")'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>purpose</code></td>
+                                                <td>String</td>
+                                                <td><desc>{{ 'For what is this machine used for (e.g. "work", "home", "school", ...)'|trans }}</desc></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
 
-
-                                        foo bar
-
-
+                                        <div class="example example-response padding">
+                                            {{ 'There will be an empty response with status code "204 No Content"'|trans }}
+                                        </div>
+                                        <pre><code></code></pre>
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="2">{{ 'Response Status Codes'|trans }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><code>204 No Content</code></td>
+                                                <td><desc>{{ 'The machine got successfully updated'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>400 Bad Request</code></td>
+                                                <td><desc>{{ 'The was something wrong with the request (maybe wrong --data parameter?)'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>404 Not Found</code></td>
+                                                <td><desc>{{ 'The machine_id or the machine_updatekey were not found'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>500 Internal Server Error</code></td>
+                                                <td><desc>{{ 'There was an internal error. Please contact the admin.'|trans }}</desc></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -65,18 +289,76 @@
 
                             <div id="apidoc3" class="apidocbox">
                                 <div class="row apidoctitle">
-                                    <div class="col-sm-2 apimethod delete">DELETE</div>
+                                    <div class="col-sm-2 apimethod get">GET</div>
                                     <div class="col-sm-10 api-action">
-                                        foo bar
+                                        {{ 'Get the list of all of your machines of your account'|trans }}
                                     </div>
                                 </div>
                                 <div id="apidoc_desc3" class="apidocdesc">
                                     <div class="apidocdesc_div">
+                                        <div class="example example-request">
+                                            <span class="label">GET</span> {{ apihost }}/machine
+                                        </div>
+                                        <pre><code>curl --request GET \
+    '{{ apihost }}/machine' \
+    --header 'x-lico-apikey: {{ 'YOUR-APIKEY-HERE'|trans }}'
+                                            </code></pre>
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="3">{{ 'Request Parameters'|trans }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><code>x-lico-apikey</code></td>
+                                                <td>Header</td>
+                                                <td><desc><strong>*</strong> {{ 'Submit your ApiKey through the request header.'|trans }} <span class="muted">({{ 'Required'|trans }})</span></desc></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
 
-
-                                        foo bar
-
-
+                                        <div class="example example-response"></div>
+                                        <pre><code>{
+    'machine_id': 12345,
+    'machine_updatekey': 'tz3948vtz349gnh4308t34058zt34z5h',
+    'hostname': 'server.example.com',
+    [...]
+},
+{
+    'machine_id': 234567,
+    'machine_updatekey': 'uiw4z5t87w3tzo3tzw3tzwp345t4w5u',
+    'hostname': 'laptop.example.com',
+    [...]
+},
+{
+    'machine_id': 321432,
+    'machine_updatekey': 'bev897twz3ot834zt37nztnw3o874t',
+    'hostname': 'workstation.example.com',
+    [...]
+}
+</code></pre>
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="2">{{ 'Response Status Codes'|trans }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><code>200 Ok</code></td>
+                                                <td><desc>{{ 'The list of your machines get returned'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>404 Not Found</code></td>
+                                                <td><desc>{{ 'The ApiKey was not found'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>500 Internal Server Error</code></td>
+                                                <td><desc>{{ 'There was an internal error. Please contact the admin.'|trans }}</desc></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
