@@ -61,6 +61,9 @@ class MachinesManagementController extends BaseRestController
                     'machine_id' => $machine_id,
                     'machine_updatekey' => $updateKey
                 );
+                $apiaccess->setLastAccess(new \DateTime());
+                $em->persist($apiaccess);
+                $em->flush();
                 $response = new JsonResponse($aResponse);
                 $response->setStatusCode(200);
             }
@@ -250,6 +253,14 @@ class MachinesManagementController extends BaseRestController
                 $machine->setModifiedAt(new \DateTime());
                 $em->persist($machine);
                 $em->flush();
+
+                $apiaccess = $this->get('doctrine')
+                    ->getRepository('SywFrontApiBundle:ApiAccess')
+                    ->findOneBy(array('user' => $machine->getUser()));
+                $apiaccess->setLastAccess(new \DateTime());
+                $em->persist($apiaccess);
+                $em->flush();
+
                 $aResponse  = array();
                 $response = new JsonResponse($aResponse);
                 $response->setStatusCode(204);
@@ -282,6 +293,13 @@ class MachinesManagementController extends BaseRestController
                 $machines = $this->get('doctrine')
                     ->getRepository('SywFrontMainBundle:Machines')
                     ->findBy(array('user' => $user));
+                $em = $this->getDoctrine()->getManager();
+                $apiaccess = $this->get('doctrine')
+                    ->getRepository('SywFrontApiBundle:ApiAccess')
+                    ->findOneBy(array('user' => $user));
+                $apiaccess->setLastAccess(new \DateTime());
+                $em->persist($apiaccess);
+                $em->flush();
                 foreach ($machines as $machine) {
                     $aResponse[] = array(
                         'machine_id' => $machine->getId(),
@@ -414,6 +432,10 @@ class MachinesManagementController extends BaseRestController
                     );
                     $response  = new JsonResponse($aResponse);
                     $response->setStatusCode(200);
+                    $em = $this->getDoctrine()->getManager();
+                    $apiaccess->setLastAccess(new \DateTime());
+                    $em->persist($apiaccess);
+                    $em->flush();
                 }
             }
         }
@@ -499,6 +521,10 @@ class MachinesManagementController extends BaseRestController
                 $em->persist($machine);
                 $em->flush();
                 $em->remove($machine);
+                $em->flush();
+
+                $apiaccess->setLastAccess(new \DateTime());
+                $em->persist($apiaccess);
                 $em->flush();
 
                 $response = new JsonResponse($aResponse);
