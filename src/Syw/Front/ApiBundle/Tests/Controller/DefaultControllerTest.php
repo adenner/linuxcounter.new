@@ -12,6 +12,5 @@ class DefaultControllerTest extends BaseControllerTest
         $crawler = $this->client->request('GET', 'http://'.$basehost.'/');
 
         $this->assertTrue($crawler->filter('html:contains("Machine management")')->count() > 0);
-        $this->assertTrue($crawler->filter('html:contains("Get statistics")')->count() > 0);
     }
 }
