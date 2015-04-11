@@ -28,4 +28,3 @@ syw_front_api:
     type:     annotation
     prefix:   /
     host:     %api_host%
-

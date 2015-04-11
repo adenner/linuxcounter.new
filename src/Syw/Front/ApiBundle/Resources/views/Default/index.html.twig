@@ -25,10 +25,10 @@
                                 <div id="apidoc_desc1" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">POST</span> {{ apihost }}/machines
+                                            <span class="label">POST</span> {{ apihost }}/v1/machines
                                         </div>
                                         <pre><code>curl --request POST \
-    '{{ apihost }}/machines' \
+    '{{ apihost }}/v1/machines' \
     --header 'x-lico-apikey: {{ 'YOUR-APIKEY-HERE'|trans }}'
 </code></pre>
                                         <table class="table table-condensed table-hover">
@@ -64,6 +64,10 @@
                                                 <td><desc>{{ 'The machine got successfully created'|trans }}</desc></td>
                                             </tr>
                                             <tr>
+                                                <td><code>400 Bad Request</code></td>
+                                                <td><desc>{{ 'No Apikey or wrong Apikey provided'|trans }}</desc></td>
+                                            </tr>
+                                            <tr>
                                                 <td><code>404 Not Found</code></td>
                                                 <td><desc>{{ 'The ApiKey was not found'|trans }}</desc></td>
                                             </tr>
@@ -89,10 +93,10 @@
                                 <div id="apidoc_desc2" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">PATCH</span> {{ apihost }}/machines/{machine_id}
+                                            <span class="label">PATCH</span> {{ apihost }}/v1/machines/{machine_id}
                                         </div>
                                         <pre><code>curl --request PATCH \
-    '{{ apihost }}/machines/YOUR-MACHINE-ID-HERE' \
+    '{{ apihost }}/v1/machines/YOUR-MACHINE-ID-HERE' \
     --header 'x-lico-machine-updatekey: {{ 'YOUR-MACHINE-UPDATEKEY-HERE'|trans }}' \
     --data 'hostname=some.example.com' \
     --data 'distribution=Trisquel' \
@@ -297,10 +301,10 @@
                                 <div id="apidoc_desc3" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">GET</span> {{ apihost }}/machines
+                                            <span class="label">GET</span> {{ apihost }}/v1/machines
                                         </div>
                                         <pre><code>curl --request GET \
-    '{{ apihost }}/machines' \
+    '{{ apihost }}/v1/machines' \
     --header 'x-lico-apikey: {{ 'YOUR-APIKEY-HERE'|trans }}'
                                             </code></pre>
                                         <table class="table table-condensed table-hover">
@@ -375,10 +379,10 @@
                                 <div id="apidoc_desc4" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">GET</span> {{ apihost }}/machines/{machine_id}
+                                            <span class="label">GET</span> {{ apihost }}/v1/machines/{machine_id}
                                         </div>
                                         <pre><code>curl --request GET \
-    '{{ apihost }}/machines/{machine_id}' \
+    '{{ apihost }}/v1/machines/{machine_id}' \
     --header 'x-lico-apikey: {{ 'YOUR-APIKEY-HERE'|trans }}'
                                             </code></pre>
                                         <table class="table table-condensed table-hover">
@@ -448,10 +452,10 @@
                                 <div id="apidoc_desc5" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">DELETE</span> {{ apihost }}/machines/{machine_id}
+                                            <span class="label">DELETE</span> {{ apihost }}/v1/machines/{machine_id}
                                         </div>
                                         <pre><code>curl --request DELETE \
-    '{{ apihost }}/machines/{machine_id}' \
+    '{{ apihost }}/v1/machines/{machine_id}' \
     --header 'x-lico-apikey: {{ 'YOUR-APIKEY-HERE'|trans }}'
                                             </code></pre>
                                         <table class="table table-condensed table-hover">
@@ -533,10 +537,10 @@
                                 <div id="apidoc_desc6" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">GET</span> {{ apihost }}/statistics/user
+                                            <span class="label">GET</span> {{ apihost }}/v1/statistics/user
                                         </div>
                                         <pre><code>curl --request GET \
-    '{{ apihost }}/statistics/user'
+    '{{ apihost }}/v1/statistics/user'
                                             </code></pre>
                                         <div class="example example-response"></div>
                                         <pre><code>{
@@ -576,10 +580,10 @@
                                 <div id="apidoc_desc7" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">GET</span> {{ apihost }}/statistics/machines
+                                            <span class="label">GET</span> {{ apihost }}/v1/statistics/machines
                                         </div>
                                         <pre><code>curl --request GET \
-    '{{ apihost }}/statistics/machines'
+    '{{ apihost }}/v1/statistics/machines'
                                             </code></pre>
                                         <div class="example example-response"></div>
                                         <pre><code>{
@@ -619,10 +623,10 @@
                                 <div id="apidoc_desc8" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">GET</span> {{ apihost }}/statistics/distributions
+                                            <span class="label">GET</span> {{ apihost }}/v1/statistics/distributions
                                         </div>
                                         <pre><code>curl --request GET \
-    '{{ apihost }}/statistics/distributions'
+    '{{ apihost }}/v1/statistics/distributions'
                                             </code></pre>
                                         <div class="example example-response"></div>
                                         <pre><code>{
@@ -662,10 +666,10 @@
                                 <div id="apidoc_desc9" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">GET</span> {{ apihost }}/statistics/kernels
+                                            <span class="label">GET</span> {{ apihost }}/v1/statistics/kernels
                                         </div>
                                         <pre><code>curl --request GET \
-    '{{ apihost }}/statistics/kernels'
+    '{{ apihost }}/v1/statistics/kernels'
                                             </code></pre>
                                         <div class="example example-response"></div>
                                         <pre><code>{
@@ -705,10 +709,10 @@
                                 <div id="apidoc_desc10" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">GET</span> {{ apihost }}/statistics/uptimes
+                                            <span class="label">GET</span> {{ apihost }}/v1/statistics/uptimes
                                         </div>
                                         <pre><code>curl --request GET \
-    '{{ apihost }}/statistics/uptimes'
+    '{{ apihost }}/v1/statistics/uptimes'
                                             </code></pre>
                                         <div class="example example-response"></div>
                                         <pre><code>{
@@ -748,10 +752,10 @@
                                 <div id="apidoc_desc11" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">GET</span> {{ apihost }}/statistics/counter
+                                            <span class="label">GET</span> {{ apihost }}/v1/statistics/counter
                                         </div>
                                         <pre><code>curl --request GET \
-    '{{ apihost }}/statistics/counter'
+    '{{ apihost }}/v1/statistics/counter'
                                             </code></pre>
                                         <div class="example example-response"></div>
                                         <pre><code>{
