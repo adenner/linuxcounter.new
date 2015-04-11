@@ -11,6 +11,7 @@ class DefaultControllerTest extends BaseControllerTest
         $basehost = $this->client->getKernel()->getContainer()->getParameter('api_host');
         $crawler = $this->client->request('GET', 'http://'.$basehost.'/');
 
-        $this->assertTrue($crawler->filter('html:contains("API Documentation")')->count() > 0);
+        $this->assertTrue($crawler->filter('html:contains("Machine management")')->count() > 0);
+        $this->assertTrue($crawler->filter('html:contains("Get statistics")')->count() > 0);
     }
 }
