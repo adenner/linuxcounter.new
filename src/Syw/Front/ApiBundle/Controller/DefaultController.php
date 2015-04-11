@@ -31,7 +31,7 @@ class DefaultController extends BaseController
         $title = $metatitle;
         $online = $this->getOnlineUsers();
         return array(
-            'apihost' => $this->getApiHost(),
+            'apihost' => $this->getHost(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

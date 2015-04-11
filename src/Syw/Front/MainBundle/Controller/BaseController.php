@@ -11,6 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class BaseController extends Controller
 {
+    protected function getHost()
+    {
+        return $this->container->getParameter('base_proto')."://".$this->container->getParameter('base_host');
+    }
+
     public function getGuessStats()
     {
         $em = $this->getDoctrine()->getManager();

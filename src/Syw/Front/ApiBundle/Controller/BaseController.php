@@ -11,9 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class BaseController extends Controller
 {
-    protected function getApiHost()
+    protected function getHost()
     {
-        return $this->container->getParameter('api_host');
+        return $this->container->getParameter('api_proto')."://".$this->container->getParameter('api_host');
     }
 
     public function getGuessStats()

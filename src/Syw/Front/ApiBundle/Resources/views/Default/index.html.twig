@@ -8,7 +8,7 @@
             <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ 'RESTful API Documentation'|trans }}</h3>
+                        <h3 class="panel-title">{{ 'RESTful API Documentation'|trans }} (API itself not functional yet!)</h3>
                     </div>
                     <div id="apidoc" class="panel-body apidoc">
                         <div class="apidoccontent">
@@ -29,9 +29,11 @@
                                         <div class="example example-request">
                                             <span class="label">POST</span> {{ apihost }}/machine
                                         </div>
-                                        <pre><code>&lt;?php
-echo "some example code";
-?&gt;
+                                        <pre><code>curl --request POST '{{ apihost }}/machine' \
+    --header 'x-lico-apikey: YOUR-APIKEY-HERE' \
+    --data 'key=value' \
+    --data 'key=value' \
+    --data 'key=value'
 </code></pre>
 
 

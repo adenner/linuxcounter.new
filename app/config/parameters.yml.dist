@@ -20,4 +20,6 @@ parameters:
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
     base_host: test.linuxcounter.net
+    base_proto: http
     api_host:  api.linuxcounter.net
+    api_proto: http
