@@ -58,7 +58,9 @@ class ProfileController extends BaseController
         $metatitle = $this->get('translator')->trans('The user profile');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $host = $this->getHost();
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'host' => $host,
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

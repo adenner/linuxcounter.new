@@ -16,6 +16,11 @@
             <div class="profile_username">
                 {{ user.username }}
             </div>
+            <div class="signature_image">
+                <a href="{{ host }}/cert/{{ user.getId() }}.png"><img src="{{ host }}/cert/{{ user.getId() }}.png" style="width:100%;" alt="{{ 'Use this image in your email or forum signatures'|trans }}" title="{{ 'Use this image in your email or forum signatures'|trans }}"/><br/>
+                <verysmall>{{ host }}/cert/{{ user.getId() }}.png</verysmall></a>
+            </div>
+
             <div class="profile_hr">
                 <hr size="1" noshade="noshade"/>
             </div>

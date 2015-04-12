@@ -1125,7 +1125,9 @@ table td desc {
     padding: 5px;
 }
 
-
+verysmall {
+    font-size: 0.6em;
+}
 
 
 

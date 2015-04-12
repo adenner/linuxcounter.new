@@ -33,6 +33,11 @@
                         {{ thisuser.username }}
                     {% endif %}
                 </div>
+                <div class="signature_image">
+                    <a href="{{ host }}/cert/{{ thisuser.getId() }}.png"><img src="{{ host }}/cert/{{ thisuser.getId() }}.png" style="width:100%;" alt="{{ 'Use this image in your email or forum signatures'|trans }}" title="{{ 'Use this image in your email or forum signatures'|trans }}"/><br/>
+                        <verysmall>{{ host }}/cert/{{ thisuser.getId() }}.png</verysmall></a>
+                </div>
+
                 <div class="profile_hr">
                     <hr size="1" noshade="noshade"/>
                 </div>
