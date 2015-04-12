@@ -32,16 +32,6 @@ CREATE TABLE `api_access` (
   CONSTRAINT `FK_809E6CD48D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `api_access`
---
-
-LOCK TABLES `api_access` WRITE;
-/*!40000 ALTER TABLE `api_access` DISABLE KEYS */;
-INSERT INTO `api_access` VALUES (1,249600,'b8a4c609428097c9a8ca6aabec6bffe0',NULL),(2,516115,'18e7686b03eb5eb5ea75a0a2966be91d',NULL),(3,516116,'65bd43ecef1265730b599fe2b890bf3a',NULL);
-/*!40000 ALTER TABLE `api_access` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -52,4 +42,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-08 20:43:40
+-- Dump completed on 2015-04-12 13:08:51
