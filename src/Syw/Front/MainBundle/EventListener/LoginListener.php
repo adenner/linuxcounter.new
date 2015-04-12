@@ -4,6 +4,7 @@ namespace Syw\Front\MainBundle\EventListener;
 
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent as FormEvent;
+use FOS\UserBundle\Event\UserEvent as UserEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -48,28 +49,30 @@ class LoginListener implements EventSubscriberInterface
         );
     }
 
-    public function onSecurityImplicitLogin(FormEvent $event)
+    public function onSecurityImplicitLogin($event)
     {
-        $url = $this->router->generate('fos_user_profile_show');
-
-        $user = $event->getAuthenticationToken()->getUser();
-        $obj = $this->em->getRepository('SywFrontApiBundle:ApiAccess')->findOneBy(array("user" => $user));
-        if (false === isset($obj) || false === is_object($obj) || $obj == null) {
-            $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersLength = strlen($characters);
-            $apikey           = '';
-            for ($i = 0; $i < 48; $i++) {
-                $apikey .= $characters[rand(0, $charactersLength - 1)];
+        $class = get_class($event);
+        if ($class != 'FOS\UserBundle\Event\UserEvent') {
+            $url  = $this->router->generate('fos_user_profile_show');
+            $user = $event->getAuthenticationToken()->getUser();
+            $obj  = $this->em->getRepository('SywFrontApiBundle:ApiAccess')->findOneBy(array("user" => $user));
+            if (false === isset($obj) || false === is_object($obj) || $obj == null) {
+                $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $apikey           = '';
+                for ($i = 0; $i < 48; $i++) {
+                    $apikey .= $characters[rand(0, $charactersLength - 1)];
+                }
+                $apikey    = md5($apikey);
+                $ApiAccess = new ApiAccess();
+                $ApiAccess->setUser($user);
+                $ApiAccess->setApiKey($apikey);
+                $this->em->persist($ApiAccess);
+                $this->em->flush();
             }
-            $apikey    = md5($apikey);
-            $ApiAccess = new ApiAccess();
-            $ApiAccess->setUser($user);
-            $ApiAccess->setApiKey($apikey);
-            $this->em->persist($ApiAccess);
-            $this->em->flush();
+            $this->container->get('session')->getFlashBag()->add('success', 'You have successfully logged in.');
+            $event->setResponse(new RedirectResponse($url));
         }
-        $this->container->get('session')->getFlashBag()->add('success', 'You have successfully logged in.');
-        $event->setResponse(new RedirectResponse($url));
     }
 
     public function onSecurityInteractivelogin(InteractiveLoginEvent $event)
