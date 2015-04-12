@@ -16,3 +16,5 @@ import.db
 import.log
 population.db
 web/xml/*.xml
+web/cert
+web/mcert
