@@ -62,7 +62,13 @@ class SignatureImagesController extends BaseController
                 @unlink($cert);
                 $imNeu = ImageCreateFromPNG($template);
                 $black = ImageColorAllocate($imNeu, 0, 0, 0);
-                imagestring($imNeu, 3, 20, 55, "Registered Linux user since ".$thisuser->getProfile()->getCreatedAt()->format('Y-m-d')."", $black);
+                $profile = $thisuser->getProfile();
+                if (false === isset($thisuser) || false === is_object($thisuser) || $thisuser == null) {
+                    $createdat = "unknown";
+                } else {
+                    $createdat = $profile->getCreatedAt()->format('Y-m-d');
+                }
+                imagestring($imNeu, 3, 20, 55, "Registered Linux user since ".$createdat."", $black);
                 imagestring($imNeu, 5, 70, 78, "Linux User #".$thisuser->getId(), $black);
                 imagestring($imNeu, 2, 20, 104, "This user has ".$machine_count." Linux machines registered.", $black);
                 imagestring($imNeu, 2, 20, 116, "".$machinesonline_count." Linux machines are actually online.", $black);
