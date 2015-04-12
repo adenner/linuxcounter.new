@@ -348,10 +348,12 @@ class StatsController extends BaseController
         }
         $series = array(
             array(
+                "type" => "area",
                 "name" => $this->get('translator')->trans('User Registrations'),
                 "data" => $data2
             ),
             array(
+                "type" => "area",
                 "name" => $this->get('translator')->trans('Machine Registrations'),
                 "data" => $data1
             )

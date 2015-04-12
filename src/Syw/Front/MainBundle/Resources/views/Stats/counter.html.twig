@@ -30,10 +30,8 @@
                             <script type="text/javascript">
                                 $(function(){
 
-                                    {{ chart(chart, false) }}
-
                                     Highcharts.theme = {
-                                        chart: {
+                                        area: {
                                             fillColor: {
                                                 linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
                                                 stops: [
@@ -54,7 +52,9 @@
                                         }
                                     };
 
-                                    chart.setOptions(Highcharts.theme);
+                                    Highcharts.setOptions(Highcharts.theme);
+
+                                    {{ chart(chart, false) }}
 
                                 });
                             </script>
