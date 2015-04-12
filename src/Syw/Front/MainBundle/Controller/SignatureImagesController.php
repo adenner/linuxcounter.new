@@ -63,7 +63,7 @@ class SignatureImagesController extends BaseController
                 $imNeu = ImageCreateFromPNG($template);
                 $black = ImageColorAllocate($imNeu, 0, 0, 0);
                 $profile = $thisuser->getProfile();
-                if (false === isset($thisuser) || false === is_object($thisuser) || $thisuser == null) {
+                if (false === isset($profile) || false === is_object($profile) || $profile == null) {
                     $createdat = "unknown";
                 } else {
                     $createdat = $profile->getCreatedAt()->format('Y-m-d');
