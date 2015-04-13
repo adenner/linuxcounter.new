@@ -1,9 +1,9 @@
-{% trans_default_domain 'FOSUserBundle' %}
+{% trans_default_domain "syw_front_main_machine_edit" %}
 
 <form action="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}" {{ form_enctype(form) }}
       method="POST" class="fos_user_profile_edit">
     <div class="form-group"><label for="foobar" class="control-label col-sm-3 required">
-            Machine Number
+            {{ 'Machine Number'|trans }}
         </label>
         <div class="col-sm-9"><input type="text" id="foobar" name="foobar" readonly="readonly" required="required" class="form-control" value="{{ machine.getId() }}" data-cip-id="foobar"></div>
     </div>

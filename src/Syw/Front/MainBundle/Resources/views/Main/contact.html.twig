@@ -1,4 +1,5 @@
 {% extends "SywFrontMainBundle::base.html.twig" %}
+{% trans_default_domain "syw_front_main_main_contact" %}
 
 {% block body %}
 
@@ -25,7 +26,7 @@
                         {{ form_widget(form) }}
 
 
-                        <button type="submit" class="btn-default">Send</button>
+                        <button type="submit" class="btn-default">{{ 'Send'|trans }}</button>
 
 
                         </form>

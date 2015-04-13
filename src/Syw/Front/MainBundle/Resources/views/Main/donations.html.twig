@@ -1,4 +1,5 @@
 {% extends "SywFrontMainBundle::base.html.twig" %}
+{% trans_default_domain "syw_front_main_main_donations" %}
 
 {% block body %}
 
@@ -11,23 +12,19 @@
                         <h3 class="panel-title">{{ title }}</h3>
                     </div>
                     <div class="panel-body">
-                        <h2><em>All donations are very, very welcome!</em></h2>
+                        <h2><em>{{ 'All donations are very, very welcome!'|trans }}</em></h2>
 
                         <p> &nbsp; </p>
-                        <p>Server-hardware is expensive, DSL is expensive, private time is very expensive, especially when
-                            you have a little, 2 years old son.</p>
-                        <p>This is, why I welcome all of your donations, no matter what kind of donation it is.</p>
+                        <p>{{ 'Server-hardware is expensive, DSL is expensive, private time is very expensive, especially when you have a little, 2 years old son.'|trans }}</p>
+                        <p>{{ 'This is, why I welcome all of your donations, no matter what kind of donation it is.'|trans }}</p>
 
                         <p> &nbsp; </p>
-                        <p>You can always send me some strawberry juice, a net of oranges or a small fire dept pump car
-                            for my little son. The address can be found
-                            <a href="{{ url('syw_front_main_main_impressum') }}">here</a>. <a href="#wishlist">At the
-                                end of this page</a> you may also find a small wishlist of things my small family would
-                            need or want.</p>
+                        <p>{{ 'You can always send me some strawberry juice, a net of oranges or a small fire dept pump car for my little son.'|trans }}
+                            {{ 'The address can be found <a href="%url%">here</a>.'|trans({'%url%': url('syw_front_main_main_impressum')})|raw }}
+                            {{ '<a href="#wishlist">At the end of this page</a> you may also find a small wishlist of things my small family would need or want.'|trans|raw }}</p>
 
                         <p> &nbsp; </p>
-                        <p>But there are also other ways to help me and the project. You always can also send some money
-                            to support the project. Here are all available methods to send some small money:</p>
+                        <p>{{ 'But there are also other ways to help me and the project. You always can also send some money to support the project. Here are all available methods to send some small money:'|trans }}</p>
 
                         <p> &nbsp; </p>
 

@@ -102,6 +102,10 @@ $(document).ready(function() {
         $("#myModal").modal('show');
     });
 
+    $("#translate_page_button").click(function(){
+        $("#transModal").modal('show');
+    });
+
     $("#arrt").on("click", "#addcity_save", function(e){
         /* e.preventDefault(); */
         /* $("#myModal").modal('hide'); */

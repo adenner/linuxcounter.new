@@ -30,7 +30,13 @@ class DefaultController extends BaseController
         $metatitle = "";
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'apihost' => $this->getHost(),
             'online' => $online,
             'metatitle' => $metatitle,

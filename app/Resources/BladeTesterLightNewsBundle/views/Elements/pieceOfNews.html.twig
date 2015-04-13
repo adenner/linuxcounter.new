@@ -1,3 +1,4 @@
+{% trans_default_domain "news_homepage" %}
 <div class="panel panel-default pieceOfNews">
     <div class="panel-heading">
         <a href="{{ url('news_view', {'id': pieceOfNews.getId()}) }}"><h3 class="panel-title newsTitle">[{{ pieceOfNews.createdAt|date('Y-m-d H:i') }}]  {{ pieceOfNews.title }}</h3></a>
@@ -14,7 +15,7 @@
         </div>
         <div class="col-sm-6">
             <span style="display: block;text-align:right">
-                <a href="{{ url('news_view', {'id': pieceOfNews.getId()}) }}">Read more...</a>
+                <a href="{{ url('news_view', {'id': pieceOfNews.getId()}) }}">{{ 'Read more...'|trans }}</a>
             </span>
         </div>
     </div>

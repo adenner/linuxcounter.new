@@ -1,27 +1,39 @@
 <!-- /END THE FEATURETTES -->
 
+{% trans_default_domain "footer" %}
 <div class="footercontainer">
     <a name="contact"></a>
 
     <div class="banner">
-        <div class="content language-selection">
-            <!-- ... -->
-            <form action="{{ path('syw_front_main_main_lang') }}" method="post">
-                <select name="language" id="languages">
-                    {% for language in languages %}
-                        <option value="{{ language.locale }}"
-                                {% if app.request.getLocale() == language.locale %}selected="selected"{% endif %}> {{ language.language }}</option>
-                    {% endfor %}
-                </select>
-                <input type="submit" value="{{ 'Choose language...'|trans }}">
-            </form>
+        <div class="row content language-selection">
+
+            <div class="col-sm-6" style="text-align: right;">
+                <form action="{{ path('syw_front_main_main_lang') }}" method="post">
+                    <select name="language" id="languages">
+                        {% for language in languages %}
+                            <option value="{{ language.locale }}"
+                                    {% if app.request.getLocale() == language.locale %}selected="selected"{% endif %}> {{ language.language }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="{{ 'Choose language...'|trans }}">
+                </form>
+            </div>
+
+            <div class="col-sm-6">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {% endif %}
+                <div class="col-sm-12">
+                    <span id="translate_page_button" class="button-lite">{{ 'Translate this page into your native language!'|trans }}</span>
+                </div>
+            </div>
+
         </div>
         <p> &nbsp; </p>
 
         <div class="footerlinks">
             <div class="content">
                 <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a> &middot;
-                <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics mainpage'|trans }}</a> &middot;
+                <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics'|trans }}</a> &middot;
                 <a href="{{ url('syw_front_main_main_download') }}">{{ 'Download'|trans }}</a> &middot;
                 <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a> &middot;
                 <a href="{{ url('syw_front_main_main_faq') }}">{{ 'FAQ'|trans }}</a> &middot;
@@ -45,8 +57,12 @@
         <div class="container">
 
             <div class="row onlineusers">
-                There were {{ online.complete }} clients ({{ online.users }} users and {{ online.bots }} bots)<br/>
-                online during the last 5 minutes. {{ online.loggedin }} users were logged in.
+                {{ "There were %onlinecomplete% clients (%onlineusers% users and %onlinebots% bots)<br/>online during the last 5 minutes. %onlineloggedin% users were logged in."|trans({
+                    '%onlinecomplete%': online.complete,
+                    '%onlineusers%': online.users,
+                    '%onlinebots%': online.bots,
+                    '%onlineloggedin%': online.loggedin
+                }, "workend")|raw }}
             </div>
         </div>
         <p> &nbsp; </p>

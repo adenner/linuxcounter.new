@@ -46,7 +46,12 @@ class AdminController extends BaseController
 
         $metatitle = $this->get('translator')->trans('About the Linux Counter');
         $title = $metatitle;
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return array(
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,

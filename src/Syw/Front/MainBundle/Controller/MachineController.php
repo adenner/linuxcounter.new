@@ -160,10 +160,21 @@ class MachineController extends BaseController
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
-        $metatitle = $this->get('translator')->trans('New Machine Creation');
+        $locale = $this->get('request')->getLocale();
+        $language = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $locale));
+        $metatitle = $this->get('translator')->trans('New Machine Creation', array(), 'syw_front_main_machine_create');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('SywFrontMainBundle:Machine:create.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
+            'language' => $language->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -342,10 +353,21 @@ class MachineController extends BaseController
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
-        $metatitle = $this->get('translator')->trans('Edit Machine');
+        $locale = $this->get('request')->getLocale();
+        $language = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $locale));
+        $metatitle = $this->get('translator')->trans('Edit Machine', array(), 'syw_front_main_machine_edit');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('SywFrontMainBundle:Machine:edit.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
+            'language' => $language->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

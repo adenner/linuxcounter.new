@@ -8,6 +8,9 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Syw\Front\MainBundle\Entity\Activity;
 use Syw\Front\MainBundle\Util\DetectBotFromUserAgent;
+use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\HttpKernel;
 
 /**
  * Class Activity
@@ -48,6 +51,20 @@ class ActivityListener
             $user = null;
         }
         $route  = $event->getRequest()->attributes->get('_route');
+        $request = $event->getRequest();
+        $session = $request->getSession();
+        $routeParams = $request->get('_route_params');
+        if ($route[0] == '_') {
+            return;
+        }
+        $routeData = ['name' => $route, 'params' => $routeParams];
+        $thisRoute = $session->get('this_route', []);
+        if ($thisRoute == $routeData) {
+            return;
+        }
+        $session->set('last_route', $thisRoute);
+        $session->set('this_route', $routeData);
+
         if ($route == null || true === in_array($route, array('_wdt'))) {
             return true;
         }

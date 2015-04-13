@@ -835,6 +835,10 @@ input[type=submit] {
     border-radius: 4px;
 }
 
+.language-selection {
+    margin: 0;
+}
+
 .language-selection input[type=submit] {
     margin: 20px;
     width: auto;
@@ -867,13 +871,15 @@ input[type=submit] {
     padding:0;
 }
 
-.profile_form_city_button, .profile_form_city_button div, .profile_form_city_button > div {
+.profile_form_city_button, .profile_form_city_button div, .profile_form_city_button > div,
+.translate_page_button, .translate_page_button div, .translate_page_button > div {
     margin-top: 10px;
     padding: 0;
 }
 
 @media (min-width: 768px) {
-    .profile_form_city_button, .profile_form_city_button div, .profile_form_city_button > div {
+    .profile_form_city_button, .profile_form_city_button div, .profile_form_city_button > div,
+    .translate_page_button, .translate_page_button div, .translate_page_button > div{
         margin-top: 0;
         padding-left: 5px;
     }
@@ -1129,10 +1135,24 @@ verysmall {
     font-size: 0.6em;
 }
 
+#translate_page_button {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
 
+#translateform .form-group {
+    min-height: 80px;
+}
 
+#translateform .form-group textarea {
+    min-height: 80px;
+}
 
-
+@media (min-width: 992px) {
+    .modal-dialog {
+        width: 980px;
+    }
+}
 
 
 

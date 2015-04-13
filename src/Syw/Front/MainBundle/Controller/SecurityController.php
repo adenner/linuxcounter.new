@@ -39,10 +39,16 @@ class SecurityController extends BaseController
             ? $this->get('form.csrf_provider')->generateCsrfToken('authenticate')
             : null;
 
-        $metatitle = $this->get('translator')->trans('User Login');
+        $metatitle = $this->get('translator')->trans('User Login', array(), 'fos_user_security_login');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->renderLogin(array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

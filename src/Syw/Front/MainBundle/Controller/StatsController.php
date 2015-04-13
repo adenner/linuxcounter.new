@@ -19,9 +19,9 @@ class StatsController extends BaseController
      */
     public function indexAction()
     {
-        $metatitle = $this->get('translator')->trans('Statistics mainpage');
+        $metatitle = $this->get('translator')->trans('Statistics mainpage', array(), 'syw_front_main_stats_index');
         $title1 = $metatitle;
-        $title2 = $this->get('translator')->trans('The estimation of linux users');
+        $title2 = $this->get('translator')->trans('The estimation of linux users', array(), 'syw_front_main_stats_index');
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
@@ -34,7 +34,13 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title1' => $title1,
@@ -53,7 +59,7 @@ class StatsController extends BaseController
      */
     public function usersAction()
     {
-        $metatitle = $this->get('translator')->trans('Statistics about the Linux users');
+        $metatitle = $this->get('translator')->trans('Statistics about the Linux users', array(), 'syw_front_main_stats_users');
         $title = $metatitle;
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
@@ -66,7 +72,13 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -84,7 +96,7 @@ class StatsController extends BaseController
      */
     public function machinesAction()
     {
-        $metatitle = $this->get('translator')->trans('Statistics about the Linux machines');
+        $metatitle = $this->get('translator')->trans('Statistics about the Linux machines', array(), 'syw_front_main_stats_machines');
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
@@ -98,7 +110,7 @@ class StatsController extends BaseController
         $stats['guess'] = $this->getGuessStats();
 
         // accounts on the machines
-        $title1 = $this->get('translator')->trans('Statistics about the number of accounts on the machines');
+        $title1 = $this->get('translator')->trans('Statistics about the number of accounts on the machines', array(), 'syw_front_main_stats_machines');
         $xml = file_get_contents("xml/machines_accounts.xml");
         $domObj = new xmlToArrayParser($xml);
         $domArr = $domObj->array;
@@ -117,7 +129,7 @@ class StatsController extends BaseController
         // end accounts on the machines
 
         // countries of the machines
-        $title2 = $this->get('translator')->trans('Statistics about the number of machines per country');
+        $title2 = $this->get('translator')->trans('Statistics about the number of machines per country', array(), 'syw_front_main_stats_machines');
         $xml = file_get_contents("xml/machines_countries.xml");
         $domObj = new xmlToArrayParser($xml);
         $domArr = $domObj->array;
@@ -159,7 +171,13 @@ class StatsController extends BaseController
 
 
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title1' => $title1,
@@ -178,7 +196,7 @@ class StatsController extends BaseController
      */
     public function distributionsAction()
     {
-        $metatitle = $this->get('translator')->trans('Statistics about the Linux distributions');
+        $metatitle = $this->get('translator')->trans('Statistics about the Linux distributions', array(), 'syw_front_main_stats_distributionsx');
         $title = $metatitle;
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
@@ -192,7 +210,13 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -210,7 +234,7 @@ class StatsController extends BaseController
      */
     public function kernelsAction()
     {
-        $metatitle = $this->get('translator')->trans('Statistics about the Linux kernels');
+        $metatitle = $this->get('translator')->trans('Statistics about the Linux kernels', array(), 'syw_front_main_stats_kernels');
         $title = $metatitle;
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
@@ -224,7 +248,13 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -242,7 +272,7 @@ class StatsController extends BaseController
      */
     public function uptimesAction()
     {
-        $metatitle = $this->get('translator')->trans('Statistics about the machine uptimes');
+        $metatitle = $this->get('translator')->trans('Statistics about the machine uptimes', array(), 'syw_front_main_stats_uptimes');
         $title = $metatitle;
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
@@ -256,7 +286,13 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -274,9 +310,9 @@ class StatsController extends BaseController
      */
     public function counterAction()
     {
-        $metatitle = $this->get('translator')->trans('Statistics about the Linux Counter itself');
+        $metatitle = $this->get('translator')->trans('Statistics about the Linux Counter itself', array(), 'syw_front_main_stats_counter');
         $title1 = $metatitle;
-        $title2 = $this->get('translator')->trans('Statistics about the registrations');
+        $title2 = $this->get('translator')->trans('Statistics about the registrations', array(), 'syw_front_main_stats_counter');
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
@@ -349,12 +385,12 @@ class StatsController extends BaseController
         $series = array(
             array(
                 "type" => "area",
-                "name" => $this->get('translator')->trans('User Registrations'),
+                "name" => $this->get('translator')->trans('User Registrations', array(), 'syw_front_main_stats_counter'),
                 "data" => $data2
             ),
             array(
                 "type" => "area",
-                "name" => $this->get('translator')->trans('Machine Registrations'),
+                "name" => $this->get('translator')->trans('Machine Registrations', array(), 'syw_front_main_stats_counter'),
                 "data" => $data1
             )
         );
@@ -362,13 +398,13 @@ class StatsController extends BaseController
         $chart_registrations_per_month->chart->renderTo('chart_registrations_per_month');
         $chart_registrations_per_month->chart->zoomType('x');
         $chart_registrations_per_month->chart->type('line');
-        $chart_registrations_per_month->title->text($this->get('translator')->trans('Registrations per month'));
-        $chart_registrations_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
-        $chart_registrations_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
+        $chart_registrations_per_month->title->text($this->get('translator')->trans('Registrations per month', array(), 'syw_front_main_stats_counter'));
+        $chart_registrations_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in', array(), 'syw_front_main_stats_counter'));
+        $chart_registrations_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date', array(), 'syw_front_main_stats_counter')));
         $chart_registrations_per_month->xAxis->type('datetime');
         $chart_registrations_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
         $chart_registrations_per_month->yAxis->min(0);
-        $chart_registrations_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('Registrations per month')));
+        $chart_registrations_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('Registrations per month', array(), 'syw_front_main_stats_counter')));
         $chart_registrations_per_month->legend->enabled(true);
         $chart_registrations_per_month->plotOptions->area(array(
             'allowPointSelect'  => true,
@@ -379,7 +415,13 @@ class StatsController extends BaseController
         // end of chart
 
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title1' => $title1,

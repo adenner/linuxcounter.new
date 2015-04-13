@@ -111,10 +111,16 @@ class RegistrationController extends BaseController
             return $response;
         }
 
-        $metatitle = $this->get('translator')->trans('User Account Registration');
+        $metatitle = $this->get('translator')->trans('User Account Registration', array(), 'fos_user_registration_register');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -140,10 +146,16 @@ class RegistrationController extends BaseController
             throw new NotFoundHttpException(sprintf('The user with email "%s" does not exist', $email));
         }
 
-        $metatitle = $this->get('translator')->trans('User Account Registration');
+        $metatitle = $this->get('translator')->trans('User Account Registration', array(), 'fos_user_registration_checkEmail');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('FOSUserBundle:Registration:checkEmail.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -203,10 +215,16 @@ class RegistrationController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        $metatitle = $this->get('translator')->trans('User Account Registration');
+        $metatitle = $this->get('translator')->trans('User Account Registration', array(), 'fos_user_registration_confirmed');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('FOSUserBundle:Registration:confirmed.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

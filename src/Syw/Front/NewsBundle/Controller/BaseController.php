@@ -6,6 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BladeTester\LightNewsBundle\Controller\DefaultController as LightNewsDefaultController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Syw\Front\MainBundle\Form\Type\TranslationFormType;
+use Asm\TranslationLoaderBundle\Entity\Translation;
 
 /**
  * Class BaseController
@@ -14,6 +19,48 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  */
 class BaseController extends LightNewsDefaultController
 {
+    public function getTranslateForm()
+    {
+        $route = $this->get('request')->get('_route');
+        $actuallocale = $this->get('request')->getLocale();
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('t')
+            ->from('AsmTranslationLoaderBundle:Translation', 't')
+            ->where('t.transLocale = :locale')
+            ->andwhere('t.messageDomain = :domain')
+            ->setParameter('locale', $actuallocale)
+            ->setParameter('domain', 'general')
+        ;
+        $result1 = $qb->getQuery()->getResult();
+        $qb->select('t')
+            ->where('t.transLocale = :locale')
+            ->andwhere('t.messageDomain = :domain')
+            ->setParameter('locale', $actuallocale)
+            ->setParameter('domain', 'navigation')
+        ;
+        $result2 = $qb->getQuery()->getResult();
+        $qb->select('t')
+            ->where('t.transLocale = :locale')
+            ->andwhere('t.messageDomain = :domain')
+            ->setParameter('locale', $actuallocale)
+            ->setParameter('domain', $route)
+        ;
+        $result3 = $qb->getQuery()->getResult();
+        $qb->select('t')
+            ->where('t.transLocale = :locale')
+            ->andwhere('t.messageDomain = :domain')
+            ->setParameter('locale', $actuallocale)
+            ->setParameter('domain', 'footer')
+        ;
+        $result4 = $qb->getQuery()->getResult();
+        $translations = array('translations' => array_merge($result1, $result2, $result3, $result4));
+        $formTranslations = $this->createFormBuilder($translations)
+            ->add('translations', 'collection', array('type' => new TranslationFormType()))
+            ->getForm();
+        return $formTranslations;
+    }
+
     public function getGuessStats()
     {
         $em = $this->getDoctrine()->getManager();

@@ -53,11 +53,18 @@ class PublicController extends BaseController
             $user = null;
         }
 
-        $metatitle = $this->get('translator')->trans('Public user profile page');
+        $metatitle = $this->get('translator')->trans('Public user profile page', array(), 'syw_front_main_public_profile');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
         $host = $this->getHost();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('SywFrontMainBundle:Public:profile.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
+            'language' => $language->getLanguage(),
             'host' => $host,
             'online' => $online,
             'metatitle' => $metatitle,
@@ -66,7 +73,7 @@ class PublicController extends BaseController
             'thisuserprofile' => $thisuserProfile,
             'thisprivacy' => $thisprivacy,
             'thismachines' => $thismachines,
-            'language' => $language->getLanguage(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'languages' => $languages,
             'user' => $user
         ));
@@ -150,11 +157,17 @@ class PublicController extends BaseController
         } else {
             $user = null;
         }
-        $metatitle = $this->get('translator')->trans('Public machine profile page');
+        $metatitle = $this->get('translator')->trans('Public machine profile page', array(), 'syw_front_main_public_machine');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
         $host = $this->getHost();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('SywFrontMainBundle:Public:machine.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'host' => $host,
             'online' => $online,
             'metatitle' => $metatitle,

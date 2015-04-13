@@ -57,13 +57,9 @@ class InfoController extends BaseController
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        $locale = $user->getLocale();
         $userProfile = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:UserProfile')
             ->findOneBy(array('user' => $user));
-        $language = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $locale));
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
@@ -138,10 +134,21 @@ class InfoController extends BaseController
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
-        $metatitle = $this->get('translator')->trans('Edit profile information');
+        $locale = $this->get('request')->getLocale();
+        $language = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $locale));
+        $metatitle = $this->get('translator')->trans('Edit profile information', array(), 'syw_front_main_info_edit');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('SywFrontMainBundle:Info:edit.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
+            'language' => $language->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

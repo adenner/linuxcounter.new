@@ -97,10 +97,16 @@ class PrivacyController extends BaseController
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
-        $metatitle = $this->get('translator')->trans('Edit user privacy');
+        $metatitle = $this->get('translator')->trans('Edit user privacy', array(), 'syw_front_main_privacy_edit');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('SywFrontMainBundle:Privacy:edit.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

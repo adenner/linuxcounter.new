@@ -18,3 +18,5 @@ population.db
 web/xml/*.xml
 web/cert
 web/mcert
+src/Syw/Front/*/Resources/translations
+app/Resources/translations

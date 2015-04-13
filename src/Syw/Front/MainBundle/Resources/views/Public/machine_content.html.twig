@@ -1,4 +1,4 @@
-{% trans_default_domain 'messages' %}
+{% trans_default_domain "syw_front_main_public_machine" %}
 
 <div class="fos_user_user_show">
 
@@ -103,7 +103,7 @@
                             <div class="panel-body">
                                 <div id="profile_contact_icq">
                                     {% if thismachine.diskspace == 0 %}
-                                        <span class="progress-description">No Diskspace</span>
+                                        <span class="progress-description">{{ 'No Diskspace'|trans }}</span>
                                     {% else %}
                                         <span class="progress-description">{{ ((100/thismachine.diskspace)*thismachine.diskspaceFree)|round(2, 'common') }}% {{ 'Free diskspace'|trans }} (of {{ (thismachine.diskspace)|round(2, 'common')|number_format }} Mb)</span>
                                     <div class="progress">
@@ -113,7 +113,7 @@
                                 </div>
                                 <div id="profile_contact_skype">
                                     {% if thismachine.memory == 0 %}
-                                        <span class="progress-description">No RAM</span>
+                                        <span class="progress-description">{{ 'No RAM'|trans }}</span>
                                     {% else %}
                                         <span class="progress-description">{{ ((100/thismachine.memory)*thismachine.memoryFree)|round(2, 'common') }}% {{ 'Free RAM'|trans }} (of {{ (thismachine.memory)|number_format }} Mb)</span>
                                     <div class="progress">
@@ -123,7 +123,7 @@
                                 </div>
                                 <div id="profile_contact_jabber">
                                     {% if thismachine.swap == 0 %}
-                                    <span class="progress-description">No Swap</span>
+                                    <span class="progress-description">{{ 'No Swap'|trans }}</span>
                                     {% else %}
                                         <span class="progress-description">{{ ((100/thismachine.swap)*thismachine.swapFree)|round(2, 'common') }}% {{ 'Free Swap'|trans }} (of {{ (thismachine.swap)|round(2, 'common')|number_format }} Mb)</span>
                                     <div class="progress">

@@ -28,10 +28,16 @@ class ResettingController extends BaseController
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
-        $metatitle = $this->get('translator')->trans('Password reset');
+        $metatitle = $this->get('translator')->trans('Password reset', array(), 'fos_user_resetting_request');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('FOSUserBundle:Resetting:request.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -95,10 +101,16 @@ class ResettingController extends BaseController
         } else {
             $user = null;
         }
-        $metatitle = $this->get('translator')->trans('Password reset');
+        $metatitle = $this->get('translator')->trans('Password reset', array(), 'fos_user_resetting_checkEmail');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('FOSUserBundle:Resetting:checkEmail.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -158,10 +170,16 @@ class ResettingController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        $metatitle = $this->get('translator')->trans('Password reset');
+        $metatitle = $this->get('translator')->trans('Password reset', array(), 'fos_user_resetting_reset');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('FOSUserBundle:Resetting:reset.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

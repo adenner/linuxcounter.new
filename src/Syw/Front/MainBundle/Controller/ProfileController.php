@@ -55,11 +55,18 @@ class ProfileController extends BaseController
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
-        $metatitle = $this->get('translator')->trans('The user profile');
+        $metatitle = $this->get('translator')->trans('The user profile', array(), 'fos_user_profile_show');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
         $host = $this->getHost();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
+            'language' => $language->getLanguage(),
             'host' => $host,
             'online' => $online,
             'metatitle' => $metatitle,
@@ -67,7 +74,7 @@ class ProfileController extends BaseController
             'user' => $user,
             'userprofile' => $userProfile,
             'machines' => $machines,
-            'language' => $language->getLanguage(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'languages' => $languages
         ));
     }
@@ -123,10 +130,16 @@ class ProfileController extends BaseController
             return $response;
         }
 
-        $metatitle = $this->get('translator')->trans('The user profile');
+        $metatitle = $this->get('translator')->trans('The user profile', array(), 'fos_user_profile_edit');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
+            'translationsForm' => $this->getTranslateForm()->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
