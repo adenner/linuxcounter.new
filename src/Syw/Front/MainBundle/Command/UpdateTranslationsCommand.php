@@ -54,7 +54,11 @@ class UpdateTranslationsCommand extends BaseTranslationCommand
     {
         $db = $this->getContainer()->get('doctrine.dbal.default_connection');
 
-        $bundles = array('SywFrontApiBundle', 'SywFrontMainBundle', 'SywFrontNewsBundle');
+
+        $bundles = array('SywFrontApiBundle', 'SywFrontMainBundle', 'SywFrontNewsBundle', 'FOSUserBundle');
+
+
+
         $rows    = $db->fetchAll('SELECT l.locale FROM languages l ORDER BY l.locale ASC');
         $locales = array();
         foreach ($rows as $row) {

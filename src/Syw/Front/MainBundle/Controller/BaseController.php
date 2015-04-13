@@ -61,7 +61,28 @@ class BaseController extends Controller
             ->setParameter('domain', 'footer')
         ;
         $result4 = $qb->getQuery()->getResult();
-        $translations = array('translations' => array_merge($result1, $result2, $result3, $result4));
+        $qb->select('t')
+            ->where('t.transLocale = :locale')
+            ->andwhere('t.messageDomain = :domain')
+            ->setParameter('locale', $actuallocale)
+            ->setParameter('domain', 'workend')
+        ;
+        $result5 = $qb->getQuery()->getResult();
+        $qb->select('t')
+            ->where('t.transLocale = :locale')
+            ->andwhere('t.messageDomain = :domain')
+            ->setParameter('locale', $actuallocale)
+            ->setParameter('domain', 'messages')
+        ;
+        $result6 = $qb->getQuery()->getResult();
+        $qb->select('t')
+            ->where('t.transLocale = :locale')
+            ->andwhere('t.messageDomain = :domain')
+            ->setParameter('locale', $actuallocale)
+            ->setParameter('domain', 'FOSUserBundle')
+        ;
+        $result7 = $qb->getQuery()->getResult();
+        $translations = array('translations' => array_merge($result3, $result1, $result2, $result4, $result5, $result6, $result7));
         $formTranslations = $this->createFormBuilder($translations)
             ->add('translations', 'collection', array('type' => new TranslationFormType()))
             ->getForm();
