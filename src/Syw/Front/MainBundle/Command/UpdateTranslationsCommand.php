@@ -53,21 +53,20 @@ class UpdateTranslationsCommand extends BaseTranslationCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $db = $this->getContainer()->get('doctrine.dbal.default_connection');
-
-
-        $bundles = array('SywFrontApiBundle', 'SywFrontMainBundle', 'SywFrontNewsBundle', 'FOSUserBundle');
-
-
-
+        $bundle_array = $this->getContainer()->getParameter('kernel.bundles');
+        $bundles = array();
+        foreach ($bundle_array as $key => $val) {
+            $bundles[] = $key;
+        }
         $rows    = $db->fetchAll('SELECT l.locale FROM languages l ORDER BY l.locale ASC');
         $locales = array();
         foreach ($rows as $row) {
             $locales[] = $row['locale'];
         }
-
-        foreach ($bundles as $bundle) {
-            foreach ($locales as $locale) {
-                @passthru('php app/console translation:update --prefix "" --force ' . $locale . ' ' . $bundle . '');
+        foreach ($locales as $locale) {
+            @passthru('php app/console translation:update --prefix "" --force ' . $locale . ' 2>/dev/null 3>&2 4>&2');
+            foreach ($bundles as $bundle) {
+                @passthru('php app/console translation:update --prefix "" --force ' . $locale . ' ' . $bundle . ' 2>/dev/null 3>&2 4>&2');
             }
         }
         @passthru('php app/console syw:new:translations:to:db');
