@@ -21,10 +21,10 @@
 
             <div class="col-sm-6">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {% endif %}
                 <div class="col-sm-12">
                     <span id="translate_page_button" class="button-lite">{{ 'Translate this page into your native language!'|trans }}</span>
                 </div>
+                {% endif %}
             </div>
 
         </div>

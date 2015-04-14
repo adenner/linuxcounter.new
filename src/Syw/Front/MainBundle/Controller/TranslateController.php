@@ -31,7 +31,7 @@ class TranslateController extends BaseController
      */
     public function thispageAction(Request $request)
     {
-#        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $em       = $this->getDoctrine()->getManager();
             $formData = $request->request->all();
             $formData = $formData['form']['translations'];
@@ -68,7 +68,7 @@ class TranslateController extends BaseController
             $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
             $options = array('command' => 'asm:translations:dummy');
             $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
- #       }
+        }
         $session = $request->getSession();
         $lastroute = $session->get('last_route');
         $url = $this->generateUrl($lastroute['name']);

@@ -24,8 +24,8 @@
 
     <!-- {--{ include('RedmonsterAnnouncementBundle:Announcement:announcement.html.twig') }--} -->
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    {% endif %}
     {{ include('SywFrontMainBundle:Common:_translate_modal.html.twig') }}
+    {% endif %}
     {{ include('SywFrontMainBundle:Common:_navbar.html.twig') }}
 
     {% for type, messages in app.session.flashBag.all %}
