@@ -171,8 +171,12 @@ class MachineController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return $this->render('SywFrontMainBundle:Machine:create.html.twig', array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'language' => $language->getLanguage(),
             'online' => $online,
@@ -364,8 +368,12 @@ class MachineController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return $this->render('SywFrontMainBundle:Machine:edit.html.twig', array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'language' => $language->getLanguage(),
             'online' => $online,

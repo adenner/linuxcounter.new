@@ -76,8 +76,12 @@ class ChangePasswordController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $locale));
         $online = $this->getOnlineUsers();
+        $transform_array = $this->getTranslateForm();
         return $this->render('FOSUserBundle:ChangePassword:changePassword.html.twig', array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'language' => $language->getLanguage(),
             'online' => $online,
             'form' => $form->createView(),

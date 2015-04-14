@@ -35,8 +35,12 @@ class ResettingController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return $this->render('FOSUserBundle:Resetting:request.html.twig', array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -108,8 +112,12 @@ class ResettingController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return $this->render('FOSUserBundle:Resetting:checkEmail.html.twig', array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -177,8 +185,12 @@ class ResettingController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return $this->render('FOSUserBundle:Resetting:reset.html.twig', array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,

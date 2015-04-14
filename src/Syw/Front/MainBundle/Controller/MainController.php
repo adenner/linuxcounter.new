@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Syw\Front\MainBundle\Form\Type\ContactType;
+use Syw\Front\MainBundle\Form\Type\TranslationFormType;
+use Asm\TranslationLoaderBundle\Entity\Translation;
 
 class MainController extends BaseController
 {
@@ -37,8 +39,13 @@ class MainController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+
+        $transform_array = $this->getTranslateForm();
         return array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -102,8 +109,12 @@ class MainController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'form' => $form->createView(),
@@ -139,8 +150,12 @@ class MainController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -175,8 +190,12 @@ class MainController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -211,8 +230,12 @@ class MainController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -247,8 +270,12 @@ class MainController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -283,8 +310,12 @@ class MainController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -319,8 +350,12 @@ class MainController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -360,8 +395,12 @@ class MainController extends BaseController
         $transtolanguage = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
         return array(
-            'translationsForm' => $this->getTranslateForm()->createView(),
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'languages' => $languages,

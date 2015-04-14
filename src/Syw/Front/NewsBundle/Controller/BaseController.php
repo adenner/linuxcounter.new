@@ -24,41 +24,79 @@ class BaseController extends LightNewsDefaultController
         $route = $this->get('request')->get('_route');
         $actuallocale = $this->get('request')->getLocale();
         $em = $this->getDoctrine()->getManager();
+        $qb = null;
         $qb = $em->createQueryBuilder();
         $qb->select('t')
             ->from('AsmTranslationLoaderBundle:Translation', 't')
             ->where('t.transLocale = :locale')
             ->andwhere('t.messageDomain = :domain')
             ->setParameter('locale', $actuallocale)
-            ->setParameter('domain', 'general')
-        ;
-        $result1 = $qb->getQuery()->getResult();
-        $qb->select('t')
-            ->where('t.transLocale = :locale')
-            ->andwhere('t.messageDomain = :domain')
-            ->setParameter('locale', $actuallocale)
             ->setParameter('domain', 'navigation')
         ;
         $result2 = $qb->getQuery()->getResult();
+        $qb = null;
+        $qb = $em->createQueryBuilder();
         $qb->select('t')
+            ->from('AsmTranslationLoaderBundle:Translation', 't')
             ->where('t.transLocale = :locale')
             ->andwhere('t.messageDomain = :domain')
             ->setParameter('locale', $actuallocale)
             ->setParameter('domain', $route)
         ;
         $result3 = $qb->getQuery()->getResult();
+        $qb = null;
+        $qb = $em->createQueryBuilder();
         $qb->select('t')
+            ->from('AsmTranslationLoaderBundle:Translation', 't')
             ->where('t.transLocale = :locale')
             ->andwhere('t.messageDomain = :domain')
             ->setParameter('locale', $actuallocale)
             ->setParameter('domain', 'footer')
         ;
         $result4 = $qb->getQuery()->getResult();
-        $translations = array('translations' => array_merge($result1, $result2, $result3, $result4));
+        $qb = null;
+        $qb = $em->createQueryBuilder();
+        $qb->select('t')
+            ->from('AsmTranslationLoaderBundle:Translation', 't')
+            ->where('t.transLocale = :locale')
+            ->andwhere('t.messageDomain NOT IN (:domain1, :domain2, :domain3)')
+            ->setParameter('locale', $actuallocale)
+            ->setParameter('domain1', 'navigation')
+            ->setParameter('domain2', $route)
+            ->setParameter('domain3', 'footer')
+        ;
+        $result5 = $qb->getQuery()->getResult();
+
+        $trans_navi = array('translations' => $result2);
+        $formTrans_navi = $this->createFormBuilder($trans_navi)
+            ->add('translations', 'collection', array('type' => new TranslationFormType()))
+            ->getForm();
+        $trans_route = array('translations' => $result3);
+        $formTrans_route = $this->createFormBuilder($trans_route)
+            ->add('translations', 'collection', array('type' => new TranslationFormType()))
+            ->getForm();
+        $trans_footer = array('translations' => $result4);
+        $formTrans_footer = $this->createFormBuilder($trans_footer)
+            ->add('translations', 'collection', array('type' => new TranslationFormType()))
+            ->getForm();
+        $trans_others = array('translations' => $result5);
+        $formTrans_others = $this->createFormBuilder($trans_others)
+            ->add('translations', 'collection', array('type' => new TranslationFormType()))
+            ->getForm();
+
+        $return['navi'] = $formTrans_navi;
+        $return['route'] = $formTrans_route;
+        $return['footer'] = $formTrans_footer;
+        $return['others'] = $formTrans_others;
+        return $return;
+
+        /*
+        $translations = array('translations' => array_merge($result3, $result1, $result2, $result4, $result5, $result6, $result7));
         $formTranslations = $this->createFormBuilder($translations)
             ->add('translations', 'collection', array('type' => new TranslationFormType()))
             ->getForm();
         return $formTranslations;
+        */
     }
 
     public function getGuessStats()

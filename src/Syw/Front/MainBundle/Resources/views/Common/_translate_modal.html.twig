@@ -9,22 +9,89 @@
                 <h4>{{ "Actually you've set your language to"|trans }} <strong>{{ transtolanguage }}</strong>. {{ 'If this is not the language you want the website translate to, then please change your language with the language selection at the bottom of the page.'|trans }}</h4>
             </div>
             <div id="translateform" class="modal-body">
-                <form action="{{ url('syw_front_main_translate_thispage') }}" method="post" id="arrt">
+                <script>
+                    $(function() {
+                        $( "#tabs" ).tabs();
+                    });
+                </script>
 
-                    {% for translation in translationsForm.translations %}
-                        <div class="form-group">
-                            {{ form_row(translation.transKey, {'data': translation.transKey.vars.value}) }}
-                            {{ form_row(translation.transLocale) }}
-                            {{ form_row(translation.messageDomain) }}
-                            {{ form_row(translation.translation) }}
-                            <hr size="1" noshade="noshade"/>
-                        </div>
-                    {% endfor %}
-                    {{ form_rest(translationsForm) }}
-                    <div class="form-group">
-                        <input type="submit" value="{{ 'Save translation!'|trans }}" onclick="showLoading()"/>
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#tabs-1">Page content</a></li>
+                        <li><a href="#tabs-2">Navigation</a></li>
+                        <li><a href="#tabs-3">Footer</a></li>
+                        <li><a href="#tabs-4">Others</a></li>
+                    </ul>
+                    <div id="tabs-1">
+                        <form action="{{ url('syw_front_main_translate_thispage') }}" method="post" id="arrt">
+                            {% for translation in formTrans_route.translations %}
+                                <div class="form-group">
+                                    {{ form_row(translation.transKey, {'data': translation.transKey.vars.value}) }}
+                                    {{ form_row(translation.transLocale) }}
+                                    {{ form_row(translation.messageDomain) }}
+                                    {{ form_row(translation.translation) }}
+                                    <hr size="1" noshade="noshade"/>
+                                </div>
+                            {% endfor %}
+                            {{ form_rest(formTrans_route) }}
+                            <div class="form-group">
+                                <input type="submit" value="{{ 'Save translation!'|trans }}" onclick="showLoading()"/>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    <div id="tabs-2">
+                        <form action="{{ url('syw_front_main_translate_thispage') }}" method="post" id="arrt">
+                            {% for translation in formTrans_navi.translations %}
+                                <div class="form-group">
+                                    {{ form_row(translation.transKey, {'data': translation.transKey.vars.value}) }}
+                                    {{ form_row(translation.transLocale) }}
+                                    {{ form_row(translation.messageDomain) }}
+                                    {{ form_row(translation.translation) }}
+                                    <hr size="1" noshade="noshade"/>
+                                </div>
+                            {% endfor %}
+                            {{ form_rest(formTrans_navi) }}
+                            <div class="form-group">
+                                <input type="submit" value="{{ 'Save translation!'|trans }}" onclick="showLoading()"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="tabs-3">
+                        <form action="{{ url('syw_front_main_translate_thispage') }}" method="post" id="arrt">
+                            {% for translation in formTrans_footer.translations %}
+                                <div class="form-group">
+                                    {{ form_row(translation.transKey, {'data': translation.transKey.vars.value}) }}
+                                    {{ form_row(translation.transLocale) }}
+                                    {{ form_row(translation.messageDomain) }}
+                                    {{ form_row(translation.translation) }}
+                                    <hr size="1" noshade="noshade"/>
+                                </div>
+                            {% endfor %}
+                            {{ form_rest(formTrans_footer) }}
+                            <div class="form-group">
+                                <input type="submit" value="{{ 'Save translation!'|trans }}" onclick="showLoading()"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="tabs-4">
+                        <form action="{{ url('syw_front_main_translate_thispage') }}" method="post" id="arrt">
+                            {% for translation in formTrans_others.translations %}
+                                <div class="form-group">
+                                    {{ form_row(translation.transKey, {'data': translation.transKey.vars.value}) }}
+                                    {{ form_row(translation.transLocale) }}
+                                    {{ form_row(translation.messageDomain) }}
+                                    {{ form_row(translation.translation) }}
+                                    <hr size="1" noshade="noshade"/>
+                                </div>
+                            {% endfor %}
+                            {{ form_rest(formTrans_others) }}
+                            <div class="form-group">
+                                <input type="submit" value="{{ 'Save translation!'|trans }}" onclick="showLoading()"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
                 <script type="text/javascript">
                     function showLoading() {
                         $('#loadingDiv').show();
