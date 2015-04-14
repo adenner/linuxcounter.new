@@ -104,6 +104,13 @@ EOT
             $em->remove($machine);
             $em->flush();
         }
+        $profile = $user->getProfile();
+        $city = $profile->getCity();
+        $city->setUserNum($city->getUserNum()-1);
+
+        $country = $em->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
+        $country->setUsersNum($country->getUsersNum()-1);
+        $em->persist($country);
 
         $licotestdb->exec('DELETE FROM fos_user WHERE `id`=\''.$user->getId().'\'');
         // $manipulator = $this->getContainer()->get('syw.util.user_manipulator');

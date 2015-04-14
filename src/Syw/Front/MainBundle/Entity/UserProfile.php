@@ -30,10 +30,16 @@ class UserProfile
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cities", inversedBy="users", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="city", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="Cities", inversedBy="users")
+     * @ORM\JoinColumn(name="city", referencedColumnName="id", onDelete="NO ACTION")
      */
     private $city;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Countries", inversedBy="users")
+     * @ORM\JoinColumn(name="country", referencedColumnName="id", onDelete="NO ACTION")
+     */
+    private $country;
 
     /**
      * @var string
@@ -584,6 +590,29 @@ class UserProfile
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \Syw\Front\MainBundle\Entity\Countries $country
+     * @return UserProfile
+     */
+    public function setCountry(\Syw\Front\MainBundle\Entity\Countries $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Syw\Front\MainBundle\Entity\Countries
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 
     /**

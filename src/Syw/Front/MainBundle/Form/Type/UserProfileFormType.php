@@ -34,6 +34,12 @@ class UserProfileFormType extends AbstractType
                 'label' => 'City'
             ))
 
+            ->add('country', 'shtumi_ajax_autocomplete', array(
+                'entity_alias'=>'countries',
+                'required' => false,
+                'label' => 'Country'
+            ))
+
             ->add('firstname', 'text', array('label' => 'Firstname', 'required' => false))
             ->add('lastname', 'text', array('label' => 'Lastname', 'required' => false))
 

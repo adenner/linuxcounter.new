@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Countries
 {
     /**
+     * @ORM\OneToMany(targetEntity="UserProfile", mappedBy="country")
+     */
+    protected $users;
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+    /**
      * @var string
      *
      * @ORM\Column(name="code", type="string", length=5, nullable=false)
@@ -36,6 +45,13 @@ class Countries
     /**
      * @var integer
      *
+     * @ORM\Column(name="usersnum", type="integer", length=11, nullable=true)
+     */
+    private $usersnum;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="machinesnum", type="integer", length=11, nullable=true)
      */
     private $machinesnum;
@@ -53,7 +69,7 @@ class Countries
      * Set machinesnum
      *
      * @param integer $machinesnum
-     * @return Architectures
+     * @return Countries
      */
     public function setMachinesNum($machinesnum)
     {
@@ -70,6 +86,29 @@ class Countries
     public function getMachinesNum()
     {
         return $this->machinesnum;
+    }
+
+    /**
+     * Set usersnum
+     *
+     * @param integer $usersnum
+     * @return Countries
+     */
+    public function setUsersNum($usersnum)
+    {
+        $this->usersnum = $usersnum;
+
+        return $this;
+    }
+
+    /**
+     * Get usersnum
+     *
+     * @return integer
+     */
+    public function getUsersNum()
+    {
+        return $this->usersnum;
     }
 
     /**

@@ -43,6 +43,7 @@ use Syw\Front\MainBundle\Manager\CitiesManager;
 class InfoController extends BaseController
 {
     private $oldcity;
+    private $oldcountry;
 
     /**
      * @Route("/info/edit")
@@ -68,6 +69,7 @@ class InfoController extends BaseController
             throw new AccessDeniedException('This user does not have access to this section.');
         }
         $this->oldcity = $userProfile->getCity();
+        $this->oldcountry = $userProfile->getCountry();
 
         $form = $this->createForm(
             new UserProfileFormType(
@@ -125,6 +127,25 @@ class InfoController extends BaseController
                 }
             }
 
+            if (true === isset($formData['userprofile']['country']) && trim($formData['userprofile']['country']) != "") {
+                $countryfield = $formData['userprofile']['country'];
+                $country_id   = preg_replace("`.* \(ID:([0-9]+)\)$`", "$1", $countryfield);
+                if (true === isset($country_id) && true === is_numeric($country_id)) {
+                    $country = $this->getDoctrine()
+                        ->getRepository('SywFrontMainBundle:Countries')
+                        ->findOneBy(array('id' => $country_id));
+                    $userProfile->setCountry($country);
+                    $country->setUsersNum($country->getUsersNum()+1);
+                    $em->persist($country);
+                    if (true === isset($this->oldcountry) && is_object($this->oldcountry)) {
+                        $this->oldcountry->setUsersNum($this->oldcountry->getUsersNum()-1);
+                        $em->persist($this->oldcountry);
+                    }
+                } else {
+                    $userProfile->setCountry($this->oldcountry);
+                }
+            }
+
             $em->persist($userProfile);
             $em->flush();
 
@@ -169,6 +190,10 @@ class InfoController extends BaseController
     public function addcityAction(Request $request)
     {
         $user = $this->getUser();
+        $userProfile = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:UserProfile')
+            ->findOneBy(array('user' => $user));
+        $this->oldcity = $userProfile->getCity();
 
         if (false === is_object($user) || false === $user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -187,12 +212,23 @@ class InfoController extends BaseController
         $city->setPopulation($formData['addcity']['population']);
         $city->setUserNum(1);
         $em->persist($city);
-
-        $userProfile = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:UserProfile')
-            ->findOneBy(array('user' => $user));
         $userProfile->setCity($city);
         $em->persist($userProfile);
+
+        $country = $this->getDoctrine()
+            ->getRepository('SywFrontMainBundle:Countries')
+            ->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
+        $country->setUsersNum($country->getUsersNum()+1);
+        $em->persist($country);
+        if (true === isset($this->oldcity) && is_object($this->oldcity)) {
+            $this->oldcity->setUserNum($this->oldcity->getUserNum()-1);
+            $em->persist($this->oldcity);
+            $oldcountry = $this->getDoctrine()
+                ->getRepository('SywFrontMainBundle:Countries')
+                ->findOneBy(array('code' => strtolower($this->oldcity->getIsoCountryCode())));
+            $oldcountry->setUsersNum($oldcountry->getUsersNum()-1);
+            $em->persist($oldcountry);
+        }
 
         $em->flush();
 
