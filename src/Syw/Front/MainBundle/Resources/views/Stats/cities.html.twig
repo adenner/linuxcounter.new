@@ -16,7 +16,7 @@
 
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <span class="badge">{{ city.getUserNum() }}|number_format {{ 'Users'|trans }}</span>
+                                    <span class="badge">{{ city.getUserNum()|number_format }} {{ 'Users'|trans }}</span>
                                     {{ 'City: %city.name%'|trans({
                                             '%city.name%': city.getName()
                                     }) }}
