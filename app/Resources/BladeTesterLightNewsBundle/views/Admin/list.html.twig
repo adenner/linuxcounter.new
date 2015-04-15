@@ -19,7 +19,7 @@
                             <p>{{ 'bladetester_lightnews.interfaces.list.no_news'|trans }}</p>
                         {% else %}
                             <p>
-                                <table id="news-list">
+                                <table class="table table-striped" id="news-list">
                                     <thead>
                                         <tr><th>{{ 'bladetester_lightnews.label.news.title'|trans }}</th>
                                             <th>{{ 'bladetester_lightnews.label.news.body'|trans }}</th>
@@ -28,8 +28,8 @@
                                     <tbody>
                                     {% for pieceOfNews in news %}
                                                 <tr class="pieceOfNews">
+                                                    <td>{{ pieceOfNews.createdAt|date('Y-m-d') }}</td>
                                                     <td>{{ pieceOfNews.title }}</td>
-                                                    <td>{{ pieceOfNews.body|striptags|length > 400 ? pieceOfNews.body|striptags|slice(0, 400) ~ '...' : pieceOfNews.body|raw|nl2br }}</td>
                                                     <td>
                                                         <a href="{{ path('news_edit', {'id' : pieceOfNews.id}) }}">{{ 'bladetester_lightnews.label.news.edit'|trans }}</a>
                                                     </td>
