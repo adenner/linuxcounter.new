@@ -69,7 +69,9 @@ class DefaultController extends BaseController
             $user = null;
         }
 
+        $body = $news->getBody();
         $metatitle = $news->getTitle();
+        $metadescription = (strlen($body)>=150?substr($body, 0, 150)."...":$body);
         $title = $metatitle;
         $online = $this->getOnlineUsers();
         $actuallocale = $this->get('request')->getLocale();
@@ -85,6 +87,7 @@ class DefaultController extends BaseController
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $metadescription,
             'title' => $title,
             'languages' => $languages,
             'user' => $user,

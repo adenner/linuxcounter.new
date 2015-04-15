@@ -189,7 +189,6 @@ class StatsController extends BaseController
      */
     public function countriesAction($id)
     {
-
         $country = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Countries')
             ->findOneBy(array('id' => $id));
