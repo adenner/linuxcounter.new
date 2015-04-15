@@ -29,7 +29,7 @@
                                     {% for pieceOfNews in news %}
                                                 <tr class="pieceOfNews">
                                                     <td>{{ pieceOfNews.title }}</td>
-                                                    <td>{{ pieceOfNews.body|raw }}</td>
+                                                    <td>{{ pieceOfNews.body|striptags|length > 400 ? pieceOfNews.body|striptags|slice(0, 400) ~ '...' : pieceOfNews.body|raw|nl2br }}</td>
                                                     <td>
                                                         <a href="{{ path('news_edit', {'id' : pieceOfNews.id}) }}">{{ 'bladetester_lightnews.label.news.edit'|trans }}</a>
                                                     </td>
