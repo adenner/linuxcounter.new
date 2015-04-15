@@ -18,11 +18,10 @@
 <body>
 <div id="main" class="container">
     <div id="loadingDiv">
-        <img id="loadingImg" src="{{ '/bundles/sywfrontmain/images/loading.gif' }}"/><br/>
+        <img id="loadingImg" src="{{ '/bundles/sywfrontmain/images/loading.gif' }}" alt="{{ 'Loading...'|trans }}" title="{{ 'Loading...'|trans }}"/><br/>
         <strong>{{ 'Loading...'|trans }}</strong>
     </div>
 
-    <!-- {--{ include('RedmonsterAnnouncementBundle:Announcement:announcement.html.twig') }--} -->
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     {{ include('SywFrontMainBundle:Common:_translate_modal.html.twig') }}
     {% endif %}
