@@ -70,8 +70,11 @@ class DefaultController extends BaseController
         }
 
         $body = $news->getBody();
+        $body = str_replace("\r", "", $body);
+        $body = str_replace("\n\n", "\n", $body);
+        $body = str_replace("\n", " ", $body);
+        $body = strip_tags($body);
         $metatitle = $news->getTitle();
-        $metadescription = (strlen($body)>=150?substr($body, 0, 150)."...":$body);
         $title = $metatitle;
         $online = $this->getOnlineUsers();
         $actuallocale = $this->get('request')->getLocale();
@@ -87,7 +90,7 @@ class DefaultController extends BaseController
             'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
-            'metadescription' => $metadescription,
+            'metadescription' => $body,
             'title' => $title,
             'languages' => $languages,
             'user' => $user,

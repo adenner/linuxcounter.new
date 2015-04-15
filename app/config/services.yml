@@ -4,6 +4,10 @@ parameters:
 
 
 services:
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
     app.locale_listener:
         class: Syw\Front\MainBundle\EventListener\LocaleListener
         arguments: ["%kernel.default_locale%"]

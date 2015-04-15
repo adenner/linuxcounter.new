@@ -5,7 +5,6 @@ namespace Syw\Front\NewsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-
 use BladeTester\LightNewsBundle\Controller\AdminController as LightNewsAdminController;
 use BladeTester\LightNewsBundle\Form\Type\NewsFormType;
 use BladeTester\LightNewsBundle\Entity\News;
@@ -25,10 +24,9 @@ class AdminController extends BaseController
             if ($form->isValid()) {
                 $manager->persist($news);
                 $translator = $this->get('translator');
-                $this->get('session')->setFlash(
-                    'notice',
-                    $translator->trans('bladetester_lightnews.system_message.news.add')
-                );
+
+                $flashBag = $this->get('session')->getFlashBag();
+                $flashBag->set('notice', $translator->trans('bladetester_lightnews.system_message.news.add'));
 
                 return $this->redirect($this->generateUrl('news_add'));
             }
@@ -72,10 +70,9 @@ class AdminController extends BaseController
         $news    = $manager->find($id);
         $manager->remove($news);
         $translator = $this->get('translator');
-        $this->get('session')->setFlash(
-            'notice',
-            $translator->trans('bladetester_lightnews.system_message.news.remove')
-        );
+
+        $flashBag = $this->get('session')->getFlashBag();
+        $flashBag->set('notice', $translator->trans('bladetester_lightnews.system_message.news.remove'));
 
         return $this->redirect($this->generateUrl('news_homepage'));
     }
@@ -93,10 +90,9 @@ class AdminController extends BaseController
             if ($form->isValid()) {
                 $manager->update($news);
                 $translator = $this->get('translator');
-                $this->get('session')->setFlash(
-                    'notice',
-                    $translator->trans('bladetester_lightnews.system_message.news.update')
-                );
+
+                $flashBag = $this->get('session')->getFlashBag();
+                $flashBag->set('notice', $translator->trans('bladetester_lightnews.system_message.news.update'));
 
                 return $this->redirect($this->generateUrl('news_edit', array('id' => $id)));
             }
