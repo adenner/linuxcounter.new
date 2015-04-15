@@ -19,19 +19,19 @@
                                     <thead>
                                     <tr>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationAAA, 'Name', 'Cities.name', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationAAA, 'Name', 'b.name', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationAAA, 'Country', 'Cities.isoCountryCode', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationAAA, 'Country', 'b.isoCountryCode', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationAAA, 'Region', 'Cities.region', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationAAA, 'Region', 'b.region', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationAAA, 'Population', 'Cities.population', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationAAA, 'Population', 'b.population', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationAAA, 'No. of Users', 'Cities.usernum', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationAAA, 'No. of Users', 'b.usernum', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                     </tr>
                                     </thead>
@@ -80,16 +80,16 @@
                                     <thead>
                                     <tr>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationBBB, 'Name', 'Countries.name', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationBBB, 'Name', 'a.name', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationBBB, 'Code', 'Countries.code', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationBBB, 'Code', 'a.code', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationBBB, 'Population', 'Countries.population', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationBBB, 'Population', 'a.population', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationBBB, 'No. of Users', 'Countries.usersnum', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationBBB, 'No. of Users', 'a.usersnum', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                     </tr>
                                     </thead>

@@ -63,12 +63,12 @@ class UpdateTranslationsCommand extends BaseTranslationCommand
         foreach ($rows as $row) {
             $locales[] = $row['locale'];
         }
-#        foreach ($locales as $locale) {
-#            @passthru('sudo nice -n -19 php app/console translation:update --prefix "" --force ' . $locale . ' 2>/dev/null 3>&2 4>&2');
-#            foreach ($bundles as $bundle) {
-#                @passthru('sudo nice -n -19 php app/console translation:update --prefix "" --force ' . $locale . ' ' . $bundle . ' 2>/dev/null 3>&2 4>&2');
-#            }
-#        }
+        foreach ($locales as $locale) {
+            @passthru('sudo nice -n -19 php app/console translation:update --prefix "" --force ' . $locale . ' 2>/dev/null 3>&2 4>&2');
+            foreach ($bundles as $bundle) {
+                @passthru('sudo nice -n -19 php app/console translation:update --prefix "" --force ' . $locale . ' ' . $bundle . ' 2>/dev/null 3>&2 4>&2');
+            }
+        }
         @passthru('nice -n -19 php app/console syw:new:translations:to:db -v');
 
 
