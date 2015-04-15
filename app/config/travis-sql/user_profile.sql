@@ -44,10 +44,13 @@ CREATE TABLE `user_profile` (
   `sincewhen` varchar(10) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `modified_at` datetime DEFAULT NULL,
+  `country` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_D95AB4058D93D649` (`user`),
   KEY `city` (`city`),
-  CONSTRAINT `FK_D95AB4052D5B0234` FOREIGN KEY (`city`) REFERENCES `cities` (`id`) ON DELETE CASCADE,
+  KEY `IDX_D95AB4055373C966` (`country`),
+  CONSTRAINT `FK_D95AB4052D5B0234` FOREIGN KEY (`city`) REFERENCES `cities` (`id`) ON DELETE NO ACTION,
+  CONSTRAINT `FK_D95AB4055373C966` FOREIGN KEY (`country`) REFERENCES `countries` (`id`) ON DELETE NO ACTION,
   CONSTRAINT `FK_D95AB4058D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -61,4 +64,4 @@ CREATE TABLE `user_profile` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-14  8:45:36
+-- Dump completed on 2015-04-15 12:02:38
