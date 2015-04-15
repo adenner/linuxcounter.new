@@ -39,7 +39,7 @@
                                     {% for row in paginationAAA %}
                                     <tr>
                                         <td>
-                                            {{ row.name }}
+                                            <a href="{{ url('syw_front_main_stats_cities', {'id': row.id}) }}">{{ row.name }}</a>
                                         </td>
                                         <td>
                                             {{ row.isoCountryCode }}
@@ -97,7 +97,7 @@
                                     {% for row in paginationBBB %}
                                     <tr>
                                         <td>
-                                            {{ row.name }}
+                                            <a href="{{ url('syw_front_main_stats_countries', {'id': row.id}) }}">{{ row.name }}</a>
                                         </td>
                                         <td>
                                             {{ row.code|upper }}

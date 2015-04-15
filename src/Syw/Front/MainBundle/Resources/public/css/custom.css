@@ -1158,9 +1158,14 @@ table {
     width: 100%;
 }
 
+.list-group-item-heading {
+    font-size: 1.1em;
+    font-weight: bold;
+}
 
-
-
+.list-group-item .badge {
+    padding: 2px 10px;
+}
 
 
 

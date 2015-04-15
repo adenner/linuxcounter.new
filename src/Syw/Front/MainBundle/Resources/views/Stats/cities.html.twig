@@ -1,0 +1,53 @@
+{% extends "SywFrontMainBundle::base.html.twig" %}
+{% trans_default_domain "syw_front_main_stats_cities" %}
+
+{% block body %}
+
+    <!-- Page Content -->
+    <div class="container page">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ title }}</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <span class="badge">{{ city.getUserNum() }}|number_format {{ 'Users'|trans }}</span>
+                                    {{ 'City: %city.name%'|trans({
+                                            '%city.name%': city.getName()
+                                    }) }}
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="badge">{{ country.getUsersNum()|number_format }} {{ 'Users'|trans }}</span>
+                                    {{ 'Country: %country.name% (%country.code%)'|trans({
+                                        '%country.name%': country.getName(),
+                                        '%country.code%': country.getCode()|upper,
+                                    }) }}
+                                </li>
+                            </ul>
+                            <p>
+                                {{ 'The city %city.name% in %country.name% has a population of %city.population% peoples while only %city.users% Linux users are registered in our database.'|trans({
+                                    '%city.name%': city.getName(),
+                                    '%country.name%': country.getName(),
+                                    '%city.population%': city.getPopulation()|number_format,
+                                    '%city.users%': city.getUserNum()|number_format,
+                                }) }}
+                            </p>
+                            <p>&nbsp;</p>
+                            <p>
+                                <small>{{ "(A list of the users will be added later. Actually the database structure doesn't allow this.)"|trans }}</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ include('SywFrontMainBundle:Common:_guess.html.twig') }}
+        {{ include('SywFrontMainBundle:Common:_stats_links.html.twig') }}
+    </div>
+
+{% endblock %}

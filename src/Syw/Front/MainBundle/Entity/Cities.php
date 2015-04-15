@@ -312,4 +312,14 @@ class Cities
     {
         return $this->name;
     }
+
+    /**
+     * Get users
+     *
+     * @return ArrayCollection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }

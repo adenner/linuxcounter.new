@@ -127,6 +127,110 @@ class StatsController extends BaseController
     }
 
     /**
+     * @Route("/statistics/cities/{id}")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function citiesAction($id)
+    {
+
+        $city = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Cities')
+            ->findOneBy(array('id' => $id));
+        $country = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Countries')
+            ->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
+        $users = $city->getUsers();
+
+        $metatitle = $this->get('translator')->trans('Statistics about the Linux users in %city%', array(
+            '%city%' => $city->getName().", ".strtoupper($city->getIsoCountryCode())
+        ), 'syw_front_main_stats_cities');
+        $title = $metatitle;
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        $stats = array();
+        $stats['guess'] = $this->getGuessStats();
+        $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
+        return array(
+            'city' => $city,
+            'country' => $country,
+            'users' => $users,
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
+            'online' => $online,
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+            'stats' => $stats
+        );
+    }
+
+    /**
+     * @Route("/statistics/countries/{id}")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function countriesAction($id)
+    {
+
+        $country = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Countries')
+            ->findOneBy(array('id' => $id));
+
+        $metatitle = $this->get('translator')->trans('Statistics about the Linux users in %country%', array(
+            '%country%' => $country->getName().", ".strtoupper($country->getCode())
+        ), 'syw_front_main_stats_countries');
+        $title = $metatitle;
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        $stats = array();
+        $stats['guess'] = $this->getGuessStats();
+        $online = $this->getOnlineUsers();
+        $actuallocale = $this->get('request')->getLocale();
+        $transtolanguage = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $actuallocale));
+        $transform_array = $this->getTranslateForm();
+        return array(
+            'country' => $country,
+            'formTrans_navi' => $transform_array['navi']->createView(),
+            'formTrans_route' => $transform_array['route']->createView(),
+            'formTrans_footer' => $transform_array['footer']->createView(),
+            'formTrans_others' => $transform_array['others']->createView(),
+            'transtolanguage' => $transtolanguage->getLanguage(),
+            'online' => $online,
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+            'stats' => $stats
+        );
+    }
+
+    /**
      * @Route("/statistics/machines")
      * @Method("GET")
      *
