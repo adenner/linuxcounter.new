@@ -354,6 +354,22 @@ class StatsController extends BaseController
         }
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
+
+        $em = $this->getDoctrine()->getManager();
+        $dql   = "SELECT a FROM SywFrontMainBundle:Distributions a WHERE a.machinesnum >= 1 ORDER BY a.machinesnum DESC, a.name ASC";
+        $entitites_a = $em->createQuery($dql);
+        $knpPaginator = $this->get('knp_paginator');
+        $paginationAAA = $knpPaginator->paginate(
+            $entitites_a,
+            $this->get('request')->query->get('pageAAA', 1), // page number
+            15, // limit per page
+            array(
+                'pageParameterName' => 'pageAAA',
+                'sortFieldParameterName' => 'sortAAA',
+                'sortDirectionParameterName' => 'directionAAA',
+            )
+        );
+
         $online = $this->getOnlineUsers();
         $actuallocale = $this->get('request')->getLocale();
         $transtolanguage = $this->get('doctrine')
@@ -361,6 +377,7 @@ class StatsController extends BaseController
             ->findOneBy(array('locale' => $actuallocale));
         $transform_array = $this->getTranslateForm();
         return array(
+            'paginationAAA' => $paginationAAA,
             'formTrans_navi' => $transform_array['navi']->createView(),
             'formTrans_route' => $transform_array['route']->createView(),
             'formTrans_footer' => $transform_array['footer']->createView(),

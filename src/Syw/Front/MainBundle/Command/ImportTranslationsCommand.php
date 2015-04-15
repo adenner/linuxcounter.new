@@ -177,7 +177,7 @@ class ImportTranslationsCommand extends BaseTranslationCommand
 
         foreach ($this->catalogues as $locale => $catalogue) {
             $output->write('<comment>' . $locale . ': </comment>');
-            $licotest   = $this->getContainer()->get('doctrine')->getManager();
+            // $licotest   = $this->getContainer()->get('doctrine')->getManager();
             foreach ($catalogue->getDomains() as $domain) {
                 foreach ($catalogue->all($domain) as $key => $message) {
                     if ('' !== $key) {
@@ -197,8 +197,8 @@ class ImportTranslationsCommand extends BaseTranslationCommand
                             $translation->setMessageDomain($domain);
                             $translation->setTranslation($message);
                             $translation->setDateUpdated(new \DateTime());
-                            // $translationManager->updateTranslation($translation);
-                            $licotest->persist($translation);
+                            $translationManager->updateTranslation($translation);
+                            // $licotest->persist($translation);
                         } elseif ($translation->getTranslation() != $message) {
                             // Never update existent translations, as updates are done in the database
                         }
@@ -210,7 +210,7 @@ class ImportTranslationsCommand extends BaseTranslationCommand
                 // force garbage collection
                 gc_collect_cycles();
             }
-            $licotest->flush();
+            // $licotest->flush();
             $output->writeln('');
         }
     }
