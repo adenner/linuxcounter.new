@@ -1154,7 +1154,9 @@ verysmall {
     }
 }
 
-
+table {
+    width: 100%;
+}
 
 
 

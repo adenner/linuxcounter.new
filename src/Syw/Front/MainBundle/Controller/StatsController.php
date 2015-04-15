@@ -75,6 +75,34 @@ class StatsController extends BaseController
         }
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
+
+        $em = $this->getDoctrine()->getManager();
+        $dql   = "SELECT b FROM SywFrontMainBundle:Cities b WHERE b.usernum >= 1 ORDER BY b.usernum DESC, b.name ASC";
+        $ent_cities = $em->createQuery($dql);
+        $dql   = "SELECT a FROM SywFrontMainBundle:Countries a WHERE a.usersnum >= 1 ORDER BY a.usersnum DESC, a.name ASC";
+        $ent_countries = $em->createQuery($dql);
+        $knpPaginator = $this->get('knp_paginator');
+        $paginationAAA = $knpPaginator->paginate(
+            $ent_cities,
+            $this->get('request')->query->get('pageAAA', 1), // page number
+            15, // limit per page
+            array(
+                'pageParameterName' => 'pageAAA',
+                'sortFieldParameterName' => 'sortAAA',
+                'sortDirectionParameterName' => 'directionAAA',
+            )
+        );
+        $paginationBBB = $knpPaginator->paginate(
+            $ent_countries,
+            $this->get('request')->query->get('pageBBB', 1), // page number
+            15, // limit per page
+            array(
+                'pageParameterName' => 'pageBBB',
+                'sortFieldParameterName' => 'sortBBB',
+                'sortDirectionParameterName' => 'directionBBB',
+            )
+        );
+
         $online = $this->getOnlineUsers();
         $actuallocale = $this->get('request')->getLocale();
         $transtolanguage = $this->get('doctrine')
@@ -82,6 +110,8 @@ class StatsController extends BaseController
             ->findOneBy(array('locale' => $actuallocale));
         $transform_array = $this->getTranslateForm();
         return array(
+            'paginationAAA' => $paginationAAA,
+            'paginationBBB' => $paginationBBB,
             'formTrans_navi' => $transform_array['navi']->createView(),
             'formTrans_route' => $transform_array['route']->createView(),
             'formTrans_footer' => $transform_array['footer']->createView(),

@@ -10,13 +10,113 @@
                 <div class="col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{ title }}</h3>
+                            <h3 class="panel-title">{{ 'Users per City'|trans }}</h3>
                         </div>
                         <div class="panel-body">
 
+                            {% if paginationAAA.getTotalItemCount > 0 %}
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Name', 'Cities.name', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Country', 'Cities.isoCountryCode', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Region', 'Cities.region', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Population', 'Cities.population', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'No. of Users', 'Cities.usernum', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for row in paginationAAA %}
+                                    <tr>
+                                        <td>
+                                            {{ row.name }}
+                                        </td>
+                                        <td>
+                                            {{ row.isoCountryCode }}
+                                        </td>
+                                        <td>
+                                            {{ row.region }}
+                                        </td>
+                                        <td>
+                                            {{ row.population|number_format }}
+                                        </td>
+                                        <td>
+                                            {{ row.usernum|number_format }}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
 
-                            [ ... coming soon ... ]
+                                {{ knp_pagination_render(paginationAAA) }}
+                            {% else %}
+                                No data.
+                            {% endif %}
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'Users per Country'|trans }}</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            {% if paginationBBB.getTotalItemCount > 0 %}
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationBBB, 'Name', 'Countries.name', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationBBB, 'Code', 'Countries.code', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationBBB, 'Population', 'Countries.population', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationBBB, 'No. of Users', 'Countries.usersnum', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for row in paginationBBB %}
+                                    <tr>
+                                        <td>
+                                            {{ row.name }}
+                                        </td>
+                                        <td>
+                                            {{ row.code|upper }}
+                                        </td>
+                                        <td>
+                                            {{ row.population|number_format }}
+                                        </td>
+                                        <td>
+                                            {{ row.usersnum|number_format }}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                                {{ knp_pagination_render(paginationBBB) }}
+                            {% else %}
+                                No data.
+                            {% endif %}
 
 
                         </div>

@@ -177,6 +177,7 @@ class ImportTranslationsCommand extends BaseTranslationCommand
 
         foreach ($this->catalogues as $locale => $catalogue) {
             $output->write('<comment>' . $locale . ': </comment>');
+            $licotest   = $this->getContainer()->get('doctrine')->getManager();
             foreach ($catalogue->getDomains() as $domain) {
                 foreach ($catalogue->all($domain) as $key => $message) {
                     if ('' !== $key) {
@@ -188,23 +189,28 @@ class ImportTranslationsCommand extends BaseTranslationCommand
                             )
                         );
 
-                        if (!$translation) {
+                        if (false === isset($translation) || false === is_object($translation)) {
                             // create a new translation if no entry does exist yet
                             $translation = $translationManager->createTranslation();
                             $translation->setTransKey($key);
                             $translation->setTransLocale($locale);
                             $translation->setMessageDomain($domain);
                             $translation->setTranslation($message);
-                            $translationManager->updateTranslation($translation);
+                            $translation->setDateUpdated(new \DateTime());
+                            // $translationManager->updateTranslation($translation);
+                            $licotest->persist($translation);
                         } elseif ($translation->getTranslation() != $message) {
                             // Never update existent translations, as updates are done in the database
                         }
                     }
+                    // force garbage collection
+                    gc_collect_cycles();
                 }
                 $output->write('<info> ... ' . $domain . '.' . $locale . '</info>');
                 // force garbage collection
                 gc_collect_cycles();
             }
+            $licotest->flush();
             $output->writeln('');
         }
     }
