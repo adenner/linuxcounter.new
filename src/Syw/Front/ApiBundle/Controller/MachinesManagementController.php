@@ -207,7 +207,7 @@ class MachinesManagementController extends BaseRestController
 
                 $memory = $request->request->get('memory');
                 if (true === isset($memory) && trim($memory) != "") {
-                    $machine->setMemory($hostname);
+                    $machine->setMemory($memory);
                 }
 
                 $memoryFree = $request->request->get('memoryFree');
