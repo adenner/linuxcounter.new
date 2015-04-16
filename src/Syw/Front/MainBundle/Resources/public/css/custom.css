@@ -887,7 +887,7 @@ input[type=submit] {
 
 .modal-dialog {
     position: relative;
-    width: auto;
+    width: 97%;
     margin: 5px 10px;
 }
 
@@ -1150,7 +1150,7 @@ verysmall {
 
 @media (min-width: 992px) {
     .modal-dialog {
-        width: 980px;
+        width: 950px;
     }
 }
 
@@ -1171,7 +1171,35 @@ table {
     text-align: left;
 }
 
+#announcement {
+    position: fixed;
+    z-index: 99999;
+}
 
+#announcement>.wrapper {
+    z-index: 99999;
+    display: block;
+}
+
+#announcement>.wrapper>.modal-dialog {
+    margin: 50px auto;
+}
+
+#announcement>.wrapper>.modal-dialog>.modal-content {
+    padding:40px;
+}
+
+#announcement>.wrapper>span {
+
+}
+
+#announcement>.wrapper>.hide {
+
+}
+
+#announcement>.wrapper>.hide>a {
+
+}
 
 
 
