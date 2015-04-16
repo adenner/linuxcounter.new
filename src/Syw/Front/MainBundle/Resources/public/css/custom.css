@@ -1205,11 +1205,27 @@ table {
     text-align: left !important;
 }
 
+#download code {
+    color: #717171;
+}
 
+#download pre {
+    padding: 10px;
+}
 
+.zero-clipboard {
+    position: absolute;
+    right: 60px;
+    z-index: 1;
+    margin-top: 10px;
+}
 
-
-
+span.btn-clipboard {
+    padding: 5px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    background-color: #ddd;
+}
 
 
 
