@@ -5,7 +5,7 @@
     </div>
     <div class="panel-body newsBody">
         <div class="col-sm-12">
-            {{ pieceOfNews.body|striptags|length > 400 ? pieceOfNews.body|striptags|truncate(400, true, '...')|raw : pieceOfNews.body|raw|nl2br }}
+            {{ pieceOfNews.body|striptags|length > 400 ? pieceOfNews.body|striptags|truncate(400, true, '...')|raw : pieceOfNews.body|striptags|raw }}
         </div>
         <div class="col-sm-12">
             <hr size="1" noshade="noshade"/>
