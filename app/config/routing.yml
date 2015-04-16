@@ -3,7 +3,6 @@ syw_front_main:
     type:     annotation
     prefix:   /
     host:     %base_host%
-    schemes:  [https]
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
