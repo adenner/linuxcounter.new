@@ -1201,7 +1201,9 @@ table {
 
 }
 
-
+.fos_user_user_show .row, .syw_front_main_public_profile .row, .syw_front_main_public_machine {
+    text-align: left !important;
+}
 
 
 

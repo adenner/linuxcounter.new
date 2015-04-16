@@ -46,6 +46,9 @@ class ProfileController extends BaseController
         $userProfile = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:UserProfile')
             ->findOneBy(array('user' => $user));
+        $apiaccess = $this->get('doctrine')
+            ->getRepository('SywFrontApiBundle:ApiAccess')
+            ->findOneBy(array('user' => $user));
         $machines = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Machines')
             ->findBy(array('user' => $user));
@@ -76,6 +79,7 @@ class ProfileController extends BaseController
             'metatitle' => $metatitle,
             'title' => $title,
             'user' => $user,
+            'apiaccess' => $apiaccess,
             'userprofile' => $userProfile,
             'machines' => $machines,
             'transtolanguage' => $transtolanguage->getLanguage(),

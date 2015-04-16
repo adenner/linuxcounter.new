@@ -101,6 +101,19 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'Api information'|trans }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div>{{ 'Your ApiKey'|trans }}: {% if apiaccess.apikey %}{{ apiaccess.apikey }}{% endif %}</div>
+                            <div>{{ 'Last Api access'|trans }}: {% if apiaccess.lastaccess %}{{ apiaccess.lastaccess|date("Y-m-d H:i") }}{% endif %}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% if userprofile.interests %}
             <div class="row">
                 <div class="col-sm-12">
