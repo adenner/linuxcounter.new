@@ -43,8 +43,6 @@
     "carlescliment/light-news-bundle": "dev-master",
     "redmonster/announcement-bundle": "dev-master",
     "nostalgiaz/bootstrap-switch": "dev-master",
-    "knplabs/knp-last-tweets-bundle": "*",
-    "inori/twitter-app-bundle": "dev-master",
     "abraham/twitteroauth": "dev-master"
   },
   "require-dev": {
@@ -89,26 +87,6 @@
     {
       "type": "git",
       "url": "https://github.com/nostalgiaz/bootstrap-switch"
-    },
-    {
-      "type": "git",
-      "url": "https://github.com/Inoryy/InoriTwitterAppBundle"
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "abraham/twitteroauth",
-        "version": "dev-master",
-        "dist": {
-          "url": "https://github.com/abraham/twitteroauth/zipball/master",
-          "type": "zip"
-        },
-        "source": {
-          "url": "git://github.com/abraham/twitteroauth.git",
-          "type": "git",
-          "reference": "master"
-        }
-      }
     }
   ]
 }

@@ -23,3 +23,9 @@ parameters:
     base_proto: https
     api_host:  api.linuxcounter.net
     api_proto: https
+
+    # Twitter
+    twitter_consumer_key: consumerkey
+    twitter_consumer_secret: consumersectret
+    twitter_oauth_token: oauthtoken
+    twitter_oauth_token_secret: aouthtokensecret

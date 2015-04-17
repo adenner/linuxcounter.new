@@ -60,12 +60,12 @@
                 </div>
                 <div class="col-sm-5">
                     <div class="border">
-                    <!-- {-- --% render "KnpLastTweetsBundle:Twitter:lastTweets" with {'username': 'NewLinuxCounter' --} % -- --} -->
+                        {% block tweets %}
+                            <!-- {-- { render( controller('SywFrontMainBundle:Base:getLastTweets')) } --} -->
+                        {% endblock %}
                     </div>
                 </div>
             </div>
-
-
 
             <p> &nbsp; </p>
             <div id="contact" class="container">

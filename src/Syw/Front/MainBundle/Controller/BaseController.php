@@ -4,12 +4,11 @@ namespace Syw\Front\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Syw\Front\MainBundle\Form\Type\TranslationFormType;
 use Asm\TranslationLoaderBundle\Entity\Translation;
+use Abraham\TwitterOAuth\TwitterOAuth;
 
 /**
  * Class BaseController
@@ -205,5 +204,25 @@ class BaseController extends Controller
         $counts['guests'] = $qb->getQuery()->getSingleScalarResult();
 
         return $counts;
+    }
+
+    public function getLastTweetsAction()
+    {
+        $connection = new TwitterOAuth(
+            $this->container->getParameter('twitter_consumer_key'),
+            $this->container->getParameter('twitter_consumer_secret'),
+            $this->container->getParameter('twitter_oauth_token'),
+            $this->container->getParameter('twitter_oauth_token_secret')
+        );
+        $statues = $connection->get("statuses/home_timeline", array("count" => 10, "exclude_replies" => true));
+
+        echo "<pre>";
+        print_r($statues);
+        echo "</pre>";
+        exit(1);
+
+        return $this->render('SywFrontMainBundle:Common:_tweets.html.twig', array(
+            'tweets' => $statues,
+        ));
     }
 }
