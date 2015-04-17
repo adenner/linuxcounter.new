@@ -225,3 +225,14 @@ redmonster_announcement:
     duration: +2 months
     db_driver: orm
     announcement_class: Redmonster\AnnouncementBundle\Entity\Announcement
+
+inori_twitter_app:
+    file: %kernel.root_dir%/../vendor/twitteroauth/twitteroauth/twitteroauth.php
+    consumer_key: YxTMwsKFpvKigtdNTVp7FJzu7
+    consumer_secret: gTWAJ5RvR7W2gQxDlR8K7hfOFDMNuDvkERImquWwPy3etYb9tI
+    oauth_token: 350206926-JJ2uCgd6QozKYxbKHqe69e2myjrNxcT49V9llHfq
+    oauth_token_secret: u8vqX0Df3isT9XLGiBwPG25PJ2XB53NvQp1RV6w9gZush
+
+knp_last_tweets:
+    fetcher:
+        driver: oauth

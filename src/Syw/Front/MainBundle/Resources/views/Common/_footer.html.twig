@@ -3,81 +3,95 @@
 {% trans_default_domain "footer" %}
 <div class="footercontainer">
 
-    <div class="banner">
-        <div class="row content language-selection">
-
-            <div class="col-sm-6" style="text-align: right;">
-                <form action="{{ path('syw_front_main_main_lang') }}" method="post">
-                    <select name="language" id="languages">
-                        {% for language in languages %}
-                            <option value="{{ language.locale }}"
-                                    {% if app.request.getLocale() == language.locale %}selected="selected"{% endif %}> {{ language.language }}</option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" value="{{ 'Choose language...'|trans }}">
-                </form>
-            </div>
-
-            <div class="col-sm-6">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <div class="col-sm-12">
-                    <span id="translate_page_button" class="button-lite">{{ 'Translate this page into your native language!'|trans }}</span>
-                </div>
-                {% endif %}
-            </div>
-
-        </div>
-        <p> &nbsp; </p>
-
-        <div class="footerlinks">
-            <div class="content">
-                <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a> &middot;
-                <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics'|trans }}</a> &middot;
-                <a href="{{ url('syw_front_main_main_download') }}">{{ 'Download'|trans }}</a> &middot;
-                <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a> &middot;
-                <a href="{{ url('syw_front_main_main_faq') }}">{{ 'FAQ'|trans }}</a> &middot;
-                <a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Imprint'|trans }}</a> &middot;
-                <a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a><br/>
-                <a href="https://github.com/alexloehner/linuxcounter.new/issues">{{ 'Bugtracker'|trans }}</a> &middot;
-                <a href="https://github.com/alexloehner/linuxcounter.new">{{ 'Code base'|trans }}</a> &middot;
-                <a href="https://travis-ci.org/alexloehner/linuxcounter.new">{{ 'Unittests'|trans }}</a> &middot;
-                <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
-                <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">{{ 'License'|trans }}</a> &middot;
-                <a href="{{ url('syw_front_main_main_sponsor') }}">{{ 'Sponsor'|trans }}</a>
-                {% if is_granted('ROLE_ADMIN') %}
-                    &middot; <a href="{{ url('news_admin_list') }}">{{ 'News-Admin'|trans }}</a>
-                    &middot; <a href="{{ url('admin') }}">{{ 'Administration'|trans }}</a>
-                {% endif %}
-                <br/>
-            </div>
-        </div>
-        <p> &nbsp; </p>
-
-        <div class="container">
-
-            <div class="row onlineusers">
-                {{ "There were %onlinecomplete% clients (%onlineusers% users and %onlinebots% bots)<br/>online during the last 5 minutes. %onlineloggedin% users were logged in."|trans({
-                    '%onlinecomplete%': online.complete,
-                    '%onlineusers%': online.users,
-                    '%onlinebots%': online.bots,
-                    '%onlineloggedin%': online.loggedin
-                })|raw }}
-            </div>
-        </div>
-        <p> &nbsp; </p>
-
-        <div id="contact" class="container">
-
-            <div class="row">
-                {{ include('SywFrontMainBundle:Common:_social.html.twig') }}
-            </div>
-        </div>
-        <!-- /.container -->
-    </div>
-    <!-- /.banner -->
-
-    <!-- FOOTER -->
     <footer>
+        <div class="banner">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="row content language-selection">
+                        <div class="col-sm-12" style="text-align: center;">
+                            <form action="{{ path('syw_front_main_main_lang') }}" method="post">
+                                <select name="language" id="languages">
+                                    {% for language in languages %}
+                                        <option value="{{ language.locale }}"
+                                                {% if app.request.getLocale() == language.locale %}selected="selected"{% endif %}> {{ language.language }}</option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" value="{{ 'Choose language...'|trans }}">
+                            </form>
+                        </div>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <div class="col-sm-12" style="text-align: center;">
+                            <span id="translate_page_button" class="button-lite">{{ 'Translate this page into your native language!'|trans }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <p> &nbsp; </p>
+                    <div class="row footerlinks">
+                        <div class="content">
+                            <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_download') }}">{{ 'Download'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_faq') }}">{{ 'FAQ'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Imprint'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a><br/>
+                            <a href="https://github.com/alexloehner/linuxcounter.new/issues">{{ 'Bugtracker'|trans }}</a> &middot;
+                            <a href="https://github.com/alexloehner/linuxcounter.new">{{ 'Code base'|trans }}</a> &middot;
+                            <a href="https://travis-ci.org/alexloehner/linuxcounter.new">{{ 'Unittests'|trans }}</a> &middot;
+                            <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
+                            <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">{{ 'License'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_sponsor') }}">{{ 'Sponsor'|trans }}</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                &middot; <a href="{{ url('news_admin_list') }}">{{ 'News-Admin'|trans }}</a>
+                                &middot; <a href="{{ url('admin') }}">{{ 'Administration'|trans }}</a>
+                            {% endif %}
+                            <br/>
+                        </div>
+                    </div>
+                    <p> &nbsp; </p>
+                    <div class="row onlineusers">
+                        {{ "There were %onlinecomplete% clients (%onlineusers% users and %onlinebots% bots)<br/>online during the last 5 minutes. %onlineloggedin% users were logged in."|trans({
+                            '%onlinecomplete%': online.complete,
+                            '%onlineusers%': online.users,
+                            '%onlinebots%': online.bots,
+                            '%onlineloggedin%': online.loggedin
+                        })|raw }}
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="border">
+                    <!-- {-- --% render "KnpLastTweetsBundle:Twitter:lastTweets" with {'username': 'NewLinuxCounter' --} % -- --} -->
+                    </div>
+                </div>
+            </div>
+
+
+
+            <p> &nbsp; </p>
+            <div id="contact" class="container">
+                <div class="row ads_footer">
+                    <div class="col-sm-12">
+                        <!-- LiCo Footer NEU -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-9187097149837683"
+                             data-ad-slot="7909182251"
+                             data-ad-format="auto"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ include('SywFrontMainBundle:Common:_social.html.twig') }}
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.banner -->
+
         <p>
             <a href="https://travis-ci.org/alexloehner/linuxcounter.new"><img
                         src="https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master" alt="travis.ci"/></a>

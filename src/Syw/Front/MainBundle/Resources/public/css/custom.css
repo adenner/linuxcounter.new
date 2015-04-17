@@ -142,6 +142,7 @@ body {
 
 .page {
     margin-top: 140px;
+    margin-bottom: 10px !important;
 }
 
 .copyright {
@@ -293,6 +294,7 @@ body {
 
 .row {
     text-align: justify;
+    margin: 0;
 }
 
 .featurette-heading {
@@ -1259,12 +1261,23 @@ span.btn-clipboard {
     background-color: #ddd;
 }
 
+.border {
+    border: 1px solid lightgrey;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
 
+footer .banner .row {
+    margin: 0;
+}
 
+.ads_footer {
 
+}
+.adsbygoogle {
 
-
-
+}
 
 
 
