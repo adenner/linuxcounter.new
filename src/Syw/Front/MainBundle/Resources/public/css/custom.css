@@ -808,7 +808,7 @@ label > span {
         display: none;
     }
     #users_per_city, #users_per_country {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
     #users_per_city table td:nth-child(3),
     #users_per_city table th:nth-child(3),
@@ -823,6 +823,11 @@ label > span {
     #users_per_country table th:nth-child(3){
         display: none;
     }
+}
+
+#users_per_city div, #users_per_country div {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 #privacy_form .control-label {
