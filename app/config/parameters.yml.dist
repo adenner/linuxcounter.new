@@ -19,7 +19,7 @@ parameters:
     admin_email: admin@linuxcounter.net
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
-    base_host: test.linuxcounter.net
-    base_proto: http
+    base_host: www.linuxcounter.net
+    base_proto: https
     api_host:  api.linuxcounter.net
-    api_proto: http
+    api_proto: https

@@ -3,6 +3,7 @@
 namespace Syw\Front\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Index;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -11,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @author Alexander Löhner <alex.loehner@linux.com>
  * @ORM\Entity(repositoryClass="Syw\Front\MainBundle\Repository\CitiesRepository")
- * @ORM\Table(name="cities")
+ * @ORM\Table(name="cities", indexes={@Index(name="name", columns={"name"}), @Index(name="searchcity", columns={"iso_country_code", "name"}), @Index(name="searchkoords", columns={"latitude", "longitude"}), @Index(name="usernum", columns={"usernum"})})
  */
 class Cities
 {
