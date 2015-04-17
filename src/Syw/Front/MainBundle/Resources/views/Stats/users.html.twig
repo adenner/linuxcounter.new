@@ -39,7 +39,7 @@
                                     {% for row in paginationAAA %}
                                     <tr>
                                         <td>
-                                            <a href="{{ url('syw_front_main_stats_cities', {'id': row.id}) }}">{{ row.name }}</a>
+                                            <a href="{{ url('syw_front_main_stats_cities', {'id': row.id}) }}">{{ row.name }}</a>  <a href="http://www.openstreetmap.org/#map=15/{{ row.getLatitude() }}/{{ row.getLongitude() }}"><img class="img-responsive" src="{{ '/bundles/sywfrontmain/images/map.png' }}" alt="View on map..."/></a>
                                         </td>
                                         <td>
                                             {{ row.isoCountryCode }}
