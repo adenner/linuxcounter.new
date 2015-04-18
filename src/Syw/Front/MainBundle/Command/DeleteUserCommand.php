@@ -108,11 +108,12 @@ EOT
         $city = $profile->getCity();
         if (true === isset($city) && true === is_object($city)) {
             $city->setUserNum($city->getUserNum() - 1);
+            $country = $em->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
+            if (true === isset($country) && true === is_object($country)) {
+                $country->setUsersNum($country->getUsersNum() - 1);
+                $em->persist($country);
+            }
         }
-
-        $country = $em->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
-        $country->setUsersNum($country->getUsersNum()-1);
-        $em->persist($country);
 
         $licotestdb->exec('DELETE FROM fos_user WHERE `id`=\''.$user->getId().'\'');
         // $manipulator = $this->getContainer()->get('syw.util.user_manipulator');
