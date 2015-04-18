@@ -71,6 +71,9 @@ class TranslateController extends BaseController
         }
         $session = $request->getSession();
         $lastroute = $session->get('last_route');
+        if (false === isset($lastroute['name']) || trim($lastroute['name']) == "") {
+            $lastroute['name'] = 'syw_front_main_main_index';
+        }
         $url = $this->generateUrl($lastroute['name']);
         $response = new RedirectResponse($url);
         return $response;
