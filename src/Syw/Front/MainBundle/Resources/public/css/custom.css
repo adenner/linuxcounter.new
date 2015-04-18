@@ -24,6 +24,7 @@ body {
     right: 0;
     left: 0;
     z-index: 20;
+    width: 100%;
 }
 
 /* Flip around the padding for proper display in narrow viewports */
@@ -39,6 +40,7 @@ body {
 
 .navbar-wrapper .navbar .container {
     width: auto;
+    width: 100%;
 }
 
 /* CUSTOMIZE THE CAROUSEL
@@ -155,6 +157,10 @@ body {
 .btn-default {
     font-size: 0.9em;
     margin: 17px;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+    font-size: 16px;
 }
 
 .banner {
@@ -316,10 +322,12 @@ body {
 .navbar-wrapper > .container {
     padding-right: 0;
     padding-left: 0;
+    width: 100%;
 }
 
 .navbar-wrapper .navbar {
     border-radius: 4px;
+    width: 100%;
 }
 
 .flash {
