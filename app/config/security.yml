@@ -49,7 +49,7 @@ security:
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: /admin, role: ROLE_ADMIN, requires_channel: https }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /admin, role: ROLE_ADMIN }
