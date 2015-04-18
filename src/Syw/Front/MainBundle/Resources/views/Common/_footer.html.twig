@@ -6,7 +6,7 @@
     <footer>
         <div class="banner">
             <div class="row">
-                <div class="col-sm-7">
+                <div class="col-sm-12">
                     <div class="row content language-selection">
                         <div class="col-sm-12" style="text-align: center;">
                             <form action="{{ path('syw_front_main_main_lang') }}" method="post">
@@ -58,11 +58,16 @@
                         })|raw }}
                     </div>
                 </div>
-                <div class="col-sm-5">
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="border">
-                        {% block tweets %}
-                            <!-- {-- { render( controller('SywFrontMainBundle:Base:getLastTweets')) } --} -->
-                        {% endblock %}
+                        {{ render( controller('SywFrontMainBundle:Base:getUserLine')) }}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="border">
+                        {{ render( controller('SywFrontMainBundle:Base:getLastTweets')) }}
                     </div>
                 </div>
             </div>

@@ -214,15 +214,25 @@ class BaseController extends Controller
             $this->container->getParameter('twitter_oauth_token'),
             $this->container->getParameter('twitter_oauth_token_secret')
         );
-        $statues = $connection->get("statuses/home_timeline", array("count" => 10, "exclude_replies" => true));
+        $statues = $connection->get('statuses/mentions_timeline', array("count" => 5, "exclude_replies" => false));
 
-        echo "<pre>";
-        print_r($statues);
-        echo "</pre>";
-        exit(1);
+        return $this->render('SywFrontMainBundle:Common:_tweets1.html.twig', array(
+            'tweets1' => $statues,
+        ));
+    }
 
-        return $this->render('SywFrontMainBundle:Common:_tweets.html.twig', array(
-            'tweets' => $statues,
+    public function getUserLineAction()
+    {
+        $connection = new TwitterOAuth(
+            $this->container->getParameter('twitter_consumer_key'),
+            $this->container->getParameter('twitter_consumer_secret'),
+            $this->container->getParameter('twitter_oauth_token'),
+            $this->container->getParameter('twitter_oauth_token_secret')
+        );
+        $statues = $connection->get('statuses/user_timeline', array("count" => 5, "exclude_replies" => false));
+
+        return $this->render('SywFrontMainBundle:Common:_tweets2.html.twig', array(
+            'tweets2' => $statues,
         ));
     }
 }

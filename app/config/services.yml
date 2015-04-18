@@ -4,10 +4,6 @@ parameters:
 
 
 services:
-    twig.extension.text:
-        class: Twig_Extensions_Extension_Text
-        tags:
-            - { name: twig.extension }
     app.locale_listener:
         class: Syw\Front\MainBundle\EventListener\LocaleListener
         arguments: ["%kernel.default_locale%"]
@@ -59,3 +55,22 @@ services:
         arguments: ['@service_container', '@security.context', '@doctrine']
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }
+    twig.extension.date:
+        class: Jasny\Twig\DateExtension
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.pcre:
+        class: Jasny\Twig\PcreExtension
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.text:
+        class: Jasny\Twig\TextExtension
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.array:
+        class: Jasny\Twig\ArrayExtension
+        tags:
+            - { name: twig.extension }

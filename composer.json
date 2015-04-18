@@ -18,6 +18,7 @@
     "doctrine/migrations": "dev-master",
     "doctrine/doctrine-migrations-bundle": "dev-master",
     "twig/extensions": "dev-master",
+    "jasny/twig-extensions": "dev-master",
     "symfony/assetic-bundle": "dev-master",
     "symfony/swiftmailer-bundle": "dev-master",
     "symfony/monolog-bundle": "dev-master",
