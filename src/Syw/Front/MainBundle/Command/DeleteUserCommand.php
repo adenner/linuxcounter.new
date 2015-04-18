@@ -114,6 +114,10 @@ EOT
                 $em->persist($country);
             }
         }
+        $activities = $em->getRepository('SywFrontMainBundle:Activity')->findBy(array('user' => $user));
+        foreach ($activities as $activity) {
+            $licotestdb->exec('DELETE FROM activity WHERE `id`=\''.$activity->getId().'\'');
+        }
 
         $licotestdb->exec('DELETE FROM fos_user WHERE `id`=\''.$user->getId().'\'');
         // $manipulator = $this->getContainer()->get('syw.util.user_manipulator');
