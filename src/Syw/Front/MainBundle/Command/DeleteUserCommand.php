@@ -106,7 +106,9 @@ EOT
         }
         $profile = $user->getProfile();
         $city = $profile->getCity();
-        $city->setUserNum($city->getUserNum()-1);
+        if (true === isset($city) && true === is_object($city)) {
+            $city->setUserNum($city->getUserNum() - 1);
+        }
 
         $country = $em->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
         $country->setUsersNum($country->getUsersNum()-1);
