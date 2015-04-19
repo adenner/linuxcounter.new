@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Article" lang="en">
+<head>
+    {% trans_default_domain "general" %}
+    {{ include('SywFrontMainBundle:Common:_meta.html.twig') }}
+
+    {% block stylesheets %}
+        {{ include('SywFrontMainBundle:Common:_stylesheets.html.twig') }}
+    {% endblock %}
+    {% javascripts
+    'bundles/sywfrontmain/js/jquery-1.11.2.min.js'
+    'bundles/sywfrontmain/js/jquery-ui.min.js'
+    'assets/bootstrap-switch.min.js'
+    'assets/EmailObfuscator.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body>
+<div id="main" class="container">
+
+    {{ include('SywFrontMainBundle:Common:_navbar.html.twig') }}
+    <div class="row container page">
+        <!-- LiCo Top NEU -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9187097149837683"
+             data-ad-slot="3199781051"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    {% block body %}
+    {% endblock %}
+
+    {{ include('SywFrontMainBundle:Common:_errorfooter.html.twig') }}
+
+    {% block javascripts %}
+        {{ include('SywFrontMainBundle:Common:_javascripts.html.twig') }}
+    {% endblock %}
+</div>
+</body>
+</html>

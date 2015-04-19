@@ -1,0 +1,86 @@
+<!-- /END THE FEATURETTES -->
+
+{% trans_default_domain "footer" %}
+<div class="footercontainer">
+
+    <footer>
+        <div class="banner">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row footerlinks">
+                        <div class="content">
+                            <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_download') }}">{{ 'Download'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_faq') }}">{{ 'FAQ'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Imprint'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a><br/>
+                            <a href="https://github.com/alexloehner/linuxcounter.new/issues">{{ 'Bugtracker'|trans }}</a> &middot;
+                            <a href="https://github.com/alexloehner/linuxcounter.new">{{ 'Code base'|trans }}</a> &middot;
+                            <a href="https://travis-ci.org/alexloehner/linuxcounter.new">{{ 'Unittests'|trans }}</a> &middot;
+                            <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
+                            <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">{{ 'License'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_sponsor') }}">{{ 'Sponsor'|trans }}</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                &middot; <a href="{{ url('news_admin_list') }}">{{ 'News-Admin'|trans }}</a>
+                                &middot; <a href="{{ url('admin') }}">{{ 'Administration'|trans }}</a>
+                            {% endif %}
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p> &nbsp; </p>
+            <div id="contact" class="container">
+                <div class="row ads_footer">
+                    <div class="col-sm-12">
+                        <!-- LiCo Footer NEU -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-9187097149837683"
+                             data-ad-slot="7909182251"
+                             data-ad-format="auto"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ include('SywFrontMainBundle:Common:_social.html.twig') }}
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.banner -->
+
+        <p>
+            <a href="https://travis-ci.org/alexloehner/linuxcounter.new"><img
+                        src="https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master" alt="travis.ci"/></a>
+            <a href="https://github.com/alexloehner/linuxcounter.new/issues"><img
+                        src="https://img.shields.io/github/issues/alexloehner/linuxcounter.new.svg" alt="github issues"/></a>
+            <a href="https://coveralls.io/r/alexloehner/linuxcounter.new"><img
+                        src="https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg" alt="coveralls"/></a>
+            <a href="https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/?branch=master"><img
+                        src="https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/badges/quality-score.png?b=master" alt="scrutinizer"/></a>
+            <a href="https://codeclimate.com/github/alexloehner/linuxcounter.new"><img
+                        src="https://codeclimate.com/github/alexloehner/linuxcounter.new/badges/gpa.svg" alt="codeclimate"/></a>
+            <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f"><img
+                        src="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat" alt="versioneye"/></a>
+        </p>
+
+        <p class="copyright">LiCo is <a href="{{ url('syw_front_main_main_sponsor') }}">fully sponsored</a> by <a
+                    href="https://www.first-colo.net/" target="_blank">First Colo</a>.<br/>
+            LiCo, LinuxCounter.net, LiCo - The New Linux Counter Project - linuxcounter.net, Copyright © 2011
+            - {{ "now"|date('Y') }} by <a href="https://github.com/alexloehner">Alexander Löhner</a>. All rights
+            reserved.<br>
+            The code of The New Linux Counter Project is licensed under the <a
+                    href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">GPL v3</a>.<br>
+            Original project counter.li.org © 1993 - 2011 by Harald Tveit Alvestrand &amp; the Linux Counter Project -
+            Linux is a registered trademark of Linus Torvalds.</p>
+    </footer>
+
+</div>

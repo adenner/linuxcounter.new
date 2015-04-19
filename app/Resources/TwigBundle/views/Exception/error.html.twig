@@ -1,16 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="{{ _charset }}" />
-        <title>An Error Occurred: {{ status_text }}</title>
-    </head>
-    <body>
-        <h1>Oops! An Error Occurred</h1>
-        <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+{% extends "SywFrontMainBundle::errorbase.html.twig" %}
+{% trans_default_domain "syw_front_main_main_error" %}
 
-        <div>
-            Something is broken. Please let us know what you were doing when this error occurred.
-            We will fix it as soon as possible. Sorry for any inconvenience caused.
+{% block body %}
+
+<!-- Page Content -->
+<div class="row">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ status_code }} {{ status_text }}</h3>
+                </div>
+                <div class="panel-body">
+
+                    <h1>Oops! An Error Occurred</h1>
+                    <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+
+                    <div>
+                        Something is broken. Please let us know what you were doing when this error occurred.
+                        We will fix it as soon as possible. Sorry for any inconvenience caused.
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+
+{% endblock %}
