@@ -37,6 +37,7 @@ class ErrorController extends BaseController
             ->findOneBy(array('locale' => $actuallocale));
         $transform_array = $this->getTranslateForm();
         return array(
+            'error' => $error,
             'formTrans_navi' => $transform_array['navi']->createView(),
             'formTrans_route' => $transform_array['route']->createView(),
             'formTrans_footer' => $transform_array['footer']->createView(),

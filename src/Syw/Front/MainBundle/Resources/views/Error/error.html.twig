@@ -1,5 +1,5 @@
 {% extends "SywFrontMainBundle::base.html.twig" %}
-{% trans_default_domain "syw_front_main_main_faq" %}
+{% trans_default_domain "syw_front_main_error_error" %}
 
 {% block body %}
 <!-- Page Content -->
@@ -8,10 +8,12 @@
         <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Frequently asked questions'|trans }}</h3>
+                    <h3 class="panel-title">{{ 'Error'|trans }} {{ error }}</h3>
                 </div>
                 <div id="faq" class="panel-body faq">
-                    <div class="faqcontent">
+                    <div class="errorcontent">
+
+                        <p><strong>{{ 'Something went terribly wrong.'|trans }}</strong></p>
 
 
 
