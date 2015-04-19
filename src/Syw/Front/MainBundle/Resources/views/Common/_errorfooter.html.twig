@@ -22,10 +22,6 @@
                             <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
                             <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">{{ 'License'|trans }}</a> &middot;
                             <a href="{{ url('syw_front_main_main_sponsor') }}">{{ 'Sponsor'|trans }}</a>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                &middot; <a href="{{ url('news_admin_list') }}">{{ 'News-Admin'|trans }}</a>
-                                &middot; <a href="{{ url('admin') }}">{{ 'Administration'|trans }}</a>
-                            {% endif %}
                             <br/>
                         </div>
                     </div>
