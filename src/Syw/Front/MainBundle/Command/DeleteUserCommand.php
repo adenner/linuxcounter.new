@@ -105,13 +105,15 @@ EOT
             $em->flush();
         }
         $profile = $user->getProfile();
-        $city = $profile->getCity();
-        if (true === isset($city) && true === is_object($city)) {
-            $city->setUserNum($city->getUserNum() - 1);
-            $country = $em->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
-            if (true === isset($country) && true === is_object($country)) {
-                $country->setUsersNum($country->getUsersNum() - 1);
-                $em->persist($country);
+        if (true === isset($profile) && true === is_object($profile)) {
+            $city = $profile->getCity();
+            if (true === isset($city) && true === is_object($city)) {
+                $city->setUserNum($city->getUserNum() - 1);
+                $country = $em->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
+                if (true === isset($country) && true === is_object($country)) {
+                    $country->setUsersNum($country->getUsersNum() - 1);
+                    $em->persist($country);
+                }
             }
         }
         $activities = $em->getRepository('SywFrontMainBundle:Activity')->findBy(array('user' => $user));
