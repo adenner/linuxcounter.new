@@ -1,12 +1,12 @@
 <?php
 
-/*
-if (empty($_SERVER['HTTPS']) || $_SERVER["SERVER_PORT"] != 443) {
-    $redir = "Location: https://www.linuxcounter.net" . $_SERVER['PHP_SELF'];
+
+if ($_SERVER["HTTP_X_FORWARDED_PROTO"] == "http") {
+    $redir = "Location: https://www.linuxcounter.net" . $_SERVER["REQUEST_URI"];
     header($redir);
     exit();
 }
-*/
+
 
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
