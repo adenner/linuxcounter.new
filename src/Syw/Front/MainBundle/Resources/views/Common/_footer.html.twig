@@ -28,19 +28,20 @@
                     <p> &nbsp; </p>
                     <div class="row footerlinks">
                         <div class="content">
-                            <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_download') }}">{{ 'Download'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_faq') }}">{{ 'FAQ'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Imprint'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a><br/>
-                            <a href="https://github.com/alexloehner/linuxcounter.new/issues">{{ 'Bugtracker'|trans }}</a> &middot;
-                            <a href="https://github.com/alexloehner/linuxcounter.new">{{ 'Code base'|trans }}</a> &middot;
-                            <a href="https://travis-ci.org/alexloehner/linuxcounter.new">{{ 'Unittests'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_index') }}" title="{{ 'Back to the main page...'|trans }}">{{ 'Home'|trans }}</a> &middot;
+                            <a href="{{ url('news_homepage') }}" title="{{ 'Read the latest news and announcements...'|trans }}">{{ 'News'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_stats_index') }}" title="{{ 'Go to the mainpage of the statistics...'|trans }}">{{ 'Statistics'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_download') }}" title="{{ 'Download the new lico update script here...'|trans }}">{{ 'Download'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_about') }}" title="{{ 'Read some information about us and this project...'|trans }}">{{ 'About'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_faq') }}" title="{{ 'Read the frequently asked questions...'|trans }}">{{ 'FAQ'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_impressum') }}" title="{{ 'Read our imprint...'|trans }}">{{ 'Imprint'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_sponsor') }}" title="{{ 'See here who sponsors us...'|trans }}">{{ 'Sponsor'|trans }}</a><br/>
+                            <a href="{{ url('syw_front_main_main_contact') }}" title="{{ 'Contact us in case of questions or problems...'|trans }}">{{ 'Contact'|trans }}</a> &middot;
+                            <a href="https://github.com/alexloehner/linuxcounter.new/issues" alt="github issues" title="github issues">{{ 'Bugtracker'|trans }}</a> &middot;
+                            <a href="https://github.com/alexloehner/linuxcounter.new" title="{{ 'See the source code of this page...'|trans }}">{{ 'Code base'|trans }}</a> &middot;
+                            <a href="https://travis-ci.org/alexloehner/linuxcounter.new" title="{{ 'See here for the automated builds...'|trans }}">{{ 'Unittests'|trans }}</a> &middot;
                             <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
-                            <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">{{ 'License'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_sponsor') }}">{{ 'Sponsor'|trans }}</a>
+                            <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE" title="{{ 'See here the license for this project...'|trans }}">{{ 'License'|trans }}</a> &middot;
                             {% if is_granted('ROLE_ADMIN') %}
                                 &middot; <a href="{{ url('news_admin_list') }}">{{ 'News-Admin'|trans }}</a>
                                 &middot; <a href="{{ url('admin') }}">{{ 'Administration'|trans }}</a>
@@ -99,17 +100,17 @@
 
         <p>
             <a href="https://travis-ci.org/alexloehner/linuxcounter.new"><img
-                        src="https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master" alt="travis.ci"/></a>
+                        src="https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master" alt="travis.ci" title="travis.ci"/></a>
             <a href="https://github.com/alexloehner/linuxcounter.new/issues"><img
-                        src="https://img.shields.io/github/issues/alexloehner/linuxcounter.new.svg" alt="github issues"/></a>
+                        src="https://img.shields.io/github/issues/alexloehner/linuxcounter.new.svg" alt="github issues" title="github issues"/></a>
             <a href="https://coveralls.io/r/alexloehner/linuxcounter.new"><img
-                        src="https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg" alt="coveralls"/></a>
+                        src="https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg" alt="coveralls" title="coveralls"/></a>
             <a href="https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/?branch=master"><img
-                        src="https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/badges/quality-score.png?b=master" alt="scrutinizer"/></a>
+                        src="https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/badges/quality-score.png?b=master" alt="scrutinizer" title="scrutinizer"/></a>
             <a href="https://codeclimate.com/github/alexloehner/linuxcounter.new"><img
-                        src="https://codeclimate.com/github/alexloehner/linuxcounter.new/badges/gpa.svg" alt="codeclimate"/></a>
+                        src="https://codeclimate.com/github/alexloehner/linuxcounter.new/badges/gpa.svg" alt="codeclimate" title="codeclimate"/></a>
             <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f"><img
-                        src="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat" alt="versioneye"/></a>
+                        src="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat" alt="versioneye" title="versioneye"/></a>
         </p>
 
         <p class="copyright">LiCo is <a href="{{ url('syw_front_main_main_sponsor') }}">fully sponsored</a> by <a
