@@ -1,5 +1,11 @@
 <?php
 
+if (empty($_SERVER['HTTPS']) || $_SERVER["SERVER_PORT"] != 443) {
+    $redir = "Location: https://www.linuxcounter.net" . $_SERVER['PHP_SELF'];
+    header($redir);
+    exit();
+}
+
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 
