@@ -1394,8 +1394,55 @@ footer .banner .row {
     margin: 0;
 }
 
+#errorpage {
+
+}
 
 
+@media (min-width: 768px) {
+    #errorpage {
+        margin-top: 80px;
+    }
+}
+
+@media (max-width: 1200px) {
+    #errorpage {
+        margin-top: 90px;
+    }
+}
+
+@media (max-width: 630px) {
+    #errorpage {
+        margin-top: 87px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 548px) {
+    #errorpage {
+        margin-top: 74px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 540px) {
+    #errorpage {
+        margin-top: 70px;
+    }
+}
+
+@media (max-width: 473px) {
+    #errorpage {
+        margin-top: 65px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (min-width: 1201px) {
+    #errorpage {
+        margin-top: 90px;
+    }
+}
 
 
 
