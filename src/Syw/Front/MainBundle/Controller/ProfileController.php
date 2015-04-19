@@ -25,6 +25,7 @@ use Syw\Front\MainBundle\Manager\CitiesManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Syw\Front\ApiBundle\Entity\ApiAccess;
 
 /**
  * Controller managing the user profile
@@ -39,6 +40,24 @@ class ProfileController extends BaseController
     public function showAction()
     {
         $user = $this->getUser();
+        $em = $this->get('doctrine')->getManager();
+
+        $obj = $em->getRepository('SywFrontApiBundle:ApiAccess')->findOneBy(array("user" => $user));
+        if (false === isset($obj) || false === is_object($obj) || $obj == null) {
+            $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $apikey           = '';
+            for ($i = 0; $i < 48; $i++) {
+                $apikey .= $characters[rand(0, $charactersLength - 1)];
+            }
+            $apikey    = md5($apikey);
+            $ApiAccess = new ApiAccess();
+            $ApiAccess->setUser($user);
+            $ApiAccess->setApiKey($apikey);
+            $em->persist($ApiAccess);
+            $em->flush();
+        }
+
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
