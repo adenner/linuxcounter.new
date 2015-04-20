@@ -141,7 +141,7 @@ class StatsController extends BaseController
         $country = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Countries')
             ->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
-        $users = $city->getUsers();
+        $userProfiles = $city->getUsers();
 
         $metatitle = $this->get('translator')->trans('Statistics about the Linux users in %city%', array(
             '%city%' => $city->getName().", ".strtoupper($city->getIsoCountryCode())

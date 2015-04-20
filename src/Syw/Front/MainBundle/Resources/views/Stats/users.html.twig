@@ -31,7 +31,7 @@
                                             {{ knp_pagination_sortable(paginationAAA, 'Population', 'b.population', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationAAA, 'No. of Users', 'b.usernum', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationAAA, 'No. of Users', 'b.users|length', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                     </tr>
                                     </thead>
@@ -56,7 +56,7 @@
                                             {{ row.population|number_format }}
                                         </td>
                                         <td>
-                                            {{ row.usernum|number_format }}
+                                            {{ row.usersnum|number_format }}
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -129,6 +129,30 @@
                 </div>
             </div>
         </div>
+        <!-- script>
+            $(function() {
+                $('#users_per_city').on('click', "ul.pagination a" , function(e){
+                    $.ajax({
+                        type: "GET",
+                        url: $(this).attr('href')
+                    })
+                            .done(function( msg ) {
+                                $('#users_per_city').html(msg);
+                            });
+                    e.preventDefault();
+                });
+                $('#users_per_country').on('click', "ul.pagination a" , function(e){
+                    $.ajax({
+                        type: "GET",
+                        url: $(this).attr('href')
+                    })
+                            .done(function( msg ) {
+                                $('#users_per_country').html(msg);
+                            });
+                    e.preventDefault();
+                });
+            });
+        </script -->
         {{ include('SywFrontMainBundle:Common:_guess.html.twig') }}
         {{ include('SywFrontMainBundle:Common:_stats_links.html.twig') }}
     </div>

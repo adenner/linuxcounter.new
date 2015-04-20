@@ -189,4 +189,14 @@ class Countries
     {
         return $this->id;
     }
+
+    /**
+     * Get users
+     *
+     * @return ArrayCollection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }
