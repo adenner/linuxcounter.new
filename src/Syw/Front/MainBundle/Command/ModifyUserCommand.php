@@ -52,7 +52,10 @@ EOT
         if ($action == "search") {
             $user = $em->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $userid));
             if (true === isset($user) && is_object($user)) {
-                $output->writeln(sprintf('User with ID <comment>%s</comment> found. His email actually is <comment>%s</comment>', $userid, $user->getEmail()));
+                $output->writeln(sprintf('User with ID <comment>%s</comment> found.', $userid));
+                $output->writeln(sprintf('Email          : <comment>%s</comment>', $user->getEmail()));
+                $output->writeln(sprintf('Username       : <comment>%s</comment>', $user->getUsername()));
+                $output->writeln(sprintf('Last Login     : <comment>%s</comment>', $user->getLastLogin()->format('Y-m-d H:i:s')));
             }
         } else {
             $user = $em->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $userid));
