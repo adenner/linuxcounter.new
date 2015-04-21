@@ -79,7 +79,7 @@ EOT
                 $profile = $db->getRepository('SywFrontMainBundle:UserProfile')->findOneBy(array('user' => $user));
                 if (true === isset($profile) && true === is_object($profile)) {
                     $id = $profile->getId();
-                    $user->setProfile($id);
+                    $user->setProfile($profile);
                     $licotest->persist($user);
                     $licotest->flush();
                     echo ".";
