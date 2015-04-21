@@ -74,15 +74,15 @@ EOT
                     unset($profile);
                     $profile = $user->getProfile();
                     if (true === isset($profile) && true === is_object($profile)) {
-                        $usercountry = $profile->getCountry();
-                        if (false === isset($usercountry) || false === is_object($usercountry) || $usercountry == null) {
+#                        $usercountry = $profile->getCountry();
+#                        if (false === isset($usercountry) || false === is_object($usercountry) || $usercountry == null) {
                             echo ".";
                             $c++;
                             $country->setUsersNum($country->getUsersNum() + 1);
                             $licotest->persist($country);
                             $profile->setCountry($country);
                             $licotest->persist($profile);
-                        }
+#                        }
                     }
                 }
                 gc_collect_cycles();
@@ -90,6 +90,7 @@ EOT
             $licotest->flush();
             echo "\n";
         }
+        $licotest->flush();
 
         $licotest->clear();
         $licotest->close();
