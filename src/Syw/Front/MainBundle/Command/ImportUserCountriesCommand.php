@@ -85,9 +85,9 @@ EOT
                         }
                     }
                 }
-                $licotest->flush();
                 gc_collect_cycles();
             }
+            $licotest->flush();
             echo "\n";
         }
 
