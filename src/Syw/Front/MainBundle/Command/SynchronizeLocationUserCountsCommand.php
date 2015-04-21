@@ -79,9 +79,10 @@ EOT
 
                 $userProfiles = null;
                 unset($userProfiles);
+                $num = 0;
                 $userProfiles = $city->getUsers();
                 $num = sizeof($userProfiles);
-                $city->setUserNum(sizeof($num));
+                $city->setUserNum(intval($num));
                 $db->persist($city);
                 if ($c == 100) {
                     echo ".";
