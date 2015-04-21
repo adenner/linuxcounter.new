@@ -57,6 +57,9 @@ EOT
         $countries = $licotest->getRepository('SywFrontMainBundle:Countries')->findAll();
 
         foreach ($countries as $country) {
+            $country->setUsersNum(0);
+            $licotest->persist($country);
+            $licotest->flush();
             $code = strtoupper($country->getCode());
             echo "> ".$code.", ".$country->getName()." \n";
             $rows = $lico->fetchAll("SELECT p.f_key FROM persons p WHERE country = '".$code."'");
