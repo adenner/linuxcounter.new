@@ -31,7 +31,7 @@
                                             {{ knp_pagination_sortable(paginationAAA, 'Population', 'b.population', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                         <th>
-                                            {{ knp_pagination_sortable(paginationAAA, 'No. of Users', 'b.users|length', {'defaultDirection' : 'asc'}) }}
+                                            {{ knp_pagination_sortable(paginationAAA, 'No. of Users', 'b.usernum', {'defaultDirection' : 'asc'}) }}
                                         </th>
                                     </tr>
                                     </thead>
@@ -56,7 +56,7 @@
                                             {{ row.population|number_format }}
                                         </td>
                                         <td>
-                                            {{ row.usersnum|number_format }}
+                                            {{ row.usernum|number_format }}
                                         </td>
                                     </tr>
                                     {% endfor %}
