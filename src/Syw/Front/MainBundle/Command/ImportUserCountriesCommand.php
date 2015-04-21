@@ -58,7 +58,7 @@ EOT
 
         foreach ($countries as $country) {
             $code = strtoupper($country->getCode());
-            echo "> ".$country->getCode().", ".$country->getName()." \n";
+            echo "> ".$code.", ".$country->getName()." \n";
             $rows = $lico->fetchAll("SELECT p.f_key FROM persons p WHERE country = '".$code."'");
             $c = 0;
             foreach ($rows as $row) {
@@ -66,24 +66,27 @@ EOT
                 unset($user);
                 $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $row['f_key']));
                 if (true === isset($user) && true === is_object($user)) {
-                    echo ".";
-                    $c++;
-                    $country->setUsersNum($country->getUsersNum()+1);
-                    $licotest->persist($country);
                     $profile = null;
                     unset($profile);
                     $profile = $user->getProfile();
                     if (true === isset($profile) && true === is_object($profile)) {
-                        $profile->setCountry($country);
-                        $licotest->persist($profile);
+                        $usercountry = $profile->getCountry();
+                        if (false === isset($usercountry) || false === is_object($usercountry) || $usercountry == null) {
+                            echo ".";
+                            $c++;
+                            $country->setUsersNum($country->getUsersNum() + 1);
+                            $licotest->persist($country);
+                            $profile->setCountry($country);
+                            $licotest->persist($profile);
+                        }
                     }
                 }
+                $licotest->flush();
+                gc_collect_cycles();
             }
             echo "\n";
-            $licotest->flush();
         }
 
-        $licotest->flush();
         $licotest->clear();
         $licotest->close();
         $licotestdb->close();
