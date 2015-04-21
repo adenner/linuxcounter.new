@@ -62,12 +62,13 @@ EOT
             $licotest->flush();
             $code = strtoupper($country->getCode());
             echo "> ".$code.", ".$country->getName()." \n";
-            $rows = $lico->fetchAll("SELECT p.f_key FROM persons p WHERE country = '".$code."'");
+            $rows = $lico->fetchAll("SELECT p.f_key AS id FROM persons p WHERE UPPER(country) = '".$code."'");
+            echo "> ".count($rows)." users found... \n";
             $c = 0;
             foreach ($rows as $row) {
                 $user = null;
                 unset($user);
-                $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $row['f_key']));
+                $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $row['id']));
                 if (true === isset($user) && true === is_object($user)) {
                     $profile = null;
                     unset($profile);
