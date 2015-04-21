@@ -82,6 +82,7 @@ EOT
                     $user->setProfile($id);
                     $licotest->persist($user);
                     $licotest->flush();
+                    echo ".";
                     gc_collect_cycles();
                 }
                 gc_collect_cycles();
