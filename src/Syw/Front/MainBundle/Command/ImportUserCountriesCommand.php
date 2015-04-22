@@ -52,19 +52,26 @@ EOT
         $licotest   = $this->getContainer()->get('doctrine')->getManager();
         $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
 
+        $importlogfile = "import-syw.import.usercountries";
+
         gc_collect_cycles();
 
-        $rows = $licotestdb->fetchAll('SELECT id FROM countries WHERE id >= 140 ORDER BY id ASC');
-        foreach ($rows as $row) {
-            $cid = intval($row['id']);
-            $country = $licotest->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('id' => $cid));
+        if (true === file_exists($importlogfile.'.db')) {
+            $data = file_get_contents($importlogfile.'.db');
+            $cid = intval(trim($data));
+        } else {
+            $cid = 159;
+        }
+
+        $country = $licotest->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('id' => $cid));
+        if (true === isset($country) && true === is_object($country)) {
             $country->setUsersNum(0);
             $licotest->persist($country);
             $licotest->flush();
             $code = strtoupper($country->getCode());
-            echo "> ".$cid.", ".$code.", ".$country->getName()." \n";
-            $rows = $lico->fetchAll("SELECT p.f_key AS id FROM persons p WHERE UPPER(country) = '".$code."'");
-            echo "> ".count($rows)." users found... \n";
+            echo "> " . $cid . ", " . $code . ", " . $country->getName() . " \n";
+            $rows = $lico->fetchAll("SELECT p.f_key AS id FROM persons p WHERE UPPER(country) = '" . $code . "'");
+            echo "> " . count($rows) . " users found... \n";
             $c = 0;
             foreach ($rows as $row) {
                 $user = null;
@@ -87,10 +94,12 @@ EOT
             }
             $licotest->flush();
             echo "\n";
-        }
-        $licotest->flush();
+            $licotest->flush();
 
-        $licotest->clear();
+            $licotest->clear();
+        } else {
+            exit(0);
+        }
         $licotest->close();
         $licotestdb->close();
         $lico->close();
@@ -103,6 +112,8 @@ EOT
         unset($lico);
 
         gc_collect_cycles();
+        $fp = file_put_contents($importlogfile . '.db', $cid+1);
+        @exec("php app/console syw:import:usercountries >>".$importlogfile.".log 2>&1 3>&1 4>&1 &");
         exit(0);
     }
 

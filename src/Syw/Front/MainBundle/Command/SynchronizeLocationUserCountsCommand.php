@@ -40,11 +40,13 @@ EOT
     {
         $item = $input->getArgument('item');
 
+        $importlogfile = "import-syw.synchronize.usercounts";
+
         $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
         $db = $this->getContainer()->get('doctrine')->getManager();
 
         if ($item == "cities") {
-            @exec("php app/console syw:synchronize:usercounts citiesbg >>import.log 2>&1 3>&1 4>&1 &");
+            @exec("php app/console syw:synchronize:usercounts citiesbg >>".$importlogfile.".log 2>&1 3>&1 4>&1 &");
             exit(0);
         }
 
@@ -52,8 +54,8 @@ EOT
         if ($item == "citiesbg") {
             gc_collect_cycles();
 
-            if (true === file_exists('import.db')) {
-                $fp   = fopen('import.db', "r");
+            if (true === file_exists($importlogfile.'.db')) {
+                $fp   = fopen($importlogfile.'.db', "r");
                 $data = fread($fp, 1024);
                 fclose($fp);
                 $fp = null;
@@ -97,19 +99,19 @@ EOT
                 $z++;
 
                 file_put_contents(
-                    "import.log",
+                    $importlogfile.".log",
                     ">>> " . $counter . " | " . $z . " | " . $city->getId() . " | " . $num . " \n",
                     FILE_APPEND
                 );
 
                 gc_collect_cycles();
             }
-            file_put_contents('import.db', ($a + $itemsperloop) . " " . $counter);
+            file_put_contents($importlogfile.'.db', ($a + $itemsperloop) . " " . $counter);
 
             $db->flush();
             $licotestdb->close();
             gc_collect_cycles();
-            @exec("php app/console syw:synchronize:usercounts cities >>import.log 2>&1 3>&1 4>&1 &");
+            @exec("php app/console syw:synchronize:usercounts cities >>".$importlogfile.".log 2>&1 3>&1 4>&1 &");
             exit(0);
         }
 
