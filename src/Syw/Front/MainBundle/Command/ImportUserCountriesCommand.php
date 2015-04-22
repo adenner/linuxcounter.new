@@ -54,9 +54,10 @@ EOT
 
         gc_collect_cycles();
 
-        $countries = $licotest->getRepository('SywFrontMainBundle:Countries')->findAll();
-
-        foreach ($countries as $country) {
+        $rows = $licotestdb->fetchAll('SELECT id FROM countries WHERE id >= 109 ORDER BY id ASC');
+        foreach ($rows as $row) {
+            $cid = intval($row['id']);
+            $country = $licotest->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('id' => $cid));
             $country->setUsersNum(0);
             $licotest->persist($country);
             $licotest->flush();
