@@ -8,8 +8,6 @@ class RegisterControllerTest extends BaseControllerTest
     {
         $crawler = $this->client->request('GET', $this->base_proto.'://'.$this->base_host.'/register/');
 
-        echo $this->client->getResponse()->getContent();
-
         $form = $crawler->filter('form[class=fos_user_registration_register]')->form(array(
             'fos_user_registration_form[email]'                 => $this->test1_email,
             'fos_user_registration_form[username]'              => $this->test1_username,
