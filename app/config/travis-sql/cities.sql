@@ -33,7 +33,11 @@ CREATE TABLE `cities` (
   `short_name` varchar(48) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `usernum` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`),
+  KEY `searchcity` (`iso_country_code`,`name`),
+  KEY `usernum` (`usernum`),
+  KEY `searchkoords` (`latitude`,`longitude`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -46,4 +50,4 @@ CREATE TABLE `cities` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-15 12:02:38
+-- Dump completed on 2015-04-22 13:08:34

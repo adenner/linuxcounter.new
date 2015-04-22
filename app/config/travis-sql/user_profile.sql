@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS `user_profile`;
 CREATE TABLE `user_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
-  `city` int(11) DEFAULT NULL,
   `firstname` varchar(128) DEFAULT NULL,
   `lastname` varchar(128) DEFAULT NULL,
   `birthday` varchar(10) DEFAULT NULL,
@@ -44,10 +43,11 @@ CREATE TABLE `user_profile` (
   `sincewhen` varchar(10) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `modified_at` datetime DEFAULT NULL,
+  `city` int(11) DEFAULT NULL,
   `country` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_D95AB4058D93D649` (`user`),
-  KEY `city` (`city`),
+  KEY `IDX_D95AB4052D5B0234` (`city`),
   KEY `IDX_D95AB4055373C966` (`country`),
   CONSTRAINT `FK_D95AB4052D5B0234` FOREIGN KEY (`city`) REFERENCES `cities` (`id`) ON DELETE NO ACTION,
   CONSTRAINT `FK_D95AB4055373C966` FOREIGN KEY (`country`) REFERENCES `countries` (`id`) ON DELETE NO ACTION,
@@ -64,4 +64,4 @@ CREATE TABLE `user_profile` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-15 12:02:38
+-- Dump completed on 2015-04-22 13:08:35

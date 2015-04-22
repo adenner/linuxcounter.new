@@ -42,7 +42,7 @@ class SecurityController extends BaseController
         $metatitle = $this->get('translator')->trans('User Login', array(), 'fos_user_security_login');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $return2 = $this->getTransForm($user);
+        $return2 = $this->getTransForm(null);
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
