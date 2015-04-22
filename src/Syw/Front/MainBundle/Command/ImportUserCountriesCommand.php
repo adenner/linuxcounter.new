@@ -54,7 +54,7 @@ EOT
 
         gc_collect_cycles();
 
-        $rows = $licotestdb->fetchAll('SELECT id FROM countries WHERE id >= 109 ORDER BY id ASC');
+        $rows = $licotestdb->fetchAll('SELECT id FROM countries WHERE id >= 140 ORDER BY id ASC');
         foreach ($rows as $row) {
             $cid = intval($row['id']);
             $country = $licotest->getRepository('SywFrontMainBundle:Countries')->findOneBy(array('id' => $cid));
@@ -62,7 +62,7 @@ EOT
             $licotest->persist($country);
             $licotest->flush();
             $code = strtoupper($country->getCode());
-            echo "> ".$code.", ".$country->getName()." \n";
+            echo "> ".$cid.", ".$code.", ".$country->getName()." \n";
             $rows = $lico->fetchAll("SELECT p.f_key AS id FROM persons p WHERE UPPER(country) = '".$code."'");
             echo "> ".count($rows)." users found... \n";
             $c = 0;
@@ -75,15 +75,12 @@ EOT
                     unset($profile);
                     $profile = $user->getProfile();
                     if (true === isset($profile) && true === is_object($profile)) {
-#                        $usercountry = $profile->getCountry();
-#                        if (false === isset($usercountry) || false === is_object($usercountry) || $usercountry == null) {
-                            echo ".";
-                            $c++;
-                            $country->setUsersNum($country->getUsersNum() + 1);
-                            $licotest->persist($country);
-                            $profile->setCountry($country);
-                            $licotest->persist($profile);
-#                        }
+                        echo ".";
+                        $c++;
+                        $country->setUsersNum($country->getUsersNum() + 1);
+                        $licotest->persist($country);
+                        $profile->setCountry($country);
+                        $licotest->persist($profile);
                     }
                 }
                 gc_collect_cycles();
