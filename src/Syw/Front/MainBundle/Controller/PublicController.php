@@ -57,17 +57,8 @@ class PublicController extends BaseController
         $title = $metatitle;
         $online = $this->getOnlineUsers();
         $host = $this->getHost();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return $this->render('SywFrontMainBundle:Public:profile.html.twig', array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'language' => $language->getLanguage(),
             'host' => $host,
             'online' => $online,
@@ -77,10 +68,10 @@ class PublicController extends BaseController
             'thisuserprofile' => $thisuserProfile,
             'thisprivacy' => $thisprivacy,
             'thismachines' => $thismachines,
-            'transtolanguage' => $transtolanguage->getLanguage(),
             'languages' => $languages,
             'user' => $user
-        ));
+        );
+        return $this->render('SywFrontMainBundle:Public:profile.html.twig', array_merge($return1, $return2));
     }
 
     /**
@@ -165,17 +156,8 @@ class PublicController extends BaseController
         $title = $metatitle;
         $online = $this->getOnlineUsers();
         $host = $this->getHost();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return $this->render('SywFrontMainBundle:Public:machine.html.twig', array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'host' => $host,
             'online' => $online,
             'metatitle' => $metatitle,
@@ -188,6 +170,7 @@ class PublicController extends BaseController
             'language' => $language,
             'languages' => $languages,
             'user' => $user
-        ));
+        );
+        return $this->render('SywFrontMainBundle:Public:machine.html.twig', array_merge($return1, $return2));
     }
 }

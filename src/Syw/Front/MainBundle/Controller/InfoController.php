@@ -162,17 +162,8 @@ class InfoController extends BaseController
         $metatitle = $this->get('translator')->trans('Edit profile information', array(), 'syw_front_main_info_edit');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return $this->render('SywFrontMainBundle:Info:edit.html.twig', array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'language' => $language->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
@@ -181,7 +172,8 @@ class InfoController extends BaseController
             'cityform' => $cityform->createView(),
             'languages' => $languages,
             'user' => $user
-        ));
+        );
+        return $this->render('SywFrontMainBundle:Info:edit.html.twig', array_merge($return1, $return2));
     }
 
     /**

@@ -34,17 +34,8 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title1' => $title1,
@@ -53,6 +44,7 @@ class StatsController extends BaseController
             'user' => $user,
             'stats' => $stats
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -104,19 +96,10 @@ class StatsController extends BaseController
         );
 
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'paginationAAA' => $paginationAAA,
             'paginationBBB' => $paginationBBB,
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -124,6 +107,7 @@ class StatsController extends BaseController
             'user' => $user,
             'stats' => $stats
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -158,20 +142,11 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'city' => $city,
             'country' => $country,
             'users' => $users,
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -179,6 +154,7 @@ class StatsController extends BaseController
             'user' => $user,
             'stats' => $stats
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -208,18 +184,9 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'country' => $country,
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -227,6 +194,7 @@ class StatsController extends BaseController
             'user' => $user,
             'stats' => $stats
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -312,17 +280,8 @@ class StatsController extends BaseController
 
 
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title1' => $title1,
@@ -331,6 +290,7 @@ class StatsController extends BaseController
             'user' => $user,
             'stats' => $stats
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -371,18 +331,9 @@ class StatsController extends BaseController
         );
 
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'paginationAAA' => $paginationAAA,
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -390,6 +341,7 @@ class StatsController extends BaseController
             'user' => $user,
             'stats' => $stats
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -430,18 +382,9 @@ class StatsController extends BaseController
         );
 
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'paginationAAA' => $paginationAAA,
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -449,6 +392,7 @@ class StatsController extends BaseController
             'user' => $user,
             'stats' => $stats
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -473,17 +417,8 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -491,6 +426,7 @@ class StatsController extends BaseController
             'user' => $user,
             'stats' => $stats
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -606,17 +542,8 @@ class StatsController extends BaseController
         // end of chart
 
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title1' => $title1,
@@ -626,5 +553,6 @@ class StatsController extends BaseController
             'user' => $user,
             'chart' => $chart_registrations_per_month
         );
+        return array_merge($return1, $return2);
     }
 }

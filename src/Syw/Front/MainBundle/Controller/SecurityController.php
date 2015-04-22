@@ -42,17 +42,8 @@ class SecurityController extends BaseController
         $metatitle = $this->get('translator')->trans('User Login', array(), 'fos_user_security_login');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return $this->renderLogin(array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -60,7 +51,8 @@ class SecurityController extends BaseController
             'error'         => $error,
             'csrf_token' => $csrfToken,
             'languages' => $languages
-        ));
+        );
+        return $this->renderLogin(array_merge($return1, $return2));
     }
 
     /**

@@ -31,22 +31,14 @@ class ResettingController extends BaseController
         $metatitle = $this->get('translator')->trans('Password reset', array(), 'fos_user_resetting_request');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return $this->render('FOSUserBundle:Resetting:request.html.twig', array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages
-        ));
+        );
+        return $this->render('FOSUserBundle:Resetting:request.html.twig', array_merge($return1, $return2));
     }
 
     /**
@@ -108,24 +100,16 @@ class ResettingController extends BaseController
         $metatitle = $this->get('translator')->trans('Password reset', array(), 'fos_user_resetting_checkEmail');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return $this->render('FOSUserBundle:Resetting:checkEmail.html.twig', array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'email' => $email,
             'languages' => $languages,
             'user' => $user
-        ));
+        );
+        return $this->render('FOSUserBundle:Resetting:checkEmail.html.twig', array_merge($return1, $return2));
     }
 
     /**
@@ -181,17 +165,8 @@ class ResettingController extends BaseController
         $metatitle = $this->get('translator')->trans('Password reset', array(), 'fos_user_resetting_reset');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return $this->render('FOSUserBundle:Resetting:reset.html.twig', array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -199,7 +174,8 @@ class ResettingController extends BaseController
             'form' => $form->createView(),
             'languages' => $languages,
             'user' => $user
-        ));
+        );
+        return $this->render('FOSUserBundle:Resetting:reset.html.twig', array_merge($return1, $return2));
     }
 
     /**

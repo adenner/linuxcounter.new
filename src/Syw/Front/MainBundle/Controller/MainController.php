@@ -35,18 +35,8 @@ class MainController extends BaseController
         $metatitle = "";
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
@@ -54,6 +44,7 @@ class MainController extends BaseController
             'user' => $user,
             'stats' => $stats
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -105,17 +96,8 @@ class MainController extends BaseController
         $metatitle = $this->get('translator')->trans('Contact us by sending us an email', array(), 'syw_front_main_main_contact');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'form' => $form->createView(),
             'metatitle' => $metatitle,
@@ -123,6 +105,7 @@ class MainController extends BaseController
             'languages' => $languages,
             'user' => $user,
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -146,23 +129,15 @@ class MainController extends BaseController
         $metatitle = $this->get('translator')->trans('About the Linux Counter', array(), 'syw_front_main_main_about');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -186,23 +161,15 @@ class MainController extends BaseController
         $metatitle = $this->get('translator')->trans('Get the free update script for your machine', array(), 'syw_front_main_main_downloads');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -226,23 +193,15 @@ class MainController extends BaseController
         $metatitle = $this->get('translator')->trans('Our Imprint', array(), 'syw_front_main_main_impressum');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -266,23 +225,15 @@ class MainController extends BaseController
         $metatitle = $this->get('translator')->trans('FAQ - Frequently Asked Questions', array(), 'syw_front_main_main_faq');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -306,23 +257,15 @@ class MainController extends BaseController
         $metatitle = $this->get('translator')->trans('Donations to the Project', array(), 'syw_front_main_main_donations');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -346,23 +289,15 @@ class MainController extends BaseController
         $metatitle = $this->get('translator')->trans('The Linux Counter is fully sponsored by FIRST COLO', array(), 'syw_front_main_main_sponsor');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
         );
+        return array_merge($return1, $return2);
     }
 
     /**
@@ -391,20 +326,12 @@ class MainController extends BaseController
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
         $online = $this->getOnlineUsers();
-        $actuallocale = $this->get('request')->getLocale();
-        $transtolanguage = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findOneBy(array('locale' => $actuallocale));
-        $transform_array = $this->getTranslateForm();
-        return array(
-            'formTrans_navi' => $transform_array['navi']->createView(),
-            'formTrans_route' => $transform_array['route']->createView(),
-            'formTrans_footer' => $transform_array['footer']->createView(),
-            'formTrans_others' => $transform_array['others']->createView(),
-            'transtolanguage' => $transtolanguage->getLanguage(),
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
             'online' => $online,
             'languages' => $languages,
-            'user' => $user
+            'user' => $user,
         );
+        return array_merge($return1, $return2);
     }
 }
