@@ -20,8 +20,7 @@ before_script:
   - php app/console doctrine:database:create
   - if [[ "$DB" == "mysql" ]]; then cd app/config/travis-sql; for i in *; do mysql -uroot licotest < ${i}; done; cd ../../..; fi
   - php app/console doctrine:cache:clear-metadata
-  - php app/console cache:clear --env=prod --no-debug
-  - php app/console cache:clear --env=dev
+  - php app/console cache:clear
   - php app/console assets:install --symlink web --no-debug
   - php app/console assetic:dump
   - php app/console asm:translations:dummy
