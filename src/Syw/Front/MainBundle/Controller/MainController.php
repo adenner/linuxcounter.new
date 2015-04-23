@@ -301,6 +301,70 @@ class MainController extends BaseController
     }
 
     /**
+     * @Route("/privacypolicy")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function privacypolicyAction()
+    {
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+
+        $metatitle = $this->get('translator')->trans('This is our Privacy Policy', array(), 'syw_front_main_main_privacypolicy');
+        $title = $metatitle;
+        $online = $this->getOnlineUsers();
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
+            'online' => $online,
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+        );
+        return array_merge($return1, $return2);
+    }
+
+    /**
+     * @Route("/tos")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function tosAction()
+    {
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+
+        $metatitle = $this->get('translator')->trans('These are our Terms of Service', array(), 'syw_front_main_main_tos');
+        $title = $metatitle;
+        $online = $this->getOnlineUsers();
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
+            'online' => $online,
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+        );
+        return array_merge($return1, $return2);
+    }
+
+    /**
      * @Route("/lang")
      * @Method("POST")
      */

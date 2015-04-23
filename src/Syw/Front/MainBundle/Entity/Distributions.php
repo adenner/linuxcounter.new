@@ -3,15 +3,27 @@
 namespace Syw\Front\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\Index;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Distributions
  *
- * @ORM\Table(name="distributions", indexes={@ORM\Index(name="name", columns={"name"})})
+ * @ORM\Table(name="distributions", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="machinesnum", columns={"machinesnum"})})
  * @ORM\Entity
  */
 class Distributions
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Syw\Front\MainBundle\Entity\Machines", mappedBy="distribution")
+     */
+    protected $machines;
+    public function __construct()
+    {
+        $this->machines = new ArrayCollection();
+    }
+
     /**
      * @var string
      *
@@ -25,6 +37,13 @@ class Distributions
      * @ORM\Column(name="url", type="string", length=128, nullable=true)
      */
     private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @var integer
@@ -41,6 +60,16 @@ class Distributions
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * Get machines
+     *
+     * @return ArrayCollection
+     */
+    public function getMachines()
+    {
+        return $this->machines;
+    }
 
     /**
      * Set machinesnum
@@ -109,6 +138,29 @@ class Distributions
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Distributions
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**

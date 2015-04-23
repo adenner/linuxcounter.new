@@ -3,15 +3,27 @@
 namespace Syw\Front\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\Index;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Architectures
  *
- * @ORM\Table(name="architectures", indexes={@ORM\Index(name="name", columns={"name"})})
+ * @ORM\Table(name="architectures", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="machinesnum", columns={"machinesnum"})})
  * @ORM\Entity
  */
 class Architectures
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Syw\Front\MainBundle\Entity\Machines", mappedBy="architecture")
+     */
+    protected $machines;
+    public function __construct()
+    {
+        $this->machines = new ArrayCollection();
+    }
+
     /**
      * @var string
      *
@@ -34,6 +46,16 @@ class Architectures
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * Get machines
+     *
+     * @return ArrayCollection
+     */
+    public function getMachines()
+    {
+        return $this->machines;
+    }
 
     /**
      * Set machinesnum

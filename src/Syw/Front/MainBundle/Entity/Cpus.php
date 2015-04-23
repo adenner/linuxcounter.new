@@ -3,15 +3,27 @@
 namespace Syw\Front\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\Index;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Cpus
  *
- * @ORM\Table(name="cpus", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="hertz", columns={"hertz"})})
+ * @ORM\Table(name="cpus", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="hertz", columns={"hertz"}), @ORM\Index(name="machinesnum", columns={"machinesnum"})})
  * @ORM\Entity
  */
 class Cpus
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Syw\Front\MainBundle\Entity\Machines", mappedBy="cpu")
+     */
+    protected $machines;
+    public function __construct()
+    {
+        $this->machines = new ArrayCollection();
+    }
+
     /**
      * @var string
      *
@@ -41,6 +53,16 @@ class Cpus
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * Get machines
+     *
+     * @return ArrayCollection
+     */
+    public function getMachines()
+    {
+        return $this->machines;
+    }
 
     /**
      * Set machinesnum

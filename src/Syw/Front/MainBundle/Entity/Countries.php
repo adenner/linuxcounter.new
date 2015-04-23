@@ -3,22 +3,32 @@
 namespace Syw\Front\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\Index;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Countries
  *
- * @ORM\Table(name="countries", indexes={@ORM\Index(name="code", columns={"code"})})
+ * @ORM\Table(name="countries", indexes={@ORM\Index(name="code", columns={"code"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="usersnum", columns={"usersnum"}), @ORM\Index(name="machinesnum", columns={"machinesnum"})})
  * @ORM\Entity
  */
 class Countries
 {
     /**
-     * @ORM\OneToMany(targetEntity="UserProfile", mappedBy="country")
+     * @ORM\OneToMany(targetEntity="Syw\Front\MainBundle\Entity\UserProfile", mappedBy="country")
      */
     protected $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Syw\Front\MainBundle\Entity\Machines", mappedBy="country")
+     */
+    protected $machines;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->machines = new ArrayCollection();
     }
 
     /**
@@ -198,5 +208,15 @@ class Countries
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Get machines
+     *
+     * @return ArrayCollection
+     */
+    public function getMachines()
+    {
+        return $this->machines;
     }
 }

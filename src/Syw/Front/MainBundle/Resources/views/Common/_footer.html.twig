@@ -34,14 +34,16 @@
                             <a href="{{ url('syw_front_main_main_download') }}" title="{{ 'Download the new lico update script here...'|trans }}">{{ 'Download'|trans }}</a> &middot;
                             <a href="{{ url('syw_front_main_main_about') }}" title="{{ 'Read some information about us and this project...'|trans }}">{{ 'About'|trans }}</a> &middot;
                             <a href="{{ url('syw_front_main_main_faq') }}" title="{{ 'Read the frequently asked questions...'|trans }}">{{ 'FAQ'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_impressum') }}" title="{{ 'Read our imprint...'|trans }}">{{ 'Imprint'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_sponsor') }}" title="{{ 'See here who sponsors us...'|trans }}">{{ 'Sponsor'|trans }}</a><br/>
-                            <a href="{{ url('syw_front_main_main_contact') }}" title="{{ 'Contact us in case of questions or problems...'|trans }}">{{ 'Contact'|trans }}</a> &middot;
                             <a href="https://github.com/alexloehner/linuxcounter.new/issues" title="github issues">{{ 'Bugtracker'|trans }}</a> &middot;
                             <a href="https://github.com/alexloehner/linuxcounter.new" title="{{ 'See the source code of this page...'|trans }}">{{ 'Code base'|trans }}</a> &middot;
-                            <a href="https://travis-ci.org/alexloehner/linuxcounter.new" title="{{ 'See here for the automated builds...'|trans }}">{{ 'Unittests'|trans }}</a> &middot;
+                            <a href="https://travis-ci.org/alexloehner/linuxcounter.new" title="{{ 'See here for the automated builds...'|trans }}">{{ 'Unittests'|trans }}</a><br>
                             <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
                             <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE" title="{{ 'See here the license for this project...'|trans }}">{{ 'License'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_sponsor') }}" title="{{ 'See here who sponsors us...'|trans }}">{{ 'Sponsor'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_impressum') }}" title="{{ 'Read our imprint...'|trans }}">{{ 'Imprint'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_privacypolicy') }}" title="{{ 'Read our privacy policy...'|trans }}">{{ 'Privacy Policy'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_tos') }}" title="{{ 'Read our ToS...'|trans }}">{{ 'Terms of Service'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_contact') }}" title="{{ 'Contact us in case of questions or problems...'|trans }}">{{ 'Contact'|trans }}</a>
                             {% if is_granted('ROLE_ADMIN') %}
                                 &middot; <a href="{{ url('news_admin_list') }}">{{ 'News-Admin'|trans }}</a>
                                 &middot; <a href="{{ url('admin') }}">{{ 'Administration'|trans }}</a>
@@ -60,6 +62,7 @@
                     </div>
                 </div>
             </div>
+            {% if app.environment == 'prod' %}
             <div class="row">
                 <div class="col-sm-6">
                     <div class="border">
@@ -72,9 +75,10 @@
                     </div>
                 </div>
             </div>
-
+            {% endif %}
             <p> &nbsp; </p>
             <div id="contact" class="container">
+                {% if app.environment == 'prod' %}
                 <div class="row ads_footer">
                     <div class="col-sm-12">
                         <!-- LiCo Footer NEU -->
@@ -88,6 +92,7 @@
                         </script>
                     </div>
                 </div>
+                {% endif %}
                 <div class="row">
                     <div class="col-sm-12">
                         {{ include('SywFrontMainBundle:Common:_social.html.twig') }}

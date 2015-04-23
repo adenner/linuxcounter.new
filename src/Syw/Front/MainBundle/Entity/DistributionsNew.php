@@ -8,15 +8,15 @@ use Doctrine\ORM\Mapping\Index;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Kernels
+ * Distributions
  *
- * @ORM\Table(name="kernels", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="machinesnum", columns={"machinesnum"})})
+ * @ORM\Table(name="distributions_new", indexes={@ORM\Index(name="id", columns={"id"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="machinesnum", columns={"machinesnum"})})
  * @ORM\Entity
  */
-class Kernels
+class DistributionsNew
 {
     /**
-     * @ORM\OneToMany(targetEntity="Syw\Front\MainBundle\Entity\Machines", mappedBy="kernel")
+     * @ORM\OneToMany(targetEntity="Syw\Front\MainBundle\Entity\Machines", mappedBy="distribution")
      */
     protected $machines;
     public function __construct()
@@ -27,9 +27,23 @@ class Kernels
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=50, nullable=false)
+     * @ORM\Column(name="name", type="string", length=64, nullable=false)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=128, nullable=true)
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @var integer
@@ -84,7 +98,7 @@ class Kernels
      * Set name
      *
      * @param string $name
-     * @return Kernels
+     * @return Distributions
      */
     public function setName($name)
     {
@@ -101,6 +115,52 @@ class Kernels
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Distributions
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Distributions
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**

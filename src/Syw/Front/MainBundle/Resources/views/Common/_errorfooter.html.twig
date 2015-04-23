@@ -9,19 +9,22 @@
                 <div class="col-sm-12">
                     <div class="row footerlinks">
                         <div class="content">
-                            <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_download') }}">{{ 'Download'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_faq') }}">{{ 'FAQ'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Imprint'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a><br/>
-                            <a href="https://github.com/alexloehner/linuxcounter.new/issues">{{ 'Bugtracker'|trans }}</a> &middot;
-                            <a href="https://github.com/alexloehner/linuxcounter.new">{{ 'Code base'|trans }}</a> &middot;
-                            <a href="https://travis-ci.org/alexloehner/linuxcounter.new">{{ 'Unittests'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_index') }}" title="{{ 'Back to the main page...'|trans }}">{{ 'Home'|trans }}</a> &middot;
+                            <a href="{{ url('news_homepage') }}" title="{{ 'Read the latest news and announcements...'|trans }}">{{ 'News'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_stats_index') }}" title="{{ 'Go to the mainpage of the statistics...'|trans }}">{{ 'Statistics'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_download') }}" title="{{ 'Download the new lico update script here...'|trans }}">{{ 'Download'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_about') }}" title="{{ 'Read some information about us and this project...'|trans }}">{{ 'About'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_faq') }}" title="{{ 'Read the frequently asked questions...'|trans }}">{{ 'FAQ'|trans }}</a> &middot;
+                            <a href="https://github.com/alexloehner/linuxcounter.new/issues" title="github issues">{{ 'Bugtracker'|trans }}</a> &middot;
+                            <a href="https://github.com/alexloehner/linuxcounter.new" title="{{ 'See the source code of this page...'|trans }}">{{ 'Code base'|trans }}</a> &middot;
+                            <a href="https://travis-ci.org/alexloehner/linuxcounter.new" title="{{ 'See here for the automated builds...'|trans }}">{{ 'Unittests'|trans }}</a><br>
                             <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
-                            <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">{{ 'License'|trans }}</a> &middot;
-                            <a href="{{ url('syw_front_main_main_sponsor') }}">{{ 'Sponsor'|trans }}</a>
+                            <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE" title="{{ 'See here the license for this project...'|trans }}">{{ 'License'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_sponsor') }}" title="{{ 'See here who sponsors us...'|trans }}">{{ 'Sponsor'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_impressum') }}" title="{{ 'Read our imprint...'|trans }}">{{ 'Imprint'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_privacypolicy') }}" title="{{ 'Read our privacy policy...'|trans }}">{{ 'Privacy Policy'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_tos') }}" title="{{ 'Read our ToS...'|trans }}">{{ 'Terms of Service'|trans }}</a> &middot;
+                            <a href="{{ url('syw_front_main_main_contact') }}" title="{{ 'Contact us in case of questions or problems...'|trans }}">{{ 'Contact'|trans }}</a>
                             <br/>
                         </div>
                     </div>

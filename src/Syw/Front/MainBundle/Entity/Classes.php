@@ -3,15 +3,27 @@
 namespace Syw\Front\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\Index;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Classes
  *
- * @ORM\Table(name="classes", indexes={@ORM\Index(name="name", columns={"name"})})
+ * @ORM\Table(name="classes", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="machinesnum", columns={"machinesnum"})})
  * @ORM\Entity
  */
 class Classes
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Syw\Front\MainBundle\Entity\Machines", mappedBy="class")
+     */
+    protected $machines;
+    public function __construct()
+    {
+        $this->machines = new ArrayCollection();
+    }
+
     /**
      * @var string
      *
@@ -34,6 +46,16 @@ class Classes
      * @ORM\Column(name="machinesnum", type="integer", length=11, nullable=true)
      */
     private $machinesnum;
+
+    /**
+     * Get machines
+     *
+     * @return ArrayCollection
+     */
+    public function getMachines()
+    {
+        return $this->machines;
+    }
 
     /**
      * Set machinesnum
