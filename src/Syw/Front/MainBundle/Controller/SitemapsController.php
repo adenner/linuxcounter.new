@@ -65,7 +65,7 @@ class SitemapsController extends BaseController
                         !preg_match("/stats_cities/", $route) &&
                         !preg_match("/stats_countries/", $route) &&
                         !preg_match("/resetting_reset/", $route) &&
-                        !preg_match("/^api_/", $route) &&
+                        !preg_match("/api/", $route) &&
                         !preg_match("/error/", $route) &&
                         !preg_match("/security_check/", $route) &&
                         !preg_match("/remove/", $route)

@@ -110,6 +110,50 @@ $(document).ready(function() {
         /* $("#myModal").modal('hide'); */
     });
 
+    $(".githubissues").click(function(){
+        window.location.href = "https://github.com/alexloehner/linuxcounter.new/issues";
+    });
+
+    $(".github").click(function(){
+        window.location.href = "https://github.com/alexloehner/linuxcounter.new";
+    });
+
+    $(".travis").click(function(){
+        window.location.href = "https://travis-ci.org/alexloehner/linuxcounter.new";
+    });
+
+    $(".versioneye").click(function(){
+        window.location.href = "https://www.versioneye.com/user/projects/5509756b4996ebef3300004f";
+    });
+
+    $(".coveralls").click(function(){
+        window.location.href = "https://coveralls.io/r/alexloehner/linuxcounter.new";
+    });
+
+    $(".scrutinzer").click(function(){
+        window.location.href = "https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/?branch=master";
+    });
+
+    $(".codeclimate").click(function(){
+        window.location.href = "https://codeclimate.com/github/alexloehner/linuxcounter.new";
+    });
+
+    $(".license").click(function(){
+        window.location.href = "https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE";
+    });
+
+    $(".facebook").click(function(){
+        window.location.href = "https://www.facebook.com/linuxcounter";
+    });
+
+    $(".twitter").click(function(){
+        window.location.href = "https://twitter.com/NewLinuxCounter";
+    });
+
+    $(".googleplus").click(function(){
+        window.location.href = "https://plus.google.com/u/0/b/110560922503990043085/110560922503990043085/posts";
+    });
+
 
 
 

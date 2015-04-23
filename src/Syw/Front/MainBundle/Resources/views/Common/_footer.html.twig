@@ -34,11 +34,11 @@
                             <a href="{{ url('syw_front_main_main_download') }}" title="{{ 'Download the new lico update script here...'|trans }}">{{ 'Download'|trans }}</a> &middot;
                             <a href="{{ url('syw_front_main_main_about') }}" title="{{ 'Read some information about us and this project...'|trans }}">{{ 'About'|trans }}</a> &middot;
                             <a href="{{ url('syw_front_main_main_faq') }}" title="{{ 'Read the frequently asked questions...'|trans }}">{{ 'FAQ'|trans }}</a> &middot;
-                            <a href="https://github.com/alexloehner/linuxcounter.new/issues" title="github issues">{{ 'Bugtracker'|trans }}</a> &middot;
-                            <a href="https://github.com/alexloehner/linuxcounter.new" title="{{ 'See the source code of this page...'|trans }}">{{ 'Code base'|trans }}</a> &middot;
-                            <a href="https://travis-ci.org/alexloehner/linuxcounter.new" title="{{ 'See here for the automated builds...'|trans }}">{{ 'Unittests'|trans }}</a><br>
-                            <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
-                            <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE" title="{{ 'See here the license for this project...'|trans }}">{{ 'License'|trans }}</a> &middot;
+                            <span class="link githubissues" title="github issues">{{ 'Bugtracker'|trans }}</span> &middot;
+                            <span class="link github" title="{{ 'See the source code of this page...'|trans }}">{{ 'Code base'|trans }}</span> &middot;
+                            <span class="link travis" title="{{ 'See here for the automated builds...'|trans }}">{{ 'Unittests'|trans }}</span><br>
+                            <span class="link versioneye" >{{ 'Dependencies'|trans }}</span> &middot;
+                            <span class="link license" title="{{ 'See here the license for this project...'|trans }}">{{ 'License'|trans }}</span> &middot;
                             <a href="{{ url('syw_front_main_main_sponsor') }}" title="{{ 'See here who sponsors us...'|trans }}">{{ 'Sponsor'|trans }}</a> &middot;
                             <a href="{{ url('syw_front_main_main_impressum') }}" title="{{ 'Read our imprint...'|trans }}">{{ 'Imprint'|trans }}</a> &middot;
                             <a href="{{ url('syw_front_main_main_privacypolicy') }}" title="{{ 'Read our privacy policy...'|trans }}">{{ 'Privacy Policy'|trans }}</a> &middot;
@@ -104,18 +104,18 @@
         <!-- /.banner -->
 
         <p>
-            <a href="https://travis-ci.org/alexloehner/linuxcounter.new"><img
-                        src="https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master" alt="travis.ci" title="travis.ci"/></a>
-            <a href="https://github.com/alexloehner/linuxcounter.new/issues"><img
-                        src="https://img.shields.io/github/issues/alexloehner/linuxcounter.new.svg" alt="github issues" title="github issues"/></a>
-            <a href="https://coveralls.io/r/alexloehner/linuxcounter.new"><img
-                        src="https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg" alt="coveralls" title="coveralls"/></a>
-            <a href="https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/?branch=master"><img
-                        src="https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/badges/quality-score.png?b=master" alt="scrutinizer" title="scrutinizer"/></a>
-            <a href="https://codeclimate.com/github/alexloehner/linuxcounter.new"><img
-                        src="https://codeclimate.com/github/alexloehner/linuxcounter.new/badges/gpa.svg" alt="codeclimate" title="codeclimate"/></a>
-            <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f"><img
-                        src="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat" alt="versioneye" title="versioneye"/></a>
+            <span class="link travis"><img
+                        src="https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master" alt="travis.ci" title="travis.ci"/></span>
+            <span class="link githubissues"><img
+                        src="https://img.shields.io/github/issues/alexloehner/linuxcounter.new.svg" alt="github issues" title="github issues"/></span>
+            <span class="link coveralls"><img
+                        src="https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg" alt="coveralls" title="coveralls"/></span>
+            <span class="link scrutinzer"><img
+                        src="https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/badges/quality-score.png?b=master" alt="scrutinizer" title="scrutinizer"/></span>
+            <span class="link codeclimate"><img
+                        src="https://codeclimate.com/github/alexloehner/linuxcounter.new/badges/gpa.svg" alt="codeclimate" title="codeclimate"/></span>
+            <span class="link versioneye"><img
+                        src="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat" alt="versioneye" title="versioneye"/></span>
         </p>
 
         <p class="copyright">LiCo is <a href="{{ url('syw_front_main_main_sponsor') }}">fully sponsored</a> by <a
@@ -123,8 +123,7 @@
             LiCo, LinuxCounter.net, LiCo - The New Linux Counter Project - linuxcounter.net, Copyright © 2011
             - {{ "now"|date('Y') }} by <a href="https://github.com/alexloehner">Alexander Löhner</a>. All rights
             reserved.<br>
-            The code of The New Linux Counter Project is licensed under the <a
-                    href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">GPL v3</a>.<br>
+            The code of The New Linux Counter Project is licensed under the <span class="link licene">GPL v3</span>.<br>
             Original project counter.li.org © 1993 - 2011 by Harald Tveit Alvestrand &amp; the Linux Counter Project -
             Linux is a registered trademark of Linus Torvalds.</p>
     </footer>

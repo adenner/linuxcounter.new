@@ -1444,7 +1444,16 @@ footer .banner .row {
     }
 }
 
+.link {
+    cursor: pointer;
+    color: #337ab7;
+}
 
+.link:hover {
+    cursor: pointer;
+    color: #337ab7;
+    text-decoration: underline;
+}
 
 
 
