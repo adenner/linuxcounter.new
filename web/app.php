@@ -1,7 +1,6 @@
 <?php
 
-if ((false === isset($_SERVER["HTTPS"])) ||
-    (true === isset($_SERVER["HTTPS"]) && trim($_SERVER["HTTPS"]) == "off") ||
+if ((true === isset($_SERVER["SERVER_PORT"]) && intval($_SERVER["SERVER_PORT"]) == 80) ||
     (true === isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && $_SERVER["HTTP_X_FORWARDED_PROTO"] == "http")) {
     $redir = "Location: https://www.linuxcounter.net" . $_SERVER["REQUEST_URI"];
     header($redir);
