@@ -1,1 +1,7 @@
 User-agent: *
+Disallow: /assets/
+Disallow: /bundles/
+Disallow: /xml/
+Disallow: /tmp/
+Disallow: /update.php
+Disallow: /info.php
