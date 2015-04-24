@@ -1,11 +1,11 @@
 <?php
 
-if ((true === isset($_SERVER["SERVER_PORT"]) && intval($_SERVER["SERVER_PORT"]) == 80) ||
-    (true === isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && $_SERVER["HTTP_X_FORWARDED_PROTO"] == "http")) {
-    $redir = "Location: https://www.linuxcounter.net" . $_SERVER["REQUEST_URI"];
-    header($redir);
-    exit();
-}
+#if ((true === isset($_SERVER["SERVER_PORT"]) && intval($_SERVER["SERVER_PORT"]) == 80) ||
+#    (true === isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && $_SERVER["HTTP_X_FORWARDED_PROTO"] == "http")) {
+#    $redir = "Location: https://www.linuxcounter.net" . $_SERVER["REQUEST_URI"];
+#    header($redir);
+#    exit();
+#}
 
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
