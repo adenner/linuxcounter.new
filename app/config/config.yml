@@ -77,9 +77,13 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: false
     bundles:        [ 'FOSUserBundle', 'SywFrontMainBundle', 'SywFrontApiBundle' ]
-    #java: /usr/bin/java
+    node: /usr/bin/nodejs
     filters:
         cssrewrite: ~
+        uglifyjs2:
+            bin: /usr/bin/uglifyjs
+        uglifycss:
+            bin: /usr/bin/uglifycss
 
 # Swiftmailer Configuration
 swiftmailer:
