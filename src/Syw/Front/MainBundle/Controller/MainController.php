@@ -39,6 +39,7 @@ class MainController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('The Linuxcounter generates statistics around Linux and its users and machines. This includes uptimes, load average, distributions, kernels and much more', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
@@ -101,6 +102,7 @@ class MainController extends BaseController
             'online' => $online,
             'form' => $form->createView(),
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('Contact us in case of problems, issues, feature requests or if you just want to talk about the project.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
@@ -133,6 +135,7 @@ class MainController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('All abut the Linux Counter Project. Read here what the Counter is and does.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
@@ -165,6 +168,7 @@ class MainController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('Our Machine Update script is completly free and open source. Download and install it to always be up to date.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
@@ -197,6 +201,7 @@ class MainController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('Se who is behind the Linux Counter and who has developed all this cool stuff.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
@@ -229,6 +234,7 @@ class MainController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('If you have any questions or problems regarding the Linux Counter, this page should be your first try.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
@@ -261,6 +267,7 @@ class MainController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('See here how you can help us by supporting the Linux Counter with your donations.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
@@ -293,6 +300,7 @@ class MainController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('FIRST COLO is our sponsor of the hardware and the bandwidth. See here, what FIRST COLO is and does.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
@@ -325,6 +333,7 @@ class MainController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('This is all about your privacy. Read here, how we handle your private data.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
@@ -350,13 +359,14 @@ class MainController extends BaseController
             $user = null;
         }
 
-        $metatitle = $this->get('translator')->trans('These are our Terms of Service', array(), 'syw_front_main_main_tos');
+        $metatitle = $this->get('translator')->trans('Terms of Service of the Linux Counter', array(), 'syw_front_main_main_tos');
         $title = $metatitle;
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('If you are unsure what you are allowed to do on the Linux Counter, read this.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'languages' => $languages,
             'user' => $user,

@@ -118,6 +118,7 @@ class RegistrationController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('If you want to get counted as a linux user, you must register here for an account in the Linux Counter.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'form' => $form->createView(),
             'languages' => $languages,
@@ -149,6 +150,7 @@ class RegistrationController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('If you want to get counted as a linux user, you must register here for an account in the Linux Counter.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'user' => $user,
             'languages' => $languages
@@ -214,6 +216,7 @@ class RegistrationController extends BaseController
         $return1 = array(
             'online' => $online,
             'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('If you want to get counted as a linux user, you must register here for an account in the Linux Counter.', array(), 'syw_front_main_main_index'),
             'title' => $title,
             'user' => $user,
             'languages' => $languages
