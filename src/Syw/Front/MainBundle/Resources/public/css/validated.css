@@ -9005,30 +9005,6 @@ hr {
     font-size: 75%;
 }
 
-.h1, h1 {
-    font-size: 36px;
-}
-
-.h2, h2 {
-    font-size: 30px;
-}
-
-.h3, h3 {
-    font-size: 24px;
-}
-
-.h4, h4 {
-    font-size: 18px;
-}
-
-.h5, h5 {
-    font-size: 14px;
-}
-
-.h6, h6 {
-    font-size: 12px;
-}
-
 p {
     margin: 0 0 10px;
 }
@@ -18084,5 +18060,31 @@ footer .banner .row {
 body {
     padding: 0 !important;
     margin: 0 !important;
+}
+
+.h1, h1 {
+    font-size: 1.8em;
+    text-align: center;
+    display:block;
+}
+
+.h2, h2 {
+    font-size: 1.6em;
+}
+
+.h3, h3 {
+    font-size: 1.4em;
+}
+
+.h4, h4 {
+    font-size: 1.2em;
+}
+
+.h5, h5 {
+    font-size: 1em;
+}
+
+.h6, h6 {
+    font-size: 0.8em;
 }
 
