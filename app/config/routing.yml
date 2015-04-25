@@ -1,3 +1,8 @@
+rss_feed:
+    resource: "@RSSFeedBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 syw_front_main:
     resource: "@SywFrontMainBundle/Controller/"
     type:     annotation

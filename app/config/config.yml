@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@RSSFeedBundle/Resources/config/services.yml" }
 
 # Doctrine Configuration
 doctrine:
@@ -229,3 +230,16 @@ redmonster_announcement:
     duration: +2 months
     db_driver: orm
     announcement_class: Redmonster\AnnouncementBundle\Entity\Announcement
+
+eko_feed:
+    # hydrator: your_hydrator.custom.service # Optional, if you use entity hydrating with a custom hydrator
+    translation_domain: syw_front_rssfeed_default_feed # Optional, if you want to use a custom translation domain
+    feeds:
+        article:
+            title:       'Linux Counter Project News and Announcements'
+            description: 'Read our news and announcements through this RSS feed or visit us online on https://www.linuxcounter.net.'
+            link:
+                route_name: syw_front_rssfeed_default_feed
+                # route_params: {id: 2} # necessary if route cantains required parameters
+            encoding:    'utf-8'
+            author:      'Alexander Löhner' # Only required for Atom feeds

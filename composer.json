@@ -44,7 +44,8 @@
     "carlescliment/light-news-bundle": "dev-master",
     "redmonster/announcement-bundle": "dev-master",
     "nostalgiaz/bootstrap-switch": "dev-master",
-    "abraham/twitteroauth": "dev-master"
+    "abraham/twitteroauth": "dev-master",
+    "eko/feedbundle": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "dev-master",
