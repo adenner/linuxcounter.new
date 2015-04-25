@@ -7,6 +7,9 @@
 
             <div class="profilegravatar" id="profile_gravatar">
                 <img src="{{ gravatar(user.email) }}" alt=""/>
+                <p>
+                    We are using the free gravatar.com service for displaying your profile image. So if you want to change your image, please visit gravatar.com and change the image associated to your email address.
+                </p>
             </div>
             {% if (userprofile.firstName or userprofile.lastName) %}
                 <div class="profile_realname">

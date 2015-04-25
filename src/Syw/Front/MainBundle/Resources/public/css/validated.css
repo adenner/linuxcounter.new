@@ -17953,3 +17953,8 @@ body {
     font-size: 0.8em;
 }
 
+.profilegravatar p {
+    text-align: justify;
+    font-size: 0.6em;
+}
+
