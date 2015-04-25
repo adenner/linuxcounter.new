@@ -41,7 +41,7 @@ EOT
         $qb = $this->getContainer()->get('doctrine.dbal.default_connection');
 
         $importlogfile = "import.distributions";
-        $filetoimport = "/srv/test.linuxcounter.net/distributions.html";
+        $filetoimport = "distributions.html";
 
         $content = file_get_contents($filetoimport);
 
