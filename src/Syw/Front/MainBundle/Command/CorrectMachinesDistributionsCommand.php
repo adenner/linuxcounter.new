@@ -42,10 +42,26 @@ EOT
 
         $distributions = $db->getRepository('SywFrontMainBundle:Distributions')->findAll();
         foreach ($distributions as $distribution) {
-            $distribution->setMachinesNum(count($distribution->getMachines()));
+            $machines = null;
+            unset($machines);
+            $machines = $distribution->getMachines();
+            $mnum = count($machines);
+            $desc = $distribution->getDescription();
+
+            if ($mnum <= 49 && ($desc == null || trim($desc) == "")) {
+                $mnum = -999999;
+                foreach ($machines as $machine) {
+                    $machine->setDistribution(null);
+                    $db->persist($machine);
+                }
+                $db->flush();
+            }
+
+            $distribution->setMachinesNum($mnum);
             $db->persist($distribution);
+            $db->flush();
         }
-        $db->flush();
+
     }
 
     /**
