@@ -30,4 +30,14 @@ class DistributionsRepository extends EntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+
+    public function findByLower($field, $value)
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->where($qb->expr()->lt('a.'.$field, '?1'));
+        $qb->setParameter(1, $value);
+
+        return $qb->getQuery()
+            ->getResult();
+    }
 }

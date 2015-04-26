@@ -40,7 +40,7 @@ EOT
 
         $importlogfile = "import.correct.machines.distributions";
 
-        $distributions = $db->getRepository('SywFrontMainBundle:Distributions')->findByGreater('machinesnum', '49');
+        $distributions = $db->getRepository('SywFrontMainBundle:Distributions')->findByLower('machinesnum', '50');
         foreach ($distributions as $distribution) {
             $machines = null;
             unset($machines);
