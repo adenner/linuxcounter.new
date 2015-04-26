@@ -20,4 +20,14 @@ class DistributionsRepository extends EntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+
+    public function findByGreater($field, $value)
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->where($qb->expr()->gt('a.'.$field, '?1'));
+        $qb->setParameter(1, $value);
+
+        return $qb->getQuery()
+            ->getResult();
+    }
 }
