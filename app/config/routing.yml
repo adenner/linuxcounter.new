@@ -2,6 +2,7 @@ rss_feed:
     resource: "@RSSFeedBundle/Controller/"
     type:     annotation
     host:     %base_host%
+    schemes:  [https]
     prefix:   /
 
 syw_front_main:
