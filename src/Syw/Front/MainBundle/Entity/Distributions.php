@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Distributions
  *
  * @ORM\Table(name="distributions", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="machinesnum", columns={"machinesnum"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Syw\Front\MainBundle\Repository\DistributionsRepository")
  */
 class Distributions
 {
