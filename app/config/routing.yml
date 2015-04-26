@@ -3,7 +3,6 @@ rss_feed:
     type:     annotation
     host:     %base_host%
     schemes:  [https]
-    prefix:   /
 
 syw_front_main:
     resource: "@SywFrontMainBundle/Controller/"
@@ -38,6 +37,5 @@ blade_tester_light_news_bundle:
 syw_front_api:
     resource: "@SywFrontApiBundle/Controller/"
     type:     annotation
-    prefix:   /
     host:     %api_host%
     schemes:  [http]
