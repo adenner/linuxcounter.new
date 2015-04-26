@@ -38,4 +38,4 @@ syw_front_api:
     resource: "@SywFrontApiBundle/Controller/"
     type:     annotation
     host:     %api_host%
-    schemes:  [http]
+    schemes:  [https]
