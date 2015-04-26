@@ -54,14 +54,14 @@ EOT
                     $machine->setDistribution(null);
                     $db->persist($machine);
                 }
-                $db->flush();
             }
 
             $distribution->setMachinesNum($mnum);
             $db->persist($distribution);
             $db->flush();
+            gc_collect_cycles();
         }
-
+        gc_collect_cycles();
     }
 
     /**
