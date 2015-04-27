@@ -106,7 +106,7 @@ fos_user:
     user_class: Syw\Front\MainBundle\Entity\User
     from_email:
         address:        noreply@linuxcounter.net
-        sender_name:    LiCo - The New Linux Counter Project
+        sender_name:    The Linux Counter Project
     registration:
         form:
             type: syw_user_registration

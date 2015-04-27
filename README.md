@@ -1,7 +1,7 @@
-LiCo - The New Linux Counter Project
+The Linux Counter Project
 ====================================
 
-This is the codebase for the new website of *LiCo - The New Linux Counter Project* on http://linuxcounter.net.
+This is the codebase for the new website of *The Linux Counter Project* on http://linuxcounter.net.
 It is based on Symfony 2 and will replace the old website somewhen in second half of 2015.
 
 [![Build Status](https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master)](https://travis-ci.org/alexloehner/linuxcounter.new)
@@ -14,7 +14,7 @@ It is based on Symfony 2 and will replace the old website somewhen in second hal
 Description
 -----------
 
-The New LinuxCounter Project was created in order to revive and replace the good old linux counter project on counter.li.org.
+The LinuxCounter Project was created in order to revive and replace the good old linux counter project on counter.li.org.
 Since January 11, 2012 counter.li.org redirects directly to linuxcounter.net and thus, linuxcounter.net is the only and main real linux counter with the greatest userbase.
 
 The original Linux Counter was run by a nonprofit membership organization called the Linux Counter Project. This organization was created on May 1, 1999, taking over the running of the counter from Harald Tveit Alvestrand, who has been running the project since 1993. Harald Alvestrand is chief executive officer of the organization.
