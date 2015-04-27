@@ -1,9 +1,3 @@
-rss_feed:
-    resource: "@RSSFeedBundle/Controller/"
-    type:     annotation
-    host:     %base_host%
-    schemes:  [https]
-
 syw_front_main:
     resource: "@SywFrontMainBundle/Controller/"
     type:     annotation

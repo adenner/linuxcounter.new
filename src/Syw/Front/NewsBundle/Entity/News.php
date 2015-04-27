@@ -4,7 +4,7 @@ namespace Syw\Front\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use BladeTester\LightNewsBundle\Entity\News as BaseNews;
-use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
+use Eko\FeedBundle\Item\Reader\ItemInterface;
 
 /**
  * Class News
@@ -18,7 +18,7 @@ use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
  * @ORM\Entity()
  * @ORM\Table(name="news")
  */
-class News extends BaseNews implements RoutedItemInterface
+class News extends BaseNews implements ItemInterface
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -27,44 +27,78 @@ class News extends BaseNews implements RoutedItemInterface
      */
     private $id;
 
+    /**
+     * @ORM\Column(name="link", type="text")
+     */
+    private $link;
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getFeedItemTitle()
+    /**
+     * @return string
+     */
+    public function getLink()
     {
-        return $this->title;
+        return $this->link;
     }
 
-    public function getFeedItemDescription()
+    /**
+     * @param $link
+     * @return News
+     */
+    public function setLink($link)
     {
-        if (strlen($this->body) >= 400) {
-            $body = mb_substr($this->body, 0, 400)."...";
-        } else {
-            $body = $this->body;
-        }
-        return $body;
+        $this->link = $link;
     }
 
-    public function getFeedItemPubDate()
+    /**
+     * This method sets feed item title
+     *
+     * @param string $title
+     *
+     * @abstract
+     */
+    public function setFeedItemTitle($title)
     {
-        return $this->createdAt;
+        $this->setTitle($title);
     }
 
-    public function getFeedItemRouteName()
+    /**
+     * This method sets feed item description (or content)
+     *
+     * @param string $description
+     *
+     * @abstract
+     */
+    public function setFeedItemDescription($description)
     {
-        return 'news_view';
+        $this->setBody($description);
     }
 
-    public function getFeedItemRouteParameters()
+    /**
+     * This method sets feed item URL link
+     *
+     * @param string $link
+     *
+     * @abstract
+     */
+    public function setFeedItemLink($link)
     {
-        return array('id' => $this->id);
+        $this->setLink($link);
     }
 
-    public function getFeedItemUrlAnchor()
+    /**
+     * This method sets item publication date
+     *
+     * @param \DateTime $date
+     *
+     * @abstract
+     */
+    public function setFeedItemPubDate(\DateTime $date)
     {
-        return '';
+        $this->setCreatedAt($date);
     }
 }

@@ -36,8 +36,7 @@ class AppKernel extends Kernel
             new Whisnet\IrcBotBundle\WhisnetIrcBotBundle(),
             new BladeTester\LightNewsBundle\BladeTesterLightNewsBundle(),
             new Redmonster\AnnouncementBundle\RedmonsterAnnouncementBundle(),
-            new Eko\FeedBundle\EkoFeedBundle(),
-            new Syw\Front\RSSFeedBundle\RSSFeedBundle(),
+            new Eko\FeedBundle\EkoFeedBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
