@@ -17961,3 +17961,10 @@ body {
 footer img {
     display: inline !important;
 }
+
+pre.crayon-plain-tag {
+    white-space: normal;
+}
+
+
+
