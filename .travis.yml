@@ -4,6 +4,8 @@ language: php
 php:
   - "5.6"
 
+sudo: required
+
 env:
   - DB=mysql
 
@@ -15,6 +17,11 @@ install:
   - composer install
 
 before_script:
+  - sudo npm install -g uglify-js
+  - sudo npm install -g uglifycss
+  - sudo npm install
+  - sudo ln -s /usr/local/bin/uglifyjs /usr/bin/uglifyjs
+  - sudo ln -s /usr/local/bin/uglifycss /usr/bin/uglifycss
   - mkdir -p app/cache
   - mkdir -p app/logs
   - php app/console doctrine:database:create
