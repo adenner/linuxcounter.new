@@ -49,16 +49,6 @@ EOT
                 $db->persist($item);
                 $db->flush();
             }
-/*
-            $distribution = new Distributions();
-            $distribution->setName($name);
-            $distribution->setUrl(trim($url));
-            $distribution->setDescription($description);
-            $distribution->setMachinesNum(0);
-            $db->persist($distribution);
-            $db->flush();
-*/
-
         }
     }
 
