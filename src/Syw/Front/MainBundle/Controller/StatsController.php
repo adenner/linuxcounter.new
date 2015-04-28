@@ -222,75 +222,114 @@ class StatsController extends BaseController
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
 
+        $em = $this->getDoctrine()->getManager();
+
         // accounts on the machines
         $title1 = $this->get('translator')->trans('Statistics about the number of accounts on the machines', array(), 'syw_front_main_stats_machines');
-        $xml = file_get_contents("xml/machines_accounts.xml");
-        $domObj = new xmlToArrayParser($xml);
-        $domArr = $domObj->array;
-        $stats['accounts'] = array();
-        $gesamt = 0;
-        for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
-            $gesamt += intval($domArr['statistics']['line'][$a]['number']);
-        }
-        for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
-            $line = $domArr['statistics']['line'][$a];
-            $percent = round((100/$gesamt) * intval($line['number']), 2);
-            $stats['accounts'][$a]['accounts'] = $line['accounts'];
-            $stats['accounts'][$a]['number'] = $line['number'];
-            $stats['accounts'][$a]['percent'] = $percent;
-        }
-        // end accounts on the machines
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts >= 1";
+        $machine_accounts_gesamt = $em->createQuery($dql)->getSingleScalarResult();
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts = 1";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][0]['accounts'] = '1';
+        $stats['accounts'][0]['number'] = $num;
+        $stats['accounts'][0]['percent'] = $percent;
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts = 2";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][1]['accounts'] = '2';
+        $stats['accounts'][1]['number'] = $num;
+        $stats['accounts'][1]['percent'] = $percent;
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts = 3";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][2]['accounts'] = '3';
+        $stats['accounts'][2]['number'] = $num;
+        $stats['accounts'][2]['percent'] = $percent;
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts = 4";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][3]['accounts'] = '4';
+        $stats['accounts'][3]['number'] = $num;
+        $stats['accounts'][3]['percent'] = $percent;
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts BETWEEN 5 AND 9";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][4]['accounts'] = '5-9';
+        $stats['accounts'][4]['number'] = $num;
+        $stats['accounts'][4]['percent'] = $percent;
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts BETWEEN 10 AND 24";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][5]['accounts'] = '10-24';
+        $stats['accounts'][5]['number'] = $num;
+        $stats['accounts'][5]['percent'] = $percent;
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts BETWEEN 25 AND 49";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][6]['accounts'] = '25-49';
+        $stats['accounts'][6]['number'] = $num;
+        $stats['accounts'][6]['percent'] = $percent;
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts BETWEEN 50 AND 99";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][7]['accounts'] = '50-99';
+        $stats['accounts'][7]['number'] = $num;
+        $stats['accounts'][7]['percent'] = $percent;
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts BETWEEN 100 AND 249";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][8]['accounts'] = '100-249';
+        $stats['accounts'][8]['number'] = $num;
+        $stats['accounts'][8]['percent'] = $percent;
+
+        $dql   = "SELECT COUNT(m) AS num FROM SywFrontMainBundle:Machines m WHERE m.accounts >= 250";
+        $num = $em->createQuery($dql)->getSingleScalarResult();
+        $percent = round((100/$machine_accounts_gesamt) * intval($num), 2);
+        $stats['accounts'][9]['accounts'] = '>= 250';
+        $stats['accounts'][9]['number'] = $num;
+        $stats['accounts'][9]['percent'] = $percent;
 
         // countries of the machines
+        $dql   = "SELECT SUM(c.machinesnum) AS num FROM SywFrontMainBundle:Countries c";
+        $machine_countries_gesamt = $em->createQuery($dql)->getSingleScalarResult();
         $title2 = $this->get('translator')->trans('Statistics about the number of machines per country', array(), 'syw_front_main_stats_machines');
-        $xml = file_get_contents("xml/machines_countries.xml");
-        $domObj = new xmlToArrayParser($xml);
-        $domArr = $domObj->array;
-        $stats['countries'] = array();
-        $gesamt = 0;
-        for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
-            $gesamt += intval($domArr['statistics']['line'][$a]['machines']);
-        }
-        for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
-            $line = $domArr['statistics']['line'][$a];
-            $percent = round((100/$gesamt) * intval($line['machines']), 2);
-
-            $country = null;
-            unset($country);
-            $country = $this->get('doctrine')
-                ->getRepository('SywFrontMainBundle:Countries')
-                ->findOneBy(array('code' => strtolower($line['country'])));
-
-            $stats['countries'][$a]['country'] = $country->getName();
-            $stats['countries'][$a]['number'] = $line['machines'];
-            $stats['countries'][$a]['percent'] = $percent;
-        }
+        $dql   = "SELECT a FROM SywFrontMainBundle:Countries a WHERE a.machinesnum >= 1 ORDER BY a.machinesnum DESC, a.name ASC";
+        $ent_countries = $em->createQuery($dql);
+        $knpPaginator = $this->get('knp_paginator');
+        $paginationAAA = $knpPaginator->paginate(
+            $ent_countries,
+            $this->get('request')->query->get('pageAAA', 1), // page number
+            15, // limit per page
+            array(
+                'pageParameterName' => 'pageAAA',
+                'sortFieldParameterName' => 'sortAAA',
+                'sortDirectionParameterName' => 'directionAAA',
+            )
+        );
         // end accounts on the machines
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'paginationAAA' => $paginationAAA,
             'online' => $online,
             'metatitle' => $metatitle,
             'metadescription' => $this->get('translator')->trans('This is all about statistics around the Linux machines. See how many Linux machines there are in your city or country.', array(), 'syw_front_main_main_index'),
             'title1' => $title1,
             'title2' => $title2,
+            'machine_accounts_gesamt' => $machine_accounts_gesamt,
+            'machine_countries_gesamt' => $machine_countries_gesamt,
             'languages' => $languages,
             'user' => $user,
             'stats' => $stats
