@@ -237,6 +237,13 @@ class BaseController extends Controller
         );
         $statues = $connection->get('statuses/mentions_timeline', array("count" => 5, "exclude_replies" => false));
 
+        // Mon Apr 27 19:27:41 +0000 2015
+        foreach ($statues as $key => $status) {
+            if (true === isset($status) && true === is_object($status)) {
+                $statues[$key]->created_at = new \DateTime($status->created_at);
+            }
+        }
+
         return $this->render('SywFrontMainBundle:Common:_tweets1.html.twig', array(
             'tweets1' => $statues,
         ));
@@ -252,8 +259,65 @@ class BaseController extends Controller
         );
         $statues = $connection->get('statuses/user_timeline', array("count" => 5, "exclude_replies" => false));
 
+        // Mon Apr 27 19:27:41 +0000 2015
+        foreach ($statues as $key => $status) {
+            if (true === isset($status) && true === is_object($status)) {
+                $statues[$key]->created_at = new \DateTime($status->created_at);
+            }
+        }
+
         return $this->render('SywFrontMainBundle:Common:_tweets2.html.twig', array(
             'tweets2' => $statues,
         ));
+    }
+
+    public function formatSeconds($time_in_seconds)
+    {
+        $time_in_seconds = ceil($time_in_seconds);
+
+        // Check for 0
+        if ($time_in_seconds == 0) {
+            return 'Less than a second';
+        }
+
+        // Years
+        $years = floor($time_in_seconds / (60 * 60 * 24 * 365));
+        $time_in_seconds -= $years * (60 * 60 * 24 * 365);
+
+        // Days
+        $days = floor($time_in_seconds / (60 * 60 * 24));
+        $time_in_seconds -= $days * (60 * 60 * 24);
+
+        // Hours
+        $hours = floor($time_in_seconds / (60 * 60));
+        $time_in_seconds -= $hours * (60 * 60);
+
+        // Minutes
+        $minutes = floor($time_in_seconds / 60);
+        $time_in_seconds -= $minutes * 60;
+
+        // Seconds
+        $seconds = floor($time_in_seconds);
+
+        // Format for return
+        $return = '';
+        if ($years > 0) {
+            $return .= $years . ' year' . ($years == 1 ? '' : 's'). ' ';
+        }
+        if ($days > 0) {
+            $return .= $days . ' day' . ($days == 1 ? '' : 's'). ' ';
+        }
+        if ($hours > 0) {
+            $return .= $hours . ' hour' . ($hours == 1 ? '' : 's') . ' ';
+        }
+        if ($minutes > 0) {
+            $return .= $minutes . ' minute' . ($minutes == 1 ? '' : 's') . ' ';
+        }
+        if ($seconds > 0) {
+            $return .= $seconds . ' second' . ($seconds == 1 ? '' : 's') . ' ';
+        }
+        $return = trim($return);
+
+        return $return;
     }
 }

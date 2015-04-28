@@ -45,7 +45,8 @@
     "redmonster/announcement-bundle": "dev-master",
     "nostalgiaz/bootstrap-switch": "dev-master",
     "abraham/twitteroauth": "dev-master",
-    "eko/feedbundle": "dev-master"
+    "eko/feedbundle": "dev-master",
+    "salavert/time-ago-in-words": "1.*"
   },
   "require-dev": {
     "sensio/generator-bundle": "dev-master",

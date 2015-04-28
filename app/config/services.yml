@@ -74,3 +74,13 @@ services:
         class: Jasny\Twig\ArrayExtension
         tags:
             - { name: twig.extension }
+    salavert.twig.time_ago:
+        class: Salavert\Twig\Extension\TimeAgoExtension
+        arguments: [@translator]
+        tags:
+        - { name: twig.extension }
+    syw.twig_extension:
+        class: Syw\Front\MainBundle\Twig\MainTwigExtension
+        public: false
+        tags:
+            - { name: twig.extension }

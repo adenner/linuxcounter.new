@@ -9,7 +9,7 @@
                                 <img class="tweet-avatar" src="{{ tweet.user.profile_image_url_https }}" alt="Twitter User Avatar" title="Twitter User Avatar"/>
                                 <strong class="tweet-fullname">{{ tweet.user.name }}</strong>
                                 <span class="tweet-username">@{{ tweet.user.screen_name }}</span>
-                            </a> &middot; {{ tweet.created_at|localdate('long') }}
+                            </a> &middot; {{ tweet.created_at|time_ago_in_words }}
                         </div>
                         <p class="tweet-text">
                             {{ tweet.text|linkify(['http', 'twitter']) }}

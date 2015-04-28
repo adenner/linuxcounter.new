@@ -102,51 +102,7 @@ class PublicController extends BaseController
             ->findOneBy(array('user' => $thisuser));
 
         $seconds = $thismachine->getUptime();
-        $uptime = gmdate("y n j G i s", $seconds);
-        $uptimeDetail = explode(" ", $uptime);
-        $years      = (string)($uptimeDetail[0]-70);
-        $months     = (string)($uptimeDetail[1]-1);
-        $days       = (string)($uptimeDetail[2]-1);
-        $hours      = (string)$uptimeDetail[3];
-        $minutes    = (string)$uptimeDetail[4];
-        $seconds    = (string)$uptimeDetail[5];
-        $uptime = "";
-        if (intval($years) >= 1) {
-            if (trim($uptime) != "") {
-                $uptime .= ", ";
-            }
-            $uptime .= "$years years";
-        }
-        if (intval($months) >= 1) {
-            if (trim($uptime) != "") {
-                $uptime .= ", ";
-            }
-            $uptime .= "$months months";
-        }
-        if (intval($days) >= 1) {
-            if (trim($uptime) != "") {
-                $uptime .= ", ";
-            }
-            $uptime .= "$days days";
-        }
-        if (intval($hours) >= 1) {
-            if (trim($uptime) != "") {
-                $uptime .= ", ";
-            }
-            $uptime .= intval($hours)." hours";
-        }
-        if (intval($minutes) >= 1) {
-            if (trim($uptime) != "") {
-                $uptime .= ", ";
-            }
-            $uptime .= intval($minutes)." minutes";
-        }
-        if (intval($seconds) >= 1) {
-            if (trim($uptime) != "") {
-                $uptime .= ", ";
-            }
-            $uptime .= intval($seconds)." seconds";
-        }
+        $uptime = $this->formatSeconds($seconds);
 
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $user = $this->getUser();

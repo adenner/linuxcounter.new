@@ -1,8 +1,8 @@
 The Linux Counter Project
 ====================================
 
-This is the codebase for the new website of *The Linux Counter Project* on http://linuxcounter.net.
-It is based on Symfony 2 and will replace the old website somewhen in second half of 2015.
+This is the codebase for the new website of *The Linux Counter Project* on https://www.linuxcounter.net.
+It is based on Symfony 2 and has replaced the old website in the second quarter of 2015.
 
 [![Build Status](https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master)](https://travis-ci.org/alexloehner/linuxcounter.new)
 [![GitHub issues](https://img.shields.io/github/issues/alexloehner/linuxcounter.new.svg)](https://github.com/alexloehner/linuxcounter.new/issues)

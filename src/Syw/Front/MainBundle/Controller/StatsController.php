@@ -462,9 +462,26 @@ class StatsController extends BaseController
         }
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
+
+        $em = $this->getDoctrine()->getManager();
+        $dql   = "SELECT a FROM SywFrontMainBundle:Machines a WHERE a.uptime >= 1 ORDER BY a.uptime DESC";
+        $entitites_a = $em->createQuery($dql);
+        $knpPaginator = $this->get('knp_paginator');
+        $paginationAAA = $knpPaginator->paginate(
+            $entitites_a,
+            $this->get('request')->query->get('pageAAA', 1), // page number
+            15, // limit per page
+            array(
+                'pageParameterName' => 'pageAAA',
+                'sortFieldParameterName' => 'sortAAA',
+                'sortDirectionParameterName' => 'directionAAA',
+            )
+        );
+
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'paginationAAA' => $paginationAAA,
             'online' => $online,
             'metatitle' => $metatitle,
             'metadescription' => $this->get('translator')->trans('Ever wanted to know how long is the longest uptime. Here you get the answer.', array(), 'syw_front_main_main_index'),

@@ -14,10 +14,36 @@
                         </div>
                         <div class="panel-body">
 
+                            {% if paginationAAA.getTotalItemCount > 0 %}
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Hostname', 'a.hostname', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Uptime', 'a.uptime', {'defaultDirection' : 'desc'}) }}
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for row in paginationAAA %}
+                                        <tr>
+                                            <td>
+                                                <a href="{{ url('syw_front_main_public_machine', {'machinenumber': row.id}) }}">Public machine profile</a>
+                                            </td>
+                                            <td>
+                                                {{ row.uptime|secformat }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
 
-                            [ ... coming soon ... ]
-
-
+                                {{ knp_pagination_render(paginationAAA) }}
+                            {% else %}
+                                No data.
+                            {% endif %}
 
                         </div>
                     </div>
