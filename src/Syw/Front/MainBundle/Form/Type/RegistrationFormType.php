@@ -25,7 +25,14 @@ class RegistrationFormType extends AbstractType
                     'data' => 'en'
                 )
             );
-        // $builder->add('caitcha', 'caitcha');
+        $builder->add('recaptcha', 'ewz_recaptcha', array(
+            'attr' => array(
+                'options' => array(
+                    'theme' => 'light',
+                    'type'  => 'image'
+                )
+            )
+        ));
     }
 
     public function getParent()

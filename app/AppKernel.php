@@ -31,12 +31,12 @@ class AppKernel extends Kernel
             new Shtumi\UsefulBundle\ShtumiUsefulBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            new MktCode\CaitchaBundle\MktCodeCaitchaBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
             new Whisnet\IrcBotBundle\WhisnetIrcBotBundle(),
             new BladeTester\LightNewsBundle\BladeTesterLightNewsBundle(),
             new Redmonster\AnnouncementBundle\RedmonsterAnnouncementBundle(),
-            new Eko\FeedBundle\EkoFeedBundle()
+            new Eko\FeedBundle\EkoFeedBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

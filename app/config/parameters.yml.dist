@@ -29,3 +29,6 @@ parameters:
     twitter_consumer_secret: consumersectret
     twitter_oauth_token: oauthtoken
     twitter_oauth_token_secret: aouthtokensecret
+
+    recaptcha_private_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    recaptcha_public_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

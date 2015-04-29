@@ -4,6 +4,7 @@ namespace Syw\Front\MainBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
 
 /**
  * FosUser
@@ -21,6 +22,11 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
+
+    /**
+     * @Recaptcha\True
+     */
+    public $recaptcha;
 
     /**
      * @var string
