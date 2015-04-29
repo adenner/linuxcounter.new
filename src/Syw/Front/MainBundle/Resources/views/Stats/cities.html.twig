@@ -38,8 +38,39 @@
                                 }) }}
                             </p>
                             <p>&nbsp;</p>
+                            <p><strong>A list of the users in this city follows:</strong></p>
+                            <p>&nbsp;</p>
                             <p>
-                                <small>{{ "(A list of the users will be added later. Actually the database structure doesn't allow this.)"|trans }}</small>
+                                {% if paginationAAA.getTotalItemCount > 0 %}
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Counter No.', 'a.user', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            Public page
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for row in paginationAAA %}
+                                        <tr>
+                                            <td>
+                                                {{ row.id }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ url('syw_front_main_public_profile', {'counternumber': row.id}) }}">link</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                                {{ knp_pagination_render(paginationAAA) }}
+                            {% else %}
+                                No data.
+                            {% endif %}
                             </p>
                         </div>
                     </div>

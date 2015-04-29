@@ -31,11 +31,70 @@
                                 }) }}
                             </p>
                             <p>&nbsp;</p>
-                            <p>
-                                <small>{{ "(A list of the cities and the users will be added later. Actually the database structure doesn't allow this.)"|trans }}</small>
-                            </p>
                         </div>
                     </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'Users per City in country %country.name%'|trans({
+                                    '%country.name%': country.getName()
+                                }) }}</h3>
+                        </div>
+                        <div id="users_per_city" class="panel-body">
+                            <span>{{ 'The ability to set the city where you are living, is a new feature in this new website and thus, the numbers will be dramatically small. It is up to YOU, to set the city in your profile in order to get more accurate statistics.'|trans }}<br/><br/></span>
+                            {% if paginationAAA.getTotalItemCount > 0 %}
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Name', 'b.name', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Region', 'b.region', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'Population', 'b.population', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                        <th>
+                                            {{ knp_pagination_sortable(paginationAAA, 'No. of Users', 'b.usernum', {'defaultDirection' : 'asc'}) }}
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for row in paginationAAA %}
+                                        <tr>
+                                            <td>
+                                                <div class="col-sm-11">
+                                                    <a href="{{ url('syw_front_main_stats_cities', {'id': row.id}) }}">{{ row.name }}</a>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <a href="http://www.openstreetmap.org/#map=15/{{ row.getLatitude() }}/{{ row.getLongitude() }}"><img class="img-responsive" src="{{ '/bundles/sywfrontmain/images/map.png' }}" alt="View on map..."/></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{ row.region }}
+                                            </td>
+                                            <td>
+                                                {{ row.population|number_format }}
+                                            </td>
+                                            <td>
+                                                {{ row.usernum|number_format }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                                {{ knp_pagination_render(paginationAAA) }}
+                            {% else %}
+                                No data.
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>

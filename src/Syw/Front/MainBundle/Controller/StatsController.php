@@ -128,6 +128,24 @@ class StatsController extends BaseController
             ->getRepository('SywFrontMainBundle:Countries')
             ->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
         $userProfiles = $city->getUsers();
+        $ids = array();
+        foreach ($userProfiles as $userProfile) {
+            $ids[] = intval($userProfile->getUser()->getId());
+        }
+        $em = $this->getDoctrine()->getManager();
+        $dql   = "SELECT a FROM SywFrontMainBundle:User a WHERE a.id IN ('".implode("','", $ids)."') ORDER BY a.id ASC";
+        $items = $em->createQuery($dql);
+        $knpPaginator = $this->get('knp_paginator');
+        $paginationAAA = $knpPaginator->paginate(
+            $items,
+            $this->get('request')->query->get('pageAAA', 1), // page number
+            15, // limit per page
+            array(
+                'pageParameterName' => 'pageAAA',
+                'sortFieldParameterName' => 'sortAAA',
+                'sortDirectionParameterName' => 'directionAAA',
+            )
+        );
 
         $metatitle = $this->get('translator')->trans('Statistics about the Linux users in %city%', array(
             '%city%' => $city->getName().", ".strtoupper($city->getIsoCountryCode())
@@ -148,7 +166,7 @@ class StatsController extends BaseController
         $return1 = array(
             'city' => $city,
             'country' => $country,
-            'users' => $users,
+            'paginationAAA' => $paginationAAA,
             'online' => $online,
             'metatitle' => $metatitle,
             'metadescription' => $this->get('translator')->trans('See here how many Linux users there an in this specific city', array(), 'syw_front_main_main_index'),
@@ -184,11 +202,26 @@ class StatsController extends BaseController
         } else {
             $user = null;
         }
+        $em = $this->getDoctrine()->getManager();
+        $dql   = "SELECT b FROM SywFrontMainBundle:Cities b WHERE LOWER(b.isoCountryCode) = '".strtolower($country->getCode())."' AND b.usernum >= 1 ORDER BY b.usernum DESC, b.name ASC";
+        $ent_cities = $em->createQuery($dql);
+        $knpPaginator = $this->get('knp_paginator');
+        $paginationAAA = $knpPaginator->paginate(
+            $ent_cities,
+            $this->get('request')->query->get('pageAAA', 1), // page number
+            15, // limit per page
+            array(
+                'pageParameterName' => 'pageAAA',
+                'sortFieldParameterName' => 'sortAAA',
+                'sortDirectionParameterName' => 'directionAAA',
+            )
+        );
         $stats = array();
         $stats['guess'] = $this->getGuessStats();
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'paginationAAA' => $paginationAAA,
             'country' => $country,
             'online' => $online,
             'metatitle' => $metatitle,
