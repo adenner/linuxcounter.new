@@ -5,7 +5,7 @@ namespace Syw\Front\MainBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use MktCode\CaitchaBundle\MktCodeCaitchaBundle;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\True;
 
 /**
  * Class RegistrationFormType
@@ -31,6 +31,10 @@ class RegistrationFormType extends AbstractType
                     'theme' => 'light',
                     'type'  => 'image'
                 )
+            ),
+            'mapped'      => false,
+            'constraints' => array(
+                new True()
             )
         ));
     }

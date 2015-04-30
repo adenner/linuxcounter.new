@@ -25,6 +25,12 @@ class ResettingController extends BaseController
      */
     public function requestAction()
     {
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
