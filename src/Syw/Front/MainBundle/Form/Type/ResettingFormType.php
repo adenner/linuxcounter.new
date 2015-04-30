@@ -14,6 +14,7 @@ namespace Syw\Front\MainBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\True;
 
 class ResettingFormType extends AbstractType
 {
@@ -35,6 +36,18 @@ class ResettingFormType extends AbstractType
             'first_options' => array('label' => 'form.new_password'),
             'second_options' => array('label' => 'form.new_password_confirmation'),
             'invalid_message' => 'fos_user.password.mismatch',
+        ));
+        $builder->add('recaptcha', 'ewz_recaptcha', array(
+            'attr' => array(
+                'options' => array(
+                    'theme' => 'light',
+                    'type'  => 'image'
+                )
+            ),
+            'mapped'      => false,
+            'constraints' => array(
+                new True()
+            )
         ));
     }
 
