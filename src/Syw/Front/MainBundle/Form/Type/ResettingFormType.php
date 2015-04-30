@@ -36,18 +36,6 @@ class ResettingFormType extends AbstractType
             'first_options' => array('label' => 'form.new_password'),
             'second_options' => array('label' => 'form.new_password_confirmation'),
             'invalid_message' => 'fos_user.password.mismatch',
-        ))
-        ->add('recaptcha', 'ewz_recaptcha', array(
-            'attr' => array(
-                'options' => array(
-                    'theme' => 'light',
-                    'type'  => 'image'
-                )
-            ),
-            'mapped'      => false,
-            'constraints' => array(
-                new True()
-            )
         ));
     }
 
