@@ -248,6 +248,37 @@ ewz_recaptcha:
     private_key: "%recaptcha_private_key%"
     locale_key:  "%kernel.default_locale%"
 
-
+lsw_memcache:
+    doctrine:
+        metadata_cache:
+            client: default
+            entity_manager: default          # the name of your entity_manager connection
+            document_manager: default        # the name of your document_manager connection
+        result_cache:
+            client: default
+            entity_manager: [default, read]  # you may specify multiple entity_managers
+            prefix: "result_"                # you may specify a prefix for the entries
+        query_cache:
+            client: default
+            entity_manager: default
+    session:
+        client: default
+        prefix: "session_"
+        ttl: 86400
+        locking: true
+        spin_lock_wait: 150000
+    clients:
+        default:
+            hosts:
+              - { dsn: localhost, port: 11211 }
+            options:
+                compression: true
+                serializer: json
+                distribution: consistent
+                libketama_compatible: true
+                buffer_writes: true
+                binary_protocol: true
+                no_block: true
+                tcp_nodelay: false
 
 
