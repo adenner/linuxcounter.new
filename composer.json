@@ -47,7 +47,7 @@
     "eko/feedbundle": "dev-master",
     "salavert/time-ago-in-words": "1.*",
     "excelwebzone/recaptcha-bundle": "dev-master",
-    "leaseweb/memcache-bundle": "*"
+    "aequasi/cache-bundle": "~2.4.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "dev-master",
