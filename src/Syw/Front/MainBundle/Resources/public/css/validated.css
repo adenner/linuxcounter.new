@@ -18213,24 +18213,49 @@ pre.crayon-plain-tag {
     #forkongithub {
         position: fixed;
         display: block;
-        top: 76px;
+        top: 74px;
         right: 111px;
-        width: 250px;
-        overflow: hidden;
         height: 23px;
-        z-index: 2;
     }
+}
 
-    #forkongithub a {
-        background: #555;
-        color: #fff;
-        text-decoration: none;
-        text-align: center;
-        font-weight: bold;
-        padding: 5px 40px;
-        line-height: 2rem;
-        transition: .5s;
-        margin: auto;
+@media screen and (max-width: 768px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        top: 74px;
+        right: 0;
+        height: 23px;
+    }
+}
+
+@media screen and (max-width: 614px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        top: 70px;
+        right: 0;
+        height: 23px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        top: 65px;
+        right: 0;
+        height: 23px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        top: 55px;
+        right: 0;
+        height: 23px;
     }
 }
 
@@ -18238,24 +18263,9 @@ pre.crayon-plain-tag {
     #forkongithub {
         position: fixed;
         display: block;
-        top: 50px;
-        left: 0;
-        width: 250px;
-        overflow: hidden;
+        top: 49px;
+        right: 0;
         height: 23px;
-        z-index: 2;
-    }
-
-    #forkongithub a {
-        background: #555;
-        color: #fff;
-        text-decoration: none;
-        text-align: center;
-        font-weight: bold;
-        padding: 5px 40px;
-        line-height: 2rem;
-        transition: .5s;
-        margin: auto;
     }
 }
 
@@ -18265,10 +18275,7 @@ pre.crayon-plain-tag {
         display: block;
         top: 0;
         right: 0;
-        overflow: hidden;
         height: 200px;
-        z-index: 2;
-        width: 250px;
     }
 
     #forkongithub a {
