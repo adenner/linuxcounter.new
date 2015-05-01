@@ -1,44 +1,51 @@
 @font-face {
-    font-family : 'Lato';
-    font-style : normal;
-    font-weight : 300;
-    src : local('Lato Light'), local('Lato-Light'), url('https://fonts.gstatic.com/s/lato/v11/nj47mAZe0mYUIySgfn0wpQ.ttf') format('truetype');
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Lato Light'), local('Lato-Light'), url('https://fonts.gstatic.com/s/lato/v11/nj47mAZe0mYUIySgfn0wpQ.ttf') format('truetype');
 }
+
 @font-face {
-    font-family : 'Lato';
-    font-style : normal;
-    font-weight : 400;
-    src : local('Lato Regular'), local('Lato-Regular'), url('https://fonts.gstatic.com/s/lato/v11/v0SdcGFAl2aezM9Vq_aFTQ.ttf') format('truetype');
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url('https://fonts.gstatic.com/s/lato/v11/v0SdcGFAl2aezM9Vq_aFTQ.ttf') format('truetype');
 }
+
 @font-face {
-    font-family : 'Lato';
-    font-style : normal;
-    font-weight : 700;
-    src : local('Lato Bold'), local('Lato-Bold'), url('https://fonts.gstatic.com/s/lato/v11/DvlFBScY1r-FMtZSYIYoYw.ttf') format('truetype');
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Lato Bold'), local('Lato-Bold'), url('https://fonts.gstatic.com/s/lato/v11/DvlFBScY1r-FMtZSYIYoYw.ttf') format('truetype');
 }
+
 @font-face {
-    font-family : 'Lato';
-    font-style : italic;
-    font-weight : 300;
-    src : local('Lato Light Italic'), local('Lato-LightItalic'), url('https://fonts.gstatic.com/s/lato/v11/2HG_tEPiQ4Z6795cGfdivKCWcynf_cDxXwCLxiixG1c.ttf') format('truetype');
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 300;
+    src: local('Lato Light Italic'), local('Lato-LightItalic'), url('https://fonts.gstatic.com/s/lato/v11/2HG_tEPiQ4Z6795cGfdivKCWcynf_cDxXwCLxiixG1c.ttf') format('truetype');
 }
+
 @font-face {
-    font-family : 'Lato';
-    font-style : italic;
-    font-weight : 400;
-    src : local('Lato Italic'), local('Lato-Italic'), url('https://fonts.gstatic.com/s/lato/v11/LqowQDslGv4DmUBAfWa2Vw.ttf') format('truetype');
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Lato Italic'), local('Lato-Italic'), url('https://fonts.gstatic.com/s/lato/v11/LqowQDslGv4DmUBAfWa2Vw.ttf') format('truetype');
 }
+
 @font-face {
-    font-family : 'Lato';
-    font-style : italic;
-    font-weight : 700;
-    src : local('Lato Bold Italic'), local('Lato-BoldItalic'), url('https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYEKCWcynf_cDxXwCLxiixG1c.ttf') format('truetype');
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url('https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYEKCWcynf_cDxXwCLxiixG1c.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Glyphicons Halflings';
     src: url('/bundles/mopabootstrap/bootstrap/dist/fonts/glyphicons-halflings-regular.eot');
     src: url('/bundles/mopabootstrap/bootstrap/dist/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/bundles/mopabootstrap/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('/bundles/mopabootstrap/bootstrap/dist/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/bundles/mopabootstrap/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/bundles/mopabootstrap/bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+
 @font-face {
     font-family: 'FontAwesome';
     src: url('/bundles/easyadmin/fonts/fontawesome-webfont.eot?v=4.2.0');
@@ -14583,7 +14590,177 @@ button.close {
     }
 }
 
-.bootstrap-switch{display:inline-block;direction:ltr;cursor:pointer;border-radius:4px;border:1px solid;border-color:#ccc;position:relative;text-align:left;overflow:hidden;line-height:8px;z-index:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;vertical-align:middle;-webkit-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}.bootstrap-switch .bootstrap-switch-container{display:inline-block;top:0;border-radius:4px;-webkit-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}.bootstrap-switch .bootstrap-switch-handle-on,.bootstrap-switch .bootstrap-switch-handle-off,.bootstrap-switch .bootstrap-switch-label{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;cursor:pointer;display:inline-block !important;height:100%;padding:6px 12px;font-size:14px;line-height:20px}.bootstrap-switch .bootstrap-switch-handle-on,.bootstrap-switch .bootstrap-switch-handle-off{text-align:center;z-index:1}.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary{color:#fff;background:#428bca}.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info,.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info{color:#fff;background:#5bc0de}.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success{color:#fff;background:#5cb85c}.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-warning,.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-warning{background:#f0ad4e;color:#fff}.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-danger,.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-danger{color:#fff;background:#d9534f}.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default,.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default{color:#000;background:#eee}.bootstrap-switch .bootstrap-switch-label{text-align:center;margin-top:-1px;margin-bottom:-1px;z-index:100;color:#333;background:#fff}.bootstrap-switch .bootstrap-switch-handle-on{border-bottom-left-radius:3px;border-top-left-radius:3px}.bootstrap-switch .bootstrap-switch-handle-off{border-bottom-right-radius:3px;border-top-right-radius:3px}.bootstrap-switch input[type='radio'],.bootstrap-switch input[type='checkbox']{position:absolute !important;top:0;left:0;opacity:0;filter:alpha(opacity=0);z-index:-1}.bootstrap-switch input[type='radio'].form-control,.bootstrap-switch input[type='checkbox'].form-control{height:auto}.bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-on,.bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-off,.bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-label{padding:1px 5px;font-size:12px;line-height:1.5}.bootstrap-switch.bootstrap-switch-small .bootstrap-switch-handle-on,.bootstrap-switch.bootstrap-switch-small .bootstrap-switch-handle-off,.bootstrap-switch.bootstrap-switch-small .bootstrap-switch-label{padding:5px 10px;font-size:12px;line-height:1.5}.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-on,.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-off,.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-label{padding:6px 16px;font-size:18px;line-height:1.33}.bootstrap-switch.bootstrap-switch-disabled,.bootstrap-switch.bootstrap-switch-readonly,.bootstrap-switch.bootstrap-switch-indeterminate{cursor:default !important}.bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-handle-on,.bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-handle-on,.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-handle-on,.bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-handle-off,.bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-handle-off,.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-handle-off,.bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-label,.bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-label,.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-label{opacity:.5;filter:alpha(opacity=50);cursor:default !important}.bootstrap-switch.bootstrap-switch-animate .bootstrap-switch-container{-webkit-transition:margin-left .5s;transition:margin-left .5s}.bootstrap-switch.bootstrap-switch-inverse .bootstrap-switch-handle-on{border-bottom-left-radius:0;border-top-left-radius:0;border-bottom-right-radius:3px;border-top-right-radius:3px}.bootstrap-switch.bootstrap-switch-inverse .bootstrap-switch-handle-off{border-bottom-right-radius:0;border-top-right-radius:0;border-bottom-left-radius:3px;border-top-left-radius:3px}.bootstrap-switch.bootstrap-switch-focused{border-color:#66afe9;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6)}.bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label,.bootstrap-switch.bootstrap-switch-inverse.bootstrap-switch-off .bootstrap-switch-label{border-bottom-right-radius:3px;border-top-right-radius:3px}.bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,.bootstrap-switch.bootstrap-switch-inverse.bootstrap-switch-on .bootstrap-switch-label{border-bottom-left-radius:3px;border-top-left-radius:3px}
+.bootstrap-switch {
+    display: inline-block;
+    direction: ltr;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid;
+    border-color: #ccc;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    line-height: 8px;
+    z-index: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.bootstrap-switch .bootstrap-switch-container {
+    display: inline-block;
+    top: 0;
+    border-radius: 4px;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0)
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on, .bootstrap-switch .bootstrap-switch-handle-off, .bootstrap-switch .bootstrap-switch-label {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block !important;
+    height: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 20px
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on, .bootstrap-switch .bootstrap-switch-handle-off {
+    text-align: center;
+    z-index: 1
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
+    color: #fff;
+    background: #428bca
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info {
+    color: #fff;
+    background: #5bc0de
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
+    color: #fff;
+    background: #5cb85c
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-warning, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-warning {
+    background: #f0ad4e;
+    color: #fff
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-danger, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-danger {
+    color: #fff;
+    background: #d9534f
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
+    color: #000;
+    background: #eee
+}
+
+.bootstrap-switch .bootstrap-switch-label {
+    text-align: center;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    z-index: 100;
+    color: #333;
+    background: #fff
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.bootstrap-switch input[type='radio'], .bootstrap-switch input[type='checkbox'] {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    z-index: -1
+}
+
+.bootstrap-switch input[type='radio'].form-control, .bootstrap-switch input[type='checkbox'].form-control {
+    height: auto
+}
+
+.bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-on, .bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-off, .bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-label {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5
+}
+
+.bootstrap-switch.bootstrap-switch-small .bootstrap-switch-handle-on, .bootstrap-switch.bootstrap-switch-small .bootstrap-switch-handle-off, .bootstrap-switch.bootstrap-switch-small .bootstrap-switch-label {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5
+}
+
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-on, .bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-off, .bootstrap-switch.bootstrap-switch-large .bootstrap-switch-label {
+    padding: 6px 16px;
+    font-size: 18px;
+    line-height: 1.33
+}
+
+.bootstrap-switch.bootstrap-switch-disabled, .bootstrap-switch.bootstrap-switch-readonly, .bootstrap-switch.bootstrap-switch-indeterminate {
+    cursor: default !important
+}
+
+.bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-handle-on, .bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-handle-on, .bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-handle-on, .bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-handle-off, .bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-handle-off, .bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-handle-off, .bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-label, .bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-label, .bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-label {
+    opacity: .5;
+    filter: alpha(opacity=50);
+    cursor: default !important
+}
+
+.bootstrap-switch.bootstrap-switch-animate .bootstrap-switch-container {
+    -webkit-transition: margin-left .5s;
+    transition: margin-left .5s
+}
+
+.bootstrap-switch.bootstrap-switch-inverse .bootstrap-switch-handle-on {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.bootstrap-switch.bootstrap-switch-inverse .bootstrap-switch-handle-off {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px
+}
+
+.bootstrap-switch.bootstrap-switch-focused {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6)
+}
+
+.bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label, .bootstrap-switch.bootstrap-switch-inverse.bootstrap-switch-off .bootstrap-switch-label {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label, .bootstrap-switch.bootstrap-switch-inverse.bootstrap-switch-on .bootstrap-switch-label {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px
+}
 
 .fa {
     display: inline-block;
@@ -16682,7 +16859,7 @@ li.footer-menu-divider {
 }
 
 .nav li.footer-menu-divider {
-    display:none;
+    display: none;
 }
 
 .marketing .col-lg-4 {
@@ -17761,7 +17938,7 @@ footer .banner .row {
 }
 
 .footercontainer {
-    text-align: center!important;
+    text-align: center !important;
 }
 
 .tweets {
@@ -17930,7 +18107,7 @@ body {
 .h1, h1 {
     font-size: 1.8em;
     text-align: center;
-    display:block;
+    display: block;
 }
 
 .h2, h2 {
@@ -17969,4 +18146,144 @@ pre.crayon-plain-tag {
 .progress-description {
     text-align: left !important;
 }
+
+#forkongithub {
+    z-index: 2;
+}
+
+#forkongithub a {
+    background: #555;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    line-height: 2rem;
+    position: relative;
+    transition: 0.5s;
+}
+
+#forkongithub a:hover {
+    background: #286c8f;
+    color: #fff;
+}
+
+#forkongithub a::before, #forkongithub a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 1px;
+    background: #fff;
+}
+
+#forkongithub a::after {
+    bottom: 1px;
+    top: auto;
+}
+
+@media screen and (max-width: 1199px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        top: 14px;
+        right: 180px;
+        width: 250px;
+        overflow: hidden;
+        height: 200px;
+        z-index: 2;
+    }
+
+    #forkongithub a {
+        background: #555;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        font-weight: bold;
+        padding: 5px 40px;
+        line-height: 2rem;
+        transition: .5s;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        top: 76px;
+        right: 111px;
+        width: 250px;
+        overflow: hidden;
+        height: 200px;
+        z-index: 2;
+    }
+
+    #forkongithub a {
+        background: #555;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        font-weight: bold;
+        padding: 5px 40px;
+        line-height: 2rem;
+        transition: .5s;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 439px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        top: 50px;
+        left: 0;
+        width: 250px;
+        overflow: hidden;
+        height: 200px;
+        z-index: 2;
+    }
+
+    #forkongithub a {
+        background: #555;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        font-weight: bold;
+        padding: 5px 40px;
+        line-height: 2rem;
+        transition: .5s;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        top: 0;
+        right: 0;
+        overflow: hidden;
+        height: 200px;
+        z-index: 2;
+        width: 250px;
+    }
+
+    #forkongithub a {
+        width: 250px;
+        position: absolute;
+        top: 55px;
+        right: -60px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+    }
+}
+
+
 
