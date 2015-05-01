@@ -36,8 +36,8 @@ class AppKernel extends Kernel
             new BladeTester\LightNewsBundle\BladeTesterLightNewsBundle(),
             new Redmonster\AnnouncementBundle\RedmonsterAnnouncementBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
-            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
-            new Aequasi\Bundle\CacheBundle\AequasiCacheBundle()
+//            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
+//            new Aequasi\Bundle\CacheBundle\AequasiCacheBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

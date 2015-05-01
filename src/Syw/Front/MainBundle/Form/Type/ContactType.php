@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Collection;
-use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\True;
 
 /**
  * Class ContactType
@@ -47,18 +46,6 @@ class ContactType extends AbstractType
                     'cols' => 90,
                     'rows' => 10,
                     'placeholder' => 'Your message text...'
-                )
-            ))
-            ->add('recaptcha', 'ewz_recaptcha', array(
-                'attr' => array(
-                    'options' => array(
-                        'theme' => 'light',
-                        'type'  => 'image'
-                    )
-                ),
-                'mapped'      => false,
-                'constraints' => array(
-                    new True()
                 )
             ));
     }

@@ -5,7 +5,6 @@ namespace Syw\Front\MainBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\True;
 
 /**
  * Class RegistrationFormType
@@ -25,18 +24,6 @@ class RegistrationFormType extends AbstractType
                     'data' => 'en'
                 )
             );
-        $builder->add('recaptcha', 'ewz_recaptcha', array(
-            'attr' => array(
-                'options' => array(
-                    'theme' => 'light',
-                    'type'  => 'image'
-                )
-            ),
-            'mapped'      => false,
-            'constraints' => array(
-                new True()
-            )
-        ));
     }
 
     public function getParent()
