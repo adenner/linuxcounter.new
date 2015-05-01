@@ -18160,7 +18160,7 @@ pre.crayon-plain-tag {
     padding: 5px 40px;
     line-height: 2rem;
     position: relative;
-    transition: 0.5s;
+    transition: 1s;
 }
 
 #forkongithub a:hover {
