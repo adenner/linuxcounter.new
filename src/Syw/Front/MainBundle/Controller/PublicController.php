@@ -59,6 +59,7 @@ class PublicController extends BaseController
         $host = $this->getHost();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'language' => $language->getLanguage(),
             'host' => $host,
             'online' => $online,
@@ -115,6 +116,7 @@ class PublicController extends BaseController
         $host = $this->getHost();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'host' => $host,
             'online' => $online,
             'metatitle' => $metatitle,

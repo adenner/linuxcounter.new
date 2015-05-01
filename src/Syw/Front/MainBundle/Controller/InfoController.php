@@ -164,6 +164,7 @@ class InfoController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'language' => $language->getLanguage(),
             'online' => $online,
             'metatitle' => $metatitle,

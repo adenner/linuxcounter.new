@@ -44,6 +44,7 @@ class SecurityController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm(null);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'online' => $online,
             'metatitle' => $metatitle,
             'metadescription' => $this->get('translator')->trans('Here you can login to your account on the Linux Counter. Check and update your profile and machines.', array(), 'syw_front_main_main_index'),

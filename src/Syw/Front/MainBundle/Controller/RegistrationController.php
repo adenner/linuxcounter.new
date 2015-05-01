@@ -214,6 +214,7 @@ class RegistrationController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'online' => $online,
             'metatitle' => $metatitle,
             'metadescription' => $this->get('translator')->trans('If you want to get counted as a linux user, you must register here for an account in the Linux Counter.', array(), 'syw_front_main_main_index'),

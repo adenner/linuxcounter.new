@@ -102,6 +102,7 @@ class PrivacyController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

@@ -19,6 +19,32 @@ use Asm\TranslationLoaderBundle\Entity\Translation;
  */
 class BaseController extends LightNewsDefaultController
 {
+    public function getAccountInfo()
+    {
+        $infoarray = array();
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        if (null !== $user && true === is_object($user)) {
+            $infoarray['userid'] = $user->getId();
+            $infoarray['username'] = $user->getUsername();
+            $infoarray['email'] = $user->getEmail();
+            $infoarray['firstname'] = $user->getProfile()->getFirstname();
+            $infoarray['lastname'] = $user->getProfile()->getFirstname();
+            if (true === isset($infoarray['firstname']) && trim($infoarray['firstname']) != "") {
+                $infoarray['displayname'] = $infoarray['firstname'];
+            } elseif (true === isset($infoarray['username']) && trim($infoarray['username']) != "") {
+                $infoarray['displayname'] = $infoarray['username'];
+            } else {
+                $infoarray['displayname'] = $infoarray['userid'];
+            }
+            return $infoarray;
+        }
+        return false;
+    }
+
     public function getTransForm($user)
     {
         if (true === isset($user) && true === is_object($user)) {

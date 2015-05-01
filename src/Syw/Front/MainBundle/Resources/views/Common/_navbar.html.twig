@@ -7,6 +7,19 @@
 
                 <span id="forkongithub"><a href="https://github.com/alexloehner/linuxcounter.new/issues">Bugtracker on GitHub</a></span>
 
+                {% if accountInfo %}
+                <a href="{{ url('fos_user_profile_show') }}"><div id="accountInfo" class="accountinfo">
+                        <div class="gravatar responsive">
+                            <img class="responsive" src="{{ gravatar(accountInfo.email) }}" alt="Gravatar image"/>
+                        </div>
+                        <div class="displayname">
+                            {{ 'Hello %accountInfo.displayname%'|trans({
+                                '%accountInfo.displayname%': accountInfo.displayname
+                            }) }}
+                        </div>
+                    </div></a>
+                {% endif %}
+
                 <div class="navbar-header">
 
                     <div class="col-xs-10">

@@ -83,6 +83,7 @@ class ProfileController extends BaseController
         $host = $this->getHost();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'language' => $language->getLanguage(),
             'host' => $host,
             'online' => $online,
@@ -153,6 +154,7 @@ class ProfileController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'online' => $online,
             'metatitle' => $metatitle,
             'title' => $title,

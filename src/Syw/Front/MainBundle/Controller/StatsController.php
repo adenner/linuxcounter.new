@@ -36,6 +36,7 @@ class StatsController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'online' => $online,
             'metatitle' => $metatitle,
             'metadescription' => $this->get('translator')->trans('See here how many linux users there are in the world and how many users and machines actually are registered to the Linux Counter', array(), 'syw_front_main_main_index'),
@@ -99,6 +100,7 @@ class StatsController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'paginationAAA' => $paginationAAA,
             'paginationBBB' => $paginationBBB,
             'online' => $online,
@@ -164,6 +166,7 @@ class StatsController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'city' => $city,
             'country' => $country,
             'paginationAAA' => $paginationAAA,
@@ -221,6 +224,7 @@ class StatsController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'paginationAAA' => $paginationAAA,
             'country' => $country,
             'online' => $online,
@@ -355,6 +359,7 @@ class StatsController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'paginationAAA' => $paginationAAA,
             'online' => $online,
             'metatitle' => $metatitle,
@@ -410,6 +415,7 @@ class StatsController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'paginationAAA' => $paginationAAA,
             'online' => $online,
             'metatitle' => $metatitle,
@@ -462,6 +468,7 @@ class StatsController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'paginationAAA' => $paginationAAA,
             'online' => $online,
             'metatitle' => $metatitle,
@@ -514,6 +521,7 @@ class StatsController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'paginationAAA' => $paginationAAA,
             'online' => $online,
             'metatitle' => $metatitle,
@@ -641,6 +649,7 @@ class StatsController extends BaseController
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
             'online' => $online,
             'metatitle' => $metatitle,
             'metadescription' => $this->get('translator')->trans('These are statistics around the Linux Counter itself.', array(), 'syw_front_main_main_index'),
