@@ -14,7 +14,6 @@ namespace Syw\Front\MainBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\True;
 
 class ResettingFormType extends AbstractType
 {
