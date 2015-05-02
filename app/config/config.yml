@@ -248,31 +248,31 @@ ewz_recaptcha:
     private_key: "%recaptcha_private_key%"
     locale_key:  "%kernel.default_locale%"
 
-aequasi_cache:
-    instances:
-        default:
-          persistent: true # Boolean or persistent_id
-          namespace: mc
-          type: memcached
-          hosts:
-              - { host: localhost, port: 11211 }
-    doctrine:
-        enabled: false
-        metadata:
-            instance: default
-            entity_managers:   [ default ]          # the name of your entity_manager connection
-            document_managers: [ default ]       # the name of your document_manager connection
-        result:
-            instance: default
-            entity_managers:   [ default, read ]  # you may specify multiple entity_managers
-        query:
-            instance: default
-            entity_managers: [ default ]
-    session:
-        enabled: true
-        instance: default
-        prefix: "session_"
-        ttl: 86400
+#aequasi_cache:
+#    instances:
+#        default:
+#          persistent: true # Boolean or persistent_id
+#          namespace: mc
+#          type: memcached
+#          hosts:
+#              - { host: localhost, port: 11211 }
+#    doctrine:
+#        enabled: true
+#        metadata:
+#            instance: default
+#            entity_managers:   [ default ]          # the name of your entity_manager connection
+#            document_managers: [ default ]       # the name of your document_manager connection
+#        result:
+#            instance: default
+#            entity_managers:   [ default, read ]  # you may specify multiple entity_managers
+#        query:
+#            instance: default
+#            entity_managers: [ default ]
+#    session:
+#        enabled: true
+#        instance: default
+#        prefix: "session_"
+#        ttl: 86400
 
 
 
