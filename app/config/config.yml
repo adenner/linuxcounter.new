@@ -257,7 +257,7 @@ aequasi_cache:
           hosts:
               - { host: localhost, port: 11211 }
     doctrine:
-        enabled: true
+        enabled: false
         metadata:
             instance: default
             entity_managers:   [ default ]          # the name of your entity_manager connection
