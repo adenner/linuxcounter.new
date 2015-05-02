@@ -18111,23 +18111,112 @@ body {
 }
 
 .h2, h2 {
-    font-size: 1.6em;
-}
-
-.h3, h3 {
     font-size: 1.4em;
 }
 
+.h3, h3 {
+    font-size: 1.0em;
+    text-align: justify;
+    line-height: 1.5em;
+}
+
 .h4, h4 {
-    font-size: 1.2em;
+    font-size: 1.0em;
+    line-height: 1.2em;
 }
 
 .h5, h5 {
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 .h6, h6 {
-    font-size: 0.8em;
+    font-size: 0.7em;
+}
+
+#myCarousel .h2, #myCarousel h2 {
+    font-size: 2.4em;
+    text-align: center;
+    display: block;
+}
+
+#myCarousel .h3, #myCarousel h3 {
+    font-size: 1.8em;
+    text-align: justify;
+    display: block;
+}
+
+@media screen and (max-width: 991px) {
+    #myCarousel .h2, #myCarousel h2 {
+        font-size: 2.2em;
+        text-align: center;
+        display: block;
+    }
+
+    #myCarousel .h3, #myCarousel h3 {
+        font-size: 1.4em;
+        text-align: justify;
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 780px) {
+    #myCarousel .h2, #myCarousel h2 {
+        font-size: 2.2em;
+        text-align: center;
+        display: block;
+    }
+
+    #myCarousel .h3, #myCarousel h3 {
+        font-size: 1.4em;
+        text-align: justify;
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 640px) {
+    #myCarousel .h2, #myCarousel h2 {
+        font-size: 2.2em;
+        text-align: center;
+        display: block;
+    }
+
+    #myCarousel .h3, #myCarousel h3 {
+        font-size: 1.4em;
+        text-align: justify;
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 536px) {
+    #myCarousel .h2, #myCarousel h2 {
+        font-size: 2.1em;
+        text-align: center;
+        display: block;
+    }
+
+    #myCarousel .h3, #myCarousel h3 {
+        font-size: 1.3em;
+        text-align: justify;
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 450px) {
+    #myCarousel .h2, #myCarousel h2 {
+        font-size: 1.6em;
+        text-align: center;
+        display: block;
+    }
+
+    #myCarousel .h3, #myCarousel h3 {
+        font-size: 1.2em;
+        text-align: justify;
+        display: block;
+    }
 }
 
 .profilegravatar p {
