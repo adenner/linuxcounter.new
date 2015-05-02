@@ -4,8 +4,8 @@ parameters:
 
 
 services:
-    session.handler:
-        alias: memcache.session_handler
+#    session.handler:
+#        alias: memcache.session_handler
     app.locale_listener:
         class: Syw\Front\MainBundle\EventListener\LocaleListener
         arguments: ["%kernel.default_locale%"]
