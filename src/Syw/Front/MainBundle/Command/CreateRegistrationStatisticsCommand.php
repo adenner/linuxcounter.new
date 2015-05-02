@@ -43,6 +43,10 @@ EOT
         $num = $em->createQuery($dql)->getSingleScalarResult();
 
         $stat = $em->getRepository('SywFrontMainBundle:StatsRegistration')->findOneBy(array("month" => $monthrange[0]));
+        if (false === isset($stat) || false === is_object($stat) || null === $stat) {
+            $stat = new StatsRegistration();
+            $stat->setMonth($monthrange[0]);
+        }
         $stat->setNum($num);
         $em->persist($stat);
         $em->flush();
