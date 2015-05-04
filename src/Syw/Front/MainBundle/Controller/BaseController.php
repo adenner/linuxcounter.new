@@ -250,6 +250,12 @@ class BaseController extends Controller
         ;
         $counts['guests'] = $qb->getQuery()->getSingleScalarResult();
 
+
+        $conn = $this->get('doctrine.dbal.default_connection');
+        $rows = $conn->fetchAll('SELECT max(num) AS num, timestamp FROM stats_online_users ORDER BY timestamp DESC limit 1');
+        $counts['highest']['count'] = $rows[0]['num'];
+        $counts['highest']['date']  = new \DateTime($rows[0]['timestamp']);
+
         return $counts;
     }
 
