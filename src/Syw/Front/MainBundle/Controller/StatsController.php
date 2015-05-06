@@ -489,7 +489,7 @@ class StatsController extends BaseController
      */
     public function kernelAction()
     {
-        $metatitle = $this->get('translator')->trans('Funny Statistics about the internal code of the Linux kernel', array(), 'syw_front_main_stats_kernel');
+        $metatitle = $this->get('translator')->trans('Funny Statistics for the Linux Kernel - Lines of Code, Bad words, Good words', array(), 'syw_front_main_stats_kernel');
         $title = $metatitle;
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
