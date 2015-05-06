@@ -482,6 +482,177 @@ class StatsController extends BaseController
     }
 
     /**
+     * @Route("/statistics/kernel")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function kernelAction()
+    {
+        $metatitle = $this->get('translator')->trans('Funny Statistics about the internal code of the Linux kernel', array(), 'syw_front_main_stats_kernel');
+        $title = $metatitle;
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        $stats = array();
+
+        // chart for the lines of code
+        $title1 = $this->get('translator')->trans('Lines of code of the Linux Kernel Versions', array(), 'syw_front_main_stats_kernel');
+        unset($data1);
+        $versions = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsKernelLinesOfCode')
+            ->findBy(array(), array('id' => 'ASC'));
+        foreach ($versions as $version) {
+            $data1[] = array(
+                $version->getVersion(),
+                $version->getNum()
+            );
+        }
+        $series = array(
+            array(
+                "type" => "area",
+                "name" => $this->get('translator')->trans('Lines of Code', array(), 'syw_front_main_stats_kernel'),
+                "data" => $data1
+            )
+        );
+        $chart_linesofcode = new Highchart();
+        $chart_linesofcode->chart->renderTo('chart_linesofcode');
+        $chart_linesofcode->chart->zoomType('x');
+        $chart_linesofcode->chart->type('area');
+        $chart_linesofcode->title->text($this->get('translator')->trans('Lines of code per Kernel version', array(), 'syw_front_main_stats_kernel'));
+        $chart_linesofcode->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in', array(), 'syw_front_main_stats_kernel'));
+        $chart_linesofcode->xAxis->title(array('text'  => $this->get('translator')->trans('Version', array(), 'syw_front_main_stats_kernel')));
+        $chart_linesofcode->xAxis->type('category');
+        $chart_linesofcode->yAxis->min(0);
+        $chart_linesofcode->yAxis->title(array('text'  => $this->get('translator')->trans('Lines of code', array(), 'syw_front_main_stats_kernel')));
+        $chart_linesofcode->legend->enabled(true);
+        $chart_linesofcode->plotOptions->area(array(
+            'allowPointSelect'  => true,
+            'dataLabels'    => array('enabled' => false),
+            'showInLegend'  => true
+        ));
+        $chart_linesofcode->series($series);
+        // end of chart
+
+
+
+        // chart for the badwords
+        $title2 = $this->get('translator')->trans('Bad words within the code of the Linux Kernel', array(), 'syw_front_main_stats_kernel');
+        unset($data1); unset($data2); unset($data3); unset($data4); unset($data5); unset($data6); unset($data7); unset($data8);
+        $versions = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsKernelBadWords')
+            ->findBy(array(), array('id' => 'ASC'));
+        foreach ($versions as $version) {
+            $data1[] = array($version->getVersion(), $version->getFuck());
+            $data2[] = array($version->getVersion(), $version->getShit());
+            $data3[] = array($version->getVersion(), $version->getCrap());
+            $data4[] = array($version->getVersion(), $version->getBastard());
+            $data5[] = array($version->getVersion(), $version->getPiss());
+//            $data6[] = array($version->getVersion(), $version->getFire());
+            $data7[] = array($version->getVersion(), $version->getAsshole());
+        }
+        $series = array(
+            array("type" => "line", "data" => $data1, "name" => $this->get('translator')->trans('fuck', array(), 'syw_front_main_stats_kernel')),
+            array("type" => "line", "data" => $data2, "name" => $this->get('translator')->trans('shit', array(), 'syw_front_main_stats_kernel')),
+            array("type" => "line", "data" => $data3, "name" => $this->get('translator')->trans('crap', array(), 'syw_front_main_stats_kernel')),
+            array("type" => "line", "data" => $data4, "name" => $this->get('translator')->trans('bastard', array(), 'syw_front_main_stats_kernel')),
+            array("type" => "line", "data" => $data5, "name" => $this->get('translator')->trans('piss', array(), 'syw_front_main_stats_kernel')),
+//            array("type" => "line", "data" => $data6, "name" => $this->get('translator')->trans('fire', array(), 'syw_front_main_stats_kernel')),
+            array("type" => "line", "data" => $data7, "name" => $this->get('translator')->trans('asshole', array(), 'syw_front_main_stats_kernel')),
+        );
+        $chart_badwords = new Highchart();
+        $chart_badwords->chart->renderTo('chart_badwords');
+        $chart_badwords->chart->zoomType('x');
+        $chart_badwords->chart->type('line');
+        $chart_badwords->title->text($this->get('translator')->trans('Bad words within the code of the Linux Kernel', array(), 'syw_front_main_stats_kernel'));
+        $chart_badwords->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in', array(), 'syw_front_main_stats_kernel'));
+        $chart_badwords->xAxis->title(array('text'  => $this->get('translator')->trans('Version', array(), 'syw_front_main_stats_kernel')));
+        $chart_badwords->xAxis->type('category');
+        $chart_badwords->yAxis->min(0);
+        $chart_badwords->yAxis->title(array('text'  => $this->get('translator')->trans('Amount of words', array(), 'syw_front_main_stats_kernel')));
+        $chart_badwords->legend->enabled(true);
+        $chart_badwords->plotOptions->area(array(
+            'allowPointSelect'  => true,
+            'dataLabels'    => array('enabled' => false),
+            'showInLegend'  => true
+        ));
+        $chart_badwords->series($series);
+        // end of chart
+
+
+
+
+        // chart for the goodwords
+        $title3 = $this->get('translator')->trans('Good words within the code of the Linux Kernel', array(), 'syw_front_main_stats_kernel');
+        unset($data1); unset($data2); unset($data3); unset($data4); unset($data5); unset($data6); unset($data7); unset($data8);
+        $versions = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsKernelGoodWords')
+            ->findBy(array(), array('id' => 'ASC'));
+        foreach ($versions as $version) {
+            $data1[] = array($version->getVersion(), $version->getLove());
+            $data2[] = array($version->getVersion(), $version->getGood());
+            $data3[] = array($version->getVersion(), $version->getNice());
+            $data4[] = array($version->getVersion(), $version->getSweet());
+            $data5[] = array($version->getVersion(), $version->getKiss());
+        }
+        $series = array(
+            array("type" => "line", "data" => $data1, "name" => $this->get('translator')->trans('love', array(), 'syw_front_main_stats_kernel')),
+            array("type" => "line", "data" => $data2, "name" => $this->get('translator')->trans('good', array(), 'syw_front_main_stats_kernel')),
+            array("type" => "line", "data" => $data3, "name" => $this->get('translator')->trans('nice', array(), 'syw_front_main_stats_kernel')),
+            array("type" => "line", "data" => $data4, "name" => $this->get('translator')->trans('sweet', array(), 'syw_front_main_stats_kernel')),
+            array("type" => "line", "data" => $data5, "name" => $this->get('translator')->trans('kiss', array(), 'syw_front_main_stats_kernel')),
+        );
+        $chart_goodwords = new Highchart();
+        $chart_goodwords->chart->renderTo('chart_goodwords');
+        $chart_goodwords->chart->zoomType('x');
+        $chart_goodwords->chart->type('line');
+        $chart_goodwords->title->text($this->get('translator')->trans('Good words within the code of the Linux Kernel', array(), 'syw_front_main_stats_kernel'));
+        $chart_goodwords->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in', array(), 'syw_front_main_stats_kernel'));
+        $chart_goodwords->xAxis->title(array('text'  => $this->get('translator')->trans('Version', array(), 'syw_front_main_stats_kernel')));
+        $chart_goodwords->xAxis->type('category');
+        $chart_goodwords->yAxis->min(0);
+        $chart_goodwords->yAxis->title(array('text'  => $this->get('translator')->trans('Amount of words', array(), 'syw_front_main_stats_kernel')));
+        $chart_goodwords->legend->enabled(true);
+        $chart_goodwords->plotOptions->area(array(
+            'allowPointSelect'  => true,
+            'dataLabels'    => array('enabled' => false),
+            'showInLegend'  => true
+        ));
+        $chart_goodwords->series($series);
+        // end of chart
+
+
+
+
+        $stats['guess'] = $this->getGuessStats();
+        $online = $this->getOnlineUsers();
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
+            'chart_linesofcode' => $chart_linesofcode,
+            'chart_badwords' => $chart_badwords,
+            'chart_goodwords' => $chart_goodwords,
+            'accountInfo' => $this->getAccountInfo(),
+            'online' => $online,
+            'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('Ever wanted to know internal statistics for the linux kernel? Here we are.', array(), 'syw_front_main_stats_kernel'),
+            'title' => $title,
+            'title1' => $title1,
+            'title2' => $title2,
+            'title3' => $title3,
+            'languages' => $languages,
+            'user' => $user,
+            'stats' => $stats
+        );
+        return array_merge($return1, $return2);
+    }
+
+    /**
      * @Route("/statistics/uptimes")
      * @Method("GET")
      *
