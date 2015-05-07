@@ -252,14 +252,14 @@ EOT
 $postcontent = "The new Linux Kernel Version ".$version." is available for download!
 
 Visit the Linux Kernel Archive here:
-  ".$kernelarchive."
+  <a href=\"$kernelarchive\">".$kernelarchive."</a>
 
 Get the new Linux Kernel directly through this link:
-  ".$downloadurl."
+  <a href=\"$downloadurl\">".$downloadurl."</a>
 
-NEW:
+<b>NEW:</b>
 See the latest FUN statistics for this Kernel version here:
-  https://www.linuxcounter.net/statistics/kernel
+  <a href=\"https://www.linuxcounter.net/statistics/kernel\">https://www.linuxcounter.net/statistics/kernel</a>
 
 See how many lines of code this new version has, how many bad words or how many good words are included in the code of this new version!
 
