@@ -87,7 +87,7 @@ EOT
         }
 
         if ($downloaddir != "") {
-            echo $downloaddir."\n";
+            echo "\n".$downloaddir."\n";
             $downloadfile = "";
             foreach ($nextversions as $nextversion) {
                 $url = $downloaddir."/linux-".$nextversion.".tar.gz";
@@ -261,7 +261,7 @@ Get the new Linux Kernel directly through this link:
 
             $myPost = array(
                 'post_title' => 'New Linux Kernel Version '.$version.' available for download!',
-                'post_content' => '',
+                'post_content' => $postcontent,
                 'post_status' => 'publish',
                 'post_type' => 'post',
                 'post_author' => 1,
