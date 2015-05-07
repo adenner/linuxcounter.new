@@ -247,7 +247,6 @@ EOT
             #
             #
             include('/srv/blog.linuxcounter.net/web/wp-load.php');
-            include('/srv/blog.linuxcounter.net/web/wp-blog-header.php');
             date_default_timezone_set('Europe/Berlin');
 
 $postcontent = "The new Linux Kernel Version ".$version." is available for download!
@@ -273,6 +272,8 @@ Get the new Linux Kernel directly through this link:
             //-- Create the new post
             $newPostID = wp_insert_post($myPost);
 
+        } else {
+            echo "No new version available.\n";
         }
 
     }
