@@ -152,7 +152,7 @@ EOT
             }
             if ($filedir != "") {
                 $filedir = $kerneldir."/".$filedir;
-                echo $filedir."\n";
+                echo "\n".$filedir."\n";
                 $version = preg_replace("`^linux-([0-9]+\.[0-9]*\.?[0-9]*)\.tar\.[bgz2]+$`", "$1", $targetfile);
                 echo "version:   ".$version."\n";
                 $loc = exec('cloc "'.$filedir.'" --csv | grep -A 50 "files,language,blank" | grep -v "files,language,blank" | cut -d "," -f 5 | awk \'{s+=$1} END {print s}\'');
@@ -247,7 +247,7 @@ EOT
             #
             #
             include('/srv/blog.linuxcounter.net/web/wp-load.php');
-            // include('/srv/blog.linuxcounter.net/web/wp-blog-header.php');
+            include('/srv/blog.linuxcounter.net/web/wp-blog-header.php');
             date_default_timezone_set('Europe/Berlin');
 
 $postcontent = "The new Linux Kernel Version ".$version." is available for download!
