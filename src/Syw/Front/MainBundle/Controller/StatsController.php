@@ -502,16 +502,18 @@ class StatsController extends BaseController
         }
         $stats = array();
 
+
+        $db = $this->get('doctrine.dbal.default_connection');
+
+
         // chart for the lines of code
         $title1 = $this->get('translator')->trans('Lines of code of the Linux Kernel Versions', array(), 'syw_front_main_stats_kernel');
         unset($data1);
-        $versions = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:StatsKernelLinesOfCode')
-            ->findBy(array(), array('id' => 'ASC'));
-        foreach ($versions as $version) {
+        $rows = $db->fetchAll('SELECT version, num FROM stats_kernel_linesofcode ORDER BY udf_NaturalSortFormat(version, 10, ".")');
+        foreach ($rows as $row) {
             $data1[] = array(
-                $version->getVersion(),
-                $version->getNum()
+                $row['version'],
+                intval($row['num'])
             );
         }
         $series = array(
@@ -545,17 +547,15 @@ class StatsController extends BaseController
         // chart for the badwords
         $title2 = $this->get('translator')->trans('Bad words within the code of the Linux Kernel', array(), 'syw_front_main_stats_kernel');
         unset($data1); unset($data2); unset($data3); unset($data4); unset($data5); unset($data6); unset($data7); unset($data8);
-        $versions = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:StatsKernelBadWords')
-            ->findBy(array(), array('id' => 'ASC'));
-        foreach ($versions as $version) {
-            $data1[] = array($version->getVersion(), $version->getFuck());
-            $data2[] = array($version->getVersion(), $version->getShit());
-            $data3[] = array($version->getVersion(), $version->getCrap());
-            $data4[] = array($version->getVersion(), $version->getBastard());
-            $data5[] = array($version->getVersion(), $version->getPiss());
-//            $data6[] = array($version->getVersion(), $version->getFire());
-            $data7[] = array($version->getVersion(), $version->getAsshole());
+        $rows = $db->fetchAll('SELECT * FROM stats_kernel_badwords ORDER BY udf_NaturalSortFormat(version, 10, ".")');
+        foreach ($rows as $row) {
+            $data1[] = array($row['version'], intval($row['fuck']));
+            $data2[] = array($row['version'], intval($row['shit']));
+            $data3[] = array($row['version'], intval($row['crap']));
+            $data4[] = array($row['version'], intval($row['bastard']));
+            $data5[] = array($row['version'], intval($row['piss']));
+//            $data6[] = array($row['version'], intval($row['fire']));
+            $data7[] = array($row['version'], intval($row['asshole']));
         }
         $series = array(
             array("type" => "line", "data" => $data1, "name" => $this->get('translator')->trans('fuck', array(), 'syw_front_main_stats_kernel')),
@@ -591,15 +591,13 @@ class StatsController extends BaseController
         // chart for the goodwords
         $title3 = $this->get('translator')->trans('Good words within the code of the Linux Kernel', array(), 'syw_front_main_stats_kernel');
         unset($data1); unset($data2); unset($data3); unset($data4); unset($data5); unset($data6); unset($data7); unset($data8);
-        $versions = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:StatsKernelGoodWords')
-            ->findBy(array(), array('id' => 'ASC'));
-        foreach ($versions as $version) {
-            $data1[] = array($version->getVersion(), $version->getLove());
-            $data2[] = array($version->getVersion(), $version->getGood());
-            $data3[] = array($version->getVersion(), $version->getNice());
-            $data4[] = array($version->getVersion(), $version->getSweet());
-            $data5[] = array($version->getVersion(), $version->getKiss());
+        $rows = $db->fetchAll('SELECT * FROM stats_kernel_goodwords ORDER BY udf_NaturalSortFormat(version, 10, ".")');
+        foreach ($rows as $row) {
+            $data1[] = array($row['version'], intval($row['love']));
+            $data2[] = array($row['version'], intval($row['good']));
+            $data3[] = array($row['version'], intval($row['nice']));
+            $data4[] = array($row['version'], intval($row['sweet']));
+            $data5[] = array($row['version'], intval($row['kiss']));
         }
         $series = array(
             array("type" => "line", "data" => $data1, "name" => $this->get('translator')->trans('love', array(), 'syw_front_main_stats_kernel')),
