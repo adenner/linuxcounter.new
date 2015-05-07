@@ -257,6 +257,12 @@ Visit the Linux Kernel Archive here:
 Get the new Linux Kernel directly through this link:
   ".$downloadurl."
 
+NEW:
+See the latest FUN statistics for this Kernel version here:
+  https://www.linuxcounter.net/statistics/kernel
+
+See how many lines of code this new version has, how many bad words or how many good words are included in the code of this new version!
+
 ";
 
             $myPost = array(
