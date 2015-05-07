@@ -250,6 +250,7 @@ EOT
             date_default_timezone_set('Europe/Berlin');
 
 $postcontent = "The new Linux Kernel Version ".$version." is available for download!
+
 Visit the Linux Kernel Archive here:
   ".$kernelarchive."
 
