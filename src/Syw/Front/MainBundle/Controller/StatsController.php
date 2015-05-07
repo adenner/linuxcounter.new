@@ -534,10 +534,11 @@ class StatsController extends BaseController
         $chart_linesofcode->yAxis->min(0);
         $chart_linesofcode->yAxis->title(array('text'  => $this->get('translator')->trans('Lines of code', array(), 'syw_front_main_stats_kernel')));
         $chart_linesofcode->legend->enabled(true);
-        $chart_linesofcode->plotOptions->area(array(
+        $chart_linesofcode->plotOptions->series(array(
             'allowPointSelect'  => true,
             'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
+            'showInLegend'  => true,
+            'turboThreshold'  => 0
         ));
         $chart_linesofcode->series($series);
         // end of chart
@@ -577,10 +578,11 @@ class StatsController extends BaseController
         $chart_badwords->yAxis->min(0);
         $chart_badwords->yAxis->title(array('text'  => $this->get('translator')->trans('Amount of words', array(), 'syw_front_main_stats_kernel')));
         $chart_badwords->legend->enabled(true);
-        $chart_badwords->plotOptions->area(array(
+        $chart_badwords->plotOptions->series(array(
             'allowPointSelect'  => true,
             'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
+            'showInLegend'  => true,
+            'turboThreshold'  => 0
         ));
         $chart_badwords->series($series);
         // end of chart
@@ -617,10 +619,11 @@ class StatsController extends BaseController
         $chart_goodwords->yAxis->min(0);
         $chart_goodwords->yAxis->title(array('text'  => $this->get('translator')->trans('Amount of words', array(), 'syw_front_main_stats_kernel')));
         $chart_goodwords->legend->enabled(true);
-        $chart_goodwords->plotOptions->area(array(
+        $chart_goodwords->plotOptions->series(array(
             'allowPointSelect'  => true,
             'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
+            'showInLegend'  => true,
+            'turboThreshold'  => 0
         ));
         $chart_goodwords->series($series);
         // end of chart
