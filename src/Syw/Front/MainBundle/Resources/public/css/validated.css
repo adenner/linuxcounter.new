@@ -17607,6 +17607,11 @@ input[type="submit"] {
     }
 }
 
+span#add_city_button {
+    width: 100%;
+    display: block;
+}
+
 .modal-dialog {
     position: relative;
     width: 97%;

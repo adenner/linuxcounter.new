@@ -191,23 +191,36 @@ class InfoController extends BaseController
         if (false === is_object($user) || false === $user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
-
         $formData = $request->request->all();
-
         $em = $this->getDoctrine()->getManager();
 
-        $city = new Cities();
-        $city->setIsoCountryCode(strtoupper($formData['addcity']['isoCountryCode']));
-        $city->setRegion($formData['addcity']['region']);
-        $city->setName($formData['addcity']['name']);
-        $city->setLatitude($formData['addcity']['latitude']);
-        $city->setLongitude($formData['addcity']['longitude']);
-        $city->setPopulation($formData['addcity']['population']);
-        $city->setUserNum(1);
-        $em->persist($city);
+        /* TODO: check for existence */
+        $cityext = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Cities')
+            ->findOneBy(array(
+                'isoCountryCode' => strtoupper($formData['addcity']['isoCountryCode']),
+                'name' => trim($formData['addcity']['name'])
+            ));
+        if (true === isset($cityext) && true === is_object($cityext)) {
+            // city already exists!
+            $city = $cityext;
+            $flashBag = $this->get('session')->getFlashBag();
+            $flashBag->set('success', 'That city already exists! Nevertheless it got stored in your profile.');
+        } else {
+            $city = new Cities();
+            $city->setIsoCountryCode(strtoupper($formData['addcity']['isoCountryCode']));
+            $city->setRegion($formData['addcity']['region']);
+            $city->setName($formData['addcity']['name']);
+            $city->setLatitude($formData['addcity']['latitude']);
+            $city->setLongitude($formData['addcity']['longitude']);
+            $city->setPopulation($formData['addcity']['population']);
+            $city->setUserNum(1);
+            $em->persist($city);
+            $flashBag = $this->get('session')->getFlashBag();
+            $flashBag->set('success', 'New city saved and stored in your profile!');
+        }
         $userProfile->setCity($city);
         $em->persist($userProfile);
-
         $country = $this->getDoctrine()
             ->getRepository('SywFrontMainBundle:Countries')
             ->findOneBy(array('code' => strtolower($city->getIsoCountryCode())));
@@ -224,9 +237,6 @@ class InfoController extends BaseController
         }
 
         $em->flush();
-
-        $flashBag = $this->get('session')->getFlashBag();
-        $flashBag->set('success', 'New city saved!');
 
         return $this->redirectToRoute('syw_front_main_info_edit');
     }
