@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Cities
@@ -38,6 +40,8 @@ class Cities
      * @var string
      *
      * @ORM\Column(name="iso_country_code", type="string", length=4, nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2,max=2)
      */
     private $isoCountryCode;
 
@@ -52,6 +56,8 @@ class Cities
      * @var string
      *
      * @ORM\Column(name="region", type="string", length=64, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2)
      */
     private $region;
 
@@ -59,6 +65,8 @@ class Cities
      * @var integer
      *
      * @ORM\Column(name="population", type="integer", nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=1)
      */
     private $population;
 
@@ -66,6 +74,8 @@ class Cities
      * @var float
      *
      * @ORM\Column(name="latitude", type="float", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $latitude;
 
@@ -73,6 +83,8 @@ class Cities
      * @var float
      *
      * @ORM\Column(name="longitude", type="float", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $longitude;
 
@@ -87,6 +99,8 @@ class Cities
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2)
      */
     private $name;
 

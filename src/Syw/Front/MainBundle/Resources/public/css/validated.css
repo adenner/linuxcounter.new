@@ -18409,10 +18409,20 @@ pre.crayon-plain-tag {
     }
 }
 
+#manager-panel button.btn.btn-default {
+    width: auto;
+    font-size: 1.0em;
+    margin: 0;
+}
 
+.center {
+    display: block;
+    text-align: center;
+}
 
-
-
+.red {
+    color: #ff0000;
+}
 
 
 

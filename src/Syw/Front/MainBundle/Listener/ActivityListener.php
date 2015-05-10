@@ -59,9 +59,18 @@ class ActivityListener
         }
         $routeData = ['name' => $route, 'params' => $routeParams];
         $thisRoute = $session->get('this_route', []);
-        if ($thisRoute == $routeData) {
-            return;
+
+        if (true === isset($_COOKIE['LICO_URL_2']) && trim($_COOKIE['LICO_URL_2']) != "") {
+            setcookie('LICO_URL_3', urldecode(trim($_COOKIE['LICO_URL_2'])), time()+3600, '/');
         }
+        if (true === isset($_COOKIE['LICO_URL_1']) && trim($_COOKIE['LICO_URL_1']) != "") {
+            setcookie('LICO_URL_2', urldecode(trim($_COOKIE['LICO_URL_1'])), time()+3600, '/');
+        }
+        if (true === isset($_COOKIE['LICO_URL_0']) && trim($_COOKIE['LICO_URL_0']) != "") {
+            setcookie('LICO_URL_1', urldecode(trim($_COOKIE['LICO_URL_0'])), time()+3600, '/');
+        }
+        setcookie('LICO_URL_0', $_SERVER["REQUEST_URI"], time()+3600, '/');
+
         $session->set('last_route', $thisRoute);
         $session->set('this_route', $routeData);
 

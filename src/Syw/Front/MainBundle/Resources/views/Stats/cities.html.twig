@@ -8,21 +8,35 @@
         <div class="col-sm-8">
             <div class="row">
                 <div class="col-sm-12">
+
+                    {% if is_granted('ROLE_MANAGER') %}
+                        <div id="manager-panel" class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{ 'Manager Panel'|trans }}</h3>
+                            </div>
+                            <div class="panel-body" style="text-align: center;">
+
+                                <a href="{{ url('syw_front_manager_correct_correctcity', {'cityid': city.id}) }}"><button type="button" class="btn btn-default">Correct This City (if needed)</button></a>
+                                <a href="{{ url('syw_front_manager_merge_mergeduplicatecities', {'cityid': city.id}) }}"><button type="button" class="btn btn-default">Merge Duplicates (if any)</button></a>
+
+                            </div>
+                        </div>
+                    {% endif %}
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ title }}</h3>
                         </div>
                         <div class="panel-body">
-
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <span class="badge">{{ city.getUserNum()|number_format }} {{ 'Users'|trans }}</span>
+                                    <span class="badge">{{ city.getUsers()|length|number_format }} {{ 'Users'|trans }}</span>
                                     {{ 'City: %city.name%'|trans({
                                             '%city.name%': city.getName()
                                     }) }}
                                 </li>
                                 <li class="list-group-item">
-                                    <span class="badge">{{ country.getUsersNum()|number_format }} {{ 'Users'|trans }}</span>
+                                    <span class="badge">{{ country.getUsers()|length|number_format }} {{ 'Users'|trans }}</span>
                                     {{ 'Country: %country.name% (%country.code%)'|trans({
                                         '%country.name%': country.getName(),
                                         '%country.code%': country.getCode()|upper,

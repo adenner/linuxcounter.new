@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@ManagerBundle/Resources/config/services.yml" }
 
 # Doctrine Configuration
 doctrine:
@@ -140,7 +141,7 @@ easy_admin:
         User:
             class: Syw\Front\MainBundle\Entity\User
         Translation:
-            class: Syw\Front\MainBundle\Entity\Translation
+            class: Asm\TranslationLoaderBundle\Entity\Translation
             form:
                 fields: ['transKey', 'translation', 'transLocale', 'messageDomain', 'dateCreated', 'dateUpdated']
         Languages:
