@@ -17092,7 +17092,7 @@ li.footer-menu-divider {
 }
 
 .flash {
-    margin-top: 10px;
+    margin-top: 150px;
     position: absolute;
     z-index: 999;
     width: 80%;
@@ -17105,6 +17105,7 @@ li.footer-menu-divider {
 
 .alert {
     z-index: 999;
+    box-shadow: 0 0 120px;
 }
 
 .flash-danger {

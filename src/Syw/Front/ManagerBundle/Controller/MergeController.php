@@ -8,11 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Asm\TranslationLoaderBundle\Entity\Translation;
 use Syw\Front\MainBundle\Entity\Cities;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class MergeController extends BaseController
 {
     /**
      * @Route("/manager/merge/city/{cityid}")
+     * @Security("has_role('ROLE_MANAGER')")
      *
      * @Template()
      */

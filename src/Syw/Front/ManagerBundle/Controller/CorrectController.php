@@ -10,11 +10,13 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Asm\TranslationLoaderBundle\Entity\Translation;
 use Syw\Front\MainBundle\Entity\Cities;
 use Syw\Front\ManagerBundle\Form\CityType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class CorrectController extends BaseController
 {
     /**
      * @Route("/manager/correct/city/{cityid}")
+     * @Security("has_role('ROLE_MANAGER')")
      *
      * @Template()
      */
@@ -25,25 +27,19 @@ class CorrectController extends BaseController
         } else {
             $user = null;
         }
-
         $em = $this->getDoctrine()->getManager();
-
         $city = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Cities')
             ->findOneBy(array('id' => $cityid));
-
         $form = $this->createForm(new CityType(), $city);
-
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $editCity = $form->getData();
             $em->flush();
             $flashBag = $this->get('session')->getFlashBag();
             $flashBag->set('success', 'City data saved!');
-            header('Location: '.$_COOKIE['LICO_URL_2']);
+            return $this->redirectToRoute('syw_front_main_stats_cities', array('id' => $editCity->getId()));
         }
-
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
