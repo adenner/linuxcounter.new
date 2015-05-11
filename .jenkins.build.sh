@@ -20,6 +20,4 @@ php app/console asm:translations:dummy
 
 phpunit -c app/phpunit.travis.xml
 
-php bin/coveralls
-
 mysql -ujenkins -pjenkins -e "DROP DATABASE jenkinsbuild"
