@@ -4,7 +4,7 @@ composer install
 
 mkdir -p app/cache
 mkdir -p app/logs
-php app/console doctrine:database:create
+mysql -ujenkins -pjenkins -e "CREATE DATABASE jenkinsbuild"
 cd app/config/travis-sql
 for i in *; do mysql -ujenkins -pjenkins jenkinsbuild < ${i}; done;
 cd ../../..
