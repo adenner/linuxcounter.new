@@ -2,8 +2,7 @@
     <property name="output" location="${basedir}/build"/>
     <property name="testdir" location="${basedir}/src/Syw/Front"/>
 
-    <!-- target name="build" depends="lint, phploc, pdepend, phpmdci, phpcsci, phpcpd, phpdoc, phpunit, phpcb"></target -->
-    <target name="build" depends="clean, prepare, lint, phploc, pdepend, phpmdci, phpcsci, phpcpd, phpdoc, phpcb"></target>
+    <target name="build" depends="clean, prepare, lint, phploc, pdepend, phpmdci, phpcsci, phpcpd, phpdoc, phpunit, phpcb"></target>
 
     <target name="clean" description="Cleanup build artifacts">
         <delete dir="${output}"/>
