@@ -18,14 +18,8 @@ php app/console assets:install --symlink web --no-debug
 php app/console assetic:dump
 php app/console asm:translations:dummy
 
-
-
 phpunit -c app/phpunit.travis.xml
-
-
 
 php bin/coveralls
 
-
 mysql -ujenkins -pjenkins -e "DROP DATABASE jenkinsbuild"
-
