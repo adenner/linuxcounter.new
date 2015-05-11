@@ -117,7 +117,7 @@
             <arg value="--log" />
             <arg path="${output}/logs" />
             <arg value="--ignore" />
-            <arg path="${testdir}/*/Tests" />
+            <arg path="Tests" />
             <arg value="--source" />
             <arg path="${testdir}" />
             <arg value="--output" />
