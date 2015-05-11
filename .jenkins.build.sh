@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+rm -fr app/config/parameters.yml
+rm -fr app/cache/*
+rm -fr app/logs/*
+
 composer install
 
 mkdir -p app/cache
