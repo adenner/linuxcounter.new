@@ -20,6 +20,6 @@
 
 /* SITE */
 
-	Last update: 2015/04/26
+	Last update: 2015/05/11
 	Doctype:HTML5
 	IDE: PHPStorm
