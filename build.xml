@@ -4,10 +4,12 @@
 
     <target name="build" depends="clean, prepare, lint, phploc, pdepend, phpmdci, phpcsci, phpcpd, phpdoc, phpunit, phpcb"></target>
 
+    <!-- this works -->
     <target name="clean" description="Cleanup build artifacts">
         <delete dir="${output}"/>
     </target>
 
+    <!-- this works -->
     <target name="prepare" depends="clean" description="Prepare for build">
         <mkdir dir="${output}"/>
         <mkdir dir="${output}/api"/>
@@ -17,6 +19,7 @@
         <mkdir dir="${output}/pdepend"/>
     </target>
 
+    <!-- this works -->
     <target name="lint" description="Perform syntax check of sourcecode files">
         <apply executable="php" failonerror="true">
             <arg value="-l" />
@@ -27,6 +30,7 @@
         </apply>
     </target>
 
+    <!-- this works -->
     <target name="phploc" description="Measure project size using PHPLOC">
         <exec executable="phploc">
             <arg value="--exclude" />
@@ -41,6 +45,7 @@
         </exec>
     </target>
 
+    <!-- this works -->
     <target name="pdepend" description="Calculate software metrics using PHP_Depend">
         <exec executable="pdepend">
             <arg value="--jdepend-xml=${output}/logs/jdepend.xml" />
@@ -50,36 +55,33 @@
         </exec>
     </target>
 
+    <!-- this DOESNT work! -->
     <target name="phpmdci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
         <exec executable="phpmd">
-            <arg path="${testdir}" />
+            <arg path="${testdir}/" />
             <arg value="xml" />
-            <arg value="codesize" />
+            <arg value="codesize,unusedcode,naming,design" />
             <arg value="--reportfile" />
             <arg value="${output}/logs/pmd.xml" />
             <arg value="--exclude" />
-            <arg path="${testdir}/Tests" />
-            <arg value="--exclude" />
-            <arg path="${testdir}/*/Tests" />
-            <arg value="--exclude" />
-            <arg path="${testdir}/*/*/Tests" />
+            <arg path="Vendor,Config,Console,uploads,tmp,Test" />
         </exec>
     </target>
 
+    <!-- this DOESNT work! -->
     <target name="phpcsci"
             description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
         <exec executable="phpcs" output="/dev/null">
             <arg value="--report=checkstyle" />
             <arg value="--report-file=${output}/logs/checkstyle.xml" />
             <arg value="--standard=psr2" />
-            <arg value="--ignore=${testdir}/Tests" />
-            <arg value="--ignore=${testdir}/*/Tests" />
-            <arg value="--ignore=${testdir}/*/*/Tests" />
+            <arg value="--ignore=Tests" />
             <arg value="--extensions=php" />
             <arg path="${testdir}" />
         </exec>
     </target>
 
+    <!-- this works -->
     <target name="phpcpd" description="Find duplicate code using PHPCPD">
         <exec executable="phpcpd">
             <arg value="--log-pmd" />
@@ -94,12 +96,14 @@
         </exec>
     </target>
 
+    <!-- this DOESNT work! -->
     <target name="phpdoc" description="Generate API documentation using phpDocumentor 2">
         <exec dir="${testdir}" executable="phpdoc" failonerror="true">
-            <arg line="--title='test title' -d . -t ${output}/api -i Tests/ " />
+            <arg line="--title='LinuxCounter' -d ${testdir} -t ${output}/api -i Tests/ " />
         </exec>
     </target>
 
+    <!-- this DOESNT work! -->
     <target name="phpunit" description="Run unit tests with PHPUnit">
         <exec executable="phpunit" failonerror="true">
             <arg line="--coverage-clover ${output}/coverage/clover.xml
