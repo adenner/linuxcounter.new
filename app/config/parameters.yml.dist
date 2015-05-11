@@ -3,9 +3,9 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: licotest
-    database_user: root
-    database_password: ~
+    database_name: jenkinsbuild
+    database_user: jenkins
+    database_password: jenkins
     database_lico_driver: pdo_mysql
     database_lico_host: 127.0.0.1
     database_lico_port: null
