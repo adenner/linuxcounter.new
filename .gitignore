@@ -20,3 +20,5 @@ web/cert
 web/mcert
 src/Syw/Front/*/Resources/translations
 app/Resources/translations
+build
+cache.properties

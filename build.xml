@@ -1,0 +1,129 @@
+<project name="Test" default="build" basedir=".">
+    <property name="output" location="${basedir}/build"/>
+    <property name="testdir" location="${basedir}/src/Syw/Front"/>
+
+    <!-- target name="build" depends="lint, phploc, pdepend, phpmdci, phpcsci, phpcpd, phpdoc, phpunit, phpcb"></target -->
+    <target name="build" depends="clean, prepare, lint, phploc, pdepend, phpmdci, phpcsci, phpcpd, phpdoc, phpcb"></target>
+
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${output}"/>
+    </target>
+
+    <target name="prepare" depends="clean" description="Prepare for build">
+        <mkdir dir="${output}"/>
+        <mkdir dir="${output}/api"/>
+        <mkdir dir="${output}/code-browser"/>
+        <mkdir dir="${output}/coverage"/>
+        <mkdir dir="${output}/logs"/>
+        <mkdir dir="${output}/pdepend"/>
+    </target>
+
+    <target name="lint" description="Perform syntax check of sourcecode files">
+        <apply executable="php" failonerror="true">
+            <arg value="-l" />
+            <fileset dir="${testdir}">
+                <include name="**/*.php" />
+                <modified />
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="phploc" description="Measure project size using PHPLOC">
+        <exec executable="phploc">
+            <arg value="--exclude" />
+            <arg path="${testdir}/Tests" />
+            <arg value="--exclude" />
+            <arg path="${testdir}/*/Tests" />
+            <arg value="--exclude" />
+            <arg path="${testdir}/*/*/Tests" />
+            <arg value="--log-csv" />
+            <arg value="${output}/logs/phploc.csv" />
+            <arg path="${testdir}" />
+        </exec>
+    </target>
+
+    <target name="pdepend" description="Calculate software metrics using PHP_Depend">
+        <exec executable="pdepend">
+            <arg value="--jdepend-xml=${output}/logs/jdepend.xml" />
+            <arg value="--jdepend-chart=${output}/pdepend/dependencies.svg" />
+            <arg value="--overview-pyramid=${output}/pdepend/overview-pyramid.svg" />
+            <arg path="${testdir}" />
+        </exec>
+    </target>
+
+    <target name="phpmdci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
+        <exec executable="phpmd">
+            <arg path="${testdir}" />
+            <arg value="xml" />
+            <arg value="codesize" />
+            <arg value="--reportfile" />
+            <arg value="${output}/logs/pmd.xml" />
+            <arg value="--exclude" />
+            <arg path="${testdir}/Tests" />
+            <arg value="--exclude" />
+            <arg path="${testdir}/*/Tests" />
+            <arg value="--exclude" />
+            <arg path="${testdir}/*/*/Tests" />
+        </exec>
+    </target>
+
+    <target name="phpcsci"
+            description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
+        <exec executable="phpcs" output="/dev/null">
+            <arg value="--report=checkstyle" />
+            <arg value="--report-file=${output}/logs/checkstyle.xml" />
+            <arg value="--standard=psr2" />
+            <arg value="--ignore=${testdir}/Tests" />
+            <arg value="--ignore=${testdir}/*/Tests" />
+            <arg value="--ignore=${testdir}/*/*/Tests" />
+            <arg value="--extensions=php" />
+            <arg path="${testdir}" />
+        </exec>
+    </target>
+
+    <target name="phpcpd" description="Find duplicate code using PHPCPD">
+        <exec executable="phpcpd">
+            <arg value="--log-pmd" />
+            <arg value="${output}/logs/pmd-cpd.xml" />
+            <arg value="--exclude" />
+            <arg path="${testdir}/Tests" />
+            <arg value="--exclude" />
+            <arg path="${testdir}/*/Tests" />
+            <arg value="--exclude" />
+            <arg path="${testdir}/*/*/Tests" />
+            <arg path="${testdir}" />
+        </exec>
+    </target>
+
+    <target name="phpdoc" description="Generate API documentation using phpDocumentor 2">
+        <exec dir="${testdir}" executable="phpdoc" failonerror="true">
+            <arg line="--title='test title' -d . -t ${output}/api -i Tests/ " />
+        </exec>
+    </target>
+
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec executable="phpunit" failonerror="true">
+            <arg line="--coverage-clover ${output}/coverage/clover.xml
+				--coverage-html ${output}/coverage/
+				-c app"/>
+        </exec>
+    </target>
+
+    <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
+        <exec executable="phpcb">
+            <arg value="--log" />
+            <arg path="${output}/logs" />
+            <arg value="--ignore" />
+            <arg path="${testdir}/Tests" />
+            <arg value="--ignore" />
+            <arg path="${testdir}/*/Tests" />
+            <arg value="--ignore" />
+            <arg path="${testdir}/*/*/Tests" />
+            <arg value="--source" />
+            <arg path="${testdir}" />
+            <arg value="--output" />
+            <arg path="${output}/code-browser" />
+        </exec>
+    </target>
+
+</project>
