@@ -19,7 +19,7 @@ class MainControllerTest extends BaseControllerTest
     public function testMainIndexContent()
     {
         $crawler = $this->client->request('GET', $this->base_proto.'://'.$this->base_host.'/');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("We are providing the most accurate and complete statistics about linux and its distributions, users, kernels and machines in the world wide web. This also includes statistics about users per country or city, most used cpus, top uptimes lists and much more.")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Distributions statistics, most used distributions, most used CPUs, greatest uptimes, Linux user statistics per country and city, Linux kernel statistics and many, many more...")')->count());
     }
 
     /*

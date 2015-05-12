@@ -81,7 +81,11 @@ class ActivityListener
         }
         $ipaddress = $this->container->get('request')->server->get("REMOTE_ADDR");
         if ($ipaddress == "127.0.0.1") {
-            $ipaddress = $_SERVER["REMOTE_ADDR"];
+            if (true === isset($_SERVER["REMOTE_ADDR"]) && trim($_SERVER["REMOTE_ADDR"]) != "") {
+                $ipaddress = $_SERVER["REMOTE_ADDR"];
+            } else {
+                $ipaddress = "N/A";
+            }
         }
         $useragent = $this->container->get('request')->server->get("HTTP_USER_AGENT");
         $obj       = new DetectBotFromUserAgent();
