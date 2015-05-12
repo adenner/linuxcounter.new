@@ -177,6 +177,4 @@ class AdminController extends BaseController
     {
         return $this->get('blade_tester_light_news.news_manager');
     }
-
-
 }

@@ -142,7 +142,7 @@
             unless="phpdox.done"
             depends="phploc,phpcs,phpmd"
             description="Generate project documentation using phpDox">
-        <exec executable="phpdox" dir="${output}/phpdox" taskname="phpdox">
+        <exec executable="phpdox" dir="${output}/phpdox" taskname="phpdox" output="/dev/null">
             <arg value="--file" />
             <arg value="${basedir}/phpdox.xml" />
         </exec>

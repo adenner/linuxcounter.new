@@ -249,7 +249,7 @@ EOT
             include('/srv/blog.linuxcounter.net/web/wp-load.php');
             date_default_timezone_set('Europe/Berlin');
 
-$postcontent = "The new Linux Kernel Version ".$version." is available for download!
+            $postcontent = "The new Linux Kernel Version ".$version." is available for download!
 
 Visit the Linux Kernel Archive here:
   <a href=\"$kernelarchive\">".$kernelarchive."</a>

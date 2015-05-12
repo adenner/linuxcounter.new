@@ -1,12 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://xml.phpdox.net/config">
-    <project name="The Linux Counter Project" source="src/Syw/Front" workdir="build/phpdox">
-        <collector publiconly="false">
-            <include mask="*.php" />
-            <exclude mask="*autoload.php" />
-        </collector>
+    <project name="The Linux Counter Project" source="${basedir}" workdir="${basedir}/build/phpdox/xml">
 
-        <generator output="build">
-            <build engine="html" enabled="true" output="api"/>
+        <collector backend="parser"/>
+
+        <generator output="${basedir}/build/phpdox/api">
+            <build engine="html" enabled="true" output="html"/>
         </generator>
     </project>
 </phpdox>
