@@ -16,7 +16,8 @@
 
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <span class="badge">{{ country.getUsersNum()|number_format }} {{ 'Users'|trans }}</span>
+                                    <span class="badge">{{ country.getUsers()|length|number_format }} {{ 'Users'|trans }}</span>
+                                    <span class="badge">{{ country.getMachines()|length|number_format }} {{ 'Machines'|trans }}</span>
                                     {{ 'Country: %country.name% (%country.code%)'|trans({
                                         '%country.name%': country.getName(),
                                         '%country.code%': country.getCode()|upper,
