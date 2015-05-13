@@ -16,8 +16,8 @@
 
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <span class="badge">{{ country.getUsers()|length|number_format }} {{ 'Users'|trans }}</span>
                                     <span class="badge">{{ country.getMachines()|length|number_format }} {{ 'Machines'|trans }}</span>
+                                    <span class="badge">{{ country.getUsers()|length|number_format }} {{ 'Users'|trans }}</span>
                                     {{ 'Country: %country.name% (%country.code%)'|trans({
                                         '%country.name%': country.getName(),
                                         '%country.code%': country.getCode()|upper,
@@ -28,7 +28,7 @@
                                 {{ 'The country %country.name% has a population of %country.population% peoples while only %country.users% Linux users are registered in our database.'|trans({
                                     '%country.name%': country.getName(),
                                     '%country.population%': country.getPopulation()|number_format,
-                                    '%country.users%': country.getUsersNum()|number_format,
+                                    '%country.users%': country.getUsers()|length|number_format,
                                 }) }}
                             </p>
                             <p>&nbsp;</p>
