@@ -77,12 +77,7 @@
                                     {% for row in paginationAAA %}
                                         <tr>
                                             <td>
-                                                <div class="col-sm-11">
-                                                    <a href="{{ url('syw_front_main_stats_cities', {'id': row.id}) }}">{{ row.name }}</a>
-                                                </div>
-                                                <div class="col-sm-1">
-                                                    <a href="http://www.openstreetmap.org/#map=15/{{ row.getLatitude() }}/{{ row.getLongitude() }}"><img class="img-responsive" src="{{ '/bundles/sywfrontmain/images/map.png' }}" alt="View on map..."/></a>
-                                                </div>
+                                                <a href="{{ url('syw_front_main_stats_countries', {'id': row.id}) }}">{{ row.name }}</a>
                                             </td>
                                             <td>
                                                 {{ row.code|upper }}
