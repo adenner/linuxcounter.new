@@ -42,7 +42,7 @@ EOT
 
         @unlink('/tmp/allCountries.zip');
         @unlink('/tmp/allCountries.txt');
-        downloadFile('http://download.geonames.org/export/dump/allCountries.zip', '/tmp/allCountries.zip');
+        $this->downloadFile('http://download.geonames.org/export/dump/allCountries.zip', '/tmp/allCountries.zip');
         @exec('/usr/bin/unzip ./allCountries.zip');
 
         $licotestdb->query("LOAD DATA LOCAL INFILE '/tmp/allCountries.txt' REPLACE
