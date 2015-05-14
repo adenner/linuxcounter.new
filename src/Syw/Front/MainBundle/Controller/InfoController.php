@@ -204,6 +204,8 @@ class InfoController extends BaseController
         if (true === isset($cityext) && true === is_object($cityext)) {
             // city already exists!
             $city = $cityext;
+            $city->setUserNum($city->getUserNum()+1);
+            $em->persist($city);
             $flashBag = $this->get('session')->getFlashBag();
             $flashBag->set('success', 'That city already exists! Nevertheless it got stored in your profile.');
         } else {

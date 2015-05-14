@@ -18425,7 +18425,9 @@ pre.crayon-plain-tag {
     color: #ff0000;
 }
 
-
+.ui-autocomplete {
+    overflow-y: auto !important;
+}
 
 
 
