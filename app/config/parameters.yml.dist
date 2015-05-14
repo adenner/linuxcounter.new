@@ -18,7 +18,7 @@ parameters:
     mailer_password:   ~
     admin_email: admin@linuxcounter.net
     locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            ThisTokenIsSoWonderfulAndSecretYouWontBelieveThat
     base_host: www.linuxcounter.net
     base_proto: https
     api_host:  api.linuxcounter.net
