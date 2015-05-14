@@ -17,6 +17,8 @@ doctrine:
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
+                options:
+                    1001: true
             lico:
                 driver:   "%database_lico_driver%"
                 host:     "%database_lico_host%"
@@ -25,6 +27,8 @@ doctrine:
                 user:     "%database_lico_user%"
                 password: "%database_lico_password%"
                 charset:  UTF8
+                options:
+                    1001: true
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         default_entity_manager: default
