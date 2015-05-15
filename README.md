@@ -4,7 +4,7 @@ The Linux Counter Project
 This is the codebase for the new website of *The Linux Counter Project* on https://www.linuxcounter.net.
 It is based on Symfony 2 and has replaced the old website in the second quarter of 2015.
 
-[![Build Status](https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master)](https://travis-ci.org/alexloehner/linuxcounter.new)
+[![Build Status](http://linuxcounter.net:8080/buildStatus/icon?job=TheLinuxCounterProject)](http://linuxcounter.net:8080/job/TheLinuxCounterProject/)
 [![GitHub issues](https://img.shields.io/github/issues/alexloehner/linuxcounter.new.svg)](https://github.com/alexloehner/linuxcounter.new/issues)
 [![Coverage Status](https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg)](https://coveralls.io/r/alexloehner/linuxcounter.new)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/?branch=master)
