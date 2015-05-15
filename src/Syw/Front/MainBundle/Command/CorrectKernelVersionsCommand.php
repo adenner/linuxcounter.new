@@ -92,10 +92,10 @@ EOT
                     echo "> setting kernel " . $var . " (" . $kernel->getId() . ") to XXXXXXXXXXXXXXXXXXXX\n";
                     $kernel->setName("XXXXXXXXXXXXXXXXXXXX");
                     $kernel->setMachinesNum(-999999999);
-                    $em->flush();
+                    // $em->flush();
                     foreach ($machines as $machine) {
                         $machine->setKernel(null);
-                        $em->flush();
+                        // $em->flush();
                     }
                 } else {
                     # trim the given kernel to major version, ie:  3.13.2
@@ -108,10 +108,10 @@ EOT
                         echo "> setting kernel " . $var . " (" . $kernel->getId() . ") to XXXXXXXXXXXXXXXXXXXX\n";
                         $kernel->setName("XXXXXXXXXXXXXXXXXXXX");
                         $kernel->setMachinesNum(-999999999);
-                        $em->flush();
+                        // $em->flush();
                         foreach ($machines as $machine) {
                             $machine->setKernel(null);
-                            $em->flush();
+                            // $em->flush();
                         }
                         continue;
                     }
@@ -121,13 +121,13 @@ EOT
                         if (true === isset($obj) && true === is_object($obj) && $obj != null) {
                             foreach ($machines as $machine) {
                                 $machine->setKernel($obj);
-                                $em->flush();
+                                // $em->flush();
                             }
                             echo "> " . $obj->getName() . " found, setting kernel " . $var . " (" . $kernel->getId() . ") to XXXXXXXXXXXXXXXXXXXX\n";
                             $obj->setMachinesNum(sizeof($obj->getMachines()));
                             $kernel->setName("XXXXXXXXXXXXXXXXXXXX");
                             $kernel->setMachinesNum(-999999999);
-                            $em->flush();
+                            // $em->flush();
                         } else {
                             echo "> Creating new kernel version " . $version . "\n";
                             $newkernel = new Kernels();
@@ -135,13 +135,14 @@ EOT
                             $em->persist($newkernel);
                             foreach ($machines as $machine) {
                                 $machine->setKernel($newkernel);
-                                $em->flush();
+                                // $em->flush();
                             }
                             $newkernel->setMachinesNum(sizeof($newkernel->getMachines()));
-                            $em->flush();
+                            // $em->flush();
                         }
                     }
                 }
+                $em->flush();
                 gc_collect_cycles();
             }
 
