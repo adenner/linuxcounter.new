@@ -3,27 +3,14 @@
 namespace Syw\Front\ApiBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\View;
-
-use Symfony\Component\Form\FormError;
 use Symfony\Component\Validator\Constraints as Assert;
-
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-
-use Syw\Front\ApiBundle\Controller\BaseRestController;
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
-
 use Syw\Front\MainBundle\Entity\Machines;
-use Syw\Front\MainBundle\Form\Type\MachineFormType;
+use Syw\Front\MainBundle\Entity\Kernels;
 
 class MachinesManagementController extends BaseRestController
 {
@@ -155,11 +142,20 @@ class MachinesManagementController extends BaseRestController
                 $obj = null;
                 $var = $request->request->get('kernel');
                 if (true === isset($var) && trim($var) != "") {
+                    # trim the given kernel to major version, ie:  3.13.2
+                    $version = preg_replace("`^([^\.-]+)\.([^\.-]+\.?[^\.-]*).*$`i", "$1.$2", trim($var));
+                    $version = trim($version);
                     $obj = $this->get('doctrine')
                         ->getRepository('SywFrontMainBundle:Kernels')
-                        ->findOneBy(array('name' => $var));
+                        ->findOneBy(array('name' => $version));
                     if (true === isset($obj) && true === is_object($obj) && $obj != null) {
                         $machine->setKernel($obj);
+                    } else {
+                        $kernel = new Kernels();
+                        $kernel->setName($version);
+                        $kernel->setMachinesNum(1);
+                        $em->persist($kernel);
+                        $machine->setKernel($kernel);
                     }
                 }
 
