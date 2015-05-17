@@ -90,7 +90,7 @@ class MachinesManagementController extends BaseRestController
                 if (true === isset($var) && trim($var) != "") {
                     $obj = $this->get('doctrine')
                         ->getRepository('SywFrontMainBundle:Countries')
-                        ->findOneBy(array('name' => $var));
+                        ->findOneBy(array('code' => strtolower($var)));
                     if (true === isset($obj) && true === is_object($obj) && $obj != null) {
                         $machine->setCountry($obj);
                     }

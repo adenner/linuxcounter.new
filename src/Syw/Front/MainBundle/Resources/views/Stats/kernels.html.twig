@@ -33,7 +33,7 @@
                                                 {{ row.name }}
                                             </td>
                                             <td>
-                                                {{ row.machinesnum|number_format }}
+                                                {{ row.getMachines()|length|number_format }}
                                             </td>
                                         </tr>
                                     {% endfor %}
