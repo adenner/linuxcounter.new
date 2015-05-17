@@ -22,6 +22,15 @@
                             {% endfor %}
                         {% endfor %}
 
+                        <p>
+                            {{ 'With this form you can contact the main developer, Alexander Löhner, directly.'|trans }}
+                        </p>
+                        <p>&nbsp;</p>
+                        <p>{{ 'But remember, if you think you have found a bug or if you got an error somewhere, please use the <a href="https://github.com/alexloehner/linuxcounter.new/issues">issuetracker application on github.com</a> instead of this contact form. That way we\'ll have all problems at one place and we can follow the fixing process, thanks!' |trans|raw }}</p>
+
+                        <p>&nbsp;</p>
+
+
                         <form action="{{ url('syw_front_main_main_contact') }}" method="post" {{ form_enctype(form) }}>
                         {{ form_widget(form) }}
 
