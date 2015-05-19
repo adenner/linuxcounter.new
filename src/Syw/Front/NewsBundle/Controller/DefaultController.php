@@ -14,8 +14,10 @@ class DefaultController extends BaseController
      */
     public function indexAction()
     {
-        $manager = $this->getNewsManager();
-        $news    = $manager->findBy(array(), array('createdAt' => 'DESC'));
+        // $manager = $this->getNewsManager();
+        $news    = $this->get('doctrine')
+            ->getRepository('SywFrontNewsBundle:News')
+            ->findBy(array(), array('createdAt' => 'DESC'), 10);
 
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')

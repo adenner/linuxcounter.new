@@ -23,6 +23,7 @@ parameters:
     base_proto: https
     api_host:  api.linuxcounter.net
     api_proto: https
+    enable_transtool: false
 
     # Twitter
     twitter_consumer_key: consumerkey

@@ -20,9 +20,11 @@
                             </form>
                         </div>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <div class="col-sm-12" style="text-align: center;">
-                            <span id="translate_page_button" class="button-lite">{{ 'Translate this page into your native language!'|trans }}</span>
-                        </div>
+                            {% if enable_transtool == "true" %}
+                                <div class="col-sm-12" style="text-align: center;">
+                                    <span id="translate_page_button" class="button-lite">{{ 'Translate this page into your native language!'|trans }}</span>
+                                </div>
+                            {% endif %}
                         {% endif %}
                     </div>
                     <p> &nbsp; </p>

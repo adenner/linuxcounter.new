@@ -76,6 +76,8 @@ twig:
         resources:
             - 'SywFrontMainBundle:Form:fields.html.twig'
             - 'ShtumiUsefulBundle::fields.html.twig'
+    globals:
+        enable_transtool: %enable_transtool%
 
 # Assetic Configuration
 assetic:
