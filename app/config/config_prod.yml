@@ -4,9 +4,6 @@ imports:
 framework:
     validation:
         cache: apc
-    profiler:
-        matcher:
-            service: app.profiler.matcher.super_admin
 
 doctrine:
     orm:
