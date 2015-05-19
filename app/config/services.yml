@@ -86,4 +86,6 @@ services:
         public: false
         tags:
             - { name: twig.extension }
-
+    app.profiler.matcher.super_admin:
+        class: Syw\Front\MainBundle\Profiler\SuperAdminMatcher
+        arguments: ["@security.authorization_checker"]

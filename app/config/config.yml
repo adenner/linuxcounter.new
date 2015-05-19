@@ -44,6 +44,9 @@ framework:
     translator:      { fallback: "%locale%" }
     default_locale:  "%locale%"
     secret:          "%secret%"
+    profiler:
+        matcher:
+            service: app.profiler.matcher.super_admin
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~

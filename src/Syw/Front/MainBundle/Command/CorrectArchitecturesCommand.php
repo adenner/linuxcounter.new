@@ -82,6 +82,8 @@ EOT
             @exec("php app/console syw:correct:architectures continue >>".$importlogfile.".log 2>&1 3>&1 4>&1 &");
             exit(0);
         } else if ($item == "continue") {
+            $nums     = $licotestdb->fetchAll('SELECT COUNT(id) AS num FROM architectures');
+            $numusers = $nums[0]['num'];
             if (true === file_exists($importlogfile.'.db')) {
                 $fp   = fopen($importlogfile.'.db', "r");
                 $data = fread($fp, 1024);
@@ -92,8 +94,6 @@ EOT
                 $start   = intval(trim($dataar[0]));
                 $counter = intval(trim($dataar[1]));
             } else {
-                $nums     = $licotestdb->fetchAll('SELECT COUNT(id) AS num FROM architectures');
-                $numusers = $nums[0]['num'];
                 $start    = 0; // $numusers;
                 $counter  = 0;
             }
@@ -101,6 +101,13 @@ EOT
 
             $z = 0;
             $a = $start;
+
+            if ($a >= ($numusers+($itemsperloop*2))) {
+                echo "Done.\n";
+                exit(0);
+                die();
+            }
+
 
             unset($rows);
             $archs = $db->getRepository('SywFrontMainBundle:Architectures')->findBy(array(), array('id' => 'ASC'), $itemsperloop, $a);
@@ -111,8 +118,6 @@ EOT
                 unset($newarchitecture);
                 $obj = null;
                 unset($obj);
-
-                $arch->setMachinesNum(0);
 
                 $machines = null;
                 unset($machines);
@@ -166,6 +171,7 @@ EOT
                     } elseif (false !== stripos($var, "alpha")) {
                         $newarch = "alpha";
                     } else {
+                        $newarch = "unknown";
                         $delete = true;
                     }
 
@@ -184,7 +190,7 @@ EOT
                     }
 
                     if ($delete === true) {
-                        $arch->setName('XXX__'.$arch->getName());
+                        $arch->setName('XXX__'.$arch->getName().'__WILL_GET_DELETED_SOON');
                     }
 
 
@@ -198,7 +204,6 @@ EOT
                     foreach ($machines as $machine) {
                         $machine->setArchitecture($newarchitecture);
                     }
-                    $em->flush();
                 }
                 $em->flush();
 
