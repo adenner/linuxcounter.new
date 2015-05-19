@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @license  GPL v3
  * @link     https://github.com/alexloehner/linuxcounter.new
  *
- * @ORM\Table(name="activity")
+ * @ORM\Table(name="activity", indexes={@ORM\Index(name="user", columns={"user"}), @ORM\Index(name="isbot", columns={"isbot"}), @ORM\Index(name="createdat", columns={"createdat"})})
  * @ORM\Entity
  */
 class Activity

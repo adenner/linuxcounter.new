@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Entity(repositoryClass="Syw\Front\MainBundle\Repository\LanguageRepository")
  * @UniqueEntity(fields="locale", message="Locale already exists.")
- * @ORM\Table(name="languages")
+ * @ORM\Table(name="languages", indexes={@ORM\Index(name="active", columns={"active"}), @ORM\Index(name="language", columns={"language"}), @ORM\Index(name="search", columns={"active", "language"})}))
  */
 class Languages
 {
