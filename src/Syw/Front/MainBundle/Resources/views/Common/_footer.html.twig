@@ -69,21 +69,6 @@
                     </div>
                 </div>
             </div>
-            {% if app.environment == 'prod' %}
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="border">
-                        {{ render( controller('SywFrontMainBundle:Base:getUserLine')) }}
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="border">
-                        {{ render( controller('SywFrontMainBundle:Base:getLastTweets')) }}
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            <p> &nbsp; </p>
             <div id="contact" class="container">
                 {% if app.environment == 'prod' %}
                 <div class="row ads_footer">
