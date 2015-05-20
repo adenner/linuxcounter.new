@@ -18429,11 +18429,17 @@ pre.crayon-plain-tag {
     overflow-y: auto !important;
 }
 
+.language-selection .col-sm-12 {
+    text-align: center;
+}
 
+.adsbygoogle {
+    display: block;
+}
 
-
-
-
+img {
+    border: 0;
+}
 
 
 
