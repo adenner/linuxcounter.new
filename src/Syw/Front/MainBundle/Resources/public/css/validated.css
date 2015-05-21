@@ -18435,6 +18435,16 @@ img {
     border: 0;
 }
 
+.credential_error {
+    border: 1px solid red;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #F0D8D8;
+}
+
 
 
 
