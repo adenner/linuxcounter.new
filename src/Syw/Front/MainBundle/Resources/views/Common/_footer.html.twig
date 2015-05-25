@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div id="contact" class="container">
-                {% if app.environment == 'prod' %}
+                {% if ( app.environment == 'prod' ) and ( app.request.attributes.get('_route') != 'fos_user_resetting_check_email' ) %}
                 <div class="row ads_footer">
                     <div class="col-sm-12">
                         <!-- LiCo Footer NEU -->

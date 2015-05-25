@@ -41,7 +41,7 @@
         {% endfor %}
     {% endfor %}
 
-    {% if app.request.attributes.get('_route') != 'syw_front_main_main_index' %}
+    {% if ( app.request.attributes.get('_route') != 'syw_front_main_main_index' ) and ( app.request.attributes.get('_route') != 'fos_user_resetting_check_email' ) %}
     <div class="row container page">
         <!-- LiCo Top NEU -->
         <ins class="adsbygoogle"
