@@ -14,7 +14,6 @@
     'assets/EmailObfuscator.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
 <div id="main" class="container">
@@ -42,6 +41,7 @@
     {% endfor %}
 
     {% if ( app.request.attributes.get('_route') != 'syw_front_main_main_index' ) and ( app.request.attributes.get('_route') != 'fos_user_resetting_check_email' ) %}
+    <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <div class="row container page">
         <!-- LiCo Top NEU -->
         <ins class="adsbygoogle"
