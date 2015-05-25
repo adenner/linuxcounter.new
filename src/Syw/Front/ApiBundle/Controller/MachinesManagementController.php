@@ -60,7 +60,7 @@ class MachinesManagementController extends BaseRestController
 
     /**
      * @Route("/v1/machines/{machine_id}", name="api_update_machine")
-     * @Method("PATCH")
+     * @Method({"PATCH", "PUT"})
      * @Rest\View()
      */
     public function updateAction(Request $request, $machine_id)
@@ -131,9 +131,50 @@ class MachinesManagementController extends BaseRestController
                 $obj = null;
                 $var = $request->request->get('architecture');
                 if (true === isset($var) && trim($var) != "") {
+                    if (false !== stripos($var, "arm") && false !== stripos($var, "64")) {
+                        $newarch = "arm64";
+                    } elseif (false !== stripos($var, "raspberry")) {
+                        $newarch = "arm";
+                    } elseif (false !== stripos($var, "arm")) {
+                        $newarch = "arm";
+                    } elseif (false !== stripos($var, "amd") && false !== stripos($var, "64")) {
+                        $newarch = "amd64";
+                    } elseif (false !== stripos($var, "x86") && false !== stripos($var, "64")) {
+                        $newarch = "x86_64";
+                    } elseif (false !== stripos($var, "x86")) {
+                        $newarch = "x86";
+                    } elseif (preg_match("`[xi]+-?[2-7]+86`i", $var)) {
+                        $newarch = "i".preg_replace("`.*[xi]+-?([2-7]+86).*`i", "$1", $var);
+                    } elseif (false !== stripos($var, "power") && false !== stripos($var, "64")) {
+                        $newarch = "ppc64";
+                    } elseif (false !== stripos($var, "intel core")) {
+                        $newarch = "i686";
+                    } elseif (false !== stripos($var, "power")) {
+                        $newarch = "ppc";
+                    } elseif (false !== stripos($var, "mips") && false !== stripos($var, "64")) {
+                        $newarch = "mips64";
+                    } elseif (false !== stripos($var, "mips")) {
+                        $newarch = "mips";
+                    } elseif (false !== stripos($var, "sparc") && false !== stripos($var, "64")) {
+                        $newarch = "sparc64";
+                    } elseif (false !== stripos($var, "sparc")) {
+                        $newarch = "sparc";
+                    } elseif (false !== stripos($var, "sun")) {
+                        $newarch = "sparc";
+                    } elseif (false !== stripos($var, "risc") && false !== stripos($var, "64")) {
+                        $newarch = "risc64";
+                    } elseif (false !== stripos($var, "risc")) {
+                        $newarch = "risc";
+                    } elseif (false !== stripos($var, "alpha") && false !== stripos($var, "64")) {
+                        $newarch = "alpha64";
+                    } elseif (false !== stripos($var, "alpha")) {
+                        $newarch = "alpha";
+                    } else {
+                        $newarch = "unknown";
+                    }
                     $obj = $this->get('doctrine')
                         ->getRepository('SywFrontMainBundle:Architectures')
-                        ->findOneBy(array('name' => $var));
+                        ->findOneBy(array('name' => $newarch));
                     if (true === isset($obj) && true === is_object($obj) && $obj != null) {
                         $machine->setArchitecture($obj);
                     }
@@ -238,7 +279,65 @@ class MachinesManagementController extends BaseRestController
 
                 $uptime = $request->request->get('uptime');
                 if (true === isset($uptime) && trim($uptime) != "") {
-                    $machine->setUptime($uptime);
+                    /**
+                     * Todo: reformat and convert the sent uptime to a simple amounts of seconds (integer)
+                     */
+                    // 00:01:42         01:14:43             12345678            up 2 days,  3:20            up  2:26
+                    $uptime = trim($uptime);
+                    $secs = 0;
+                    $days = 0;
+                    $hours = 0;
+                    $minutes = 0;
+                    $seconds = 0;
+                    if (preg_match("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", $uptime)) {
+                        $hours      = preg_replace("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", "$1", $uptime);
+                        $minutes    = preg_replace("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", "$2", $uptime);
+                        $seconds    = preg_replace("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", "$3", $uptime);
+                        $secs +=  (intval($hours) * 60 * 60);
+                        $secs += (intval($minutes) * 60);
+                        if (true === isset($seconds) && intval($seconds) >= 1) {
+                            $secs += intval($seconds);
+                        }
+                    } else if (true === is_numeric($uptime) && intval($uptime) >= 1) {
+                        $secs = $uptime;
+                    } else if (stripos($uptime, "day") >= 1) {
+                        if (preg_match("`.*up\s+([0-9]+)\s+day.*`", $uptime)) {
+                            $days = preg_replace("`.*up\s+([0-9]+)\s+day.*`", "$1", $uptime);
+                        } else if (preg_match("`^([0-9]+)\s+day.*`", $uptime)) {
+                            $days = preg_replace("`^([0-9]+)\s+day.*`", "$1", $uptime);
+                        }
+                        if (stripos($uptime, ",") && preg_match("`[0-9]:[0-9]`", $uptime)) {
+                            $split = explode(",", $uptime);
+                            $time = trim($split);
+                            $hours      = preg_replace("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", "$1", $time);
+                            $minutes    = preg_replace("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", "$2", $time);
+                            $seconds    = preg_replace("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", "$3", $time);
+                        }
+                        if (true === isset($days) && intval($days) >= 1) {
+                            $secs += (intval($days) * 24 * 60 * 60);
+                        }
+                        if (true === isset($hours) && intval($hours) >= 1) {
+                            $secs += (intval($hours) * 60 * 60);
+                        }
+                        if (true === isset($minutes) && intval($minutes) >= 1) {
+                            $secs += (intval($minutes) * 60);
+                        }
+                        if (true === isset($seconds) && intval($seconds) >= 1) {
+                            $secs += intval($seconds);
+                        }
+                    } else if (stripos($uptime, "up") >= 1) {
+                        $uptime = str_replace("up", "", $uptime);
+                        $uptime = trim($uptime);
+                        $hours      = preg_replace("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", "$1", $uptime);
+                        $minutes    = preg_replace("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", "$2", $uptime);
+                        $seconds    = preg_replace("`^([0-9]{2}):([0-9]{2}):?([0-9]{2})?$`", "$3", $uptime);
+                        $secs +=  (intval($hours) * 60 * 60);
+                        $secs += (intval($minutes) * 60);
+                        if (true === isset($seconds) && intval($seconds) >= 1) {
+                            $secs += intval($seconds);
+                        }
+                    }
+                    $machine->setUptime($secs);
                 }
 
                 $loadavg = $request->request->get('loadavg');
