@@ -731,7 +731,6 @@ class StatsController extends BaseController
 
         $em = $this->getDoctrine()->getManager();
 
-        $qb = $em->createQueryBuilder();
         $qb->select('count(user.id)');
         $qb->from('SywFrontMainBundle:User', 'user');
         $uCount = $qb->getQuery()->getSingleScalarResult();
@@ -818,6 +817,80 @@ class StatsController extends BaseController
         $chart_registrations_per_month->series($series);
         // end of chart
 
+
+
+
+
+
+        // Chart about online users per day
+        unset($data1);
+        $registrations = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsOnlineUsers')
+            ->findBy(array('type' => 'all'), array('timestamp' => 'ASC'));
+        foreach ($registrations as $reg) {
+            $y = $reg->getTimestamp()->format('Y');
+            $m = $reg->getTimestamp()->format('m');
+            $d = $reg->getTimestamp()->format('d');
+            $data1[] = array(
+                (($reg->getTimestamp()->format('U') + 86400) * 1000),
+                $reg->getNum()
+            );
+        }
+        unset($data2);
+        $registrations = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsOnlineUsers')
+            ->findBy(array('type' => 'loggedin'), array('timestamp' => 'ASC'));
+        foreach ($registrations as $reg) {
+            $y = $reg->getTimestamp()->format('Y');
+            $m = $reg->getTimestamp()->format('m');
+            $d = $reg->getTimestamp()->format('d');
+            $data2[] = array(
+                (($reg->getTimestamp()->format('U') + 86400) * 1000),
+                $reg->getNum()
+            );
+        }
+        $series = array(
+            array(
+                "type" => "area",
+                "name" => $this->get('translator')->trans('Visitors online', array(), 'syw_front_main_stats_counter'),
+                "data" => $data2
+            ),
+            array(
+                "type" => "area",
+                "name" => $this->get('translator')->trans('Logged in users', array(), 'syw_front_main_stats_counter'),
+                "data" => $data1
+            )
+        );
+        $chart_online_per_5_mins = new Highchart();
+        $chart_online_per_5_mins->chart->renderTo('chart_online_per_5_mins');
+        $chart_online_per_5_mins->chart->zoomType('x');
+        $chart_online_per_5_mins->chart->type('line');
+        $chart_online_per_5_mins->title->text($this->get('translator')->trans('Online users during 5 minutes', array(), 'syw_front_main_stats_counter'));
+        $chart_online_per_5_mins->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in', array(), 'syw_front_main_stats_counter'));
+        $chart_online_per_5_mins->xAxis->title(array('text'  => $this->get('translator')->trans('Date', array(), 'syw_front_main_stats_counter')));
+        $chart_online_per_5_mins->xAxis->type('datetime');
+        $chart_online_per_5_mins->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
+        $chart_online_per_5_mins->yAxis->min(0);
+        $chart_online_per_5_mins->yAxis->title(array('text'  => $this->get('translator')->trans('Online users during 5 minutes', array(), 'syw_front_main_stats_counter')));
+        $chart_online_per_5_mins->legend->enabled(true);
+        $chart_online_per_5_mins->plotOptions->area(array(
+            'allowPointSelect'  => true,
+            'dataLabels'    => array('enabled' => false),
+            'showInLegend'  => true
+        ));
+        $chart_online_per_5_mins->series($series);
+        // end of chart
+
+
+
+
+
+
+
+
+
+
+
         $online = $this->getOnlineUsers();
         $return2 = $this->getTransForm($user);
         $return1 = array(
@@ -830,7 +903,8 @@ class StatsController extends BaseController
             'languages' => $languages,
             'stats' => $stats,
             'user' => $user,
-            'chart' => $chart_registrations_per_month
+            'chart_registrations_per_month' => $chart_registrations_per_month,
+            'chart_online_per_5_mins' => $chart_online_per_5_mins
         );
         return array_merge($return1, $return2);
     }

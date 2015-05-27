@@ -65,11 +65,13 @@
 
                                     Highcharts.setOptions(Highcharts.theme);
 
-                                    {{ chart(chart, false) }}
+                                    {{ chart(chart_registrations_per_month, false) }}
+                                    {{ chart(chart_online_per_5_mins, false) }}
 
                                 });
                             </script>
                             <div id="chart_registrations_per_month" style=""></div>
+                            <div id="chart_online_per_5_mins" style=""></div>
 
                         </div>
                     </div>
