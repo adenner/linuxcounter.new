@@ -731,6 +731,7 @@ class StatsController extends BaseController
 
         $em = $this->getDoctrine()->getManager();
 
+        $qb = $em->createQueryBuilder();
         $qb->select('count(user.id)');
         $qb->from('SywFrontMainBundle:User', 'user');
         $uCount = $qb->getQuery()->getSingleScalarResult();
@@ -760,6 +761,7 @@ class StatsController extends BaseController
 
         // Chart about User registrations per Month
         unset($data1);
+        unset($series);
         $registrations = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:StatsMachines')
             ->findBy(array(), array('month' => 'ASC'));
@@ -824,10 +826,16 @@ class StatsController extends BaseController
 
         // Chart about online users per day
         unset($data1);
-        $registrations = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:StatsOnlineUsers')
-            ->findBy(array('type' => 'all'), array('timestamp' => 'ASC'));
-        foreach ($registrations as $reg) {
+        unset($series);
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('u');
+        $qb->from('SywFrontMainBundle:StatsOnlineUsers', 'u');
+        $qb->where('u.type = \'all\'');
+        $qb->andwhere('u.timestamp LIKE :date');
+        $qb->setParameter('date', date("Y-m", time())."%");
+        $uonlines = $qb->getQuery()->getResult();
+        foreach ($uonlines as $reg) {
             $y = $reg->getTimestamp()->format('Y');
             $m = $reg->getTimestamp()->format('m');
             $d = $reg->getTimestamp()->format('d');
@@ -837,10 +845,14 @@ class StatsController extends BaseController
             );
         }
         unset($data2);
-        $registrations = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:StatsOnlineUsers')
-            ->findBy(array('type' => 'loggedin'), array('timestamp' => 'ASC'));
-        foreach ($registrations as $reg) {
+        $qb = $em->createQueryBuilder();
+        $qb->select('u');
+        $qb->from('SywFrontMainBundle:StatsOnlineUsers', 'u');
+        $qb->where('u.type = \'loggedin\'');
+        $qb->andwhere('u.timestamp LIKE :date');
+        $qb->setParameter('date', date("Y-m", time())."%");
+        $uonlines = $qb->getQuery()->getResult();
+        foreach ($uonlines as $reg) {
             $y = $reg->getTimestamp()->format('Y');
             $m = $reg->getTimestamp()->format('m');
             $d = $reg->getTimestamp()->format('d');
@@ -853,12 +865,12 @@ class StatsController extends BaseController
             array(
                 "type" => "area",
                 "name" => $this->get('translator')->trans('Visitors online', array(), 'syw_front_main_stats_counter'),
-                "data" => $data2
+                "data" => $data1
             ),
             array(
                 "type" => "area",
                 "name" => $this->get('translator')->trans('Logged in users', array(), 'syw_front_main_stats_counter'),
-                "data" => $data1
+                "data" => $data2
             )
         );
         $chart_online_per_5_mins = new Highchart();
@@ -869,7 +881,7 @@ class StatsController extends BaseController
         $chart_online_per_5_mins->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in', array(), 'syw_front_main_stats_counter'));
         $chart_online_per_5_mins->xAxis->title(array('text'  => $this->get('translator')->trans('Date', array(), 'syw_front_main_stats_counter')));
         $chart_online_per_5_mins->xAxis->type('datetime');
-        $chart_online_per_5_mins->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
+        $chart_online_per_5_mins->xAxis->minRange(1 * 3600000); // 1 hour
         $chart_online_per_5_mins->yAxis->min(0);
         $chart_online_per_5_mins->yAxis->title(array('text'  => $this->get('translator')->trans('Online users during 5 minutes', array(), 'syw_front_main_stats_counter')));
         $chart_online_per_5_mins->legend->enabled(true);

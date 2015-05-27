@@ -50,35 +50,8 @@ EOT
         unset($obj);
         $obj = new StatsOnlineUsers();
         $obj->setTimestamp(new \DateTime());
-        $obj->setType('bots');
-        $obj->setNum($counts['bots']);
-        $em->persist($obj);
-        $em->flush();
-
-        $obj = null;
-        unset($obj);
-        $obj = new StatsOnlineUsers();
-        $obj->setTimestamp(new \DateTime());
-        $obj->setType('users');
-        $obj->setNum($counts['users']);
-        $em->persist($obj);
-        $em->flush();
-
-        $obj = null;
-        unset($obj);
-        $obj = new StatsOnlineUsers();
-        $obj->setTimestamp(new \DateTime());
         $obj->setType('loggedin');
         $obj->setNum($counts['loggedin']);
-        $em->persist($obj);
-        $em->flush();
-
-        $obj = null;
-        unset($obj);
-        $obj = new StatsOnlineUsers();
-        $obj->setTimestamp(new \DateTime());
-        $obj->setType('guests');
-        $obj->setNum($counts['guests']);
         $em->persist($obj);
         $em->flush();
 
@@ -110,39 +83,11 @@ EOT
             // ->from('SywFrontMainBundle:Activity', 'a')
             ->where('a.createdat >= :when')
             ->andwhere('a.isbot = :isbot')
-            ->setParameter('when', new \DateTime('-5 minutes'))
-            ->setParameter('isbot', '1')
-        ;
-        $counts['bots'] = $qb->getQuery()->getSingleScalarResult();
-
-        $qb->select($qb->expr()->countDistinct('a.ipaddress'))
-            // ->from('SywFrontMainBundle:Activity', 'a')
-            ->where('a.createdat >= :when')
-            ->andwhere('a.isbot = :isbot')
-            ->setParameter('when', new \DateTime('-5 minutes'))
-            ->setParameter('isbot', '0')
-        ;
-        $counts['users'] = $qb->getQuery()->getSingleScalarResult();
-
-        $qb->select($qb->expr()->countDistinct('a.ipaddress'))
-            // ->from('SywFrontMainBundle:Activity', 'a')
-            ->where('a.createdat >= :when')
-            ->andwhere('a.isbot = :isbot')
             ->andwhere('a.user IS NOT NULL')
             ->setParameter('when', new \DateTime('-5 minutes'))
             ->setParameter('isbot', '0')
         ;
         $counts['loggedin'] = $qb->getQuery()->getSingleScalarResult();
-
-        $qb->select($qb->expr()->countDistinct('a.ipaddress'))
-            // ->from('SywFrontMainBundle:Activity', 'a')
-            ->where('a.createdat >= :when')
-            ->andwhere('a.isbot = :isbot')
-            ->andwhere('a.user IS NULL')
-            ->setParameter('when', new \DateTime('-5 minutes'))
-            ->setParameter('isbot', '0')
-        ;
-        $counts['guests'] = $qb->getQuery()->getSingleScalarResult();
 
         return $counts;
     }
