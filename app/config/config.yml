@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@ManagerBundle/Resources/config/services.yml" }
+    - { resource: "@ToolBoxBundle/Resources/config/services.yml" }
 
 # Doctrine Configuration
 doctrine:

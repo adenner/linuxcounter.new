@@ -35,6 +35,13 @@ blade_tester_light_news_bundle:
     host:     %base_host%
     schemes:  [https]
 
+tool_box:
+    resource: "@ToolBoxBundle/Controller/"
+    type:     annotation
+    prefix:   /toolbox
+    host:     %base_host%
+    schemes:  [https]
+
 syw_front_api:
     resource: "@SywFrontApiBundle/Controller/"
     type:     annotation

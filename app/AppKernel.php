@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new Aequasi\Bundle\CacheBundle\AequasiCacheBundle(),
             new Syw\Front\ManagerBundle\ManagerBundle(),
+            new Syw\Front\ToolBoxBundle\ToolBoxBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
