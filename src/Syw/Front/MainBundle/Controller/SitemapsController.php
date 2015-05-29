@@ -44,7 +44,7 @@ class SitemapsController extends BaseController
                 $controllerAction = explode(':', $defaults['_controller']);
                 $controller       = $controllerAction[0];
 
-                if (preg_match("/ApiBundle/i", $controller) || preg_match("/MainBundle/i", $controller) || preg_match("/NewsBundle/i", $controller)) {
+                if (preg_match("/ApiBundle/i", $controller) || preg_match("/MainBundle/i", $controller) || preg_match("/NewsBundle/i", $controller) || preg_match("/ToolBoxBundle/i", $controller)) {
                     if (!preg_match("/_gettranslateform/", $route) &&
                         !preg_match("/ajax/", $route) &&
                         !preg_match("/sitemap/", $route) &&
