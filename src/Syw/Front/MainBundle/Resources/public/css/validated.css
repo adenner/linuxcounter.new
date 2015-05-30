@@ -18445,10 +18445,11 @@ img {
     background-color: #F0D8D8;
 }
 
-.nav>li>a {
-    padding: 15px 11px !important;
+@media screen and (min-width: 1201px) {
+    .nav > li > a {
+        padding: 15px 11px;
+    }
 }
-
 
 
 
