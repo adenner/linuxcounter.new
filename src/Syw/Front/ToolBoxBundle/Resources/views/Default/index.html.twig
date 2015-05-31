@@ -10,389 +10,12 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ title[0] }}</h3>
                 </div>
-                <div class="panel-body">
+                <div id="reference" class="panel-body">
 
 
 
 
                     {% verbatim %}
-                    <style xmlns="http://www.w3.org/1999/xhtml" type="text/css">
-                        div.title {
-                            text-transform: uppercase;
-                            padding: 1em 0;
-                            text-align: center;
-                            font-size: 220%;
-                            font-weight: bold;
-                            letter-spacing: .22em;
-                        }
-                        h1 {
-                            text-transform: uppercase;
-                            font-size: 150%;
-                            letter-spacing: .15em;
-                            counter-reset: section;
-                            string-set: chaptertitle content();
-                        }
-                        h2 {
-                            font-size: 120%;
-                            letter-spacing: .10em;
-                        }
-                        h3, h4 {
-                            font-size: 100%;
-                            line-height:1em;
-                            letter-spacing: .07em;
-                        }
-                        h4 {
-                            font-style: italic;
-                            font-weight: normal;
-                            margin: 1em 0 0.5em 0;
-                        }
-                        pre {
-                            padding: 0.1em 0em 0.1em 1em;
-                        }
-                        div.menu a {
-                            font-weight: normal;
-                            text-decoration: none;
-                        }
-                        h1:before {
-                            content: counter(chapter) " ";
-                            counter-increment: chapter;
-                        }
-                        h2:before {
-                            counter-increment: section;
-                            content: counter(chapter) "." counter(section) " ";
-                        }
-                        /* Not implemented in browsers yet */
-                        a.xref:after {
-                            content: " " target-counter(attr(href, url), chapter) "."
-                            target-counter(attr(href, url), section);
-                        }
-                        div.changestyle {
-                            padding-top: 1em;
-                        }
-
-                        @media screen, handheld {
-                            /* Menu on the right for screen media */
-                            /* including some IE6 hacks */
-                            body {
-                                padding: 0;
-                                margin: 1em 13em 0em 1.5em;
-                            }
-                            html&gt;body {
-                                        margin: 1em 13em 0em 1.5em;
-                                    }
-                            body&gt;div.menu {
-                                        position: fixed;
-                                    }
-                            body&gt;div.changestyle {
-                                        position: fixed;
-                                    }
-                            div.menu {
-                            }
-                            div.changestyle {
-                                font-size: 80%;
-                                font-weight: normal;
-                                position: absolute;
-                                z-index: 2;
-                                width: 10.7em; height: auto;
-                                bottom: 0;
-                            }
-                            ol.toc, ol.toc li  {
-                                margin: 0;
-                                list-style-type: none;
-                                padding: 0.13em 0;
-                                text-indent: 0;
-                                text-align: left;
-                                line-height: 1.1em;
-                            }
-                            p.last {
-                                padding-top: 5em;
-                            }
-                            .fn {
-                                display: none;
-                                counter-increment: footnote
-                            }
-                        }
-
-                        @media print {
-                            /* layout */
-                            /* Menu as TOC for print */
-                            body {
-                                font-size: 88%;
-                            }
-                            div.title {
-                                padding: 0.5em 0 2em 0;
-                            }
-                            div {
-                                text-align: justify;
-                            }
-                            h2 {
-                                margin-bottom: 0.5em;
-                            }
-                            h3 {
-                                margin-bottom: 0.3em;
-                            }
-                            h4 {
-                                margin-bottom: 0.3em;
-                            }
-                            pre {
-                                font-size: 90%;
-                                margin: 0.3em 0 0.3em 0;
-                                padding: 0.2em 0 0.2em 0.4em;
-                                text-align: left;
-                                line-height: 115%;
-                                letter-spacing:-0.03em
-                            }
-                            a {
-                                text-decoration: none;
-                            }
-                            p.xrefp {  /* links below h1 headers */
-                                padding-top: 0;
-                                margin: -1em 0 1.3em 0;
-                                page-break-inside: avoid;
-                                page-break-after: avoid;
-                            }
-                            a.xrefp {
-                                font-weight: normal;
-                                text-decoration: none;
-                            }
-                            ol.toc li  {
-                                list-style-type: decimal;
-                                margin: 0;
-                                padding: 0.25em 0;
-                            }
-                            ol.toc  {
-                                margin: 0 0 0 2.2em;
-                                list-style-position: outside;
-                                font-weight: normal;
-                                list-style-type: decimal;
-                                padding: 4em 0;
-                            }
-                            ol.toc a::after {
-                                content: leader(' . ') target-counter(attr(href), page);
-                            }
-                            /*
-                            a.xref:after {
-                                content: " [" target-counter(attr(href, url), chapter) "."
-                                target-counter(attr(href, url), section) " page "
-                                target-counter(attr(href, url), page) "]";
-                            }
-                            */
-                            a.xref:after {
-                                content: " (page " target-counter(attr(href, url), page) ")";
-                            }
-                            a.xrefp:after {
-                                content: " (p"target-counter(attr(href, url), page)")";
-                            }
-                            h1, h2, h3, h4, h5 {
-                                page-break-after: avoid;
-                            }
-                            div.footerfirst, div.footerlast {
-                                position: absolute;
-                                bottom: 0;
-                            }
-                            div.main {
-                                page-break-before: always;
-                            }
-                            div.pb {
-                                page-break-after: always;
-                            }
-                            div.changestyle, p.copyright, span.web {
-                                display: none;
-                            }
-                            div#sysinfo {
-                                margin-top: -1.5em;
-                            }
-                            p.last {
-                                padding-top: 2em;
-                            }
-                            .fn {
-                                display: prince-footnote;
-                                counter-increment: footnote;
-                                font: caption;
-                                font-stretch: normal;
-                                letter-spacing: normal;
-                                font-size: xx-small;
-                                font-style: normal;
-                                font-weight: normal;
-                                text-decoration: none;
-                                vertical-align: super;
-                            }
-                            .fn::footnote-call {
-                                content: counter(footnote);
-                                font-size: 80%;
-                                font-style: normal;
-                                font-weight: normal;
-                                text-decoration: none;
-                                vertical-align: super;
-                                line-height: none
-                            }
-                            .fn::footnote-marker {
-                                list-style-position: inside;
-                            }
-                        }
-                        @page {
-                            size: A4 portrait;
-                            margin: 15mm 12mm 14mm 12mm;
-                            padding: 0mm 0 5mm 0;
-                            @footnotes {
-                                border-top: solid #000040 thin;
-                                padding-top: 0.22em;
-                                padding-left: 1.2em;
-                            }
-                            @bottom-center {
-                                padding: 0 0 5mm 0;
-                                content: counter(page);
-                                font-size: 88%;
-                            }
-                            @top {
-                                padding-top: 5mm;
-                                content: "— " string(chaptertitle) " —";
-                            }
-                        }
-                        @page :first {
-                            padding: 0;
-                            @bottom-center {
-                                content: normal;
-                            }
-                            @top {
-                                content: normal;
-                            }
-                        }
-                        .copyright {
-                            padding: 10px;
-                        }
-                        .section-title {
-                            padding-top:120px;
-                        }
-                    </style>
-                    <style xmlns="http://www.w3.org/1999/xhtml" type="text/css" title="default">
-                        @media screen, handheld, print {
-                            /* Colors only */
-                            html {
-                                background-color: white;
-                                color: black;
-                            }
-                            h1 {
-                                color: white;
-                                margin-bottom: 40px;
-                                padding: 30px;
-                                border: 1px solid #000040;
-                            }
-                            h3, h4, div.title, h2, a:link, a:visited, .cmt {
-                                background-color: transparent;
-                                color: #000040;
-                            }
-                            pre {
-                                background-color: #F6F6FC;
-                            }
-                            pre, code {
-                                color: #003300;
-                            }
-                            a:hover, .pp {
-                                color: #D55500;
-                            }
-                            a:active {
-                                color: green;
-                            }
-                            .keyword {
-                                color:#0000FF;
-                            }
-                        }
-                        @media print {
-                            /* print only colors */
-                            pre, code {
-                                color: #000;
-                            }
-                            a:link, a:visited, .cmt {
-                                background-color: transparent;
-                                color: #000060;
-                            }
-                        }
-                    </style>
-                    <style xmlns="http://www.w3.org/1999/xhtml" type="text/css" title="inverse">
-                        @media screen, handheld {
-                            /* Colors only */
-                            html {
-                                background-color: black;
-                                color: Gainsboro;
-                            }
-                            h1 {
-                                background-color: #ffffcd;
-                                color: black;
-                            }
-                            h3, h4, div.title, h2, a:link, a:visited, .cmt {
-                                background-color: transparent;
-                                color: #ffffcd;
-                            }
-                            pre {
-                                background-color: #090903;
-                            }
-                            pre, code {
-                                color: #ffc3ff;
-                            }
-                            a:hover, .pp {
-                                color: #2aaaff;
-                            }
-                            a:active {
-                                color: orange;
-                            }
-                            .keyword {
-                                color:#ff0000;
-                            }
-                        }
-                    </style>
-                    <script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
-                        /*<![CDATA[*/
-
-                        function initCSS() {
-                            var cookie = readCookie("style");
-                            var title = cookie ? cookie : "default";
-                            setActiveStyle(title);
-                        }
-
-                        function setActiveStyle(title) {
-                            var j = document.getElementsByTagName("style");
-                            for(var i=1; i < j.length; i++) { // bypass the first (main) style
-                                j[i].disabled = true;
-                                if(j[i].getAttribute("title") == title) {
-                                    j[i].disabled = false;
-                                }
-                            }
-                        }
-
-                        /* Only create a cookie when the link is clicked */
-                        function setActiveStyleLink(title) {
-                            setActiveStyle(title)
-                            createCookie("style", title, 365);
-                        }
-
-                        function createCookie(name,value,days) {
-                            if (days) {
-                                var date = new Date();
-                                date.setTime(date.getTime()+(days*24*60*60*1000));
-                                var expires = "; expires="+date.toGMTString();
-                            }
-                            else expires = "";
-                            document.cookie = name+"="+value+expires+"; path=/";
-                        }
-
-                        function readCookie(name) {
-                            var nameEQ = name + "=";
-                            var ca = document.cookie.split(';');
-                            for(var i=0;i < ca.length;i++) {
-                                var c = ca[i];
-                                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-                            }
-                            return null;
-                        }
-
-                        window.onload = initCSS();
-
-                        /*]]>*/
-                    </script>
-
-
                     <div class="abstract">
                         This document is a collection of Unix/Linux/BSD commands and tasks which are useful for IT work or for advanced users. This is a practical guide with concise explanations, however the reader is supposed to know what s/he is doing.<br /><br />
                     </div>
@@ -424,7 +47,7 @@
                         Kernel detected hardware
 <pre># dmesg                              <span class="cmt"># Detected hardware and boot messages</span>
 # lsdev                              <span class="cmt"># information about installed hardware</span>
-# dd if=/dev/mem bs=1k skip=768 count=256 2&gt;/dev/null | strings -n 8 <span class="cmt"># Read BIOS</span>
+# dd if=/dev/mem bs=1k skip=768 count=256 2>/dev/null | strings -n 8 <span class="cmt"># Read BIOS</span>
 </pre>
                         <h3>Linux</h3>
 <pre># cat /proc/cpuinfo                  <span class="cmt"># CPU model</span>
@@ -472,8 +95,8 @@
 # who                                <span class="cmt"># Show who is logged on the system</span>
 # groupadd admin                     <span class="cmt"># Add group "admin" and user colin (Linux/Solaris)</span>
 # useradd -c "Colin Barschel" -g admin -m colin
-# usermod -a -G &lt;group&gt; &lt;user&gt;       <span class="cmt"># Add existing user to group (Debian)</span>
-# groupmod -A &lt;user&gt; &lt;group&gt;         <span class="cmt"># Add existing user to group (SuSE)</span>
+# usermod -a -G &lt;group> &lt;user>       <span class="cmt"># Add existing user to group (Debian)</span>
+# groupmod -A &lt;user> &lt;group>         <span class="cmt"># Add existing user to group (SuSE)</span>
 # userdel colin                      <span class="cmt"># Delete user colin (Linux/Solaris)</span>
 # adduser joe                        <span class="cmt"># FreeBSD add user joe (interactive)</span>
 # rmuser joe                         <span class="cmt"># FreeBSD delete user joe (interactive)</span>
@@ -484,8 +107,8 @@
 </pre>
                         Encrypted passwords are stored in /etc/shadow for Linux and Solaris and /etc/master.passwd on FreeBSD. If the master.passwd is modified manually (say to delete a password), run <code># pwd_mkdb -p master.passwd</code> to rebuild the database.<br /><br />
                         To temporarily prevent logins system wide (for all users but root) use nologin. The message in nologin will be displayed (might not work with ssh pre-shared keys).
-<pre># echo "Sorry no login now" &gt; /etc/nologin       <span class="cmt"># (Linux)</span>
-# echo "Sorry no login now" &gt; /var/run/nologin   <span class="cmt"># (FreeBSD)</span>
+<pre># echo "Sorry no login now" > /etc/nologin       <span class="cmt"># (Linux)</span>
+# echo "Sorry no login now" > /var/run/nologin   <span class="cmt"># (FreeBSD)</span>
 </pre>
 
                         <h2 id="limits">Limits</h2>
@@ -511,7 +134,7 @@ asterisk hard nofile 409600          <span class="cmt"># Limit application open 
 <pre># sysctl -a                          <span class="cmt"># View all system limits</span>
 # sysctl fs.file-max                 <span class="cmt"># View max open files limit</span>
 # sysctl fs.file-max=102400          <span class="cmt"># Change max open files limit</span>
-# echo "1024 50000" &gt; /proc/sys/net/ipv4/ip_local_port_range  <span class="cmt"># port range</span>
+# echo "1024 50000" > /proc/sys/net/ipv4/ip_local_port_range  <span class="cmt"># port range</span>
 # cat /etc/sysctl.conf
 fs.file-max=102400                   <span class="cmt"># Permanent entry in sysctl.conf</span>
 # cat /proc/sys/fs/file-nr           <span class="cmt"># How many file descriptors are in use</span>
@@ -652,7 +275,7 @@ net start "Windows Search"           <span class="cmt"># same as above using des
 </pre>
                         <h3>FreeBSD</h3>
                         Optionally update the source tree (in <code>/usr/src</code>) with csup (as of FreeBSD 6.2 or later):
-                        <pre># csup &lt;supfile&gt;</pre>
+                        <pre># csup &lt;supfile></pre>
                         I use the following supfile:
 <pre>*default host=cvsup5.FreeBSD.org  # www.freebsd.org/handbook/cvsup.html#CVSUP-MIRRORS
 *default prefix=/usr
@@ -742,11 +365,11 @@ src-all
 
                         <h2 id="bgfg">Background/Foreground</h2>
                         When started from a shell, processes can be brought in the background and back to the foreground with [Ctrl]-[Z] (^Z), <code>bg</code> and <code>fg</code>. List the processes with <code>jobs</code>. When needed detach from the terminal with <code>disown</code>.
-<pre># ping cb.vu &gt; ping.log
+<pre># ping cb.vu > ping.log
 ^Z                                   <span class="cmt"># ping is suspended (stopped) with [Ctrl]-[Z]</span>
 # bg                                 <span class="cmt"># put in background and continues running</span>
 # jobs -l                            <span class="cmt"># List processes in background</span>
-[1]  - 36232 Running                       ping cb.vu &gt; ping.log
+[1]  - 36232 Running                       ping cb.vu > ping.log
 [2]  + 36233 Suspended (tty output)        top
 # fg %2                              <span class="cmt"># Bring process 2 back in foreground</span>
 </pre>
@@ -757,7 +380,7 @@ src-all
 </pre>
                         No straight forward way to re-attach the process to a new terminal, try <a href="https://github.com/nelhage/reptyr">reptyr</a> (Linux).<br />
                         Use <code>nohup</code> to start a process which has to keep running when the shell is closed (immune to hangups).
-<pre># nohup ping -i 60 &gt; ping.log &amp;
+<pre># nohup ping -i 60 > ping.log &amp;
 </pre>
 
                         <h2 id="top">Top</h2>
@@ -770,7 +393,7 @@ src-all
                         </ul>
                         <h2 id="kill">Signals/Kill</h2>
                         Terminate or send a signal with <code>kill</code> or <code>killall</code>.
-<pre># ping -i 60 cb.vu &gt; ping.log &amp;
+<pre># ping -i 60 cb.vu > ping.log &amp;
 [1] 4712
 # kill -s TERM 4712                  <span class="cmt"># same as kill -15 4712</span>
 # killall -1 httpd                   <span class="cmt"># Kill HUP processes by exact name</span>
@@ -945,7 +568,7 @@ share /home/colin/share vboxsf defaults,uid=colin 0 0 <span class="cmt"># fstab 
 </pre>
 
                         <h2 id="mountsmb">Mount an SMB share</h2>
-                        Suppose we want to access the SMB share myshare on the computer smbserver, the address as typed on a Windows PC is \\smbserver\myshare\. We mount on /mnt/smbshare. Warning&gt; cifs wants an IP or DNS name, not a Windows name.
+                        Suppose we want to access the SMB share myshare on the computer smbserver, the address as typed on a Windows PC is \\smbserver\myshare\. We mount on /mnt/smbshare. Warning> cifs wants an IP or DNS name, not a Windows name.
                         <h3>Linux/OSX</h3>
 <pre># smbclient -U user -I 192.168.16.229 -L //smbshare/    <span class="cmt"># List the shares</span>
 # mount -t smbfs -o username=winuser //smbserver/myshare /mnt/smbshare
@@ -1050,7 +673,7 @@ hw.ata.atapi_dma="1"
                         <pre>/dev/md0                /usr/vdisk      ufs     rw              0       0</pre>
                         It is also possible to increase the size of the image afterward, say for example 300 MB larger.
 <pre># umount /mnt; mdconfig -d -u 0
-# dd if=/dev/zero bs=1m count=300 &gt;&gt; /usr/vdisk.img
+# dd if=/dev/zero bs=1m count=300 >> /usr/vdisk.img
 # mdconfig -a -t vnode -f /usr/vdisk.img -u 0
 # growfs /dev/md0
 # mount /dev/md0c /mnt                                <span class="cmt"># File partition is now 300 MB larger</span>
@@ -1189,7 +812,7 @@ ifconfig_fxp0_alias0="192.168.51.254 netmask 255.255.255.0"
                         *Typical wireless interface is <code>en1</code> and needs do disassociate from
                         any network first (<a href="http://osxdaily.com/2008/01/17/how-to-spoof-your-mac-address-in-mac-os-x/">osxdaily howto</a>).
 <pre># echo "alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'"\
-&gt;&gt; ~/.bash_profile         <span class="cmt"># or symlink to /usr/sbin</span>
+>> ~/.bash_profile         <span class="cmt"># or symlink to /usr/sbin</span>
 # airport -z               <span class="cmt"># Disassociate from wireless networks</span>
 # airport -I               <span class="cmt"># Get info from wireless network</span></pre>
                         Many tools exist for Windows. For example <a href="http://ntsecurity.nu/toolbox/etherchange/">etherchange</a><span class="fn">http://ntsecurity.nu/toolbox/etherchange</span>. Or look for "Mac Makeup", "smac".
@@ -1228,7 +851,7 @@ Open the iptables firewall
                         <h3>Linux</h3>
                         Check and then enable IP forward with:
 <pre># cat /proc/sys/net/ipv4/ip_forward  <span class="cmt"># Check IP forward 0=off, 1=on</span>
-# echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+# echo 1 > /proc/sys/net/ipv4/ip_forward
 </pre>
                         or edit /etc/sysctl.conf with:
                         <pre>net.ipv4.ip_forward = 1</pre>
@@ -1366,7 +989,7 @@ interface "rl0" {
 <pre># tcpdump -nl -i bge0 not port ssh and src \(192.168.16.121 or 192.168.16.54\)
 # tcpdump -n -i eth1 net 192.168.16.121           <span class="cmt"># select to/from a single IP</span>
 # tcpdump -n -i eth1 net 192.168.16.0/24          <span class="cmt"># select traffic to/from a network</span>
-# tcpdump -l &gt; dump &amp;&amp; tail -f dump               <span class="cmt"># Buffered output</span>
+# tcpdump -l > dump &amp;&amp; tail -f dump               <span class="cmt"># Buffered output</span>
 # tcpdump -i rl0 -w traffic.rl0                   <span class="cmt"># Write traffic headers in binary file</span>
 # tcpdump -i rl0 -s 0 -w traffic.rl0              <span class="cmt"># Write traffic + payload in binary file</span>
 # tcpdump -r traffic.rl0                          <span class="cmt"># Read from file (also for ethereal</span>
@@ -1434,7 +1057,7 @@ Uptime 33.120 days (since Fri Aug 31 11:41:04 2007)
 # tc qdisc del dev eth0 root                      <span class="cmt"># delete all QoS</span>
 </pre>
                         <h4>Calculate port range and mask</h4>
-                        The tc filter defines the port range with port and mask which you have to calculate. Find the 2^N <i>ending</i> of the port range, deduce the range and convert to HEX. This is your mask. Example for 10000 -&gt; 11024, the range is 1024.
+                        The tc filter defines the port range with port and mask which you have to calculate. Find the 2^N <i>ending</i> of the port range, deduce the range and convert to HEX. This is your mask. Example for 10000 -> 11024, the range is 1024.
 <pre># 2^13 (8192) &lt; 10000 &lt; 2^14 (16384)              <span class="cmt"># ending is 2^14 = 16384</span>
 # echo "obase=16;(2^14)-1024" | bc                <span class="cmt"># mask is 0x3C00</span>
 </pre>
@@ -1485,7 +1108,7 @@ domain domain.net broadcast
 <pre><span class="cmt">server#</span> tar -cf - -C VIDEO_TS . | nc -l -p 4444         <span class="cmt"># Serve tar folder on port 4444</span>
 <span class="cmt">client#</span> nc 192.168.1.1 4444 | tar xpf - -C VIDEO_TS     <span class="cmt"># Pull the file on port 4444</span>
 <span class="cmt">server#</span> cat largefile | nc -l 5678                      <span class="cmt"># Server a single file</span>
-<span class="cmt">client#</span> nc 192.168.1.1 5678 &gt; largefile                 <span class="cmt"># Pull the single file</span>
+<span class="cmt">client#</span> nc 192.168.1.1 5678 > largefile                 <span class="cmt"># Pull the single file</span>
 <span class="cmt">server#</span> dd if=/dev/da0 | nc -l 4444                     <span class="cmt"># Server partition image</span>
 <span class="cmt">client#</span> nc 192.168.1.1 4444 | dd of=/dev/da0            <span class="cmt"># Pull partition to clone</span>
 <span class="cmt">client#</span> nc 192.168.1.1 4444 | dd of=da0.img             <span class="cmt"># Pull partition to file</span>
@@ -1518,7 +1141,7 @@ domain domain.net broadcast
                             <li>Copy only the public key to the server and append it to the file <code>~/.ssh/authorized_keys2</code> on your home on the server.</li>
                         </ul>
 <pre># ssh-keygen -t dsa -N ''
-# cat ~/.ssh/id_dsa.pub | ssh you@host-server "cat - &gt;&gt; ~/.ssh/authorized_keys2"
+# cat ~/.ssh/id_dsa.pub | ssh you@host-server "cat - >> ~/.ssh/authorized_keys2"
 </pre>
 
                         <h3>Using the Windows client from ssh.com</h3>
@@ -1530,7 +1153,7 @@ domain domain.net broadcast
                             <li>The keys are in C:\Documents and Settings\%USERNAME%\Application Data\SSH\UserKeys.</li>
                             <li>Use the ssh-keygen command on the server to convert the key:
 <pre># cd ~/.ssh
-# ssh-keygen -i -f keyfilename.pub &gt;&gt; authorized_keys2
+# ssh-keygen -i -f keyfilename.pub >> authorized_keys2
 </pre></li>
                         </ul>
 
@@ -1544,7 +1167,7 @@ domain domain.net broadcast
                                 <pre># scp .ssh/puttykey.pub root@192.168.51.254:.ssh/</pre></li>
                             <li>Use the ssh-keygen command on the server to convert the key for OpenSSH:
 <pre># cd ~/.ssh
-# ssh-keygen -i -f puttykey.pub &gt;&gt; authorized_keys2
+# ssh-keygen -i -f puttykey.pub >> authorized_keys2
 </pre></li>
                             <li>Point the private key location in the putty settings: Connection - SSH - Auth</li>
                         </ul>
@@ -1572,7 +1195,7 @@ Are you sure you want to continue connecting (yes/no)? yes
                         Furthermore it is possible to mount a remote folder with <strong>sshfs</strong> a file system client based on SCP. <a href="http://fuse.sourceforge.net/sshfs.html">See fuse sshfs</a><span class="fn">http://fuse.sourceforge.net/sshfs.html</span>.
                         <pre>ssh_exchange_identification: Connection closed by remote host</pre>
                         With this error try the following on the server:
-<pre>echo 'SSHD: ALL' &gt;&gt; /etc/hosts.allow
+<pre>echo 'SSHD: ALL' >> /etc/hosts.allow
 /etc/init.d/sshd restart</pre>
                         <h2 id="sshtunnel">Tunneling</h2>
                         SSH tunneling allows to forward or reverse forward a port over the SSH connection, thus securing the traffic and accessing ports which would otherwise be blocked. This only works with TCP. The general nomenclature for forward and reverse is (see also <a href="#sshnat">ssh and NAT example</a>):
@@ -1596,11 +1219,11 @@ Are you sure you want to continue connecting (yes/no)? yes
                         </ul>
                         Now create the loopback interface with IP 10.1.1.1:
                         <ul>
-                            <li># System-&gt;Control Panel-&gt;Add Hardware # Yes, Hardware is already connected
+                            <li># System->Control Panel->Add Hardware # Yes, Hardware is already connected
                                 # Add a new hardware device (at bottom).</li>
                             <li># Install the hardware that I manually select # Network adapters # Microsoft , Microsoft Loopback Adapter.</li>
                             <li>Configure the IP address of the fake device to 10.1.1.1 mask 255.255.255.0, no gateway.</li>
-                            <li>advanced-&gt;WINS, Enable LMHosts Lookup; Disable NetBIOS over TCP/IP.</li>
+                            <li>advanced->WINS, Enable LMHosts Lookup; Disable NetBIOS over TCP/IP.</li>
                             <li># Enable Client for Microsoft Networks. # Disable File and Printer Sharing for Microsoft Networks.</li>
                         </ul>
                         I HAD to reboot for this to work. Now connect to the smb share with \\10.1.1.1 and remote desktop to 10.1.1.1:3388.
@@ -1620,7 +1243,7 @@ Are you sure you want to continue connecting (yes/no)? yes
                         On client cliadmin (from host to gate):
                         <pre># ssh -L 3022:localhost:2022 admin@gate         <span class="cmt"># forwards client 3022 to gate:2022</span></pre>
                         Now the admin can connect directly to the client cliuser with:
-                        <pre># ssh -p 3022 admin@localhost                   <span class="cmt"># local:3022 -&gt; gate:2022 -&gt; client:22</span></pre>
+                        <pre># ssh -p 3022 admin@localhost                   <span class="cmt"># local:3022 -> gate:2022 -> client:22</span></pre>
 
                         <h3>Connect to VNC behind NAT</h3>
                         Suppose a Windows client with VNC listening on port 5900 has to be accessed from behind NAT.
@@ -1635,13 +1258,13 @@ Are you sure you want to continue connecting (yes/no)? yes
                         Suppose you can not reach a server directly with ssh, but only via multiple intermediate hosts (for example because of routing issues). Sometimes it is still necessary to get a direct client - server connection, for example to copy files with scp, or forward other ports like smb or vnc. One way to do this is to chain tunnels together to forward a port to the server along the hops. This "carrier" port only reaches its final destination on the last connection to the server.<br />
                         Suppose we want to forward the ssh port from a client to a server over two hops. Once the tunnel is build, it is possible to connect to the server directly from the client (and also add an other port forward).
                         <h4>Create tunnel in one shell</h4>
-                        client -&gt; host1 -&gt; host2 -&gt; server and dig tunnel 5678
-<pre><span class="cmt">client&gt;</span># ssh -L5678:localhost:5678 host1        <span class="cmt"># 5678 is an arbitrary port for the tunnel</span>
-<span class="cmt">host_1&gt;</span># ssh -L5678:localhost:5678 host2        <span class="cmt"># chain 5678 from host1 to host2</span>
-<span class="cmt">host_2&gt;</span># ssh -L5678:localhost:22 server         <span class="cmt"># end the tunnel on port 22 on the server</span>
+                        client -> host1 -> host2 -> server and dig tunnel 5678
+<pre><span class="cmt">client></span># ssh -L5678:localhost:5678 host1        <span class="cmt"># 5678 is an arbitrary port for the tunnel</span>
+<span class="cmt">host_1></span># ssh -L5678:localhost:5678 host2        <span class="cmt"># chain 5678 from host1 to host2</span>
+<span class="cmt">host_2></span># ssh -L5678:localhost:22 server         <span class="cmt"># end the tunnel on port 22 on the server</span>
 </pre>
                         <h4>Use tunnel with an other shell</h4>
-                        client -&gt; server using tunnel 5678
+                        client -> server using tunnel 5678
 <pre># ssh -p 5678 localhost                         <span class="cmt"># connect directly from client to  server</span>
 # scp -P 5678 myfile localhost:/tmp/            <span class="cmt"># or copy a file directly using the tunnel</span>
 # rsync -e 'ssh -p 5678' myfile localhost:/tmp/ <span class="cmt"># or rsync a file directly to the server</span>
@@ -1650,7 +1273,7 @@ Are you sure you want to continue connecting (yes/no)? yes
                         I use variations of the following script to keep a machine reacheable over a reverse ssh tunnel. The connection is automatically rebuilt if closed. You can add multiple <code>-L</code> or <code>-R</code> tunnels on one line.
 <pre>#!/bin/sh
 COMMAND="ssh -N -f -g -R 3022:localhost:22 colin@cb.vu"
-pgrep -f -x "$COMMAND" &gt; /dev/null 2&gt;&amp;1 || $COMMAND
+pgrep -f -x "$COMMAND" > /dev/null 2>&amp;1 || $COMMAND
 exit 0
 </pre>
                         <pre>1 * * * * colin /home/colin/port_forward.sh     <span class="cmt"># crontab entry (here hourly)</span></pre>
@@ -1671,24 +1294,24 @@ PermitTunnel yes
                         <h3>Connect to the server</h3>
                         Connection started on the client and commands are executed on the server.
                         <h4>Server is on Linux</h4>
-<pre><span class="cmt">cli&gt;#</span> ssh -w5:5 root@hserver
-<span class="cmt">srv&gt;#</span> ifconfig tun5 10.0.1.1 netmask 255.255.255.252   <span class="cmt"># Executed on the server shell</span>
+<pre><span class="cmt">cli>#</span> ssh -w5:5 root@hserver
+<span class="cmt">srv>#</span> ifconfig tun5 10.0.1.1 netmask 255.255.255.252   <span class="cmt"># Executed on the server shell</span>
 </pre>
                         <h4>Server is on FreeBSD</h4>
-<pre><span class="cmt">cli&gt;#</span> ssh -w5:5 root@hserver
-<span class="cmt">srv&gt;#</span> ifconfig tun5 10.0.1.1 10.0.1.2                  <span class="cmt"># Executed on the server shell</span>
+<pre><span class="cmt">cli>#</span> ssh -w5:5 root@hserver
+<span class="cmt">srv>#</span> ifconfig tun5 10.0.1.1 10.0.1.2                  <span class="cmt"># Executed on the server shell</span>
 </pre>
 
                         <h3>Configure the client</h3>
                         Commands executed on the client:
-<pre><span class="cmt">cli&gt;#</span> ifconfig tun5 10.0.1.2 netmask 255.255.255.252   <span class="cmt"># Client is on Linux</span>
-<span class="cmt">cli&gt;#</span> ifconfig tun5 10.0.1.2 10.0.1.1                  <span class="cmt"># Client is on FreeBSD</span>
+<pre><span class="cmt">cli>#</span> ifconfig tun5 10.0.1.2 netmask 255.255.255.252   <span class="cmt"># Client is on Linux</span>
+<span class="cmt">cli>#</span> ifconfig tun5 10.0.1.2 10.0.1.1                  <span class="cmt"># Client is on FreeBSD</span>
 </pre>
                         The two hosts are now connected and can transparently communicate with any layer 3/4 protocol using the tunnel IP addresses.
 
                         <h2 id="sshg2g">Connect two networks</h2>
                         In addition to the p2p setup above, it is more useful to connect two private networks with an SSH VPN using two gates. Suppose for the example, netA is 192.168.51.0/24 and netB 192.168.16.0/24. The procedure is similar as above, we only need to add the routing. NAT must be activated on the private interface only if the gates are not the same as the default gateway of their network.<br />
-                        192.168.51.0/24 (netA)|gateA &lt;-&gt; gateB|192.168.16.0/24 (netB)<br />
+                        192.168.51.0/24 (netA)|gateA &lt;-> gateB|192.168.16.0/24 (netB)<br />
                         <ul>
                             <li>Connect with SSH using the tunnel option -w.</li>
                             <li>Configure the IP addresses of the tunnel. Once on the server and once on the client.</li>
@@ -1699,35 +1322,35 @@ PermitTunnel yes
                         <h3>Connect from gateA to gateB</h3>
                         Connection is started from gateA and commands are executed on gateB.
                         <h4>gateB is on Linux</h4>
-<pre><span class="cmt">gateA&gt;#</span> ssh -w5:5 root@gateB
-<span class="cmt">gateB&gt;#</span> ifconfig tun5 10.0.1.1 netmask 255.255.255.252 <span class="cmt"># Executed on the gateB shell</span>
-<span class="cmt">gateB&gt;#</span> route add -net 192.168.51.0 netmask 255.255.255.0 dev tun5
-<span class="cmt">gateB&gt;#</span> echo 1 &gt; /proc/sys/net/ipv4/ip_forward        <span class="cmt"># Only needed if not default gw</span>
-<span class="cmt">gateB&gt;#</span> iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+<pre><span class="cmt">gateA>#</span> ssh -w5:5 root@gateB
+<span class="cmt">gateB>#</span> ifconfig tun5 10.0.1.1 netmask 255.255.255.252 <span class="cmt"># Executed on the gateB shell</span>
+<span class="cmt">gateB>#</span> route add -net 192.168.51.0 netmask 255.255.255.0 dev tun5
+<span class="cmt">gateB>#</span> echo 1 > /proc/sys/net/ipv4/ip_forward        <span class="cmt"># Only needed if not default gw</span>
+<span class="cmt">gateB>#</span> iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 </pre>
                         <h4>gateB is on FreeBSD</h4>
-<pre><span class="cmt">gateA&gt;#</span> ssh -w5:5 root@gateB                          <span class="cmt"># Creates the tun5 devices</span>
-<span class="cmt">gateB&gt;#</span> ifconfig tun5 10.0.1.1 10.0.1.2               <span class="cmt"># Executed on the gateB shell</span>
-<span class="cmt">gateB&gt;#</span> route add 192.168.51.0/24 10.0.1.2
-<span class="cmt">gateB&gt;#</span> sysctl net.inet.ip.forwarding=1               <span class="cmt"># Only needed if not default gw</span>
-<span class="cmt">gateB&gt;#</span> natd -s -m -u -dynamic -n fxp0                <span class="cmt"># see <a class="xref" href="#nat">NAT</a></span>
-<span class="cmt">gateA&gt;#</span> sysctl net.inet.ip.fw.enable=1
+<pre><span class="cmt">gateA>#</span> ssh -w5:5 root@gateB                          <span class="cmt"># Creates the tun5 devices</span>
+<span class="cmt">gateB>#</span> ifconfig tun5 10.0.1.1 10.0.1.2               <span class="cmt"># Executed on the gateB shell</span>
+<span class="cmt">gateB>#</span> route add 192.168.51.0/24 10.0.1.2
+<span class="cmt">gateB>#</span> sysctl net.inet.ip.forwarding=1               <span class="cmt"># Only needed if not default gw</span>
+<span class="cmt">gateB>#</span> natd -s -m -u -dynamic -n fxp0                <span class="cmt"># see <a class="xref" href="#nat">NAT</a></span>
+<span class="cmt">gateA>#</span> sysctl net.inet.ip.fw.enable=1
 </pre>
 
                         <h3>Configure gateA</h3>
                         Commands executed on gateA:
                         <h4>gateA is on Linux</h4>
-<pre><span class="cmt">gateA&gt;#</span> ifconfig tun5 10.0.1.2 netmask 255.255.255.252
-<span class="cmt">gateA&gt;#</span> route add -net 192.168.16.0 netmask 255.255.255.0 dev tun5
-<span class="cmt">gateA&gt;#</span> echo 1 &gt; /proc/sys/net/ipv4/ip_forward
-<span class="cmt">gateA&gt;#</span> iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+<pre><span class="cmt">gateA>#</span> ifconfig tun5 10.0.1.2 netmask 255.255.255.252
+<span class="cmt">gateA>#</span> route add -net 192.168.16.0 netmask 255.255.255.0 dev tun5
+<span class="cmt">gateA>#</span> echo 1 > /proc/sys/net/ipv4/ip_forward
+<span class="cmt">gateA>#</span> iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 </pre>
                         <h4>gateA is on FreeBSD</h4>
-<pre><span class="cmt">gateA&gt;#</span> ifconfig tun5 10.0.1.2 10.0.1.1
-<span class="cmt">gateA&gt;#</span> route add 192.168.16.0/24 10.0.1.2
-<span class="cmt">gateA&gt;#</span> sysctl net.inet.ip.forwarding=1
-<span class="cmt">gateA&gt;#</span> natd -s -m -u -dynamic -n fxp0                <span class="cmt"># see <a class="xref" href="#nat">NAT</a></span>
-<span class="cmt">gateA&gt;#</span> sysctl net.inet.ip.fw.enable=1
+<pre><span class="cmt">gateA>#</span> ifconfig tun5 10.0.1.2 10.0.1.1
+<span class="cmt">gateA>#</span> route add 192.168.16.0/24 10.0.1.2
+<span class="cmt">gateA>#</span> sysctl net.inet.ip.forwarding=1
+<span class="cmt">gateA>#</span> natd -s -m -u -dynamic -n fxp0                <span class="cmt"># see <a class="xref" href="#nat">NAT</a></span>
+<span class="cmt">gateA>#</span> sysctl net.inet.ip.fw.enable=1
 </pre>
                         The two private networks are now transparently connected via the SSH VPN. The IP forward and NAT settings are only necessary if the gates are not the default gateways. In this case the clients would not know where to forward the response, and nat must be activated.
                     </div>
@@ -1767,13 +1390,13 @@ PermitTunnel yes
                         </ul>
 
                         <h2 id="winrsync">Rsync on Windows</h2>
-                        Rsync is available for Windows through cygwin or as stand-alone packaged in <a href="http://sourceforge.net/projects/sereds/">cwrsync</a><span class="fn">http://sourceforge.net/projects/sereds</span>. This is very convenient for automated backups. Install one of them (<i>not both</i>) and add the path to the Windows system variables: # Control Panel -&gt; System -&gt; tab Advanced, button Environment Variables. Edit the "Path" system variable and add the full path to the installed rsync, e.g. C:\Program Files\cwRsync\bin or C:\cygwin\bin. This way the commands <code>rsync</code> and <code>ssh</code> are available in a Windows command shell.
+                        Rsync is available for Windows through cygwin or as stand-alone packaged in <a href="http://sourceforge.net/projects/sereds/">cwrsync</a><span class="fn">http://sourceforge.net/projects/sereds</span>. This is very convenient for automated backups. Install one of them (<i>not both</i>) and add the path to the Windows system variables: # Control Panel -> System -> tab Advanced, button Environment Variables. Edit the "Path" system variable and add the full path to the installed rsync, e.g. C:\Program Files\cwRsync\bin or C:\cygwin\bin. This way the commands <code>rsync</code> and <code>ssh</code> are available in a Windows command shell.
                         <h3>Public key authentication</h3>
                         Rsync is automatically tunneled over SSH and thus uses the SSH authentication on the server. Automatic backups have to avoid a user interaction, for this the SSH public key authentication can be used and the rsync command will run without a password.<br />
-                        All the following commands are executed within a Windows console. In a console (Start -&gt; Run -&gt; cmd) create and upload the key as described in <a href="#ssh">SSH</a>, change "user" and "server" as appropriate. If the file authorized_keys2 does not exist yet, simply copy id_dsa.pub to authorized_keys2 and upload it.
+                        All the following commands are executed within a Windows console. In a console (Start -> Run -> cmd) create and upload the key as described in <a href="#ssh">SSH</a>, change "user" and "server" as appropriate. If the file authorized_keys2 does not exist yet, simply copy id_dsa.pub to authorized_keys2 and upload it.
 <pre># ssh-keygen -t dsa -N ''                   <span class="cmt"># Creates a public and a private key</span>
 # rsync user@server:.ssh/authorized_keys2 . <span class="cmt"># Copy the file locally from the server</span>
-# cat id_dsa.pub &gt;&gt; authorized_keys2        <span class="cmt"># Or use an editor to add the key</span>
+# cat id_dsa.pub >> authorized_keys2        <span class="cmt"># Or use an editor to add the key</span>
 # rsync authorized_keys2 user@server:.ssh/  <span class="cmt"># Copy the file back to the server</span>
 # del authorized_keys2                      <span class="cmt"># Remove the local copy</span>
 </pre>
@@ -1782,7 +1405,7 @@ PermitTunnel yes
 'user@server:My\ Documents/'
 </pre>
                         <h3>Automatic backup</h3>
-                        Use a batch file to automate the backup and add the file in the scheduled tasks (Programs -&gt; Accessories -&gt; System Tools -&gt; Scheduled Tasks). For example create the file backup.bat and replace user@server.
+                        Use a batch file to automate the backup and add the file in the scheduled tasks (Programs -> Accessories -> System Tools -> Scheduled Tasks). For example create the file backup.bat and replace user@server.
 <pre>@ECHO OFF
 REM rsync the directory My Documents
 SETLOCAL
@@ -1896,7 +1519,7 @@ ALL          DESKTOP = NOPASSWD: /sbin/mount /cdrom,/sbin/umount /cdrom
                             <li><b>-a</b> create ascii armored output of a key</li>
                             <li><b>-o</b> use as output file</li>
                         </ul>
-                        The examples use 'Your Name' and 'Alice' as the keys are referred to by the email or full name or partial name. For example I can use 'Colin' or 'c@cb.vu' for my key [Colin Barschel (cb.vu) &lt;c@cb.vu&gt;].
+                        The examples use 'Your Name' and 'Alice' as the keys are referred to by the email or full name or partial name. For example I can use 'Colin' or 'c@cb.vu' for my key [Colin Barschel (cb.vu) &lt;c@cb.vu>].
                         <h3>Encrypt for personal use only</h3>
                         No need to export/import any key for this. You have both already.
 <pre># gpg -e -r 'Your Name' file                  <span class="cmt"># Encrypt with your public key</span>
@@ -1962,7 +1585,7 @@ ALL          DESKTOP = NOPASSWD: /sbin/mount /cdrom,/sbin/umount /cdrom
                         The two popular FreeBSD disk encryption modules are <code>gbde</code> and <code>geli</code>. I now use geli because it is faster and also uses the crypto device for hardware acceleration. See The <a href="http://www.freebsd.org/handbook/disks-encrypting.html">FreeBSD handbook Chapter 18.6</a><span class="fn">http://www.freebsd.org/handbook/disks-encrypting.html</span> for all the details. The geli module must be loaded or compiled into the kernel:
 <pre>options GEOM_ELI
 device crypto                                       <span class="cmt"># or as module:</span>
-# echo 'geom_eli_load="YES"' &gt;&gt; /boot/loader.conf   <span class="cmt"># or do: kldload geom_eli</span>
+# echo 'geom_eli_load="YES"' >> /boot/loader.conf   <span class="cmt"># or do: kldload geom_eli</span>
 </pre>
                         <h3>Use password and key</h3>
                         I use those settings for a typical disk encryption, it uses a passphrase AND a key to encrypt the master key. That is you need both the password and the generated key <code>/root/ad1.key</code> to attach the partition. The master key is stored inside the partition and is not visible. See below for typical USB or file based image.
@@ -2036,7 +1659,7 @@ database        = $dir/index.txt            <span class="cmt"># database index f
 <pre># mkdir -p /usr/local/certs/CA
 # cd /usr/local/certs/CA
 # mkdir certs crl newcerts private
-# echo "01" &gt; serial                        <span class="cmt"># Only if serial does not exist</span>
+# echo "01" > serial                        <span class="cmt"># Only if serial does not exist</span>
 # touch index.txt
 </pre>
 
@@ -2059,7 +1682,7 @@ database        = $dir/index.txt            <span class="cmt"># database index f
 
                         <h2 id="signcert">Sign the certificate</h2>
                         The certificate request has to be signed by the CA to be valid, this step is usually done by the vendor. <i>Note: replace "servername" with the name of your server in the next commands</i>.
-<pre># cat newreq.pem newkey.pem &gt; new.pem
+<pre># cat newreq.pem newkey.pem > new.pem
 # openssl ca -policy policy_anything -out servernamecert.pem \
 -config /etc/ssl/openssl.cnf -infiles new.pem
 # mv newkey.pem servernamekey.pem
@@ -2112,12 +1735,12 @@ MIIERzCCA7CgAwIBAgIBBDANB[...]iG9w0BAQQFADCBxTELMAkGA1UEBhMCREUx
 # cd CVSROOT
 edit config ( fine as it is)
 # cvs commit config
-cat &gt;&gt; writers                       <span class="cmt"># Create a writers file (optionally also readers)</span>
+cat >> writers                       <span class="cmt"># Create a writers file (optionally also readers)</span>
 colin
 ^D                                   <span class="cmt"># Use [Control][D] to quit the edit</span>
 # cvs add writers                    <span class="cmt"># Add the file writers into the repository</span>
 # cvs edit checkoutlist
-# cat &gt;&gt; checkoutlist
+# cat >> checkoutlist
 writers
 ^D                                   <span class="cmt"># Use [Control][D] to quit the edit</span>
 # cvs commit                         <span class="cmt"># Commit all the configuration changes</span>
@@ -2161,7 +1784,7 @@ CVS password:
 
                         <h3 id="cvsroot">CVSROOT variable</h3>
                         This is an environment variable used to specify the location of the repository we're doing operations on. For local use, it can be just set to the directory of the repository. For use over the network, the transport protocol must be specified. Set the CVSROOT variable with <code>setenv CVSROOT string</code> on a csh, tcsh shell, or with <code>export CVSROOT=string</code> on a sh, bash shell.
-<pre># setenv CVSROOT :pserver:&lt;username&gt;@&lt;host&gt;:/cvsdirectory
+<pre># setenv CVSROOT :pserver:&lt;username>@&lt;host>:/cvsdirectory
 <i><span class="cmt">For example:</span></i>
 # setenv CVSROOT /usr/local/cvs                               <span class="cmt"># Used locally only</span>
 # setenv CVSROOT :local:/usr/local/cvs                        <span class="cmt"># Same as above</span>
@@ -2171,7 +1794,7 @@ CVS password:
 </pre>
                         When the login succeeded one can import a new project into the repository:
                         <strong>cd into</strong> your project root directory
-<pre>cvs import &lt;module name&gt; &lt;vendor tag&gt; &lt;initial tag&gt;
+<pre>cvs import &lt;module name> &lt;vendor tag> &lt;initial tag>
 cvs -d :pserver:colin@192.168.50.254:/usr/local/cvs import MyProject MyCompany START
 </pre>
 
@@ -2221,8 +1844,8 @@ CVS password:
                         <h3>Create a patch</h3>
                         It is best to create and apply a patch from the working development directory related to the project, or from within the source directory.
 <pre># cd /devel/project
-# diff -Naur olddir newdir &gt; patchfile <span class="cmt"># Create a patch from a directory or a file</span>
-# diff -Naur oldfile newfile &gt; patchfile
+# diff -Naur olddir newdir > patchfile <span class="cmt"># Create a patch from a directory or a file</span>
+# diff -Naur oldfile newfile > patchfile
 </pre>
                         <h3>Apply a patch</h3>
                         Sometimes it is necessary to strip a directory level from the patch, depending how it was created. In case of difficulties, simply look at the first lines of the patch and try -p0, -p1 or -p2.
@@ -2264,7 +1887,7 @@ CVS password:
 <pre>LoadModule dav_module         modules/mod_dav.so
 LoadModule dav_svn_module     modules/mod_dav_svn.so
 LoadModule authz_svn_module   modules/mod_authz_svn.so   <span class="cmt"> # Only for access control</span>
-</pre><pre style="page-break-inside:avoid;">&lt;Location /svn&gt;
+</pre><pre style="page-break-inside:avoid;">&lt;Location /svn>
   DAV svn
   <span class="cmt"># any "/svn/foo" URL will map to a repository /home/svn/foo</span>
   SVNParentPath /home/svn
@@ -2273,7 +1896,7 @@ LoadModule authz_svn_module   modules/mod_authz_svn.so   <span class="cmt"> # On
   AuthzSVNAccessFile /etc/apache2/svn.acl
   AuthUserFile /etc/apache2/svn-passwd
   Require valid-user
-&lt;/Location&gt;
+&lt;/Location>
 </pre>
                         The apache server needs full access to the repository:
                         <pre># chown -R www:www /home/svn</pre>
@@ -2404,7 +2027,7 @@ EOT
 </pre>
                         <h3>More advanced</h3>
 <pre># tar c dir/ | gzip | ssh user@remote 'dd of=dir.tgz' <span class="cmt"># arch dir/ and store remotely.</span>
-# tar cvf - `find . -print` &gt; backup.tar              <span class="cmt"># arch the current directory.</span>
+# tar cvf - `find . -print` > backup.tar              <span class="cmt"># arch the current directory.</span>
 # tar -cf - -C /etc . | tar xpf - -C /backup/etc      <span class="cmt"># Copy directories</span>
 # tar -cf - -C /etc . | ssh user@remote tar xpf - -C /backup/etc      <span class="cmt"># Remote copy.</span>
 # tar -czf home.tgz --exclude '*.o' --exclude 'tmp/' home/
@@ -2420,7 +2043,7 @@ EOT
 
                         <h2 id="dd">dd</h2>
                         The program <code>dd</code> (disk dump or destroy disk or see <a href="http://roesler-ac.de/wolfram/acro/credits.htm">the meaning of dd</a>) is used to copy partitions and disks and for other copy tricks. Typical usage:
-<pre># dd if=&lt;source&gt; of=&lt;target&gt; bs=&lt;byte size&gt; conv=&lt;conversion&gt;
+<pre># dd if=&lt;source> of=&lt;target> bs=&lt;byte size> conv=&lt;conversion>
 # kill -INFO PID                                      <span class="cmt"># View dd progress (FreeBSD, OSX)</span>
 </pre>
                         Important conv options:
@@ -2434,7 +2057,7 @@ EOT
 <pre># dd if=/dev/hda of=/dev/hdc bs=16065b                <span class="cmt"># Copy disk to disk (same size)</span>
 # dd if=/dev/sda7 of=/home/root.img bs=4096 conv=notrunc,noerror <span class="cmt"># Backup /</span>
 # dd if=/home/root.img of=/dev/sda7 bs=4096 conv=notrunc,noerror <span class="cmt"># Restore /</span>
-# dd bs=1M if=/dev/ad4s3e | gzip -c &gt; ad4s3e.gz                  <span class="cmt"># Zip the backup</span>
+# dd bs=1M if=/dev/ad4s3e | gzip -c > ad4s3e.gz                  <span class="cmt"># Zip the backup</span>
 # gunzip -dc ad4s3e.gz | dd of=/dev/ad0s3e bs=1M                 <span class="cmt"># Restore the zip</span>
 # dd bs=1M if=/dev/ad4s3e | gzip | ssh eedcoba@fry 'dd of=ad4s3e.gz' <span class="cmt"># also remote</span>
 # gunzip -dc ad4s3e.gz | ssh eedcoba@host 'dd of=/dev/ad0s3e bs=1M'
@@ -2501,7 +2124,7 @@ root@fry 'dd of=hda1.gz bs=1k'
                             <li><strong>Ctrl-a Ctrl-d</strong> to disconnect and leave the session running in the background</li>
                             <li><strong>Ctrl-a x</strong> lock the screen terminal with a password</li>
                             <li><strong>Ctrl-a [</strong> enter into <strong>scrollback</strong> mode, exit with <strong>esc</strong>.<br />
-                                Use <code>echo "defscrollback 5000" &gt; ~/.screenrc</code> to increase buffer (default is 100)</li>
+                                Use <code>echo "defscrollback 5000" > ~/.screenrc</code> to increase buffer (default is 100)</li>
                             <ul>
                                 <li><strong>C-u</strong> Scrolls a half page up</li>
                                 <li><strong>C-b</strong> Scroll a full page up</li>
@@ -2532,7 +2155,7 @@ root@fry 'dd of=hda1.gz bs=1k'
       <span class="cmt"># Find images and create an archive, iname is not case sensitive. -r for append</span>
 # find . \( -iname "*.png" -o -iname "*.jpg" \) -print -exec tar -rf images.tar {} \;
 # find . -type f -name "*.txt" ! -name README.txt -print  <span class="cmt"># Exclude README.txt files</span>
-# find /var/ -size +10M -exec ls -lh {} \;     <span class="cmt"># Find large files &gt; 10 MB</span>
+# find /var/ -size +10M -exec ls -lh {} \;     <span class="cmt"># Find large files > 10 MB</span>
 # find /var/ -size +10M -ls           <span class="cmt"># This is simpler</span>
 # find . -size +10M -size -50M -print
 # find /usr/ports/ -name work -type d -print -exec rm -rf {} \;  <span class="cmt"># Clean the ports</span>
@@ -2620,8 +2243,8 @@ export ftp_proxy=http://proxy_server:3128
 # revdep-rebuild                     <span class="cmt"># Repair dependencies</span>
 </pre>
                         <h3>Solaris</h3>
-                        The &lt;cdrom&gt; path is usually <code>/cdrom/cdrom0</code>.
-<pre># pkgadd -d &lt;cdrom&gt;/Solaris_9/Product SUNWgtar
+                        The &lt;cdrom> path is usually <code>/cdrom/cdrom0</code>.
+<pre># pkgadd -d &lt;cdrom>/Solaris_9/Product SUNWgtar
 # pkgadd -d SUNWgtar                 <span class="cmt"># Add downloaded package (bunzip2 first)</span>
 # pkgrm SUNWgtar                     <span class="cmt"># Remove the package</span>
 </pre>
@@ -2672,8 +2295,8 @@ export ftp_proxy=http://proxy_server:3128
                         Text encoding can get totally wrong, specially when the language requires
                         special characters like àäç. The command <code>iconv</code> can convert from
                         one encoding to an other.
-<pre># iconv -f &lt;from_encoding&gt; -t &lt;to_encoding&gt; &lt;input_file&gt;
-# iconv -f ISO8859-1 -t UTF-8 -o file.input &gt; file_utf8
+<pre># iconv -f &lt;from_encoding> -t &lt;to_encoding> &lt;input_file>
+# iconv -f ISO8859-1 -t UTF-8 -o file.input > file_utf8
 # iconv -l                           <span class="cmt"># List known coded character sets</span>
 </pre>
                         Without the -f option, iconv will use the local char-set, which is usually fine
@@ -2683,13 +2306,13 @@ export ftp_proxy=http://proxy_server:3128
 
                         <h2 id="newlines">Unix - DOS newlines</h2>
                         Convert DOS (CR/LF) to Unix (LF) newlines and back <b>within a Unix shell</b>. See also <code>dos2unix</code> and <code>unix2dos</code> if you have them.
-<pre># sed 's/.$//' dosfile.txt &gt; unixfile.txt                  <span class="cmt"># DOS to UNIX</span>
-# awk '{sub(/\r$/,"");print}' dosfile.txt &gt; unixfile.txt   <span class="cmt"># DOS to UNIX</span>
-# awk '{sub(/$/,"\r");print}' unixfile.txt &gt; dosfile.txt   <span class="cmt"># UNIX to DOS</span>
+<pre># sed 's/.$//' dosfile.txt > unixfile.txt                  <span class="cmt"># DOS to UNIX</span>
+# awk '{sub(/\r$/,"");print}' dosfile.txt > unixfile.txt   <span class="cmt"># DOS to UNIX</span>
+# awk '{sub(/$/,"\r");print}' unixfile.txt > dosfile.txt   <span class="cmt"># UNIX to DOS</span>
 </pre>
                         Convert Unix to DOS newlines <b>within a Windows environment</b>. Use sed or awk from mingw or cygwin.
-<pre># sed -n p unixfile.txt &gt; dosfile.txt
-# awk 1 unixfile.txt &gt; dosfile.txt   <span class="cmt"># UNIX to DOS (with a cygwin shell)</span>
+<pre># sed -n p unixfile.txt > dosfile.txt
+# awk 1 unixfile.txt > dosfile.txt   <span class="cmt"># UNIX to DOS (with a cygwin shell)</span>
 </pre>
                         Remove <code>^M</code> mac newline and replace with unix new line. To get a <code>^M</code> use CTL-V then CTL-M
 <pre># tr '^M' '\n' &lt; macfile.txt
@@ -2754,7 +2377,7 @@ vcodec=msmpeg4v2:vbitrate=600 -mc 0 vidoein.AVI
                         <h2 id="pgsql">PostgreSQL</h2>
                         <h3>Change root or a username password</h3>
 <pre># psql -d template1 -U pgsql
-&gt; alter user pgsql with password 'pgsql_password';  <span class="cmt"># Use username instead of "pgsql"</span>
+> alter user pgsql with password 'pgsql_password';  <span class="cmt"># Use username instead of "pgsql"</span>
 </pre>
                         <h3>Create user and database</h3>
                         The commands <code>createuser</code>, <code>dropuser</code>, <code>createdb</code> and <code>dropdb</code> are convenient shortcuts equivalent to the SQL commands. The new user is bob with database bobdb ; use as root with pgsql the database super user:
@@ -2773,11 +2396,11 @@ host    all         all        0.0.0.0/0                           password
 </pre>
                         <h3>Backup and restore</h3>
                         The backups and restore are done with the user pgsql or postgres. Backup and restore a single database:
-<pre># pg_dump --clean dbname &gt; dbname_sql.dump
+<pre># pg_dump --clean dbname > dbname_sql.dump
 # psql dbname &lt; dbname_sql.dump
 </pre>
                         Backup and restore all databases (including users):
-<pre># pg_dumpall --clean &gt; full.dump
+<pre># pg_dumpall --clean > full.dump
 # psql -f full.dump postgres
 </pre>
                         In this case the restore is started with the database postgres which is better when reloading an empty cluster.
@@ -2794,35 +2417,35 @@ host    all         all        0.0.0.0/0                           password
 </pre>
                         <h4>Method 2</h4>
 <pre># mysql -u root mysql
-<span class="cmt">mysql&gt;</span> UPDATE USER SET PASSWORD=PASSWORD("newpassword") where user='root';
-<span class="cmt">mysql&gt;</span> FLUSH PRIVILEGES;                           <span class="cmt"># Use username instead of "root"</span>
-<span class="cmt">mysql&gt;</span> quit
+<span class="cmt">mysql></span> UPDATE USER SET PASSWORD=PASSWORD("newpassword") where user='root';
+<span class="cmt">mysql></span> FLUSH PRIVILEGES;                           <span class="cmt"># Use username instead of "root"</span>
+<span class="cmt">mysql></span> quit
 </pre>
                         <h3>Create user and database (see <a href="http://dev.mysql.com/doc/refman/5.1/en/adding-users.html">MySQL doc</a><span class="fn">http://dev.mysql.com/doc/refman/5.1/en/adding-users.html</span>)</h3>
 <pre># mysql -u root mysql
-<span class="cmt">mysql&gt;</span> CREATE USER 'bob'@'localhost' IDENTIFIED BY 'pwd'; <span class="cmt"># create only a user</span>
-<span class="cmt">mysql&gt;</span> CREATE DATABASE bobdb;
-<span class="cmt">mysql&gt;</span> GRANT ALL ON *.* TO 'bob'@'%' IDENTIFIED BY 'pwd'; <span class="cmt"># Use localhost instead of %</span>
+<span class="cmt">mysql></span> CREATE USER 'bob'@'localhost' IDENTIFIED BY 'pwd'; <span class="cmt"># create only a user</span>
+<span class="cmt">mysql></span> CREATE DATABASE bobdb;
+<span class="cmt">mysql></span> GRANT ALL ON *.* TO 'bob'@'%' IDENTIFIED BY 'pwd'; <span class="cmt"># Use localhost instead of %</span>
                                                    <span class="cmt"># to restrict the network access</span>
-<span class="cmt">mysql&gt;</span> DROP DATABASE bobdb;                        <span class="cmt"># Delete database</span>
-<span class="cmt">mysql&gt;</span> DROP USER bob;                              <span class="cmt"># Delete user</span>
-<span class="cmt">mysql&gt;</span> DELETE FROM mysql.user WHERE user='bob and host='hostname'; <span class="cmt"># Alt. command</span>
-<span class="cmt">mysql&gt;</span> FLUSH PRIVILEGES;
+<span class="cmt">mysql></span> DROP DATABASE bobdb;                        <span class="cmt"># Delete database</span>
+<span class="cmt">mysql></span> DROP USER bob;                              <span class="cmt"># Delete user</span>
+<span class="cmt">mysql></span> DELETE FROM mysql.user WHERE user='bob and host='hostname'; <span class="cmt"># Alt. command</span>
+<span class="cmt">mysql></span> FLUSH PRIVILEGES;
 </pre>
                         <h3>Grant remote access</h3>
                         Remote access is typically permitted for a database, and not all databases. The file <code>/etc/my.cnf</code> contains the IP address to bind to. (On FreeBSD <code>my.cnf</code> not created per fedault, copy one <code>.cnf</code> file from <code>/usr/local/share/mysql</code> to <code>/usr/local/etc/my.cnf</code>) Typically comment the line <code>bind-address =</code> out.
 <pre># mysql -u root mysql
-<span class="cmt">mysql&gt;</span> GRANT ALL ON bobdb.* TO bob@'xxx.xxx.xxx.xxx' IDENTIFIED BY 'PASSWORD';
-<span class="cmt">mysql&gt;</span> REVOKE GRANT OPTION ON foo.* FROM bar@'xxx.xxx.xxx.xxx';
-<span class="cmt">mysql&gt;</span> FLUSH PRIVILEGES;                  <span class="cmt"># Use 'hostname' or also '%' for full access</span>
+<span class="cmt">mysql></span> GRANT ALL ON bobdb.* TO bob@'xxx.xxx.xxx.xxx' IDENTIFIED BY 'PASSWORD';
+<span class="cmt">mysql></span> REVOKE GRANT OPTION ON foo.* FROM bar@'xxx.xxx.xxx.xxx';
+<span class="cmt">mysql></span> FLUSH PRIVILEGES;                  <span class="cmt"># Use 'hostname' or also '%' for full access</span>
 </pre>
                         <h3>Backup and restore</h3>
                         Backup and restore a single database:
-<pre># mysqldump -u root -psecret --add-drop-database dbname &gt; dbname_sql.dump
+<pre># mysqldump -u root -psecret --add-drop-database dbname > dbname_sql.dump
 # mysql -u root -psecret -D dbname &lt; dbname_sql.dump
 </pre>
                         Backup and restore all databases:
-<pre># mysqldump -u root -psecret --add-drop-database --all-databases &gt; full.dump
+<pre># mysqldump -u root -psecret --add-drop-database --all-databases > full.dump
 # mysql -u root -psecret &lt; full.dump
 </pre>
                         Here is "secret" the mysql root password, there is no space after -p. When the -p option is used alone (w/o password), the password is asked at the command prompt.
@@ -2831,7 +2454,7 @@ host    all         all        0.0.0.0/0                           password
                         <a href="http://www.sqlite.org">SQLite</a><span class="fn">http://www.sqlite.org</span> is a small powerful self-contained, serverless, zero-configuration SQL database.
                         <h3>Dump and restore</h3>
                         It can be useful to dump and restore an SQLite database. For example you can edit the dump file to change a column attribute or type and then restore the database. This is easier than messing with SQL commands. Use the command <code>sqlite3</code> for a 3.x database.
-<pre># sqlite database.db .dump &gt; dump.sql              <span class="cmt"># dump</span>
+<pre># sqlite database.db .dump > dump.sql              <span class="cmt"># dump</span>
 # sqlite database.db &lt; dump.sql                    <span class="cmt"># restore</span>
 </pre>
                         <h3>Convert 2.x to 3.x database</h3>
@@ -2885,7 +2508,7 @@ check_quotas="YES"                   <span class="cmt"># Check quotas on startup
 </pre>
                         <h3>For many users</h3>
                         The command <code>edquota -p</code> is used to duplicate a quota to other users. For example to duplicate a reference quota to all users:
-<pre># edquota -p refuser `awk -F: '$3 &gt; 499 {print $1}' /etc/passwd`
+<pre># edquota -p refuser `awk -F: '$3 > 499 {print $1}' /etc/passwd`
 # edquota -p refuser user1 user2     <span class="cmt"># Duplicate to 2 users</span>
 </pre>
                         <h3>Checks</h3>
@@ -2912,13 +2535,13 @@ check_quotas="YES"                   <span class="cmt"># Check quotas on startup
 
                         <h2 id="bash">bash</h2>
                         Redirects and pipes for bash and sh:
-<pre># cmd 1&gt; file                         <span class="cmt"># Redirect stdout to file.</span>
-# cmd 2&gt; file                         <span class="cmt"># Redirect stderr to file.</span>
-# cmd 1&gt;&gt; file                        <span class="cmt"># Redirect and append stdout to file.</span>
-# cmd &amp;&gt; file                         <span class="cmt"># Redirect both stdout and stderr to file.</span>
-# cmd &gt;file 2&gt;&amp;1                      <span class="cmt"># Redirects stderr to stdout and then to file.</span>
+<pre># cmd 1> file                         <span class="cmt"># Redirect stdout to file.</span>
+# cmd 2> file                         <span class="cmt"># Redirect stderr to file.</span>
+# cmd 1>> file                        <span class="cmt"># Redirect and append stdout to file.</span>
+# cmd &amp;> file                         <span class="cmt"># Redirect both stdout and stderr to file.</span>
+# cmd >file 2>&amp;1                      <span class="cmt"># Redirects stderr to stdout and then to file.</span>
 # cmd1 | cmd2                         <span class="cmt"># pipe stdout to cmd2</span>
-# cmd1 2&gt;&amp;1 | cmd2                    <span class="cmt"># pipe stdout and stderr to cmd2</span>
+# cmd1 2>&amp;1 | cmd2                    <span class="cmt"># pipe stdout and stderr to cmd2</span>
 </pre>
                         Modify your configuration in ~/.bashrc (it can also be ~/.bash_profile). The following entries are useful, reload with ". .bashrc". With cygwin use ~/.bash_profile; with rxvt past with shift + left-click.
 <pre style="page-break-inside:avoid;"># in .bashrc
@@ -2926,12 +2549,12 @@ bind '"\e[A"':history-search-backward <span class="cmt"># Use up and down arrow 
 bind '"\e[B"':history-search-forward  <span class="cmt"># the history. Invaluable!</span>
 set -o emacs                          <span class="cmt"># Set emacs mode in bash (see below)</span>
 set bell-style visible                <span class="cmt"># Do not beep, inverse colors</span>
-    <span class="cmt"># Set a nice prompt like [user@host]/path/todir&gt;</span>
+    <span class="cmt"># Set a nice prompt like [user@host]/path/todir></span>
 PS1="\[\033[1;30m\][\[\033[1;34m\]\u\[\033[1;30m\]"
 PS1="$PS1@\[\033[0;33m\]\h\[\033[1;30m\]]\[\033[0;37m\]"
-PS1="$PS1\w\[\033[1;30m\]&gt;\[\033[0m\]"
+PS1="$PS1\w\[\033[1;30m\]>\[\033[0m\]"
 </pre><pre><span class="cmt"># To check the currently active aliases, simply type alias</span>
-alias  ls='ls -aF'                    <span class="cmt"># Append indicator (one of */=&gt;@|)</span>
+alias  ls='ls -aF'                    <span class="cmt"># Append indicator (one of */=>@|)</span>
 alias  ll='ls -aFls'                  <span class="cmt"># Listing</span>
 alias  la='ls -all'
 alias ..='cd ..'
@@ -2942,9 +2565,9 @@ export LSCOLORS=ExGxFxdxCxDxDxBxBxExEx
 </pre>
 
                         <h2 id="tcsh">tcsh</h2>
-                        Redirects and pipes for tcsh and csh (simple &gt; and &gt;&gt; are the same as sh):
-<pre># cmd &gt;&amp; file                         <span class="cmt"># Redirect both stdout and stderr to file.</span>
-# cmd &gt;&gt;&amp; file                        <span class="cmt"># Append both stdout and stderr to file.</span>
+                        Redirects and pipes for tcsh and csh (simple > and >> are the same as sh):
+<pre># cmd >&amp; file                         <span class="cmt"># Redirect both stdout and stderr to file.</span>
+# cmd >>&amp; file                        <span class="cmt"># Append both stdout and stderr to file.</span>
 # cmd1 | cmd2                         <span class="cmt"># pipe stdout to cmd2</span>
 # cmd1 |&amp; cmd2                        <span class="cmt"># pipe stdout and stderr to cmd2</span>
 </pre>
@@ -2956,7 +2579,7 @@ alias  ll      'ls -aFls'
 alias  la      'ls -all'
 alias  ..      'cd ..'
 alias  ...     'cd ../..'
-set   prompt    = "%B%n%b@%B%m%b%/&gt; " <span class="cmt"># like user@host/path/todir&gt;</span>
+set   prompt    = "%B%n%b@%B%m%b%/> " <span class="cmt"># like user@host/path/todir></span>
 set   history   =  5000
 set   savehist  = ( 6000 merge )
 set   autolist                        <span class="cmt"># Report possible completions with tab</span>
@@ -3043,7 +2666,7 @@ myfunction "txt"
 </pre>
                         <h4>Generate a file</h4>
 <pre><span class="pp">MYHOME</span>=/home/colin
-cat &gt; testhome.sh &lt;&lt; _EOF
+cat > testhome.sh &lt;&lt; _EOF
 <span class="cmt"># All of this goes into the file testhome.sh</span>
 <span class="keyword">if</span> [ -d "$<span class="pp">MYHOME</span>" ] ; <span class="keyword">then</span>
     echo $<span class="pp">MYHOME</span> exists
@@ -3058,7 +2681,7 @@ sh testhome.sh
 <pre style="page-break-inside:avoid;"><span class="pp">#!/bin/sh</span>
 <span class="cmt"># This script creates a book in pdf format ready to print on a duplex printer</span>
 <span class="keyword">if</span> [ $<span class="pp">#</span> <span class="keyword">-ne</span> 1 ]; <span class="keyword">then</span>                        <span class="cmt"># Check the argument</span>
-  echo 1&gt;&amp;2 "Usage: $0 HtmlFile"
+  echo 1>&amp;2 "Usage: $0 HtmlFile"
   <span class="keyword">exit</span> 1                                     <span class="cmt"># non zero exit if error</span>
 <span class="keyword">fi</span>
 
@@ -3068,7 +2691,7 @@ sh testhome.sh
 
 prince $<span class="pp">file</span> -o $<span class="pp">fname</span>.pdf                   <span class="cmt"># from www.princexml.com</span>
 pdftops -paper A4 -noshrink $<span class="pp">fname</span>.pdf $<span class="pp">fname</span>.ps <span class="cmt"># create postscript booklet</span>
-cat $<span class="pp">fname</span>.ps |psbook|psnup -Pa4 -2 |pstops -b "2:0,1U(21cm,29.7cm)" &gt; $<span class="pp">fname</span>.book.ps
+cat $<span class="pp">fname</span>.ps |psbook|psnup -Pa4 -2 |pstops -b "2:0,1U(21cm,29.7cm)" > $<span class="pp">fname</span>.book.ps
 
 ps2pdf13 -sPAPERSIZE=a4 -sAutoRotatePages=None $<span class="pp">fname</span>.book.ps $<span class="pp">fname</span>.book.pdf
                                              <span class="cmt"># use #a4 and #None on Windows!</span>
@@ -3081,7 +2704,7 @@ ps2pdf13 -sPAPERSIZE=a4 -sAutoRotatePages=None $<span class="pp">fname</span>.bo
 awk '{printf("%5d : %s\n", NR,$0)}' file     <span class="cmt"># Add line number left aligned</span>
 awk '{print FNR "\t" $0}' files              <span class="cmt"># Add line number right aligned</span>
 awk NF test.txt                              <span class="cmt"># remove blank lines (same as grep '.')</span>
-awk 'length &gt; 80'                            <span class="cmt"># print line longer than 80 char)</span>
+awk 'length > 80'                            <span class="cmt"># print line longer than 80 char)</span>
 </pre>
 
                         <h2 id="sed">Some sed commands</h2>
@@ -3089,13 +2712,13 @@ awk 'length &gt; 80'                            <span class="cmt"># print line l
 <pre>sed 's/string1/string2/g'                    <span class="cmt"># Replace string1 with string2</span>
 sed -i 's/wroong/wrong/g' *.txt              <span class="cmt"># Replace a recurring word with g</span>
 sed 's/\(.*\)1/\12/g'                        <span class="cmt"># Modify anystring1 to anystring2</span>
-sed '/&lt;p&gt;/,/&lt;\/p&gt;/d' t.xhtml                 <span class="cmt"># Delete lines that start with &lt;p&gt;</span>
-                                             <span class="cmt"># and end with &lt;/p&gt;</span>
+sed '/&lt;p>/,/&lt;\/p>/d' t.xhtml                 <span class="cmt"># Delete lines that start with &lt;p></span>
+                                             <span class="cmt"># and end with &lt;/p></span>
 sed '/ *#/d; /^ *$/d'                        <span class="cmt"># Remove comments and blank lines</span>
 sed 's/[ \t]*$//'                            <span class="cmt"># Remove trailing spaces (use tab as \t)</span>
 sed 's/^[ \t]*//;s/[ \t]*$//'                <span class="cmt"># Remove leading and trailing spaces</span>
-sed 's/[^*]/[&amp;]/'                            <span class="cmt"># Enclose first char with [] top-&gt;[t]op</span>
-sed = file | sed 'N;s/\n/\t/' &gt; file.num     <span class="cmt"># Number lines on a file</span>
+sed 's/[^*]/[&amp;]/'                            <span class="cmt"># Enclose first char with [] top->[t]op</span>
+sed = file | sed 'N;s/\n/\t/' > file.num     <span class="cmt"># Number lines on a file</span>
 </pre>
 
                         <h2 id="regex">Regular Expressions</h2>
@@ -3123,12 +2746,12 @@ IP=$(ifconfig $INTERFACE | sed '/.*inet addr:/!d;s///;s/ .*//')   <span class="c
 IP=$(ifconfig $INTERFACE | sed '/.*inet /!d;s///;s/ .*//')        <span class="cmt"># FreeBSD</span>
 if [ `diff file1 file2 | wc -l` != 0 ]; then [...] fi       <span class="cmt"># File changed?</span>
 cat /etc/master.passwd | grep -v root | grep -v \*: | awk -F":" \ <span class="cmt"># Create http passwd</span>
-'{ printf("%s:%s\n", $1, $2) }' &gt; /usr/local/etc/apache2/passwd
+'{ printf("%s:%s\n", $1, $2) }' > /usr/local/etc/apache2/passwd
 
 testuser=$(cat /usr/local/etc/apache2/passwd | grep -v \    <span class="cmt"># Check user in passwd</span>
 root | grep -v \*: | awk -F":" '{ printf("%s\n", $1) }' | grep ^user$)
 :(){ :|:&amp; };:                                <span class="cmt"># bash fork bomb. Will kill your machine</span>
-tail +2 file &gt; file2                         <span class="cmt"># remove the first line from file</span>
+tail +2 file > file2                         <span class="cmt"># remove the first line from file</span>
 </pre>
                         I use this little trick to change the file extension for many files at once. For example from .cxx to .cpp. Test it first without the <code>| sh</code> at the end. You can also do this with the command <code>rename</code> if installed. Or with bash builtins.
 <pre># ls *.cxx | awk -F. '{print "mv "$0" "$1".cpp"}' | sh
@@ -3142,7 +2765,7 @@ tail +2 file &gt; file2                         <span class="cmt"># remove the f
                         <h2 id="cbasics">C basics</h2>
 <pre>strcpy(newstr,str)                        <span class="cmt">/* copy str to newstr */</span>
 expr1 ? expr2 : expr3                     <span class="cmt">/* if (expr1) expr2 else expr3 */</span>
-x = (y &gt; z) ? y : z;                      <span class="cmt">/* if (y &gt; z) x = y; else x = z; */</span>
+x = (y > z) ? y : z;                      <span class="cmt">/* if (y > z) x = y; else x = z; */</span>
 int a[]={0,1,2};                          <span class="cmt">/* Initialized array (or a[3]={0,1,2}; */</span>
 int a[2][3]={{1,2,3},{4,5,6}};            <span class="cmt">/* Array of array of ints */</span>
 int i = 12345;                            <span class="cmt">/* Convert in i to char str */</span>
@@ -3151,7 +2774,7 @@ sprintf(str, "%d", i);
 </pre>
                         <h2>C example</h2>
                         A minimal c program simple.c:
-<pre><span class="pp">#include</span> &lt;stdio.h&gt;
+<pre><span class="pp">#include</span> &lt;stdio.h>
 main() {
     <span class="keyword">int</span> number=42;
     printf("The answer is %i\n", number);
@@ -3167,8 +2790,8 @@ The answer is 42
 <pre>*pointer                                  <span class="cmt">// Object pointed to by pointer</span>
 &amp;obj                                      <span class="cmt">// Address of object obj</span>
 obj.x                                     <span class="cmt">// Member x of class obj (object obj)</span>
-pobj-&gt;x                                   <span class="cmt">// Member x of class pointed to by pobj</span>
-                                          <span class="cmt">// (*pobj).x and pobj-&gt;x are the same</span>
+pobj->x                                   <span class="cmt">// Member x of class pointed to by pobj</span>
+                                          <span class="cmt">// (*pobj).x and pobj->x are the same</span>
 </pre>
                         <h2>C++ example</h2>
                         As a slightly more realistic program in C++: a class in its own header (IPv4.h) and implementation (IPv4.cpp) and a program which uses the class functionality. The class converts an IP address in integer format to the known quad format.
@@ -3176,7 +2799,7 @@ pobj-&gt;x                                   <span class="cmt">// Member x of cl
                         <h4>IPv4.h:</h4>
 <pre style="page-break-inside:avoid;"><span class="pp">#ifndef</span> IPV4_H
 <span class="pp">#define</span> IPV4_H
-<span class="pp">#include</span> &lt;string&gt;
+<span class="pp">#include</span> &lt;string>
 
 <span class="keyword">namespace</span> GenericUtils {                          <span class="cmt">// create a namespace
 </span><span class="keyword">class</span> IPv4 {                                      <span class="cmt">// class definition
@@ -3190,8 +2813,8 @@ pobj-&gt;x                                   <span class="cmt">// Member x of cl
 
                         <h4>IPv4.cpp:</h4>
 <pre style="page-break-inside:avoid;"><span class="pp">#include</span> "IPv4.h"
-<span class="pp">#include</span> &lt;string&gt;
-<span class="pp">#include</span> &lt;sstream&gt;
+<span class="pp">#include</span> &lt;string>
+<span class="pp">#include</span> &lt;sstream>
 <span class="keyword">using</span> <span class="keyword">namespace</span> std;                              <span class="cmt">// use the namespaces
 </span><span class="keyword">using</span> <span class="keyword">namespace</span> GenericUtils;
 
@@ -3199,17 +2822,17 @@ IPv4::IPv4() {}                                   <span class="cmt">// default c
 </span>IPv4::~IPv4() {}
 string IPv4::IPint_to_IPquad(<span class="keyword">unsigned</span> <span class="keyword">long</span> ip) {  <span class="cmt">// member implementation
 </span>    ostringstream ipstr;                          <span class="cmt">// use a stringstream
-</span>    ipstr &lt;&lt; ((ip &amp;0xff000000) &gt;&gt; 24)             <span class="cmt">// Bitwise right shift
-</span>          &lt;&lt; "." &lt;&lt; ((ip &amp;0x00ff0000) &gt;&gt; 16)
-          &lt;&lt; "." &lt;&lt; ((ip &amp;0x0000ff00) &gt;&gt; 8)
+</span>    ipstr &lt;&lt; ((ip &amp;0xff000000) >> 24)             <span class="cmt">// Bitwise right shift
+</span>          &lt;&lt; "." &lt;&lt; ((ip &amp;0x00ff0000) >> 16)
+          &lt;&lt; "." &lt;&lt; ((ip &amp;0x0000ff00) >> 8)
           &lt;&lt; "." &lt;&lt; ((ip &amp;0x000000ff));
     <span class="keyword">return</span> ipstr.str();
 }
 </pre>
                         <h3>The program simplecpp.cpp</h3>
 <pre style="page-break-inside:avoid;"><span class="pp">#include</span> "IPv4.h"
-<span class="pp">#include</span> &lt;iostream&gt;
-<span class="pp">#include</span> &lt;string&gt;
+<span class="pp">#include</span> &lt;iostream>
+<span class="pp">#include</span> &lt;string>
 <span class="keyword">using</span> <span class="keyword">namespace</span> std;
 <span class="keyword">int</span> main (<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[]) {
     string ipstr;                                 <span class="cmt">// define variables
