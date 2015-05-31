@@ -17064,6 +17064,7 @@ li.footer-menu-divider {
 
 .intro-social-buttons {
     text-align: center;
+    margin-top: 20px;
 }
 
 .featurette-divider {
@@ -17722,6 +17723,7 @@ span#add_city_button {
     text-align: center;
     font-size: 0.8em;
     color: #6f6f6f;
+    margin-bottom: 30px !important;
 }
 
 pre {
