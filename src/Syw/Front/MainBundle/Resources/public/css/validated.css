@@ -14085,7 +14085,7 @@ button.close {
     top: 0;
     bottom: 0;
     left: 0;
-    width: 15%;
+    width: 8%;
     font-size: 20px;
     color: #fff;
     text-align: center;
@@ -14164,9 +14164,9 @@ button.close {
 
 .carousel-caption {
     position: absolute;
-    right: 15%;
-    bottom: 20px;
-    left: 15%;
+    right: 8%;
+    bottom: 10px;
+    left: 8%;
     z-index: 10;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -14196,8 +14196,8 @@ button.close {
     }
 
     .carousel-caption {
-        right: 20%;
-        left: 20%;
+        right: 10%;
+        left: 10%;
         padding-bottom: 30px;
     }
 
@@ -16827,7 +16827,7 @@ body {
 }
 
 .carousel {
-    height: 500px;
+    height: 540px;
     margin-bottom: 60px;
 }
 
@@ -16836,7 +16836,7 @@ body {
 }
 
 .carousel .item {
-    height: 500px;
+    height: 520px;
     background-color: #777;
 }
 
@@ -16974,12 +16974,12 @@ li.footer-menu-divider {
 
 .carousel {
     margin-top: 50px;
-    height: 510px;
+    height: 540px;
     margin-bottom: 60px;
 }
 
 .carousel .item {
-    height: 510px;
+    height: 520px;
     background-color: #222;
 }
 
@@ -16990,7 +16990,7 @@ li.footer-menu-divider {
 @media (min-width: 768px) {
     .carousel {
         margin-top: 130px;
-        height: 510px;
+        height: 540px;
         margin-bottom: 60px;
     }
 }
@@ -17072,7 +17072,7 @@ li.footer-menu-divider {
 }
 
 .carousel-caption {
-    bottom: 80px;
+    bottom: 10px;
 }
 
 .navbar-wrapper > .container {
@@ -17385,7 +17385,7 @@ label > span {
 @media (min-width: 768px) {
     .carousel {
         margin-top: 74px;
-        height: 510px;
+        height: 540px;
         margin-bottom: 60px;
     }
 
@@ -17397,7 +17397,7 @@ label > span {
 @media (max-width: 1200px) {
     .carousel {
         margin-top: 74px;
-        height: 510px;
+        height: 540px;
         margin-bottom: 60px;
     }
 
@@ -17409,7 +17409,7 @@ label > span {
 @media (max-width: 630px) {
     .carousel {
         margin-top: 64px;
-        height: 510px;
+        height: 540px;
         margin-bottom: 60px;
     }
 }
@@ -17417,7 +17417,7 @@ label > span {
 @media (max-width: 548px) {
     .carousel {
         margin-top: 54px;
-        height: 510px;
+        height: 540px;
         margin-bottom: 60px;
     }
 }
@@ -17431,7 +17431,7 @@ label > span {
 @media (max-width: 473px) {
     .carousel {
         margin-top: 50px;
-        height: 510px;
+        height: 540px;
         margin-bottom: 60px;
     }
 }
@@ -17439,7 +17439,7 @@ label > span {
 @media (min-width: 1201px) {
     .carousel {
         margin-top: 129px;
-        height: 510px;
+        height: 540px;
         margin-bottom: 60px;
     }
 
@@ -18179,7 +18179,7 @@ body {
 
 @media screen and (max-width: 640px) {
     #myCarousel .h2, #myCarousel h2 {
-        font-size: 2.2em;
+        font-size: 1.6em;
         text-align: center;
         display: block;
     }
@@ -18194,7 +18194,7 @@ body {
 
 @media screen and (max-width: 536px) {
     #myCarousel .h2, #myCarousel h2 {
-        font-size: 2.1em;
+        font-size: 1.4em;
         text-align: center;
         display: block;
     }
@@ -18453,7 +18453,10 @@ img {
     }
 }
 
-
+#startseite #lico-top {
+    position: absolute;
+    z-index: 1;
+}
 
 
 

@@ -24,7 +24,7 @@
         ga('send', 'pageview');
     </script>
 </head>
-<body>
+<body{% if app.request.attributes.get('_route') == 'syw_front_main_main_index' %} id="startseite"{% endif %}>
 <div id="main" class="container">
     <div id="loadingDiv">
         <img id="loadingImg" src="{{ '/bundles/sywfrontmain/images/loading.gif' }}" alt="{{ 'Loading...'|trans }}" title="{{ 'Loading...'|trans }}"/><br/>
@@ -50,8 +50,8 @@
     {% endfor %}
 
     <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    {% if ( app.request.attributes.get('_route') != 'syw_front_main_main_index' ) and ( app.request.attributes.get('_route') != 'fos_user_resetting_check_email' ) %}
-    <div class="row container page">
+    {% if app.request.attributes.get('_route') != 'fos_user_resetting_check_email' %}
+    <div id="lico-top" class="row container page">
         <!-- LiCo Top NEU -->
         <ins class="adsbygoogle"
              data-ad-client="ca-pub-9187097149837683"
