@@ -563,10 +563,10 @@
                                 <div id="apidoc_desc6" class="apidocdesc">
                                     <div class="apidocdesc_div">
                                         <div class="example example-request">
-                                            <span class="label">GET</span> {{ apihost }}/v1/statistics/user
+                                            <span class="label">GET</span> {{ apihost }}/v1/statistics/user/{page}
                                         </div>
                                         <pre><code>curl --request GET \
-    '{{ apihost }}/v1/statistics/user' \
+    '{{ apihost }}/v1/statistics/user/2' \
     --header 'x-lico-apikey: {{ 'YOUR-APIKEY-HERE'|trans }}'
                                             </code></pre>
                                         <table class="table table-condensed table-hover">
@@ -580,6 +580,11 @@
                                                 <td><code>x-lico-apikey</code></td>
                                                 <td>Header</td>
                                                 <td><desc><strong>*</strong> {{ 'Submit your ApiKey through the request header.'|trans }} <span class="muted">({{ 'Required'|trans }})</span></desc></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>page</code></td>
+                                                <td>Query</td>
+                                                <td><desc><strong>*</strong> {{ 'The results are limited to pages'|trans }} <span class="muted">({{ 'Required'|trans }})</span></desc></td>
                                             </tr>
                                             </tbody>
                                         </table>

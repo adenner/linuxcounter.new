@@ -28,11 +28,11 @@ use Syw\Front\MainBundle\Form\Type\MachineFormType;
 class StatisticsController extends BaseRestController
 {
     /**
-     * @Route("/v1/statistics/user", name="api_user_statistics")
+     * @Route("/v1/statistics/user/cities/{page}", name="api_usercities_statistics")
      * @Method("GET")
      * @Rest\View()
      */
-    public function statsUserAction(Request $request)
+    public function statsUserCitiesAction(Request $request, $page)
     {
         $aResponse = array();
         $apikey = $request->headers->get('x-lico-apikey');
@@ -47,18 +47,31 @@ class StatisticsController extends BaseRestController
                 $response = new JsonResponse($aResponse);
                 $response->setStatusCode(404);
             } else {
-                $user = $apiaccess->getUser();
                 $em = $this->getDoctrine()->getManager();
 
-
-
-
-
-
+                $user = $apiaccess->getUser();
                 $apiaccess->setLastAccess(new \DateTime());
                 $em->persist($apiaccess);
                 $em->flush();
-                $response = new JsonResponse($aResponse);
+
+                if (false === isset($page)) {
+                    $page = 1;
+                }
+                $numperpage = 10;
+                $start = 0;
+                if (true === isset($page) && intval($page) >= 2) {
+                    $start = ($numperpage * $page) - $numperpage;
+                }
+                $dql   = "SELECT b FROM SywFrontMainBundle:Cities b WHERE b.usernum >= 1 ORDER BY b.usernum DESC, b.name ASC";
+                $ent_cities = $em->createQuery($dql)
+                    ->setMaxResults($numperpage)
+                    ->setFirstResult($start)
+                    ->getResult();
+
+                $serializer = $this->container->get('serializer');
+                $reports = $serializer->serialize($ent_cities, 'json');
+
+                $response = new JsonResponse($reports);
                 $response->setStatusCode(200);
             }
         }
