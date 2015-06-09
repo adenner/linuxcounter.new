@@ -70,6 +70,10 @@ EOT
         $manipulator = $this->getContainer()->get('syw.util.user_manipulator');
         $manipulator->create($username, $password, $email, $locale, !$inactive, $superadmin);
 
+        $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
+        $licotestdb->query("UPDATE fos_user SET id='".$username."' WHERE username='".$username."");
+        $db->flush();
+
         $user = $db->getRepository('SywFrontMainBundle:User')->findOneBy(array("username" => $username, "email" => $email));
 
         $userProfile = new \Syw\Front\MainBundle\Entity\UserProfile();
