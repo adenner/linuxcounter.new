@@ -18489,6 +18489,31 @@ img {
 
 
 
+.article {
+    margin: 20px;
+    border: 1px solid lightgrey;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.article-header {
+    background-color: lightgrey;
+    padding: 7px;
+    font-weight: bold;
+}
+
+.article-body {
+    padding: 7px;
+    font-size: 0.9em;
+}
+
+.article-meta {
+    font-size: 0.8em;
+    color: darkgray;
+}
+
+
+
+
 
 
 

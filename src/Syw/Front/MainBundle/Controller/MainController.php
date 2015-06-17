@@ -147,6 +147,40 @@ class MainController extends BaseController
     }
 
     /**
+     * @Route("/press")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function pressAction()
+    {
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+
+        $metatitle = $this->get('translator')->trans('The Linux Counter in the press', array(), 'syw_front_main_main_press');
+        $title = $metatitle;
+        $online = $this->getOnlineUsers();
+        $return2 = $this->getTransForm($user);
+        $return1 = array(
+            'accountInfo' => $this->getAccountInfo(),
+            'online' => $online,
+            'metatitle' => $metatitle,
+            'metadescription' => $this->get('translator')->trans('Find here articles in the international press about the Linux Counter', array(), 'syw_front_main_main_press'),
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+        );
+        return array_merge($return1, $return2);
+    }
+
+    /**
      * @Route("/download")
      * @Method("GET")
      *
