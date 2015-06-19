@@ -94,11 +94,11 @@ EOT
         echo "# Emails to ".$numusers." users must be sent...\n";
 
 
-        $a = 201;
+        $start = 201;
         $itemsperloop = 5;
         $counter = 0;
 
-        for ($a = 0; ($a+$itemsperloop)<$numusers; $a+=$itemsperloop) {
+        for ($a = $start; ($a+$itemsperloop)<$numusers; $a+=$itemsperloop) {
             unset($mails);
             $counter++;
             $mails   = $db->getRepository('SywFrontMainBundle:Mail')->findBy(
