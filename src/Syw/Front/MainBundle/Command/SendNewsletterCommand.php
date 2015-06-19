@@ -94,6 +94,7 @@ EOT
         echo "# Emails to ".$numusers." users must be sent...\n";
 
 
+
         $start = 201;
         $itemsperloop = 5;
         $counter = 0;
@@ -127,14 +128,8 @@ EOT
 
 
                 if (filter_var($useremail, FILTER_VALIDATE_EMAIL) && checkdnsrr($tmp[1], 'MX')) {
-                    $name = "";
-                    if (trim($userprofile->getFirstName()) != "") {
-                        $name = trim($userprofile->getFirstName());
-                    } else {
-                        $name = "n/a";
-                    }
-                    $message->addBcc($useremail, $name);
-                    echo "> ".$a." \t ".$user->getId()." \t ".$useremail." \t ".$userprofile->getFirstName() . ' ' . $userprofile->getLastName()."\n";
+                    $message->addBcc($useremail, "");
+                    echo "> ".$a." \t ".$user->getId()." \t ".$useremail."\n";
                 }
             }
             $mailer->send($message);
