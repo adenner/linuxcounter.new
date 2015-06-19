@@ -12,6 +12,8 @@ use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Model\UserInterface;
+use Syw\Front\MainBundle\Entity\User;
+use Syw\Front\MainBundle\Entity\UserProfile;
 
 /**
  * Class SendNewsletterEmail
@@ -88,6 +90,10 @@ EOT
 
         $mails = $db->getRepository('SywFrontMainBundle:Mail')->findBy(array("newsletterAllowed" => 1));
         $numusers = count($mails);
+
+        echo "# Emails to ".$numusers." users must be sent...\n";
+
+
         $a = 0;
         $itemsperloop = 2;
         $counter = 0;
@@ -111,7 +117,11 @@ EOT
                     'text/plain'
                 );
             foreach ($mails as $mail) {
-                $userprofile = $userprofilerepo->findOneBy(array("user" => $mail->getUser()));
+                unset($userprofile);
+                unset($user);
+                $userprofile    = $userprofilerepo->findOneBy(array("user" => $mail->getUser()));
+                $user           = $userrepo->findOneBy(array("user" => $mail->getUser()));
+
                 $message->addBcc($user->getEmail(), $userprofile->getFirstName() . ' ' . $userprofile->getLastName());
                 echo "> ".$user->getEmail()." \t ".$userprofile->getFirstName() . ' ' . $userprofile->getLastName()."\n";
             }
