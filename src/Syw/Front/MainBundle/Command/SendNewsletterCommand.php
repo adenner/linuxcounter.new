@@ -124,6 +124,9 @@ EOT
                 $user           = $userrepo->findOneBy(array("id" => $mail->getUser()));
                 unset($useremail);
                 $useremail = $user->getEmail();
+
+                $useremail = "alex@r3y.de";
+
                 $tmp = explode("@", $useremail);
 
 
