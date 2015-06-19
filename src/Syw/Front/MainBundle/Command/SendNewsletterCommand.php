@@ -52,13 +52,13 @@ EOT
 
 
 
-        $output->writeln(sprintf('Mail sending disabled! Remove the exit in order to send the mail!'));
-        exit(0);
+        // $output->writeln(sprintf('Mail sending disabled! Remove the exit in order to send the mail!'));
+        // exit(0);
 
 
 
 
-        $SUBJECT = "";
+        $SUBJECT = "[LiCo] The Linux Counter Project is still alive and most popular than ever!";
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,17 +104,20 @@ EOT
             $mailer  = $this->getContainer()->get('mailer');
             $message = $mailer->createMessage()
                 ->setSubject($SUBJECT)
-                ->setFrom('noreply@linuxcounter.net')
-                ->setTo('noreply@linuxcounter.net')
+                ->setFrom('info@linuxcounter.net')
+                ->setTo('info@linuxcounter.net')
                 ->setBody(
                     $mailbody,
                     'text/plain'
                 );
             foreach ($mails as $mail) {
                 $userprofile = $userprofilerepo->findOneBy(array("user" => $mail->getUser()));
-                $message->addBcc($user->getEmail(), $userprofile->getFirstName() . '' . $userprofile->getLastName());
+                $message->addBcc($user->getEmail(), $userprofile->getFirstName() . ' ' . $userprofile->getLastName());
+                echo "> ".$user->getEmail()." \t ".$userprofile->getFirstName() . ' ' . $userprofile->getLastName()."\n";
             }
             $mailer->send($message);
+            echo "# sent.\n";
+            sleep(1);
         }
 
         $output->writeln(sprintf(''.$counter.' Newsletter to '.$numusers.' emails successfully sent!'));
