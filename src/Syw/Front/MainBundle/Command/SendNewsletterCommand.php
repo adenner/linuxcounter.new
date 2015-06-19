@@ -95,7 +95,7 @@ EOT
 
 
         $a = 0;
-        $itemsperloop = 2;
+        $itemsperloop = 5;
         $counter = 0;
 
         for ($a = 0; ($a+$itemsperloop)<$numusers; $a+=$itemsperloop) {
