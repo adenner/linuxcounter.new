@@ -94,7 +94,7 @@ EOT
         echo "# Emails to ".$numusers." users must be sent...\n";
 
 
-        $a = 0;
+        $a = 201;
         $itemsperloop = 5;
         $counter = 0;
 
@@ -121,9 +121,21 @@ EOT
                 unset($user);
                 $userprofile    = $userprofilerepo->findOneBy(array("user" => $mail->getUser()));
                 $user           = $userrepo->findOneBy(array("id" => $mail->getUser()));
+                unset($useremail);
+                $useremail = $user->getEmail();
+                $tmp = explode("@", $useremail);
 
-                $message->addBcc($user->getEmail(), $userprofile->getFirstName() . ' ' . $userprofile->getLastName());
-                echo "> ".$user->getId()." \t ".$user->getEmail()." \t ".$userprofile->getFirstName() . ' ' . $userprofile->getLastName()."\n";
+
+                if (filter_var($useremail, FILTER_VALIDATE_EMAIL) && checkdnsrr($tmp[1], 'MX')) {
+                    $name = "";
+                    if (trim($userprofile->getFirstName()) != "") {
+                        $name = trim($userprofile->getFirstName());
+                    } else {
+                        $name = "n/a";
+                    }
+                    $message->addBcc($useremail, $name);
+                    echo "> ".$a." \t ".$user->getId()." \t ".$useremail." \t ".$userprofile->getFirstName() . ' ' . $userprofile->getLastName()."\n";
+                }
             }
             $mailer->send($message);
             echo "# sent.\n";
