@@ -123,7 +123,7 @@ EOT
                 $user           = $userrepo->findOneBy(array("user" => $mail->getUser()));
 
                 $message->addBcc($user->getEmail(), $userprofile->getFirstName() . ' ' . $userprofile->getLastName());
-                echo "> ".$user->getEmail()." \t ".$userprofile->getFirstName() . ' ' . $userprofile->getLastName()."\n";
+                echo "> ".$user->getId()." \t ".$user->getEmail()." \t ".$userprofile->getFirstName() . ' ' . $userprofile->getLastName()."\n";
             }
             $mailer->send($message);
             echo "# sent.\n";
