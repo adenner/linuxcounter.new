@@ -120,7 +120,7 @@ EOT
                 unset($userprofile);
                 unset($user);
                 $userprofile    = $userprofilerepo->findOneBy(array("user" => $mail->getUser()));
-                $user           = $userrepo->findOneBy(array("user" => $mail->getUser()));
+                $user           = $userrepo->findOneBy(array("id" => $mail->getUser()));
 
                 $message->addBcc($user->getEmail(), $userprofile->getFirstName() . ' ' . $userprofile->getLastName());
                 echo "> ".$user->getId()." \t ".$user->getEmail()." \t ".$userprofile->getFirstName() . ' ' . $userprofile->getLastName()."\n";
