@@ -96,7 +96,7 @@ EOT
 
 
         $start = 201;
-        $itemsperloop = 5;
+        $itemsperloop = 2;
         $counter = 0;
 
         for ($a = $start; ($a+$itemsperloop)<$numusers; $a+=$itemsperloop) {
@@ -117,6 +117,7 @@ EOT
                     $mailbody,
                     'text/plain'
                 );
+            $mc = 0;
             foreach ($mails as $mail) {
                 unset($userprofile);
                 unset($user);
@@ -131,13 +132,16 @@ EOT
 
 
                 if (filter_var($useremail, FILTER_VALIDATE_EMAIL) && checkdnsrr($tmp[1], 'MX')) {
-                    $message->addBcc($useremail, "");
+                    $message->addBcc($useremail, $userprofile->getFirstName());
                     echo "> ".$a." \t ".$user->getId()." \t ".$useremail."\n";
+                    $mc++;
                 }
             }
-            $mailer->send($message);
-            echo "# sent.\n";
-            sleep(1);
+            if ($mc >= 1) {
+                $mailer->send($message);
+                echo "# sent.\n";
+                sleep(1);
+            }
         }
 
         $output->writeln(sprintf(''.$counter.' Newsletter to '.$numusers.' emails successfully sent!'));
