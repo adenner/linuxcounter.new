@@ -25,6 +25,7 @@ class RegistrationFormType extends AbstractType
                     'data' => 'en'
                 )
             );
+        /*
         $builder->add('recaptcha', 'ewz_recaptcha', array(
             'attr' => array(
                 'options' => array(
@@ -37,6 +38,7 @@ class RegistrationFormType extends AbstractType
                 new True()
             )
         ));
+        */
     }
 
     public function getParent()

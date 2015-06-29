@@ -48,18 +48,19 @@ class ContactType extends AbstractType
                     'rows' => 10,
                     'placeholder' => 'Your message text...'
                 )
-            ))
-            ->add('recaptcha', 'ewz_recaptcha', array(
-                'attr' => array(
-                    'options' => array(
-                        'theme' => 'light',
-                        'type'  => 'image'
-                    )
-                ),
-                'mapped'      => false,
-                'constraints' => array(
-                    new True()
-                )
+                /*            ))
+                            ->add('recaptcha', 'ewz_recaptcha', array(
+                                'attr' => array(
+                                    'options' => array(
+                                        'theme' => 'light',
+                                        'type'  => 'image'
+                                    )
+                                ),
+                                'mapped'      => false,
+                                'constraints' => array(
+                                    new True()
+                                )
+                */
             ));
     }
 
