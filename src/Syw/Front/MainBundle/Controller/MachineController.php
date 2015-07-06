@@ -340,7 +340,7 @@ class MachineController extends BaseController
                     $machine->setCpu($field[2]);
                 }
             }
-
+            $machine->setModifiedAt(new \DateTime());
             $em->persist($machine);
             $em->flush();
 
