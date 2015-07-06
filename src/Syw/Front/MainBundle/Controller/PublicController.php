@@ -101,6 +101,9 @@ class PublicController extends BaseController
         $thisprivacy = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Privacy')
             ->findOneBy(array('user' => $thisuser));
+        $bday = $thisuserprofile->getBirthDay();
+
+
 
         $seconds = $thismachine->getUptime();
         $uptime = $this->formatSeconds($seconds);
@@ -116,6 +119,7 @@ class PublicController extends BaseController
         $host = $this->getHost();
         $return2 = $this->getTransForm($user);
         $return1 = array(
+            'birthday' => $bday,
             'accountInfo' => $this->getAccountInfo(),
             'host' => $host,
             'online' => $online,
