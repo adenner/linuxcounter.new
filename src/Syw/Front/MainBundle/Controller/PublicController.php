@@ -103,8 +103,6 @@ class PublicController extends BaseController
             ->findOneBy(array('user' => $thisuser));
         $bday = $thisuserprofile->getBirthDay();
 
-
-
         $seconds = $thismachine->getUptime();
         $uptime = $this->formatSeconds($seconds);
 
