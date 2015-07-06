@@ -67,7 +67,7 @@
                                         href="http://www.openstreetmap.org/#map=15/{{ userprofile.city.getLatitude() }}/{{ userprofile.city.getLongitude() }}">{{ 'Show on map'|trans }}</a>){% endif %}
                             </div>
                             <div id="profile_location_lat">{{ 'Latitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLatitude() }}{% endif %}</div>
-                            <div id="profile_location_long">{{ 'Langitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLongitude() }}{% endif %}</div>
+                            <div id="profile_location_long">{{ 'Longitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLongitude() }}{% endif %}</div>
                         </div>
                     </div>
                 </div>

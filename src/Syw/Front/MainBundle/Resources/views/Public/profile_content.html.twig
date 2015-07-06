@@ -88,7 +88,7 @@
                                             href="http://www.openstreetmap.org/#map=15/{{ thisuserprofile.city.getLatitude() }}/{{ thisuserprofile.city.getLongitude() }}">{{ 'Show on map'|trans }}</a>){% endif %}
                                 </div>
                                 <div id="profile_location_lat">{{ 'Latitude'|trans }}: {% if thisuserprofile.city %}{{ thisuserprofile.city.getLatitude() }}{% endif %}</div>
-                                <div id="profile_location_long">{{ 'Langitude'|trans }}: {% if thisuserprofile.city %}{{ thisuserprofile.city.getLongitude() }}{% endif %}</div>
+                                <div id="profile_location_long">{{ 'Longitude'|trans }}: {% if thisuserprofile.city %}{{ thisuserprofile.city.getLongitude() }}{% endif %}</div>
                                 {% else %}
                                     This user has secured his location information
                                 {% endif %}
