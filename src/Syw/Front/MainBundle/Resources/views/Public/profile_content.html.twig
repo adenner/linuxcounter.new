@@ -68,7 +68,7 @@
                             <div class="panel-body">
                                 <div id="profile_personal_firstname">{{ 'Firstname'|trans }}: {% if (thisprivacy.getShowRealName() == 1) %}{{ thisuserprofile.firstName }}{% else %}<span class="privhidden">hidden</span>{% endif %}</div>
                                 <div id="profile_personal_lastname">{{ 'Lastname'|trans }}: {% if (thisprivacy.getShowRealName() == 1) %}{{ thisuserprofile.lastName }}{% else %}<span class="privhidden">hidden</span>{% endif %}</div>
-                                <div id="profile_personal_birthday">{{ 'Birthday'|trans }}: {{ birthday|date('Y-m-d') }}</div>
+                                <div id="profile_personal_birthday">{{ 'Birthday'|trans }}: {{ thisuserprofile.birthday }}</div>
                                 <div id="profile_personal_birthplace">{{ 'Birthplace'|trans }}: {{ thisuserprofile.birthPlace }}</div>
                                 <div id="profile_personal_homepage">{{ 'Homepage'|trans }}: <a
                                             href="{{ thisuserprofile.homepage }}">{{ thisuserprofile.homepage|length > 30 ? thisuserprofile.homepage|slice(0, 30) ~ '...' : thisuserprofile.homepage }}</a>
