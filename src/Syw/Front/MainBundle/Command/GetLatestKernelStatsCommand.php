@@ -155,7 +155,9 @@ EOT
                 echo "\n".$filedir."\n";
                 $version = preg_replace("`^linux-([0-9]+\.[0-9]*\.?[0-9]*)\.tar\.[bgz2]+$`", "$1", $targetfile);
                 echo "version:   ".$version."\n";
-                $loc = exec('cloc "'.$filedir.'" --csv | grep -A 50 "files,language,blank" | grep -v "files,language,blank" | cut -d "," -f 5 | awk \'{s+=$1} END {print s}\'');
+                # $loc = exec('cloc "'.$filedir.'" --csv | grep -A 50 "files,language,blank" | grep -v "files,language,blank" | cut -d "," -f 5 | awk \'{s+=$1} END {print s}\'');
+
+                $loc = exec('output=$( cloc "'.$filedir.'" --csv | grep -A 50 "files,language,blank" | grep -v "files,language,blank" ) ; sum1=$( echo "$output" | cut -d "," -f 5 | awk \'{s+=$1} END {print s}\' ) ; sum2=$( echo "$output" | cut -d "," -f 4 | awk \'{s+=$1} END {print s}\' ) ; echo -e "$sum1\n$sum2" | awk \'{s+=$1} END {print s}\'');
 
                 echo "LOC:       ".$loc."\n";
 
