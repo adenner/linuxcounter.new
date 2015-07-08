@@ -25,6 +25,19 @@ class RegistrationFormType extends AbstractType
                     'data' => 'en'
                 )
             );
+
+        $builder
+            ->add(
+                'newsletter',
+                'checkbox',
+                array(
+                    'mapped' => false,
+                    'required' => false,
+                    'attr'   => array('checked'   => 'checked'),
+                    'label' => 'Newsletter subscription'
+                )
+            );
+
         /*
         $builder->add('recaptcha', 'ewz_recaptcha', array(
             'attr' => array(
