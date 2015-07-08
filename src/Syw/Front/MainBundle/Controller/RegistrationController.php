@@ -101,6 +101,21 @@ class RegistrationController extends BaseController
             $em->persist($obj);
             $em->flush();
 
+            $email = $user->getEmail();
+            unset($user);
+            $user = $this->get('doctrine')
+                ->getRepository('SywFrontMainBundle:User')
+                ->findOneBy(array('email' => $email));
+
+            if (false === file_exists('/srv/www.linuxcounter.net/newsletter.email.import.csv')) {
+                $fp = fopen('/srv/www.linuxcounter.net/newsletter.email.import.csv', "a+");
+                fwrite($fp, "CounterID\tEmail\n");
+                fclose($fp);
+            }
+            $fp = fopen('/srv/www.linuxcounter.net/newsletter.email.import.csv', "a+");
+            fwrite($fp, $user->getId()."\t".$user->getEmail()."\n");
+            fclose($fp);
+
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_registration_confirmed');
                 $response = new RedirectResponse($url);
