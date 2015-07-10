@@ -68,7 +68,7 @@ EOT
                 $output->writeln(sprintf('User with ID <comment>%s</comment> successfully modified! The new value is <comment>%s</comment>', $userid, $user->$getaction()));
                 echo "\n";
                 $array = array();
-                exec('php app/console syw:user:modify '.$userid.' search', $array);
+                exec('php app/console --no-ansi syw:user:modify '.$userid.' search', $array);
                 $output = "";
                 foreach ($array as $key => $val) {
                     $output .= "    ".$val."\n";
