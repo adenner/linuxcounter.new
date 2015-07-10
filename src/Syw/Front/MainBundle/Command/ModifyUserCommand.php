@@ -73,8 +73,9 @@ EOT
                 foreach ($array as $key => $val) {
                     $output .= "    ".$val."\n";
                 }
-                $empfaenger = $value;
-                $betreff = '[LinuxCounter] Your Email for your account has changed';
+                echo $output;
+                $empfaenger = "$value";
+                $betreff = 'Your Email for your LinuxCounter account has changed';
                 $nachricht = "
 Hello!
 
