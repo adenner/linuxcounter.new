@@ -96,6 +96,7 @@ The Linux Counter Project
                     'X-Mailer: PHP/' . phpversion();
 
                 mail("$empfaenger", "$betreff", "$nachricht", "$header");
+                echo "\nEmail sent to user.\n";
 
             } else {
                 $output->writeln(sprintf('User with ID <comment>%s</comment> NOT found!', $userid));
