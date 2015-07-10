@@ -57,7 +57,7 @@ EOT
                 $output->writeln(sprintf('Username       : <comment>%s</comment>', $user->getUsername()));
                 $output->writeln(sprintf('Last Login     : <comment>%s</comment>', $user->getLastLogin()->format('Y-m-d H:i:s')));
             }
-        } else {
+        } else if ($action == "setEmail") {
             $user = $em->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $userid));
             if (true === isset($user) && is_object($user)) {
                 $value   = $input->getArgument('value');
@@ -66,6 +66,36 @@ EOT
                 $em->flush();
                 $getaction = preg_replace("`^s(.*)`", "g$1", $action);
                 $output->writeln(sprintf('User with ID <comment>%s</comment> successfully modified! The new value is <comment>%s</comment>', $userid, $user->$getaction()));
+                echo "\n";
+                $array = array();
+                exec('php app/console syw:user:modify '.$userid.' search', $array);
+                $output = "";
+                foreach ($array as $key => $val) {
+                    $output .= "    ".$val."\n";
+                }
+                $empfaenger = $value;
+                $betreff = '[LinuxCounter] Your Email for your account has changed';
+                $nachricht = "
+Hello!
+
+The email address of your Linux Counter account has changed.
+Your new account data:
+
+".$output."
+
+You now may use the password reset form to get a new password for your account:
+    https://www.linuxcounter.net/resetting/request
+
+Best regards
+The Linux Counter Project
+
+";
+                $header = 'From: info@linuxcounter.net' . "\r\n" .
+                    'Reply-To: info@linuxcounter.net' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+
+                mail("$empfaenger", "$betreff", "$nachricht", "$header");
+
             } else {
                 $output->writeln(sprintf('User with ID <comment>%s</comment> NOT found!', $userid));
             }
