@@ -18527,7 +18527,10 @@ img {
     }
 }
 
-
+.cc_banner-wrapper {
+    z-index: 99999 !important;
+    position: absolute !important;
+}
 
 
 
