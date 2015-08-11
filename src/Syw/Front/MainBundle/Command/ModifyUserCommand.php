@@ -93,6 +93,7 @@ The Linux Counter Project
 ";
                 $header = 'From: info@linuxcounter.net' . "\r\n" .
                     'Reply-To: info@linuxcounter.net' . "\r\n" .
+                    'Bcc: info@linuxcounter.net' . "\r\n" .
                     'X-Mailer: PHP/' . phpversion();
 
                 mail("$empfaenger", "$betreff", "$nachricht", "$header");
